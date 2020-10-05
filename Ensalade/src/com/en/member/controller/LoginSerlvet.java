@@ -33,10 +33,18 @@ public class LoginSerlvet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId=request.getParameter("userId");
 		String userPw=request.getParameter("password");
+		
 		Member m=new MemberService().selectId(userId,userPw);
 		
 		String msg="";
 		String loc="";
+		
+		if(m!=null && m.getMangerYn().equals("Y")) {
+			HttpSession session=request.getSession();
+			session.setAttribute("loginMember", m);
+			response.sendRedirect(request.getContextPath());
+			return;
+		}
 		if(m!=null) {
 			HttpSession session=request.getSession();
 			session.setAttribute("loginMember", m);
