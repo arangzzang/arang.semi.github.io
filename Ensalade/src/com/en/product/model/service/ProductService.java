@@ -28,5 +28,13 @@ public class ProductService {
 	   close(conn);
 	   return p;
    }
+   //관련상품
+   public List<Product> relateProduct(String type){
+      Connection conn = getConnection();
+      List<Product> types = dao.relateProduct(conn, type);
+      close(conn);
+      return types;
+   }
+
    
 }

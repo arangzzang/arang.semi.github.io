@@ -36,11 +36,11 @@
                         </ul>
                     </li>
                     <li><a href="<%=request.getContextPath()%>/product/productAll">전체메뉴</a>
-                        <ul>
-                            <li><a href="">비건샐러드</a></li>
-                            <li><a href="">육류</a></li>
-                            <li><a href="">어류</a></li>
-                            <li><a href="">유제품</a></li>
+                    	<ul>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=비건">비건</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=육류">육류</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=해산물">해산물</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=유제품">유제품</a></li> 
                         </ul>
                     </li>
                     <li><a href="">커스텀</a>
@@ -73,10 +73,10 @@
                  <%}else if(loginMember!=null){ %>
                  	<li><a href="<%=request.getContextPath()%>/product/productAll">전체메뉴</a>
                         <ul>
-                            <li><a href="">비건샐러드</a></li>
-                            <li><a href="">육류</a></li>
-                            <li><a href="">어류</a></li>
-                            <li><a href="">유제품</a></li>
+                             <li><a href="<%=request.getContextPath()%>/product/productAll?type=비건">비건</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=육류">육류</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=해산물">해산물</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=유제품">유제품</a></li> 
                         </ul>
                     </li>
                     <li><a href="">커스텀</a>
@@ -111,10 +111,10 @@
                  <%} else { %> <!-- 로그인 안되어 있으면 로그인 하라고 해야함.... -->
                  	<li><a href="<%=request.getContextPath()%>/product/productAll">전체메뉴</a>
                         <ul>
-                            <li><a href="">비건샐러드</a></li>
-                            <li><a href="">육류</a></li>
-                            <li><a href="">어류</a></li>
-                            <li><a href="">유제품</a></li>
+                             <li><a href="<%=request.getContextPath()%>/product/productAll?type=비건">비건</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=육류">육류</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=해산물">해산물</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=유제품">유제품</a></li> 
                         </ul>
                     </li>
                     <li><a href="">커스텀</a>

@@ -3,14 +3,21 @@
 
 <%@include file="/view/common/header.jsp"%>
 
-
+<%
+	String loc=(String)request.getAttribute("loc");
+	
+	
+%>
 <style>
 	section{padding: 150px;}
 </style>
 
 <section>
-	<form action="<%=request.getContextPath()%>/loginjoin/login.do"
-		method='post'>
+	<% if(loc==null){%>
+	<form action="<%=request.getContextPath()%>/loginjoin/login.do" method='post'>
+	<%}else{ %>
+	<form action="<%=request.getContextPath()%>/loginjoin/login.do?loc=<%=loc %>" method='post'>
+	<%} %>
 		<h4>Ensalade</h4>
 		<h2>로그인</h2>
 		<input type="text" name="userId" id="userId_" placeholder="아이디 입력"><br>

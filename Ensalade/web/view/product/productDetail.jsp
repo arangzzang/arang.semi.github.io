@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.en.product.model.vo.Product" %>
+<%@ page import="com.en.product.model.vo.Product,java.util.List" %>
 
 <%@include file="/view/common/header.jsp"%>
 
 <%Product p = (Product)request.getAttribute("selectProduct");//서블렛에 있는 키값으로 불러와야함.
-
+List<Product> list = (List)request.getAttribute("relateProduct");
 %>
+
+<!-- Swiper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
 
 <section class="thisproduct" >
     <!-- 상품 썸네일 이미지/ 상품 정보 부모창-->
@@ -44,31 +49,56 @@
         </div>
     </div>
     <hr>
-    <!-- 관련상품 -->
-    <div class="Relatedproducts">
-        <input type="radio" name="pos" id="pos1" checked>
-        <input type="radio" name="pos" id="pos2">
-	    <input type="radio" name="pos" id="pos3">
-	    <input type="radio" name="pos" id="pos4">
-        <ul class="Relatedimg">
-            <li>관련상품 1-1</li>
-            <li>관련상품 1-2</li>
-            <li>관련상품 1-3</li>
-            <li>관련상품 1-4</li>
-        </ul>
-        <p class="bullet">
-	      <label for="pos1">1</label>
-	      <label for="pos2">2</label>
-	      <label for="pos3">3</label>
-	      <label for="pos4">4</label>
-	    </p>
+   <!-- 관련상품 -->
+   
+   <div class="relate">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+               <%for(int i=0;i < Math.ceil(list.size()/4);i++){ %>
+              <div class="swiper-slide">
+                 <ul>
+                 <%for(int j=i*4;j<(i+1)*4;j++){%>
+               
+                    <li>
+                  <a href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=p.getProductNo()%>">
+                  
+                   <img alt="" src="<%=list.get(i).getProductThumbnail() %>" class="product-img">
+                  <p><%=list.get(i).getProductName() %></p>
+                  <p><%=list.get(i).getProductPrice() %></p> 
+                  </a>
+               </li>
+               
+            <%} %>
+            </ul>
+            </div>
+            <%} %>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
     </div>
+
     <hr>
     <!-- 상품 상세 이미지 -->
     <div class="detail-product-img">
         <p>여긴 이미지가 들어갈 내용</p>
     </div>
-
+	<div class="review-go">
+		<span>후기를 작성해보세요!</span>
+		<button>후기 쓰러가기</button>
+	</div >
+		<h3>사진 모아보기</h3>
+		<div class="review-img">
+			<img src="<%=request.getContextPath() %>/image/product/salad1.jpg">
+			<img src="<%=request.getContextPath() %>/image/product/salad1.jpg">
+			<hr>
+		</div>
+	<div>
+	
+	</div>
 </section>
 
 <style>
@@ -128,57 +158,44 @@
         
     }
     /* 관련상품 */
-    .Relatedproducts{/* ul을 담고있는 div */
-        height: 200px;
-        overflow:hidden;
-        position:relative;
-        width: auto;
-        border: 1px rebeccapurple solid;
-        margin: 20px 20px;
+    .relate{
+      position: relative;
+      height: 400px;
     }
-    /* 관련 상품 분류 */
-    .Relatedimg{ /* ul */
-        list-style-type: none;
-        width: calc(100%*4);
-        animation:slide 8s infinite;
-        display: flex;
-        transition:1s;
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
     }
-	
-    .Relatedproducts>.Relatedimg>li{
-        width:calc(100% / 4);
-        height:100px;
+    .swiper-container {
+      width: 100%;
+      height: 100%;
     }
-    .Relatedproducts>input{
-    	display:none;
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
     }
-    
-    .slide .bullet{position:absolute;bottom:20px;left:0;right:0;text-align:center;z-index:10;}
-    .slide .bullet label{width:10px;height:10px;border-radius:10px;border:2px solid #666;display:inline-block;background:#fff;font-size:0;transition:0.5s;cursor:pointer;}
+    .swiper-slide>ul{display:flex;}
+    .swiper-slide>ul>li{list-style:none;}
+    .swiper-slide>ul>li>a>.product-img{width:200px; height:230px; background-color:red;}
 
-    /* 슬라이드 조작 */
-    #pos1:checked ~ .Relatedimg{margin-left:0;}
-    #pos2:checked ~ .Relatedimg{margin-left:-100%;}
-    #pos3:checked ~ .Relatedimg{margin-left:-200%;}
-    #pos4:checked ~ .Relatedimg{margin-left:-300%;}
-
-    /* bullet 조작 */
-    #pos1:checked ~ .bullet label:nth-child(1),
-    #pos2:checked ~ .bullet label:nth-child(2),
-    #pos3:checked ~ .bullet label:nth-child(3),
-    #pos4:checked ~ .bullet label:nth-child(4){background:#666;}
-    
-    @keyframes .Relatedproducts {
-      0% {margin-left:0;} /* 0 ~ 10  : 정지 */
-      10% {margin-left:0;} /* 10 ~ 25 : 변이 */
-      25% {margin-left:-100%;} /* 25 ~ 35 : 정지 */
-      35% {margin-left:-100%;} /* 35 ~ 50 : 변이 */
-      50% {margin-left:-200%;}
-      60% {margin-left:-200%;}
-      75% {margin-left:-300%;}
-      85% {margin-left:-300%;}
-      100% {margin-left:0;}
-    }
     
     
     
@@ -198,8 +215,17 @@
 
   <script >
   		function moveorder(){
+  			
   			var su=$("#amount").val();
-  			location.assign('<%=request.getContextPath() %>/order/productOrder?productNo=<%=p.getProductNo() %>&su='+su);
+  			<%if(loginMember==null){
+  			String loc="/order/productOrder";
+  			%>
+  				location.assign('<%=request.getContextPath()%>/view/login.jsp?productNo=<%=p.getProductNo()%>&loc=<%=loc%>&su='+su);
+  			<%}else{%>
+  				location.assign('<%=request.getContextPath()%>/order/productOrder?productNo=<%=p.getProductNo()%>&su='+su);
+  		<%}%>
+  			
+  			
   		}
   		function movecart(){
   			var su=$("#amount").val();
@@ -230,6 +256,24 @@
                 sum.textContent = parseInt(hm.value) * price+"원";
             }
         }
+        //스와이퍼
+        var swiper = new Swiper('.swiper-container', {
+     spaceBetween: 30,
+     centeredSlides: true,
+     autoplay: {
+       delay: 2500,
+       disableOnInteraction: false,
+     },
+     pagination: {
+       el: '.swiper-pagination',
+       clickable: true,
+     },
+     navigation: {
+       nextEl: '.swiper-button-next',
+       prevEl: '.swiper-button-prev',
+     },
+   });
+
         
        
         </script> 
