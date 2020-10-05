@@ -33,14 +33,23 @@ public class LoginSerlvet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId=request.getParameter("userId");
 		String userPw=request.getParameter("password");
+		
+		
 		Member m=new MemberService().selectId(userId,userPw);
 		
 		String msg="";
 		String loc="";
+		
 		if(m!=null) {
 			HttpSession session=request.getSession();
 			session.setAttribute("loginMember", m);
-			response.sendRedirect(request.getContextPath());
+			loc=request.getParameter("loc");
+			if(loc==null){
+				response.sendRedirect(request.getContextPath());
+			}else{
+				response.sendRedirect(request.getContextPath()+loc);
+			}
+			
 		}else {
 			msg="아이디나 비밀번호가 일치하지 않습니다.";
 			loc="/view/login.jsp";
@@ -48,6 +57,7 @@ public class LoginSerlvet extends HttpServlet {
 			request.setAttribute("loc", loc);
 			request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
 		}
+		
 		
 		
 		

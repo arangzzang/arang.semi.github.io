@@ -1,4 +1,4 @@
-package com.en.product.controller;
+package com.en.basket.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.en.product.model.service.ProductService;
-import com.en.product.model.vo.Product;
+import com.en.basket.model.service.BasketService;
+import com.en.basket.model.vo.Basket;
 
 /**
- * Servlet implementation class DetailProductServlet
+ * Servlet implementation class BasketViewServlet
  */
-@WebServlet("/product/detailProduct")
-public class DetailProductServlet extends HttpServlet {
+@WebServlet("/basket/basketView")
+public class BasketViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailProductServlet() {
+    public BasketViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +32,14 @@ public class DetailProductServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int productNo = Integer.parseInt(request.getParameter("productNo"));
-		Product p = new ProductService().detailProduct(productNo);
-		String type = p.getProductType();
-	    List<Product> list = new ProductService().relateProduct(type);
-	    request.setAttribute("relateProduct", list);
-		request.setAttribute("selectProduct", p);
-		request.getRequestDispatcher("/view/product/productDetail.jsp").forward(request, response);
+		int bNo = Integer.parseInt(request.getParameter("basketNumber"));
+		
+		List<Basket> list = new BasketService().basketView(bNo);
+		
+		request.setAttribute("list", list);
+		
+		
+		request.getRequestDispatcher("/view/basket/basketView.jsp").forward(request, response);
 	}
 
 	/**

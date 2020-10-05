@@ -37,7 +37,7 @@
 	         <!-- 상품 상세 페이지로 가는 서블릿 호출( 쿼리스트링 상품번호) -->
 		         <a href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=p.getProductNo() %>">
 		            <!-- 상품정보 -->
-		            <img src="<%=request.getContextPath()%>/images/salad1.jpg">
+		            <img src="<%=request.getContextPath()%>/image/salad1.jpg">
 		            <p><%=p.getProductName() %></p>
 		            <p><%=p.getProductPrice() %> </p>
 		            <p><%=p.getProductContent() %> </p>
@@ -101,6 +101,7 @@
       });
       //사이드바 클릭 이벤트
       $(".menu").click(e=>{
+    	  
     	  $.ajax({
     		  url:"<%=request.getContextPath()%>/ajax/selectType",
     		   data:{"type":e.target.textContent},

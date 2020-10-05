@@ -35,8 +35,9 @@ public class SelectTypeProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Product> list=new ProductService().selectProductAll();
+		
 		String type = request.getParameter("type");
-	      List<Product> selectList = new ArrayList();
+	    List<Product> selectList = new ArrayList();
 	      if(!type.equals("전체보기")){
 	    	  for(int i = 0; i < list.size(); i++) {
 		    	  if(list.get(i).getProductType().equals(type)) {
