@@ -172,6 +172,7 @@
 	width: 500px;
 	height: 500px;
 	padding: 30px;
+	margin: 0 auto;
 }
 
 .cbox {
@@ -179,16 +180,18 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin: 0 100px;
 }
 
 .cbox_imgbox, .cbox_textbox {
 	width: 50%;
 }
 
-
 .cbox_textbox {
 	display: block;
 	padding: 40px 25px;
+	width: 37%;
+	min-width: 350px;
 }
 
 section.contents-wrap {
@@ -196,10 +199,7 @@ section.contents-wrap {
 	top: 100px;
 	min-height: 100%;
 	padding-bottom: 100px;
-}
-
-.custom-write-form {
-	max-width: 1024px;
+	text-align: center;
 }
 
 .image-upload {
@@ -294,12 +294,6 @@ textarea.form-control {
 	padding-top: 9px;
 	padding-bottom: 9px;
 	min-height: 200px;
-}
-input.form-control{
-	width:100px;
-	background-color: green;
-	font-size: 25px;
-	color: white;
 }
 </style>
 
