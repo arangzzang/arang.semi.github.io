@@ -142,6 +142,7 @@
         top: 100px;
         min-height: 100%;
         padding-bottom: 20px;
+        text-align: center;
     }
 </style>
 <%@include file="/view/common/footer.jsp"%>
