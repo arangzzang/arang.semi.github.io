@@ -1,42 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/view/common/header.jsp"%>
-<style>
-	section{padding:100px;}
-</style>
+
 <section>
     <form action="<%=request.getContextPath()%>/loginjoin/join.do" method="post">
 	    <h4>계정 정보</h4>
-	    <label for="userId">아이디</label><br><input type="text" name="userId" id="userId_" required>
+	    <label for="userId">아이디</label><br><input type="text" name="userId" id="userId_" required class="text_">
 	    <input type='button' onclick="doubleCheck();" value='중복확인'><br>
 	    <!--아이디 중복확인을 위한 기능 / 4글자 이상 입력-->
 	   
 	    <label for="password">비밀번호</label><br>
-	    <input type="password" name="password" id="password_" placeholder="비밀번호 8글자 이상 입력 (영문 대소문자 포함)" required><br> <!--8글자 이상 입력, 영문 대소문자 포함-->
+	    <input type="password" name="password" id="password_" placeholder="비밀번호 8글자 이상 입력 (영문 대소문자 포함)" required class="text_"><br> <!--8글자 이상 입력, 영문 대소문자 포함-->
 	
 	    <label for="password2">비밀번호 재확인</label><br>
-	    <input type="password" name="password2" id="password2" placeholder="비밀번호 재입력" required>
+	    <input type="password" name="password2" id="password2" placeholder="비밀번호 재입력" class="text_" required>
 	    
 	    <!-- <br> -->
 	
 	    <h4>개인 정보</h4>
 	    <label for="userName">이름</label>
-	    <input type="text" name="userName" id="userName_" required><br>
+	    <input type="text" name="userName" id="userName_" class="text_" required><br>
 	
 	    <label for="email">이메일</label>
-	    <input type="text" name="email" id="email_" required><br>
+	    <input type="text" name="email" id="email_" class="text_" required><br>
 	    
 	    <label for="phone">연락처</label>
-	    <input type="text" name="phone" id="phone_" required><br>
+	    <input type="text" name="phone" id="phone_" class="text_" required><br>
 	
 	    <!--주소검색기능 추후 추가-->
 	    <label for="address">주소</label>
-	    <input type="text" name="address" id="address_" required><br>
+	    <input type="text" name="address" id="address_" class="text_" required><br>
 	
 	    <label for="birth">생년월일</label>
-	    <input type="number" name="year" id="year_" placeholder="YYYY" required>
-	    <input type="number" name="month" id="month_" placeholder="MM" required>
-	    <input type="number" name="date" id="date_" placeholder="DD" required><br>
+	    <input type="number" name="year" id="year_" placeholder="YYYY" class="text_" required>
+	    <input type="number" name="month" id="month_" placeholder="MM" class="text_" required>
+	    <input type="number" name="date" id="date_" placeholder="DD" class="text_" required><br>
 	
 	    <label for="gender">성별</label>
 	    <input type="radio" name="gender" id="gender_m" value="M" required>남자
