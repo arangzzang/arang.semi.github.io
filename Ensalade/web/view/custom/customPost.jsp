@@ -75,6 +75,7 @@
         <br>
         <!-- 게시물 -->
         <div id="custom_post">
+        <%if(list!=null){ %>
         <%for(CustomPost p:list){ %>
         	<div style="display:inline-block">
         <div><%=p.getMemberId()%></div>
@@ -84,6 +85,7 @@
         		<input type="hidden" value="<%=p.getcIdx()%>" class="">
         		<div><%=p.getContent() %></div>
         	</div>
+        	<%} %>
         	<%} %>
         </div>
         <style>
