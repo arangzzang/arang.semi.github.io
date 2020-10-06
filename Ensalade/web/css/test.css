@@ -16,7 +16,6 @@
 	padding: 0;
 	/*전체 화면 양사이드의 빈공간을 제거하기 위해 0을 줌*/
 	box-sizing: border-box;
-	color:black;
 }
 
 html, body {
@@ -50,6 +49,7 @@ section{padding-top:100px; height;80%}
 	padding: 30px;
 	/*메뉴 간 간격 조정*/
 	font-weight: 700;
+	color:black;
 }
 
 #logo {
@@ -144,6 +144,7 @@ section{padding-top:100px; height;80%}
 	padding: 30px;
 	margin-right: 30px;
 	font-weight: 700;
+	color:black;
 }
 
 /*****로희언니*******/
