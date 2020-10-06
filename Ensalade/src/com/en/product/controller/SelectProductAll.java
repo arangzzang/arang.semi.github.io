@@ -1,6 +1,7 @@
 package com.en.product.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -32,10 +33,22 @@ public class SelectProductAll extends HttpServlet {
     */
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       // TODO Auto-generated method stub
-      List<Product> list=new ProductService().selectProductAll();
+	  String type=request.getParameter("type");
+	 
+		
+	  List<Product> list=new ProductService().selectProductAll();
+	  List<Product> selectList = new ArrayList();
+	  if(type==null){
+	      request.setAttribute("list", list);
+	  }else{
+		  for(Product p : list){
+			  if(p.getProductType().equals(type)){
+				 selectList.add(p);
+			  }
+		  }
+		  request.setAttribute("list", selectList);
+	  }
       
-      
-      request.setAttribute("list", list);
       
       request.getRequestDispatcher("/view/product/productAll.jsp").forward(request, response);
    }

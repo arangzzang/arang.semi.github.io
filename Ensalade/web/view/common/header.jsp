@@ -27,19 +27,25 @@
         <div id="menu">
             <nav>
                 <ul>
+                <!-- 관리자 로그인시 -->
                  <%if(loginMember!=null && loginMember.getMemberId().equals("admin")) { %>
-                    <li><a href="<%=request.getContextPath()%>/product/productAll">전체메뉴</a>
+                    <li><a href="<%=request.getContextPath()%>/product/productAll">관리자전용 메뉴</a>
                         <ul>
-                            <li><a href="">비건샐러드</a></li>
-                            <li><a href="">육류</a></li>
-                            <li><a href="">어류</a></li>
-                            <li><a href="">유제품</a></li>
+                            <li><a href="<%=request.getContextPath()%>/admin/memberAll">회원관리</a></li>
+                            <li><a href="">상품관리</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="<%=request.getContextPath()%>/product/productAll">전체메뉴</a>
+                    	<ul>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=비건">비건</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=육류">육류</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=해산물">해산물</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=유제품">유제품</a></li> 
                         </ul>
                     </li>
                     <li><a href="">커스텀</a>
                         <ul>
-                            <li><a href="#">이용안내</a></li>
-                            <li><a href="<%=request.getContextPath()%>/view/custom/custom2.jsp">커스텀하기</a></li>
+                        	<li><a href="<%=request.getContextPath()%>/view/custom/custom2.jsp">커스텀하기</a></li>
                             <li><a href="<%=request.getContextPath()%>/custom/customList">커뮤니티</a></li>
                         </ul>
                     </li>
@@ -60,7 +66,6 @@
                         <ul>
                             <li><a href="#">장바구니</a></li>
                             <li><a href="#">배송현황</a></li>
-                            <li><a href="#">나의 게시물</a></li>
                             <li><a href="#">나의 커스텀</a></li>
                             <li><a href="<%=request.getContextPath()%>/inquiry">1:1문의 답변</a></li>
                         </ul>
@@ -68,10 +73,10 @@
                  <%}else if(loginMember!=null){ %>
                  	<li><a href="<%=request.getContextPath()%>/product/productAll">전체메뉴</a>
                         <ul>
-                            <li><a href="">비건샐러드</a></li>
-                            <li><a href="">육류</a></li>
-                            <li><a href="">어류</a></li>
-                            <li><a href="">유제품</a></li>
+                             <li><a href="<%=request.getContextPath()%>/product/productAll?type=비건">비건</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=육류">육류</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=해산물">해산물</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=유제품">유제품</a></li> 
                         </ul>
                     </li>
                     <li><a href="">커스텀</a>
@@ -106,10 +111,10 @@
                  <%} else { %> <!-- 로그인 안되어 있으면 로그인 하라고 해야함.... -->
                  	<li><a href="<%=request.getContextPath()%>/product/productAll">전체메뉴</a>
                         <ul>
-                            <li><a href="">비건샐러드</a></li>
-                            <li><a href="">육류</a></li>
-                            <li><a href="">어류</a></li>
-                            <li><a href="">유제품</a></li>
+                             <li><a href="<%=request.getContextPath()%>/product/productAll?type=비건">비건</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=육류">육류</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=해산물">해산물</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=유제품">유제품</a></li> 
                         </ul>
                     </li>
                     <li><a href="">커스텀</a>

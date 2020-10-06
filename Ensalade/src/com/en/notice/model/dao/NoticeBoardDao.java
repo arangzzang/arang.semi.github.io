@@ -51,14 +51,14 @@ public class NoticeBoardDao {
 
 			}
 //			 NOTICE_NO NUMBER PRIMARY KEY 
-//			 , NOTICE_TITLE VARCHAR2(500)   NOT NULL             -- 제목     
-//			 ,NOTICE_CONTENTS VARCHAR2(4000) NOT NULL          -- 컨텐츠
-//			 ,NOTICE_WRITER VARCHAR2(50)  NOT NULL             -- 작성자
-//			 ,DELETE_AT CHAR(1) DEFAULT 'N' NOT NULL           -- 삭제여부 'Y'삭제 'N' 미용
-//			 , FILEPATH VARCHAR2(300)                         --첨부자료
-//			 ,NOTICE_WRITE_DATE DATE DEFAULT SYSDATE NOT NULL --작성날짜
-//			 ,UPDATE_DATE DATE                                --수정일시
-//			 ,DELETE_DATE DATE                                --삭제일시
+//			 , NOTICE_TITLE VARCHAR2(500)   NOT NULL             -- �젣紐�     
+//			 ,NOTICE_CONTENTS VARCHAR2(4000) NOT NULL          -- 而⑦뀗痢�
+//			 ,NOTICE_WRITER VARCHAR2(50)  NOT NULL             -- �옉�꽦�옄
+//			 ,DELETE_AT CHAR(1) DEFAULT 'N' NOT NULL           -- �궘�젣�뿬遺� 'Y'�궘�젣 'N' 誘몄슜
+//			 , FILEPATH VARCHAR2(300)                         --泥⑤��옄猷�
+//			 ,NOTICE_WRITE_DATE DATE DEFAULT SYSDATE NOT NULL --�옉�꽦�궇吏�
+//			 ,UPDATE_DATE DATE                                --�닔�젙�씪�떆
+//			 ,DELETE_DATE DATE                                --�궘�젣�씪�떆
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -149,6 +149,35 @@ public class NoticeBoardDao {
 		}
 		return result;
 
+	}
+	
+	public NoticeBoard selectNoticeOne(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		NoticeBoard nb = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectNoticeOne"));
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				nb = new NoticeBoard();
+				nb.setNotice_no(rs.getInt("NOTICE_NO"));
+				nb.setNotice_title(rs.getNString("NOTICE_TITLE"));
+				nb.setNotice_contents(rs.getString("NOTICE_CONTENTS"));
+				nb.setNotice_writer(rs.getNString("NOTICE_WRITER"));
+				nb.setDelete_at(rs.getNString("DELETE_AT"));
+				nb.setFilepath(rs.getNString("FILEPATH"));
+				nb.setNotice_write_date(rs.getDate("NOTICE_WRITE_DATE"));
+				nb.setUpdate_date(rs.getDate("UPDATE_DATE"));
+				nb.setDelete_date(rs.getDate("DELETE_DATE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return nb;
 	}
 
 }

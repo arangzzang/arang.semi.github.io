@@ -1,28 +1,27 @@
-package com.en.product.controller;
+package com.en.notice.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.en.product.model.service.ProductService;
-import com.en.product.model.vo.Product;
+import com.en.notice.model.service.NoticeService;
+import com.en.notice.model.vo.NoticeBoard;
 
 /**
- * Servlet implementation class DetailProductServlet
+ * Servlet implementation class NoticeViewServlet
  */
-@WebServlet("/product/detailProduct")
-public class DetailProductServlet extends HttpServlet {
+//공지사항 상세보기
+@WebServlet("/notice/noticeView")
+public class NoticeViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailProductServlet() {
+    public NoticeViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,14 +30,10 @@ public class DetailProductServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int productNo = Integer.parseInt(request.getParameter("productNo"));
-		Product p = new ProductService().detailProduct(productNo);
-		String type = p.getProductType();
-	    List<Product> list = new ProductService().relateProduct(type);
-	    request.setAttribute("relateProduct", list);
-		request.setAttribute("selectProduct", p);
-		request.getRequestDispatcher("/view/product/productDetail.jsp").forward(request, response);
+		int no = Integer.parseInt(request.getParameter("no"));
+		NoticeBoard nb = new NoticeService().selectNoticeOne(no);
+		request.setAttribute("nb", nb);
+		request.getRequestDispatcher("/view/notice/noticeView.jsp").forward(request, response);
 	}
 
 	/**

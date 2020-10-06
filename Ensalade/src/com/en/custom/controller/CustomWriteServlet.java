@@ -43,7 +43,7 @@ public class CustomWriteServlet extends HttpServlet {
 				System.out.println(c);
 			}
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("/view/custom/customUpload.jsp").forward(request, response);
+			request.getRequestDispatcher("/view/custom/customUpload2.jsp").forward(request, response);
 		}
 		
 		

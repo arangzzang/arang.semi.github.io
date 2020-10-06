@@ -48,4 +48,11 @@ private NoticeBoardDao dao = new NoticeBoardDao();
 		return result;
 	}
 	
+	public NoticeBoard selectNoticeOne(int no) {
+		Connection conn = getConnection();
+		NoticeBoard nb = dao.selectNoticeOne(conn, no);
+		close(conn);
+		return nb;
+	}
+	
 }

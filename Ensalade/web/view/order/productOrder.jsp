@@ -49,7 +49,8 @@ int su=Integer.valueOf((String)request.getAttribute("su"));
 		                <tr>
 		                	<th>상품이름<th>
 		                	<th>상품종류</th>
-		                	
+		                	<th>상품금액</th>
+		                	<th>수량</th>
 		                </tr>
 		                <tr>
 		                	<td>
@@ -59,6 +60,14 @@ int su=Integer.valueOf((String)request.getAttribute("su"));
 			                <img src="<%=request.getContextPath() %>/img/test1.jpg" alt="">
 			                <td>
 			                <%=p.getProductType() %>
+			                </td>
+			                <td>
+			                <%=p.getProductPrice() %>
+			                </td>
+			                <td>
+			                 <input class="su" type="button" value=" - " onclick="del();"> 
+                        <input type="text" id="amount" value="<%=su %>" size="10" >
+                        <input class="su" type="button" value=" + " onclick="add();"><br>
 			                </td>
 		                </tr>
 	                </table>
@@ -83,12 +92,10 @@ int su=Integer.valueOf((String)request.getAttribute("su"));
             <div class="right">
                 <nav class="sidebar">
                     <h2>결제금액</h2>
-                            <form class="count" name="form" method="get">
-                         <p id="price">상품금액: <%=p.getProductPrice()%>원</p>
-                        수량 : <input class="su" type="button" value=" - " onclick="del();"> 
-                        <input type="text" id="amount" value="<%=su %>" size="10" >
-                        <input class="su" type="button" value=" + " onclick="add();"><br>
-                        최종금액 :  <p id=sum></p>
+                        <form class="count" name="form" method="get">
+                       	 <%=p.getProductName() %>:  <p id=sum></p>
+                       	 최종금액 : 
+                        <input type="submit" value="주문하기">
                     </form>
                 </nav>
                 
@@ -99,7 +106,7 @@ int su=Integer.valueOf((String)request.getAttribute("su"));
         
         <style>
 	        td{
-	        	width:300px;
+	        	width:160px;
 	        	
 	        }
 	        table{
@@ -171,8 +178,6 @@ int su=Integer.valueOf((String)request.getAttribute("su"));
             		document.getElementById("sum").textContent = firstPrice+"원";
             		
             		}
-                
-            
             function add() {//수량추가 하는 함수
                 hm = document.getElementById("amount");
                 sum = document.getElementById("sum");

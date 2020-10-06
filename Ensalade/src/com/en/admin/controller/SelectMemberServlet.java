@@ -1,4 +1,4 @@
-package com.en.product.controller;
+package com.en.admin.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.en.product.model.service.ProductService;
-import com.en.product.model.vo.Product;
+import com.en.admin.model.service.AdminService;
+import com.en.member.model.vo.Member;
 
 /**
- * Servlet implementation class DetailProductServlet
+ * Servlet implementation class SelectMemberServlet
  */
-@WebServlet("/product/detailProduct")
-public class DetailProductServlet extends HttpServlet {
+@WebServlet("/admin/memberAll")
+public class SelectMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailProductServlet() {
+    public SelectMemberServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,14 +31,9 @@ public class DetailProductServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int productNo = Integer.parseInt(request.getParameter("productNo"));
-		Product p = new ProductService().detailProduct(productNo);
-		String type = p.getProductType();
-	    List<Product> list = new ProductService().relateProduct(type);
-	    request.setAttribute("relateProduct", list);
-		request.setAttribute("selectProduct", p);
-		request.getRequestDispatcher("/view/product/productDetail.jsp").forward(request, response);
+		List<Member> list = new AdminService().selectMemberAll();
+	
+	
 	}
 
 	/**
