@@ -72,7 +72,7 @@
 			for (NoticeBoard nb : list) {%>
 			<tr>
 				<td><%=nb.getNotice_no()%></td>
-				<td><%=nb.getNotice_title()%></td>
+				<td><a href="<%=request.getContextPath()%>/notice/noticeView?no=<%=nb.getNotice_no()%>"><%=nb.getNotice_title()%></a></td>
 				<td><%=nb.getNotice_writer()%></td>
 				<td>
 			<%if (nb.getFilepath() != null) {%> 

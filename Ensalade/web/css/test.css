@@ -38,6 +38,18 @@ html {
 	/* text-item: center; */
 }
 
+a, button{
+	cursor:pointer;
+}
+
+a{
+	text-decoration: none;
+}
+
+.menu_underbox{
+	height: 80px;
+}
+
 section{padding-top:100px; height;80%}
 
 #menu {
