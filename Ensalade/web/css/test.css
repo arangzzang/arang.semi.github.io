@@ -16,6 +16,7 @@
 	padding: 0;
 	/*전체 화면 양사이드의 빈공간을 제거하기 위해 0을 줌*/
 	box-sizing: border-box;
+	color:black;
 }
 
 html, body {
@@ -48,6 +49,7 @@ section{padding-top:100px; height;80%}
 #menu>nav {
 	padding: 30px;
 	/*메뉴 간 간격 조정*/
+	font-weight: 700;
 }
 
 #logo {
@@ -119,7 +121,7 @@ section{padding-top:100px; height;80%}
 	width: 100%;
 	position: fixed;
 	z-index: 1000;
-	background-color: rgba(255, 255, 255, 0);
+	background-color: rgba(255, 255, 255, 1);
 	/* height:80px; */
 }
 
@@ -141,6 +143,7 @@ section{padding-top:100px; height;80%}
 #loginjoin {
 	padding: 30px;
 	margin-right: 30px;
+	font-weight: 700;
 }
 
 /*****로희언니*******/
@@ -203,14 +206,15 @@ section{padding-top:100px; height;80%}
 
 video {
 	width: auto;
-	height: auto;
+	height: 100%;
 	min-width: 100%;
 	min-height: 100%;
 	/* z-index: -5; */
 	position: absolute;
 	top: 0;
 	left: 0;
-	margin: 50px auto;
+	margin: 20px auto;
+	margin-bottom:10px;
 	/*작성할 텍스트를 위에 올리기 위해 부모 객체에 이 특성을 부여*/
 	/* background-size: cover; */
 }
