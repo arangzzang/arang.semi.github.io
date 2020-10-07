@@ -164,11 +164,11 @@
         </div>
     </header>
     
-    <div id="div_"style="width:1187.200px,height:115.600px"></div>
+    <div id="div_"></div>
  
     <style>
     	#div_{
     		width:1187.200px;
-    		height:95.600px;
+    		height:115.600px;
     	}
     </style>
