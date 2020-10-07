@@ -7,22 +7,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.en.member.model.service.MemberService;
 import com.en.member.model.vo.Member;
 
 /**
- * Servlet implementation class LoginSerlvet
+ * Servlet implementation class SearchIdPwServlet
  */
-@WebServlet(urlPatterns="/loginjoin/login.do")
-public class LoginSerlvet extends HttpServlet {
+@WebServlet("/search/searchIdPw")
+public class SearchIdPwServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginSerlvet() {
+    public SearchIdPwServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,39 +30,46 @@ public class LoginSerlvet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId=request.getParameter("userId");
-		String userPw=request.getParameter("password");
-		Member m=new MemberService().selectId(userId,userPw);//아이디,비번확인
+		
+		String id=request.getParameter("userId");
+		String name=request.getParameter("userName");
+		String email=request.getParameter("email");
+		String data="";
+		String type="";
+		if(id!=null) {
+			data=id;
+			type="member_id";
+		}else if(name!=null) {
+			data=name;
+			type="member_name";
+		}
+		
+		Member m=new MemberService().searchIdPw(data,email,type);
 		String msg="";
 		String loc="";
-		if(m!=null && m.getMangerYn().equals("Y")) {//관리자 일때
-			HttpSession session=request.getSession();
-			session.setAttribute("loginMember", m);
-			response.sendRedirect(request.getContextPath());
-			return;
-		}
-		if(m!=null) {//회원일때
-			HttpSession session=request.getSession();
-			session.setAttribute("loginMember", m);
-			loc=request.getParameter("loc");
-			if(loc==null){//정상 로그인
-				response.sendRedirect(request.getContextPath());
-			}else{//로그인필요한 서비스 이용할려고 접근했다가 로그인했을때
-				response.sendRedirect(request.getContextPath()+loc);
-			}
-				
-		}else {
-			msg="아이디나 비밀번호가 일치하지 않습니다.";
-			loc="/view/login.jsp";
+		if(m.getMemberId()==null&&type.equals("member_name")) {
+			msg="정보가 일치하지 않습니다.";
+			loc="/view/search/searchId.jsp";
 			request.setAttribute("msg", msg);
 			request.setAttribute("loc", loc);
 			request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
+			
+			return;
+		}else if(m.getMemberId()==null&&type.equals("member_id")) {
+			msg="정보가 일치하지 않습니다.";
+			loc="/view/search/searchPw.jsp";
+			request.setAttribute("msg", msg);
+			request.setAttribute("loc", loc);
+			request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
+			return;
 		}
 		
 		
+		request.setAttribute("member", m);
+		request.setAttribute("type", type);
 		
 		
-		
+		request.getRequestDispatcher("/view/search/searchIdPw.jsp").forward(request, response);
 		
 	}
 

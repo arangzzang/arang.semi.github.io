@@ -1,29 +1,25 @@
-package com.en.custom.controller;
+package com.en.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.en.custom.model.service.CustomService;
-import com.en.custom.model.vo.CustomPost;
+import com.en.member.model.service.MemberService;
 
 /**
- * Servlet implementation class CustomPostSerlvet
+ * Servlet implementation class UpdatePwServlet
  */
-@WebServlet("/custom/customList")
-public class CustomPostSerlvet extends HttpServlet {
+@WebServlet("/updatePw")
+public class UpdatePwServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CustomPostSerlvet() {
+    public UpdatePwServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,29 +28,19 @@ public class CustomPostSerlvet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id=request.getParameter("userId");
+		String newPw=request.getParameter("newPw");
 		
-//		String type=request.getParameter("searchType");
-//		String key=request.getParameter("searchKeyword");
-//		System.out.println(type);
-//		System.out.println(key+"123");
+		int result=new MemberService().updatePw(id,newPw);
 		
-		//게시판에 정보를 뿌려주는 서블릿
-		
-		List<CustomPost> list=new ArrayList();
-		
-		
-		  
-		  
-		  list=new CustomService().customList();
-		  
-		  
-			request.setAttribute("list", list);
-			
-			request.getRequestDispatcher("/view/custom/customPost.jsp").forward(request, response);
-		
-		
-
-		
+		if(result>0){
+			request.setAttribute("msg", "비밀 번호가 변경되었습니다.");
+			request.setAttribute("loc", "/view/login.jsp");
+			request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
+		}else {
+			request.setAttribute("check", "ch");
+			request.getRequestDispatcher("/view/search/changePw").forward(request, response);
+		}
 	}
 
 	/**
