@@ -39,4 +39,20 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+
+	public Member searchIdPw(String data, String email, String type) {
+		Connection conn=getConnection();
+		Member m=dao.searchIdPw(conn,data,email,type);
+		close(conn);
+		return m;
+	}
+
+	public int updatePw(String id, String newPw) {
+		Connection conn=getConnection();
+		int result=dao.updatePw(conn,id,newPw);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 }

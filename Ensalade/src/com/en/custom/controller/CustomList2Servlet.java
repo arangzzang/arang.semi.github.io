@@ -32,10 +32,10 @@ public class CustomList2Servlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sort=request.getParameter("sort");
-		
+		System.out.println(sort);
 		List<CustomPost> list=new CustomService().customSort(sort);
 		
-		
+	
 		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher("/view/custom/customPost2.jsp").forward(request, response);

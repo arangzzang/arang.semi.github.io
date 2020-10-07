@@ -31,6 +31,7 @@ public class NoticeViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int no = Integer.parseInt(request.getParameter("no"));
+		System.out.println(no);
 		NoticeBoard nb = new NoticeService().selectNoticeOne(no);
 		request.setAttribute("nb", nb);
 		request.getRequestDispatcher("/view/notice/noticeView.jsp").forward(request, response);
