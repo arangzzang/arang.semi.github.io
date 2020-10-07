@@ -47,6 +47,7 @@ public class CustomPostSerlvet extends HttpServlet {
 		  
 		  list=new CustomService().customList();
 		  
+		  
 			request.setAttribute("list", list);
 			
 			request.getRequestDispatcher("/view/custom/customPost.jsp").forward(request, response);

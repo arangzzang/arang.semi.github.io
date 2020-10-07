@@ -86,6 +86,10 @@
 				success:data=>{
 					$(".comment-box").html(data);
 					$("#text_").val("");
+					
+					 var location = document.querySelector(".comment-box").offsetTop;
+				      
+				      window.scrollTo({top:location, behavior:'auto'});
 				}
 				
 			})
