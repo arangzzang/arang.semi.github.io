@@ -2,6 +2,7 @@
     <wb-module deploy-name="Ensalade">
         <wb-resource deploy-path="/" source-path="/web" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resource"/>
         <property name="context-root" value="Ensalade"/>
         <property name="java-output-path" value="/Ensalade/web/WEB-INF/classes"/>
     </wb-module>

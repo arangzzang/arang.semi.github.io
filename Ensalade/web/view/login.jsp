@@ -30,8 +30,8 @@
             </div>
             <div class="login-findbox content_row">
                 <div class="login-findbox_en">
-                    <a type="button" class="login-findbox_en_f" href="">아이디 찾기</a>
-                    <a type="button" class="login-findbox_en_f" href="">비밀번호 찾기</a><br>
+                    <a type="button" class="login-findbox_en_f" href="<%=request.getContextPath()%>/view/search/searchId.jsp">아이디 찾기</a>
+                    <a type="button" class="login-findbox_en_f" href="<%=request.getContextPath()%>/view/search/searchPw.jsp">비밀번호 찾기</a><br>
                 </div>
                 <div class="login-findbox_en">
                     <a type="button" class="login-findbox_en_f">회원가입</a><br>

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Servlet Filter implementation class EncryptFilter
  */
-@WebFilter("/loginjoin/*")
+@WebFilter("/*")
 public class EncryptFilter implements Filter {
 
     /**

@@ -103,6 +103,7 @@
         .instaimgs {
             display: flex;
             justify-content: center;
+            background-color:#EEEEEE;
         }
 
 
@@ -115,6 +116,7 @@
             height: 500px;
             text-align : center;
             /* border: red solid 1px; */
+            background-color:#EEEEEE;
         }
 
         .footer_info {
@@ -165,6 +167,7 @@
             justify-content: center;
         }
             
-            </style>
+     </style>
+     
 </body>
 </html>
