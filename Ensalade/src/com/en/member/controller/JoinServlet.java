@@ -32,6 +32,9 @@ public class JoinServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String address=request.getParameterValues("address")[0]+",";
+		address+=request.getParameterValues("address")[1]+",";
+		address+=request.getParameterValues("address")[2];
 		Member m=new Member();
 		m.setMemberId(request.getParameter("userId"));
 		m.setMemberPw(request.getParameter("password"));
@@ -39,7 +42,7 @@ public class JoinServlet extends HttpServlet {
 		m.setEmail(request.getParameter("email"));
 		m.setMemberGender(request.getParameter("gender"));
 		m.setMemberPhone(request.getParameter("phone"));
-		m.setMemberAddress(request.getParameter("address"));
+		m.setMemberAddress(address);
 		int year=Integer.parseInt(request.getParameter("year"));
 		int month=Integer.parseInt(request.getParameter("month"));
 		int date=Integer.parseInt(request.getParameter("date"));
