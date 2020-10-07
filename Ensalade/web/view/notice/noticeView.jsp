@@ -80,7 +80,10 @@
 	});
 	
 	$("#deleteBtn").click(e => {
-		location.assign('<%=request.getContextPath()%>/admin/deleteNotice?no='+no);
+		let result = confirm("삭제하시겠습니까?");
+		if(result){
+			location.replace('<%=request.getContextPath()%>/admin/deleteNotice?no='+no);
+		}else{}
 	});
 	$("#listBack").click(e =>{
 		location.assign('<%=request.getContextPath()%>/searchNotice');

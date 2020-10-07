@@ -78,4 +78,17 @@ public class AdminDao {
 		}
 		return result;
 	}
+	public int deleteNotice(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("deleteNotice"));
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
 }
