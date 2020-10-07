@@ -181,6 +181,7 @@
 	justify-content: center;
 	align-items: center;
 	margin: 0 100px;
+	min-width: 1000px;
 }
 
 .cbox_imgbox, .cbox_textbox {

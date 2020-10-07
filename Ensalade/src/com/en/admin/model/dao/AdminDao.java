@@ -60,4 +60,22 @@ public class AdminDao {
 		}
 		return result;
 	}
+	public int updateNotice(Connection conn, NoticeBoard nb) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateNotice"));
+			pstmt.setString(1, nb.getNotice_title());
+			pstmt.setString(2, nb.getNotice_contents());
+			pstmt.setString(3, nb.getFilepath());
+			pstmt.setString(4, nb.getContentImg());
+			pstmt.setInt(5, nb.getNotice_no());	
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

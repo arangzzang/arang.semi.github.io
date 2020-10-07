@@ -27,4 +27,11 @@ public class AdminService {
 		else rollback(conn);
 		return result;
 	}
+	public int updateNotice(NoticeBoard nb) {
+		Connection conn = getConnection();
+		int result = dao.updateNotice(conn, nb);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
 }
