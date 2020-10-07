@@ -9,34 +9,34 @@
 	font-style: normal;
 }
 
-* {
-	font-family: 'IBMPlexSansKR-Text';
-	/*폰트적용법 전체에 적용*/
-	margin: 0;
-	padding: 0;
-	/*전체 화면 양사이드의 빈공간을 제거하기 위해 0을 줌*/
-	box-sizing: border-box;
-}
+/* * { */
+/* 	font-family: 'IBMPlexSansKR-Text'; */
+/* 	/*폰트적용법 전체에 적용*/ */
+/* 	margin: 0; */
+/* 	padding: 0; */
+/* 	/*전체 화면 양사이드의 빈공간을 제거하기 위해 0을 줌*/ */
+/* 	box-sizing: border-box; */
+/* } */
 
 html, body {
 	position: relative;
 	height: 100%;
 }
 
-body {
-	background: #ffffff;
-	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	color: #000;
-	margin: 0;
-	padding: 0;
-}
+/* body { */
+/* 	background: #ffffff; */
+/* 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif; */
+/* 	font-size: 14px; */
+/* 	color: #000; */
+/* 	margin: 0; */
+/* 	padding: 0; */
+/* } */
 
-html {
-	/* position: realative; */
-	text-align: center;
-	/* text-item: center; */
-}
+/* html { */
+/* 	position: realative; */
+/* 	text-align: center; */
+/* 	text-item: center; */
+/* } */
 
 section{padding-top:100px; height;80%}
 
