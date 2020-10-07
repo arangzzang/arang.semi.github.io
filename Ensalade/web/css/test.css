@@ -9,6 +9,14 @@
 	font-style: normal;
 }
 
+a{
+	color:black;
+}
+
+a:hover{
+	color:green;
+}
+
 * {
 	font-family: 'IBMPlexSansKR-Text';
 	/*폰트적용법 전체에 적용*/
@@ -55,6 +63,7 @@ section{padding-top:100px; height;80%}
 #logo {
 	margin-top: 20px;
 	margin-left: 30px;
+	cursor:pointer;
 }
 
 #menu>nav ul li ul {
@@ -123,6 +132,7 @@ section{padding-top:100px; height;80%}
 	z-index: 1000;
 	background-color: rgba(255, 255, 255, 1);
 	/* height:80px; */
+	border-bottom:1px solid #999999;
 }
 
 #loginjoin ul {
