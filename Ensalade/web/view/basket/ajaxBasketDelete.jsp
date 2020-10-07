@@ -41,7 +41,7 @@
                                     <td><p class="price"><%=b.getPrice()%></p>원</td>
                                     <!-- 비고 -->
                                     <td>
-                                         <button class="remove">삭제</button>
+                                         <p class="remove">삭제</p>
                                     </td>
                                 </tr>
                                 <%} %>
@@ -78,23 +78,27 @@
     		$(".total-price")[0].textContent=total_price+2500;
     		total_price=0;
     	});
-	     $(".del").click(e=>{
-	     	for(var i=0;i<prices.length;i++){
-	     		if(e.target==dels[i]){
-	     			hm=amounts[i];
-	         		sum=sums[i];
-	         		if(hm.value>1){
-	         			hm.value--; 
-		         		sum.textContent = parseInt(hm.value) * prices[i].textContent;
-		         		total_price+=parseInt(sum.textContent);
-	        		}
-	        	}else{
-        			total_price+=parseInt(sums[i].textContent);
-	     		}
-	     	}
-	     	$(".total-price")[0].textContent=total_price+2500;
-	     	total_price=0;
-	     	}); 
+    	 $(".del").click(e=>{
+ 	     	for(var i=0;i<prices.length;i++){
+ 	     		if(e.target==dels[i]){//발생버튼과 같은인덱스
+ 	     			hm=amounts[i];
+ 	         		if(hm.value>1){
+ 	         			hm.value--; 
+ 		         		sums[i].textContent = parseInt(hm.value) * prices[i].textContent;
+ 		         		total_price+=parseInt(sums[i].textContent);
+ 		         		
+ 	        		}else{//해당인덱스이지만 수량이1일때
+ 	        			total_price+=parseInt(sums[i].textContent);
+ 	        		}
+ 	         		
+ 	        	}else{
+ 	        		
+         			total_price+=parseInt(sums[i].textContent);
+ 	     		}
+ 	     	}
+ 	     	$(".total-price")[0].textContent=total_price+2500;
+ 	     	total_price=0;
+ 	     	}); 
 	   //장바구니 목록 삭제
 	   var productNo;
   	   var basketNo;
@@ -114,7 +118,7 @@
         		     $("tbody").empty();
         		     $("tbody").append(data);  
         		  
-        		   
+       
         	  }
           }); 
        });   

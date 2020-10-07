@@ -31,11 +31,12 @@ public class InBasketServle extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int productNo=0;
+		int su=0;
 		
-		
-		int productNo = Integer.parseInt(request.getParameter("productNo"));//장바구니로 담을 상품번호 가져옴
+		productNo = Integer.parseInt(request.getParameter("productNo"));//장바구니로 담을 상품번호 가져옴
 		String loc="/product/detailProduct?productNo="+productNo;
-		int su=Integer.parseInt(request.getParameter("su"));
+		su=Integer.parseInt(request.getParameter("su"));
 		HttpSession session=request.getSession();
 		Member m=(Member)session.getAttribute("loginMember");
 		String memberId=null;

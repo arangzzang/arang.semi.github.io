@@ -43,14 +43,14 @@
                                 <th>비고</th>
                             </tr>
                         </thead>
-                       <!-- <form class="count" name="form" method="get">  -->
+                        <form class="count" method="post" id="moveorder" action="<%=request.getContextPath()%>/order/productOrder">  
                             <tbody class="basketList"> 
         <% for(Basket b : list) {%>
                                 <tr>
                                     <!-- 사진 -->
                                     <td>
-	                                    <input type="hidden" class="b-No" value="<%=b.getBasketNo() %>">
-	                                	<input type="hidden" class="p-No" value="<%=b.getProductNo() %>">  
+	                                    <input type="hidden" class="b-No" name="basketNo" value="<%=b.getBasketNo() %>">
+	                                	<input type="hidden" class="p-No" name="productNo" value="<%=b.getProductNo() %>">  
                                             <img src="" alt="">
                                     </td>
                                     <!-- 제품정보 -->
@@ -61,7 +61,7 @@
                                     <td>
                                        수량 : 
                                        		<input type="button" value=" - " class="del">
-                                            <input type="text" class="amount" value="<%=b.getMount() %>" size="3">
+                                            <input type="text" class="amount" name="amount" value="<%=b.getMount() %>" size="3">
                                             <input type="button" value=" + " class="add"><br>
                                             금액 :  <p class=sum><%=b.getPrice()*b.getMount() %></p>원    
                                     </td>
@@ -73,12 +73,13 @@
                                     <td><p class="price"><%=b.getPrice()%></p>원</td>
                                     <!-- 비고 -->
                                     <td>
-                                         <button class="remove">삭제</button>
+                                         
+                                          <p class="remove">삭제</p> 
                                     </td>
                                 </tr>
                                 <%} %>
                                  </tbody> 
-                      	<!-- </form> -->
+                      	 </form> 
                          <tfoot> 
                             <tr>
                                 <td colspan="6">
@@ -89,7 +90,8 @@
                        
                     </table>
                     <div>
-                        <button onclick="location.assign('<%=request.getContextPath()%>/order/productOrder')">주문하기</button>
+                        <button form="moveorder">주문하기</button>
+                        
                     </div>
                 </div>
             </div>
@@ -153,7 +155,7 @@
          $(".total-price").html(totalPrice);
      });
 
-   	  total_price=0;
+   	  var total_price=0;
     	$(".add").click(e=>{
     	for(var i=0;i<prices.length;i++){
     		if(e.target==adds[i]){//for문 이용하여 클릭이벤트 발생한 e.target과 더하기버튼이 같은것을 찾는다
@@ -172,15 +174,19 @@
     	});
 	     $(".del").click(e=>{
 	     	for(var i=0;i<prices.length;i++){
-	     		if(e.target==dels[i]){
+	     		if(e.target==dels[i]){//발생버튼과 같은인덱스
 	     			hm=amounts[i];
-	         		sum=sums[i];
 	         		if(hm.value>1){
 	         			hm.value--; 
-		         		sum.textContent = parseInt(hm.value) * prices[i].textContent;
-		         		total_price+=parseInt(sum.textContent);
+		         		sums[i].textContent = parseInt(hm.value) * prices[i].textContent;
+		         		total_price+=parseInt(sums[i].textContent);
+		         		
+	        		}else{//해당인덱스이지만 수량이1일때"web/view/basket/ajaxBasketDelete.jsp"
+	        			total_price+=parseInt(sums[i].textContent);
 	        		}
-	        	}else{
+	         		
+	        	}else{"web/view/basket/ajaxBasketDelete.jsp"
+	        		
         			total_price+=parseInt(sums[i].textContent);
 	     		}
 	     	}

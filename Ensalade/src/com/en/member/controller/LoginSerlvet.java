@@ -33,25 +33,25 @@ public class LoginSerlvet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId=request.getParameter("userId");
 		String userPw=request.getParameter("password");
-		Member m=new MemberService().selectId(userId,userPw);
+		Member m=new MemberService().selectId(userId,userPw);//아이디,비번확인
 		String msg="";
 		String loc="";
-		if(m!=null && m.getMangerYn().equals("Y")) {
+		if(m!=null && m.getMangerYn().equals("Y")) {//관리자 일때
 			HttpSession session=request.getSession();
 			session.setAttribute("loginMember", m);
 			response.sendRedirect(request.getContextPath());
 			return;
 		}
-		if(m!=null) {
+		if(m!=null) {//회원일때
 			HttpSession session=request.getSession();
 			session.setAttribute("loginMember", m);
 			loc=request.getParameter("loc");
-			if(loc==null){
+			if(loc==null){//정상 로그인
 				response.sendRedirect(request.getContextPath());
-			}else{
+			}else{//로그인필요한 서비스 이용할려고 접근했다가 로그인했을때
 				response.sendRedirect(request.getContextPath()+loc);
 			}
-			
+				
 		}else {
 			msg="아이디나 비밀번호가 일치하지 않습니다.";
 			loc="/view/login.jsp";
