@@ -45,12 +45,14 @@ div#tjfwlsgh {display: none; width: 500px;height: auto;}
             </div>
             <hr>
             <div>
-               <img src="<%=request.getContextPath()%><%=ii.getFilePath()%>">
+               <img src="<%=request.getContextPath()%><%=ii.getFilePath()%>" width="500" height="500">
             </div>
-            <div>
+         <%if(ii.getInquiryComment()!=null){ %>
+            <div id="inquiry_Manager_answer">
                <label>운영자 : </label>
                <p><%=ii.getInquiryComment() %></p>
             </div>
+        <%} %>
          </div>
       <%} %>
       </div>
