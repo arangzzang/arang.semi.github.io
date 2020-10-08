@@ -33,9 +33,9 @@ List<Product> list = (List)request.getAttribute("relateProduct");
                 <div class="su-form" >
                              <form class="count" name="form" method="get">
                          <p id="price">상품금액: <%=p.getProductPrice()%>원</p>
-                        수량 : <input class="su" type="button" value=" - " onclick="del();"> 
+                        수량 : <input class="su1" type="button" value=" - " onclick="del();"> 
                         <input type="text" id="amount" value="1" size="10" name="su">
-                        <input class="su" type="button" value=" + " onclick="add();"><br>
+                        <input class="su2" type="button" value=" + " onclick="add();"><br>
                         최종금액 :  <p id=sum></p>
                     </form>
                 </div>
@@ -138,24 +138,32 @@ List<Product> list = (List)request.getAttribute("relateProduct");
     .btn{
         
     }
-    /* 장바구니 */
-    .jangbtn{
+   .jangbtn{
         border:3px green solid;
         background-color: white;
+        color: green;
         width: 200px;
         height: 50px;
         margin-left: 30px;
-        
-        
+        cursor: pointer;
+    }
+    .jangbtn:hover{
+       background: green;
+       color: white;
     }
     /* 주문하기 */
     .orderbtn{
         border:3px green solid;
-        background-color: green;
+        background-color: white;
+        color: green;
         width: 200px;
         height: 50px;
         margin-left: 30px;
-        
+        cursor: pointer;
+    }
+    .orderbtn:hover{
+       background: green;
+       color: white;
     }
     /* 관련상품 */
     .relate{

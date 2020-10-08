@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.en.product.model.vo.Product,java.util.List" %>
-<%List<Product> list = (List)request.getAttribute("list");%>
+<%@page import="com.en.product.model.vo.Product,java.util.List,java.text.DecimalFormat" %>
+<%
+DecimalFormat formatter=new DecimalFormat("###,###");//숫자 3자리마다 ,표시해주는 클래스
+List<Product> list = (List)request.getAttribute("list");%>
 
 <%for(Product p : list) {%>
 	         <div class="total">
@@ -10,7 +12,7 @@
 		            <!-- 상품정보 -->
 		            <img src="<%=request.getContextPath()%>/image/salad1.jpg">
 		            <p><%=p.getProductName() %></p>
-		            <p><%=p.getProductPrice() %> </p>
+		            <p><%=formatter.format(p.getProductPrice()) %> 원</p>
 		            <p><%=p.getProductContent() %> </p>
 		         </a>
 	         </div>
