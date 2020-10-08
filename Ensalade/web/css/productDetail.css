@@ -4,7 +4,7 @@
 	hr{
 	 margin-top: 50px;
 	 margin-bottom:30px;
-	 width:80%;
+	 width:100%;
 	}
     /* 세션 */
     .thisproduct{
@@ -46,14 +46,13 @@
 		padding:10px;
 		cursor: pointer;
 	}    
+	/*수량 입력 창*/
 	#amount{
 		cursor:default;
 		text-align:center;
 		border: 0
 	}
-/* 	#amount input:read-only{ */
-		
-/* 	} */
+	/*수량 버튼*/
 	.su1:hover,.su2:hover{
 		color:white;
 		background-color:lightgreen;
@@ -78,6 +77,7 @@
         height: 50px;
         margin-left: 30px;
         cursor: pointer;
+        border-radius: 10px;
     }
     .jangbtn:hover{
     	background: green;
@@ -92,6 +92,7 @@
         height: 50px;
         margin-left: 30px;
         cursor: pointer;
+        border-radius: 10px;
     }
     .orderbtn:hover{
     	background: green;
@@ -101,6 +102,10 @@
     .relate{
       position: relative;
       height: 400px;
+    }
+    .swiper-slide>ul>li{
+    	margin-left:20px;
+    	margin-right:20px;
     }
     body {
       font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -112,8 +117,12 @@
     }
     #infobtns-ch{
     	text-align: center;
+  		position: sticky;
+/*     	z-index:1000; */
     }
     .infobtn{
+/*     	position: fixed; */
+/*     	z-index:9000 !important; */
     	font-size:20px;
     	margin-top: 20px;
     	margin-bottom: 30px;
@@ -122,7 +131,6 @@
     	outline:none;
     	border:none;
     	cursor:pointer;
-    	/*position: fixed;*/
     	color: #E2E2E2;
     }
     .infobtn:active{
@@ -138,6 +146,7 @@
         margin: 20px auto;
         width: 800px;
         height: 3000px;
+        overflow: hidden;
     }
     
     .swiper-container {
