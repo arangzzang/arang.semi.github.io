@@ -2,7 +2,12 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="/view/common/header.jsp"%>
-
+<script>
+     $(".form2").focus(e=>{
+        $(e.target).css("outline-color","#27b06e");
+     })
+     
+</script>
 <section class="contents-wrap">
         <div id="notice-container">
         	<form action="<%=request.getContextPath()%>/admin/noticeWriteEnd" method="post" enctype="multipart/form-data">
@@ -20,7 +25,7 @@
 	                        <th>제 목</th>
 	                        <td>
 	                            <div class="update-input_wrap">
-	                                <input class="update-input" type="text" name="title">
+	                                <input class="update-input form2" type="text" name="title">
 	                            </div>
 	                        </td>
 	                    </tr>
@@ -38,7 +43,7 @@
 	                            <div class="detail">
 	                                <p style="border-top: 1px solid #eaeaea;">
 	                                <!-- 블로그처럼 글&이미지 수정하는 기능 구현필요 -->
-	                                    <textarea class="form-control" name="content" id="" cols="60" rows="5" style="resize: none;"></textarea>
+	                                    <textarea class="form-control form2" name="content" id="" cols="60" rows="5" style="resize: none;"></textarea>
 	                                </p>
 	                            </div>
 	                        </td>
