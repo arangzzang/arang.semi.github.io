@@ -34,18 +34,21 @@ public class InBasketServle extends HttpServlet {
 		int productNo=0;
 		int su=0;
 		
+		//장바구니 생성
 		productNo = Integer.parseInt(request.getParameter("productNo"));//장바구니로 담을 상품번호 가져옴
 		String loc="/product/detailProduct?productNo="+productNo;
 		su=Integer.parseInt(request.getParameter("su"));
 		HttpSession session=request.getSession();
 		Member m=(Member)session.getAttribute("loginMember");
 		String memberId=null;
-		if(m!=null){//로그인 상태면 회원아이디를 얻는다
+		
+		//회원 로그인상태 확인 후 장바구니 이동
+		if(m!=null){
 			 memberId=m.getMemberId();
 		}else{//로그인 상태가 아닐떄
-			request.setAttribute("loc", loc);
+			request.setAttribute("loc", loc);//로그인이 되면 다시 상품상세화면으로 보내기위함.
 			request.getRequestDispatcher("/view/login.jsp").forward(request, response);
-			return;
+			return;//이동하고 끝내기 위함 -> 밑에 로직이 실행됨
 		}
 		
 		//장바구니 번호부여및 테이블생성

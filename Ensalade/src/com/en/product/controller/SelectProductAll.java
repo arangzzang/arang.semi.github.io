@@ -35,9 +35,10 @@ public class SelectProductAll extends HttpServlet {
       // TODO Auto-generated method stub
 	  String type=request.getParameter("type");
 	 
-		
+	  //상품 전체화면
 	  List<Product> list=new ProductService().selectProductAll();
 	  List<Product> selectList = new ArrayList();
+	  //좌측 상품종류별 선택 메뉴바
 	  if(type==null){
 	      request.setAttribute("list", list);
 	  }else{
