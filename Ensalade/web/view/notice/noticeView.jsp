@@ -42,17 +42,16 @@
                             </div>
                         </td>
                     </tr>
+                  <%if(nb.getFilepath()!=null){ %>
                     <tr>
                         <th>첨부파일</th>
                         <td>
                         <!-- 다운로드 서비스 구현하기 -->
-                            <%if(nb.getFilepath()!=null){ %>
-                                <img alt="" src="<%=nb.getFilepath()%>" width="20" height="20">
-                            <%}else{%>
-
-                            <%} %>
+	                        <a href="<%=request.getContextPath()%>/notice/fileDownload?fileName=<%=nb.getFilepath()%>">
+	                        <img src="<%=request.getContextPath()%>/image/file.png" width="20" height="20"></a>
                         </td>
                     </tr>
+                 <%}else{} %>
                 </table>
                 <div class="noticeV-button">
                     <span class="gLeft">

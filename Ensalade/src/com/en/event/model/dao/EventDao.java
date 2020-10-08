@@ -56,7 +56,6 @@ public class EventDao {
 		try {
 			pstmt = conn.prepareStatement("deletsEvent");
 			result = pstmt.executeUpdate();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -79,7 +78,6 @@ public class EventDao {
 				ec.setEventImg(rs.getString("EVENT_IMG"));
 				list.add(ec);
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {

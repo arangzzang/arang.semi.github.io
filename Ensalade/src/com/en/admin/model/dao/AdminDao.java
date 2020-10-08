@@ -26,7 +26,6 @@ public class AdminDao {
 			e.printStackTrace();
 		}
 	}
-
 	public List<Member> selectMemberAll(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -42,7 +41,6 @@ public class AdminDao {
 		}
 		return list;
 	}
-
 	public int insertNotice(Connection conn, NoticeBoard nb) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -52,6 +50,7 @@ public class AdminDao {
 			pstmt.setString(2, nb.getNotice_contents());
 			pstmt.setString(3, nb.getNotice_writer());
 			pstmt.setString(4, nb.getFilepath());
+			pstmt.setString(5, nb.getContentImg());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
