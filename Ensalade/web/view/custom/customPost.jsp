@@ -41,8 +41,8 @@
         <!-- 게시물 정렬 셀렉박스 -->
         <div id="sort-container" style="clear:both">
         <select id="post-sort" class="post-sort">
-        <option value="like_count">인기순</option>
         <option value="write_date">최신순</option>
+        <option value="like_count">인기순</option>
         </select>
         </div>
         </div>

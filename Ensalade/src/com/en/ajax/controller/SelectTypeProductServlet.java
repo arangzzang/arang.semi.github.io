@@ -38,16 +38,17 @@ public class SelectTypeProductServlet extends HttpServlet {
 		
 		String type = request.getParameter("type");
 	    List<Product> selectList = new ArrayList();
-	      if(!type.equals("전체보기")){
-	    	  for(int i = 0; i < list.size(); i++) {
-		    	  if(list.get(i).getProductType().equals(type)) {
-		    		  selectList.add(list.get(i));
-		    	  }
-		      }
-		      request.setAttribute("list", selectList);
-	      }else{
-	    	  request.setAttribute("list", list);
-	      }
+	    
+	    //좌측 상품종류 선택 메뉴바
+    	if(!type.equals("전체보기")){
+    	  for(int i = 0; i < list.size(); i++) {
+	    	  if(list.get(i).getProductType().equals(type)) {
+	    		  selectList.add(list.get(i));
+	    	  }
+	      }request.setAttribute("list", selectList);
+    	}else{
+    	  request.setAttribute("list", list);
+    	}
 	    
 	      
 	      

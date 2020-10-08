@@ -8,7 +8,6 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 a{
 	color:black;
 }
@@ -30,7 +29,6 @@ html, body {
 	position: relative;
 	height: 100%;
 }
-
 body {
 
 	background: #ffffff;
@@ -40,7 +38,6 @@ body {
 	margin: 0;
 	padding: 0;
 }
-
 html {
 	/* position: realative; */
 	/* text-align: center; */
@@ -183,6 +180,7 @@ section{padding-top:100px; height;80%}
 /*********************/
 .footer {
 	background-color: #f5f5ea;
+	
 	padding: 30px 24px 100px;
 }
 
@@ -319,7 +317,7 @@ video {
 .swiper-slide {text-align: center;
     font-size: 18px;
     background: #fff;
-    Center slide text vertically
+/*     Center slide text vertically */
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;

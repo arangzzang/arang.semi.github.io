@@ -26,7 +26,6 @@ public class AdminDao {
 			e.printStackTrace();
 		}
 	}
-
 	public List<Member> selectMemberAll(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -42,7 +41,6 @@ public class AdminDao {
 		}
 		return list;
 	}
-
 	public int insertNotice(Connection conn, NoticeBoard nb) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -52,6 +50,7 @@ public class AdminDao {
 			pstmt.setString(2, nb.getNotice_contents());
 			pstmt.setString(3, nb.getNotice_writer());
 			pstmt.setString(4, nb.getFilepath());
+			pstmt.setString(5, nb.getContentImg());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -59,5 +58,36 @@ public class AdminDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	public int updateNotice(Connection conn, NoticeBoard nb) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateNotice"));
+			pstmt.setString(1, nb.getNotice_title());
+			pstmt.setString(2, nb.getNotice_contents());
+			pstmt.setString(3, nb.getFilepath());
+			pstmt.setString(4, nb.getContentImg());
+			pstmt.setInt(5, nb.getNotice_no());	
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int deleteNotice(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("deleteNotice"));
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
 	}
 }

@@ -22,9 +22,54 @@ section {padding-top: 100px; height:auto;}
     </a>
    </div>
    <% } %>
-   <input type="button" value="글쓰기" onclick="">  
+   
+	<div class="noticeV-button">
+		<%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
+		<span class="gRight">
+			<div style="display: flex; margin-right: 20px;">
+				<input class="form-control_input_btn padd" type="button" value="수정하기" id="updateBtn" />
+			</div>
+		</span>
+		<%} %>
+	</div>
+	
 </section>
 
+<style>
+.padd {
+	margin-right: 10px;
+}
+
+.noticeV-button {
+	margin: 10px 0 40px;
+	font-size: 0;
+	padding: 20px 0;
+	text-align: center;
+	margin: 0 50px;
+}
+
+.gRight {
+	float: right;
+	text-align: right;
+}
+
+.gLeft {
+	float: left;
+	text-align: left;
+}
+.form-control_input_btn {
+	height: 25px;
+	width: 100px;
+	height: 25px;
+	box-sizing: border-box;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 400;
+	cursor: pointer;
+	border-style: none;
+	font-weight: inherit;
+}
+</style>
 
  
 <%@ include file="/view/common/footer.jsp"%>

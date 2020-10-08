@@ -30,8 +30,8 @@
             </div>
             <div class="login-findbox content_row">
                 <div class="login-findbox_en">
-                    <a type="button" class="login-findbox_en_f" href="">아이디 찾기</a>
-                    <a type="button" class="login-findbox_en_f" href="">비밀번호 찾기</a><br>
+                    <a type="button" class="login-findbox_en_f" href="<%=request.getContextPath()%>/view/search/searchId.jsp">아이디 찾기</a>
+                    <a type="button" class="login-findbox_en_f" href="<%=request.getContextPath()%>/view/search/searchPw.jsp">비밀번호 찾기</a><br>
                 </div>
                 <div class="login-findbox_en">
                     <a type="button" class="login-findbox_en_f">회원가입</a><br>
@@ -40,13 +40,15 @@
         </form>
 </section>
 <style>
-	a{
+    a {
         text-decoration: none;
     }
+
     .login-findbox_en_f {
         display: inline-block;
         padding: 3px 5px;
     }
+
     .login-findbox_en {
         display: inline-block;
         padding: 3px 5px;
@@ -59,6 +61,8 @@
         color: #424242;
         font-size: 15px;
         line-height: 1.4;
+        text-align: -webkit-center;
+        min-width: 665px;
     }
 
     .button-wrap {
@@ -74,7 +78,7 @@
 
     .form-control_input_btn {
         height: 25px;
-        width: 100%;
+        width: 60%;
         border: solid 1px #dbdbdb00;
         display: block;
         height: 40px;
@@ -83,7 +87,7 @@
         font-size: 1rem;
         font-weight: 400;
         color: #fff;
-        background: #45be3a;
+        background: #27b06e;
         cursor: pointer;
         outline: none;
     }
@@ -91,6 +95,8 @@
     .login-btnbox {
         display: block;
         padding: 0 25px;
+        width: 100%;
+        text-align: -webkit-center;
     }
 
     .login-textbox {
@@ -105,7 +111,7 @@
     .form-control_input {
         box-sizing: border-box;
         height: 40px;
-        width: 100%;
+        width: 60%;
         min-width: 250px;
         padding: 0 15px;
         line-height: 40px;
@@ -135,6 +141,7 @@
 
     .login-form {
         display: inline-block;
+        width: 40%;
     }
 
     section.contents-wrap {

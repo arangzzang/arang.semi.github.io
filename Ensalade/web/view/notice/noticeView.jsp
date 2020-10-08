@@ -10,7 +10,7 @@
 
 <section class="contents-wrap">
         <div id="notice-container">
-            <div class="">
+            <div class="notice-title-wrap">
                 <h2>공지사항 상세화면</h2>
             </div>
             <div class="notice-view_area">
@@ -31,31 +31,31 @@
                     <tr>
                         <td colspan="2">
                             <ul class="etcArea">
-                                <li><strong>작성일</strong><span class="txtD">2020.10.07</span></li>
-                                <li><strong>조회수</strong><span class="txtD">1147</span></li>
+                                <li><strong>작성일</strong><span class="txtD"><%=nb.getNotice_write_date() %></span></li>
+                                <!-- <li><strong>조회수</strong><span class="txtD">1147</span></li> -->
                             </ul>
                             <div class="detail">
                                 <p style="border-top: 1px solid #eaeaea;">
                                     <%=nb.getNotice_contents() %>
-                                    <img src="/image/notice/추석휴무일정.jpg">
+                                    <img src="<%=request.getContextPath() %><%=nb.getContentImg() %>">
                                 </p>
                             </div>
                         </td>
                     </tr>
+                  <%if(nb.getFilepath()!=null){ %>
                     <tr>
                         <th>첨부파일</th>
                         <td>
-                            <%if(nb.getFilepath()!=null){ %>
-                                <img alt="" src="<%=nb.getFilepath()%>" width="20" height="20">
-                            <%}else{%>
-
-                            <%} %>
+                        <!-- 다운로드 서비스 구현하기 -->
+	                        <a href="<%=request.getContextPath()%>/notice/fileDownload?fileName=<%=nb.getFilepath()%>">
+	                        <img src="<%=request.getContextPath()%>/image/file.png" width="20" height="20"></a>
                         </td>
                     </tr>
+                 <%}else{} %>
                 </table>
                 <div class="noticeV-button">
                     <span class="gLeft">
-                        <div><input class="form-control_input_btn" type="button" value="목록" id="updateBtn">
+                        <div><input class="form-control_input_btn" type="button" value="목록" id="listBack">
                         </div>
                     </span>
                     <%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
@@ -79,11 +79,20 @@
 	});
 	
 	$("#deleteBtn").click(e => {
-		location.assign('<%=request.getContextPath()%>/admin/deleteNotice?no='+no);
+		let result = confirm("삭제하시겠습니까?");
+		if(result){
+			location.replace('<%=request.getContextPath()%>/admin/deleteNotice?no='+no);
+		}else{}
+	});
+	$("#listBack").click(e =>{
+		location.assign('<%=request.getContextPath()%>/searchNotice');
 	});
 </script>
 
 <style>
+.notice-title-wrap{
+	text-align: center;
+}
 .padd {
 	margin-right: 10px;
 }
@@ -114,6 +123,7 @@
 	padding: 45px 12px 55px;
 	min-height: 100px;
 	border-top: 1px solid #eaeaea;
+	text-align: center;
 }
 
 .txtD {
@@ -166,7 +176,6 @@
 	border-spacing: 0;
 	color: #555;
 	line-height: 16px;
-	text-align: left;
 	min-width: 1100px;
 }
 
@@ -215,7 +224,6 @@ section.contents-wrap {
 	min-height: 1px;
 	padding-left: 15px;
 	padding-right: 15px;
-	text-align: center;
 }
 
 .form-control_input_btn {

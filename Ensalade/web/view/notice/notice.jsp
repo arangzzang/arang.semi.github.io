@@ -83,6 +83,17 @@
 		</div>
 	</div>
 	<div id="pagebar2"><%=pageBar2%></div>
+	<div class="noticeV-button">
+         <%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
+         <span class="gRight">
+             <div style="display: flex;margin-right: 20px;">
+                 <input class="form-control_input_btn padd" type="button" value="글쓰기" id="writeBtn">
+             </div>
+         </span>
+         <%} %>
+     </div>
+     
+     
 	<script type="text/javascript">
 		$(function(){
 			let title=$("#search_notice_title");
@@ -97,10 +108,43 @@
 			});
 		});
 		$(function(){$("#searchType").change()});
+		
+		$("#writeBtn").click(e =>{
+			location.assign('<%=request.getContextPath()%>/admin/noticeWrite');
+		});
 	</script>
 </section>
 
 <style type="text/css">
+.form-control_input_btn {
+	height: 25px;
+	width: 100px;
+	height: 25px;
+	box-sizing: border-box;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 400;
+	cursor: pointer;
+	border-style: none;
+	font-weight: inherit;
+}
+.padd {
+	margin-right: 10px;
+}
+
+.noticeV-button {
+	margin: 10px 0 40px;
+	font-size: 0;
+	padding: 20px 0;
+	text-align: center;
+	margin: 0 50px;
+}
+
+.gRight {
+	float: right;
+	text-align: right;
+}
+
 .search-form_wrap>span {
 	font-size: 17px;
 	padding: 2px 10px;
