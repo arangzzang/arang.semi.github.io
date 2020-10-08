@@ -101,7 +101,7 @@
                     </li>
                  	<li><a href="">마이페이지</a>
                         <ul>
-                            <li><a href="#">장바구니</a></li>
+                            <li><a href="<%=request.getContextPath() %>/basket/basketView">장바구니</a></li>
                             <li><a href="#">배송현황</a></li>
                             <li><a href="#">나의 게시물</a></li>
                             <li><a href="#">나의 커스텀</a></li>
@@ -139,7 +139,7 @@
                     </li>
                  	<li><a href="">마이페이지</a>
                         <ul>
-                            <li><a href="#">장바구니</a></li>
+                            <li><a href="<%=request.getContextPath() %>/basket/basketView">장바구니</a></li>
                             <li><a href="#">배송현황</a></li>
                             <li><a href="#">나의 게시물</a></li>
                             <li><a href="#">나의 커스텀</a></li>
@@ -163,3 +163,12 @@
             <%} %>
         </div>
     </header>
+    
+    <div id="div_"></div>
+ 
+    <style>
+    	#div_{
+    		width:1187.200px;
+    		height:95.600px;
+    	}
+    </style>

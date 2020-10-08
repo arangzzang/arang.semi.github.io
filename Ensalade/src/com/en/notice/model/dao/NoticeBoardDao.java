@@ -112,6 +112,7 @@ public class NoticeBoardDao {
 				nb.setNotice_writer(rs.getNString("NOTICE_WRITER"));
 				nb.setDelete_at(rs.getNString("DELETE_AT"));
 				nb.setFilepath(rs.getNString("FILEPATH"));
+				nb.setContentImg(rs.getString("CONTENT_IMG"));
 				nb.setNotice_write_date(rs.getDate("NOTICE_WRITE_DATE"));
 				nb.setUpdate_date(rs.getDate("UPDATE_DATE"));
 				nb.setDelete_date(rs.getDate("DELETE_DATE"));
@@ -167,6 +168,7 @@ public class NoticeBoardDao {
 				nb.setNotice_writer(rs.getNString("NOTICE_WRITER"));
 				nb.setDelete_at(rs.getNString("DELETE_AT"));
 				nb.setFilepath(rs.getNString("FILEPATH"));
+				nb.setContentImg(rs.getString("CONTENT_IMG"));
 				nb.setNotice_write_date(rs.getDate("NOTICE_WRITE_DATE"));
 				nb.setUpdate_date(rs.getDate("UPDATE_DATE"));
 				nb.setDelete_date(rs.getDate("DELETE_DATE"));

@@ -153,9 +153,7 @@ public class CustomDao {
 		   ResultSet rs=null;
 		   List<CustomPost> list=new ArrayList();
 		   try {
-			   pstmt=conn.prepareStatement(prop.getProperty("customSort"));
-			   pstmt.setNString(1, sort);
-			   
+			   pstmt=conn.prepareStatement(prop.getProperty("customSort").replaceAll("@SORT", sort));
 			   rs=pstmt.executeQuery();
 			   while(rs.next()) {
 				   CustomPost cp=new CustomPost();
