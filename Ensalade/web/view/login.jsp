@@ -7,6 +7,13 @@
 	String loc=(String)request.getAttribute("loc");
 	
 %>
+
+<script>
+     $(".form2").focus(e=> {
+        $(e.target).css("outline-color","#27b06e");
+     });
+</script>
+
 <section class="contents-wrap">
     <% if(loc==null){%>
     <form class="login-form" action="<%=request.getContextPath()%>/loginjoin/login.do" method='post'>
@@ -20,9 +27,9 @@
                 <p>로그인</p>
             </div>
             <div class="login-textbox">
-                <div class="id-textbox content_row"><input type="text" class="form-control_input" name="userId"
+                <div class="id-textbox content_row"><input type="text" class="form-control_input form2" name="userId"
                         id="userId_" placeholder="아이디 입력"><br></div>
-                <div class="pw-textbox content_row"><input type="password" class="form-control_input"
+                <div class="pw-textbox content_row"><input type="password" class="form-control_input form2"
                         name="password" id="password_" placeholder="비밀번호 입력"><br></div>
             </div>
             <div class="login-btnbox content_row">
@@ -40,6 +47,7 @@
         </form>
 </section>
 <style>
+
     a {
         text-decoration: none;
     }
