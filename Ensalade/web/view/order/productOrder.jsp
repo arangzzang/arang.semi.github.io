@@ -64,11 +64,10 @@ for(int i=0;i<list.size();i++){
                 <div class="left-productinfo">
 	                <table>
 		                <tr>
-		                	<th>사진</th>
-		                	<th>상품이름</th>
-		                	<th>상품종류</th>
-		                	<th>상품금액</th>
-		                	<th>수량</th>
+		                	<th width=5%>사진</th>
+		                	<th width=50%>제품정보</th>
+		                	<th width=10%>상품금액</th>
+		                	<th width=35%>수량</th>
 		                </tr>
 		               
 		                <%for(int i=0;i<list.size();i++){ %>
@@ -78,11 +77,9 @@ for(int i=0;i<list.size();i++){
 			                <img src="<%=request.getContextPath() %>/img/test1.jpg" alt="">
 			                </td>
 		                	<td>
-		                	 <input type="hidden" name="productNo" value="<%=list.get(i).getProductNo() %>"> 
-			                <%=list.get(i).getProductName() %>
-			                </td>
-			                <td>
-			                <%=list.get(i).getProductType() %>
+		                	 <input type="hidden" name="productNo" value="<%=list.get(i).getProductNo() %>">
+			                <p class="p-info"><%=list.get(i).getProductName() %></p>
+			                <p class="p-info"><%= list.get(i).getProductContent() %></p>
 			                </td>
 			                <td>
 			               	<i class="price"><%=formatter.format(list.get(i).getProductPrice()) %></i>원
@@ -128,6 +125,9 @@ for(int i=0;i<list.size();i++){
     </section>
         
         <style>
+        	.p-info{
+        		margin:30px;
+        	}
         	.line{
         	margin-top:0px;
         	margin-bottom:15px;
@@ -140,6 +140,7 @@ for(int i=0;i<list.size();i++){
         	margin-top:20px;
         	}
         	.amount{
+        	width:52px;
         	height:42px;
         	border:0;
         	}
@@ -252,6 +253,8 @@ for(int i=0;i<list.size();i++){
 	        	padding:20px;
 	        }
 	        table{
+	        	margin: auto;
+	       		width:800px;
 	        	text-align:center;
 	        	border-collapse: collapse;
 	        }
@@ -289,12 +292,12 @@ for(int i=0;i<list.size();i++){
         }
         .right{
             
-            width: 350px;
+            width: 300px;
             /* border: green 3px solid; */
         }
         .left{
             
-            /* border: 3px red solid; */
+             
         }
         
         </style>

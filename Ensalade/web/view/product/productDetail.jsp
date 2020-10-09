@@ -8,6 +8,7 @@
 	DecimalFormat formatter=new DecimalFormat("###,###");//숫자 3자리마다 ,표시해주는 클래스
 	Product p = (Product)request.getAttribute("selectProduct");//서블렛에 있는 키값으로 불러와야함.
 	List<Product> list = (List)request.getAttribute("relateProduct");
+	int count=0;
 %>
 <!-- Swiper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
@@ -53,17 +54,22 @@
    <div class="relate">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-               <%for(int i=0;i < Math.ceil(list.size()/4);i++){ %>
+               <%for(int i=0;i < Math.ceil((double)list.size()/4);i++){%>
               <div class="swiper-slide">
                 <ul>
-                <%for(int j=i*4;j<(i+1)*4;j++){%>
-                   <li>
+                 <%for(int j=i*4;j<(i+1)*4;j++){%> 
+                 
+                   <li>    
 	                  <a href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=p.getProductNo()%>">
-		                  <img alt="" src="<%=list.get(i).getProductThumbnail() %>" class="product-img">
-		                  <p><%=list.get(i).getProductName() %></p>
-		                  <p><%=formatter.format(list.get(i).getProductPrice()) %></p> 
+		                  <img alt="" src="<%=list.get(j).getProductThumbnail() %>" class="product-img">
+		                  <p><%=list.get(j).getProductName() %></p>
+		                  <p><%=formatter.format(list.get(j).getProductPrice()) %></p> 
 	                  </a>
 	               </li>
+	                  <% 
+	                  	if(list.size()-1==j){
+	                  break;}
+	                  %>
             	<%} %>
 	            </ul>
 	          </div>

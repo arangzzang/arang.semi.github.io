@@ -96,13 +96,14 @@ import com.en.product.model.vo.Product;
     	  return p;
 	     }
       //관련상품
-      public List<Product> relateProduct(Connection conn, String type){
+      public List<Product> relateProduct(Connection conn, String type,int productNo){
     	  PreparedStatement pstmt = null;
     	  ResultSet rs = null;
     	  List<Product> list = new ArrayList();
     	  try {
     		  pstmt = conn.prepareStatement(prop.getProperty("relateProduct"));
     		  pstmt.setString(1, type);
+    		  pstmt.setInt(2, productNo);
     		  rs = pstmt.executeQuery();
 	           while(rs.next()) {
 	              Product p = new Product();
