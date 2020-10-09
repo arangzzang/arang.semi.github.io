@@ -56,7 +56,8 @@
                                     </td>
                                     <!-- 제품정보 -->
                                     <td>
-                                            <p><%=b.getProductName()%></p>
+                                            <p class="p-info"><%=b.getProductName()%></p>
+                                            <p class="p-info"><%=b.getProductContent() %></p>
                                     </td>
                                     <!-- 수량 -->
                                     <td>
@@ -102,7 +103,9 @@
 </section>
 
 <style>
-
+	.p-info{
+		margin:30px;
+	}
 	
 	.amount{
 		border: 0;

@@ -38,7 +38,7 @@ public class DetailProductServlet extends HttpServlet {
 		//관련 상품 정보출력
 		Product p = new ProductService().detailProduct(productNo);
 		String type = p.getProductType();
-	    List<Product> list = new ProductService().relateProduct(type);
+	    List<Product> list = new ProductService().relateProduct(type,productNo);
 	    
 
 	    String pageBar = "";

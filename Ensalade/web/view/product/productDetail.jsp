@@ -33,12 +33,12 @@
 	
 	
 
+
 %>
 <!-- Swiper JS -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <!-- Link Swiper's CSS -->
-
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
 <link rel="stylesheet"
@@ -53,6 +53,7 @@
 			<!-- 상품 썸네일 이미지 -->
 			<div class="img">
 				<img src="" alt="">
+
 			</div>
 			<!-- 상품 정보 -->
 			<div class="productinformation">
@@ -84,24 +85,27 @@
 	</div>
 	<!-- 관련상품 -->
 	<div class="relate">
-		<div class="a-swiper-container">
-			<div class="a-swiper-wrapper">
-				<%for(int i=0;i < Math.ceil(list.size()/4);i++){ %>
-				<div class="a-swiper-slide">
-					<ul>
-						<%for(int j=i*4;j<(i+1)*4;j++){%>
-						<li><a
-							href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=p.getProductNo()%>">
-								<img alt="" src="<%=list.get(i).getProductThumbnail() %>"
-								class="product-img">
-								<p><%=list.get(i).getProductName() %></p>
-								<p><%=formatter.format(list.get(i).getProductPrice()) %></p>
-						</a></li>
-						<%} %>
-					</ul>
-				</div>
-				<%} %>
-			</div>
+        <div class="a-swiper-container">
+            <div class="a-swiper-wrapper">
+               <%for(int i=0;i < Math.ceil((double)list.size()/4);i++){%>
+              <div class="a-swiper-slide">
+                <ul>
+                 <%for(int j=i*4;j<(i+1)*4;j++){%> 
+                 
+                   <li>    
+	                  <a href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=p.getProductNo()%>">
+		                  <img alt="" src="<%=list.get(j).getProductThumbnail() %>" class="product-img">
+		                  <p><%=list.get(j).getProductName() %></p>
+		                  <p><%=formatter.format(list.get(j).getProductPrice()) %></p> 
+	                  </a>
+	               </li>
+	                  <% if(list.size()-1==j){ 
+	                	  break;}%>
+            	<%} %>
+	            </ul>
+	          </div>
+	            <%} %>
+            </div>
 			<!-- Add Pagination -->
 			<div class="a-swiper-pagination"></div>
 			<!-- Add Arrows -->
@@ -303,6 +307,7 @@
 	</div>
 	</div>
 </section>
+
 
 <script type="text/javascript">
   
@@ -526,4 +531,4 @@
        
         </script>
 
-<%-- <%@include file="/view/common/footer.jsp"%> --%>
+<%@include file="/view/common/footer.jsp"%>
