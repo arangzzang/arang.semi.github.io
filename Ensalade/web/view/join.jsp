@@ -42,10 +42,10 @@
 				<!--주소검색기능 추후 추가-->
 				<!-- <label for="address">주소<label class="star">*</label></label>
 				<input type="text" name="address" id="address_" class="text_" required> -->
-				<input type="text" name="address" id="sample6_postcode" placeholder="우편번호">
-				<input type="button" name="address" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" name="address" id="sample6_address" placeholder="주소"><br>
-				<input type="text" name="address" id="sample6_detailAddress" placeholder="상세주소"><br>
+				<input style="margin-top:20px" type="text" name="address" id="sample6_postcode" placeholder="우편번호" class="text_" required readonly>
+				<input type="button" id="search" name="address" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn_1"><br>
+				<input type="text" name="address" id="sample6_address" placeholder="주소" class="text_" required><br>
+				<input type="text" name="address" id="sample6_detailAddress" placeholder="상세주소" class="text_" required><br>
 
 				<label for="birth">생년월일<label class="star">*</label></label>
 				<div style="display:flex">
@@ -98,6 +98,12 @@
 </section>
 
 <style>
+	 #search{
+	 	margin-top: 15px;
+	    margin-bottom: 15px;
+	    width: 150px;
+	    height: 35px;
+	 }
 	 section {
             flex-grow: 1;
             margin: 0;
