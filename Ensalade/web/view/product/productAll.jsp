@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.List,com.en.product.model.vo.Product" %>    
+<%@ page import="java.util.List,com.en.product.model.vo.Product,java.text.DecimalFormat" %>    
 <%@include file="/view/common/header.jsp"%> 
-<%
+
+<% 
+	DecimalFormat formatter=new DecimalFormat("###,###");//숫자 3자리마다 ,표시해주는 클래스
 	List<Product> list=(List)request.getAttribute("list");
 %>
 <script src="<%=request.getContextPath() %>/js/jquery-3.5.1.min.js"></script>
@@ -38,7 +40,7 @@
 				            <p>
 					            <h5><strong><%=p.getProductName() %></strong></h5>
 					            <p><%=p.getProductContent() %></p>
-					            <span class="productInfo"><em><%=p.getProductPrice() %></em></span>
+					            <span class="productInfo"><em><%=formatter.format(p.getProductPrice()) %></em>원</span>
 				            </p>
 				         </a>
 			         </div>
@@ -46,6 +48,7 @@
 		         <%} %>
 			</div>
 		</ul>
+
       </div>
       <div id="sort"></div>
    </div>
