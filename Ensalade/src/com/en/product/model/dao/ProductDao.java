@@ -31,7 +31,6 @@ import com.en.product.model.vo.Product;
          PreparedStatement pstmt=null;
          ResultSet rs = null;
          List<Product> list=new ArrayList();
-         
          try{
             pstmt=conn.prepareStatement(prop.getProperty("productList"));
             rs = pstmt.executeQuery();
