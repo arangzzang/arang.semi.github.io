@@ -3,7 +3,7 @@
 
 
 
-<footer class="footer swiper-slide">
+<footer class="footer">
 	<div class="spacebox"></div>
 
 	<!-- 푸터 상단 div -->
@@ -106,7 +106,7 @@
 .footer_info {background-color: rgb(233, 233, 233);border: rgb(233, 233, 233) solid 1px;}
 .infotext {margin-left: 600px;margin-right: 600px;}
 .footer_logo {margin-top: 30px;margin-bottom: 10px;/* padding-left : 200px;  */text-align: center;}
-.footer_body {margin-top: 20px;margin-bottom: 200px;}
+.footer_body {margin-top: 20px;margin-bottom: 200px;width:500px;}
 .footer_menu>div>a {justify-content: space-around;text-decoration: none;text-align: left;font-size: 12px;font: lightgrey;}
 .cs_time {/* padding-left : 200px; */margin-top: 20px;}
 .cs_time>p {margin: 10px;text-align: center;font-size: 12px;font: lightgrey;}

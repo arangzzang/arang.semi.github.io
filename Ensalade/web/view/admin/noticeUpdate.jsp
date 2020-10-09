@@ -7,7 +7,12 @@
 <%
 	NoticeBoard nb = (NoticeBoard)request.getAttribute("nb");
 %>
-
+<script>
+     $(".form2").focus(e=>{
+        $(e.target).css("outline-color","#27b06e");
+     });
+     
+</script>
     <section class="contents-wrap">
         <div id="notice-container">
         	<form action="<%=request.getContextPath()%>/admin/updateNoticeEnd" method="post" enctype="multipart/form-data">
@@ -25,7 +30,7 @@
 	                        <th>제 목</th>
 	                        <td>
 	                            <div class="update-input_wrap">
-	                                <input class="update-input" type="text" value="<%=nb.getNotice_title() %>" name="title">
+	                                <input class="update-input form2" type="text" value="<%=nb.getNotice_title() %>" name="title">
 	                            </div>
 	                        </td>
 	                    </tr>
@@ -41,7 +46,7 @@
 	                            <div class="detail">
 	                                <p style="border-top: 1px solid #eaeaea;">
 	                                <!-- 블로그처럼 글&이미지 수정하는 기능 구현필요 -->
-	                                    <textarea class="form-control" name="content" id="" cols="60" rows="5" style="resize: none;"><%=nb.getNotice_contents() %>
+	                                    <textarea class="form-control form2" name="content" id="" cols="60" rows="5" style="resize: none;"><%=nb.getNotice_contents() %>
 	                                    </textarea><img src="<%=request.getContextPath() %><%=nb.getContentImg() %>">
 	                                </p>
 	                            </div>
