@@ -35,14 +35,14 @@
 
 
 %>
-<!-- Swiper JS -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+<!-- Swiper JS 진호형-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swiper-bundle.min.js"></script>
+<!-- Swiper JS 현-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <!-- Link Swiper's CSS -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/css/productDetail.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/productDetail.css">
 
 
 <section class="thisproduct">
@@ -85,10 +85,10 @@
 	</div>
 	<!-- 관련상품 -->
 	<div class="relate">
-        <div class="a-swiper-container">
-            <div class="a-swiper-wrapper">
+        <div class="swiper-container a-container">
+            <div class="swiper-wrapper a-wrapper">
                <%for(int i=0;i < Math.ceil((double)list.size()/4);i++){%>
-              <div class="a-swiper-slide">
+              <div class="swiper-slide a-slide">
                 <ul>
                  <%for(int j=i*4;j<(i+1)*4;j++){%> 
                  
@@ -107,10 +107,10 @@
 	            <%} %>
             </div>
 			<!-- Add Pagination -->
-			<div class="a-swiper-pagination"></div>
+			<div class="swiper-pagination a-pagination"></div>
 			<!-- Add Arrows -->
-			<div class="a-swiper-button-next"></div>
-			<div class="a-swiper-button-prev"></div>
+			<div class="swiper-button-next a-button-next"></div>
+			<div class="swiper-button-prev a-button-prev"></div>
 		</div>
 	</div>
 	<!-- 상품 상세 이미지 -->
@@ -169,10 +169,10 @@
 
 
 		<!-- 클래스명은 변경하면 안 됨 -->
-		<div class="b-swiper-container">
-			<div class="b-swiper-wrapper">
+		<div class="swiper-container b-container">
+			<div class="swiper-wrapper b-wrapper">
 				<%for(ProductReview prs:reviewList ){ %>
-				<div class="b-swiper-slide">
+				<div class="b-swiper-slide b-slide">
 					<img
 						style="background-image: url('<%=request.getContextPath() %><%=prs.getFilepath() %>')">
 				</div>
@@ -180,17 +180,11 @@
 
 			</div>
 			<!-- Add Pagination -->
-			<div class="b-swiper-pagination"></div>
+			<div class="swiper-pagination b-pagination"></div>
 			<!-- Add Arrows -->
-			<div class="b-swiper-button-next"></div>
-			<div class="b-swiper-button-prev"></div>
+			<div class="swiper-button-next b-button-next"></div>
+			<div class="swiper-button-prev b-button-prev"></div>
 		</div>
-
-		<!-- Swiper JS -->
-		<script src="../package/swiper-bundle.min.js"></script>
-
-		<!-- Initialize Swiper -->
-
 
 	</div>
 	<%
@@ -420,32 +414,7 @@
     		}, function(){
     		  $(".img_span").not(this).css("display","none");
     		}); 
-        //스와이퍼
-        var swiper = new Swiper('.a-swiper-container', {
-	    spaceBetween: 30,
-	    centeredSlides: true,
-	    autoplay: {
-       	delay: 2500,
-       	disableOnInteraction: false,
-     	},
-     	agination: {
-       	el: '.a-swiper-pagination',
-       	clickable: true,
-     	},
-     	navigation: {
-       	nextEl: '.a-swiper-button-next',
-       	prevEl: '.a-swiper-button-prev',
-	   		},		
-	   	});
 
-	 $(function() {
-     	$(".puoduct_slide").click(function() {
-     		$(".puoduct_list_content2").css("display","none");
-     		$(this).next().slideToggle(500);
-     		
-     	});
-     	
-     });
 
     	$(".btn-reply").click(e=>{
     	<%if (loginMember != null) {%>
@@ -503,22 +472,45 @@
    		})
    		              console.log($(e.target).parent().parent().prev().children().children().children().children().first().text());
    	})
+        //스와이퍼
+        var swiper = new Swiper('.swiper-container a-container', {
+	    spaceBetween: 30,
+	    centeredSlides: true,
+	    autoplay: {
+       	delay: 2500,
+       	disableOnInteraction: false,
+     	},
+     	agination: {
+       	el: '.swiper-pagination a-pagination',
+       	clickable: true,
+     	},
+     	navigation: {
+       	nextEl: '.swiper-button-next a-button-next',
+       	prevEl: '.swiper-button-prev a-button-prev',
+	   		},		
+	   	});
+	 	$(function() {
+     		$(".puoduct_slide").click(function() {
+     			$(".puoduct_list_content2").css("display","none");
+     			$(this).next().slideToggle(500);
+     		});
+     	});
     	 	  //설진호 스와이퍼
-     var swiper = new Swiper('.b-swiper-container', {
-      slidesPerView: 5,
-      spaceBetween: 3,
-      slidesPerGroup: 5,
-      direction: getDirection(),
-      navigation: {
-        nextEl: '.b-swiper-button-next',
-        prevEl: '.b-swiper-button-prev',
-      },
-      on: {
-        resize: function () {
-          swiper.changeDirection(getDirection());
-        }
-      }
-    });
+//      var swiper = new Swiper('.swiper-container b-container', {
+//       slidesPerView: 5,
+//       spaceBetween: 3,
+//       slidesPerGroup: 5,
+//       direction: getDirection(),
+//       navigation: {
+//         nextEl: '.swiper-button-next b-button-next',
+//         prevEl: '.swiper-button-prev b-button-prev',
+//       },
+//       on: {
+//         resize: function () {
+//           swiper.changeDirection(getDirection());
+//         }
+//       }
+//     });
 
     function getDirection() {
       var windowWidth = window.innerWidth;
