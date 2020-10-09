@@ -3,7 +3,7 @@
 
 
 
-<footer class="footer swiper-slide">
+<footer class="footer">
                 <!-- <div class="spacebox">
                 </div> -->
 

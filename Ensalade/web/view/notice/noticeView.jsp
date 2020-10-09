@@ -7,7 +7,22 @@
 <%
 	NoticeBoard nb = (NoticeBoard)request.getAttribute("nb");
 %>
-
+<script>
+	let no = $("#noticeNo").val();
+	$("#updateBtn").click(e => {
+		location.assign('<%=request.getContextPath()%>/admin/updateNotice?no='+no);
+	});
+	
+	$("#deleteBtn").click(e => {
+		let result = confirm("삭제하시겠습니까?");
+		if(result){
+			location.replace('<%=request.getContextPath()%>/admin/deleteNotice?no='+no);
+		}else{}
+	});
+	$("#listBack").click(e =>{
+		location.assign('<%=request.getContextPath()%>/searchNotice');
+	});
+</script>
 <section class="contents-wrap">
         <div id="notice-container">
             <div class="notice-title-wrap">
@@ -42,17 +57,16 @@
                             </div>
                         </td>
                     </tr>
+                  <%if(nb.getFilepath()!=null){ %>
                     <tr>
                         <th>첨부파일</th>
                         <td>
                         <!-- 다운로드 서비스 구현하기 -->
-                            <%if(nb.getFilepath()!=null){ %>
-                                <img alt="" src="<%=nb.getFilepath()%>" width="20" height="20">
-                            <%}else{%>
-
-                            <%} %>
+	                        <a href="<%=request.getContextPath()%>/notice/fileDownload?fileName=<%=nb.getFilepath()%>">
+	                        <img src="<%=request.getContextPath()%>/image/file.png" width="20" height="20"></a>
                         </td>
                     </tr>
+                 <%}else{} %>
                 </table>
                 <div class="noticeV-button">
                     <span class="gLeft">
@@ -73,19 +87,7 @@
         </div>
     </section>
     
-<script>
-	let no = $("#noticeNo").val();
-	$("#updateBtn").click(e => {
-		location.assign('<%=request.getContextPath()%>/admin/updateNotice?no='+no);
-	});
-	
-	$("#deleteBtn").click(e => {
-		location.assign('<%=request.getContextPath()%>/admin/deleteNotice?no='+no);
-	});
-	$("#listBack").click(e =>{
-		location.assign('<%=request.getContextPath()%>/searchNotice');
-	});
-</script>
+
 
 <style>
 .notice-title-wrap{

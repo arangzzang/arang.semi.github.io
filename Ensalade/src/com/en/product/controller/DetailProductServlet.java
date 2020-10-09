@@ -33,12 +33,14 @@ public class DetailProductServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//상품 상세화면
 		int productNo = Integer.parseInt(request.getParameter("productNo"));
+		//관련 상품 정보출력
 		Product p = new ProductService().detailProduct(productNo);
 		String type = p.getProductType();
 	    List<Product> list = new ProductService().relateProduct(type);
 	    
+
 	    String pageBar = "";
 		int cPage;
 		try {
@@ -93,6 +95,9 @@ public class DetailProductServlet extends HttpServlet {
 		//상품리뷰 리스트
 		request.setAttribute("relateProduct", list);
 		//상품
+
+	  
+
 		request.setAttribute("selectProduct", p);
 		
 		request.setAttribute("reviewList",reviewList);

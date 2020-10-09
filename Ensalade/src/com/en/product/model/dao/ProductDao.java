@@ -28,7 +28,7 @@ import com.en.product.model.vo.ProductReview;
          }
          
       }
-      
+      //상품 전체 리스트조회
       public List<Product> selectProductAll(Connection conn){
          PreparedStatement pstmt=null;
          ResultSet rs = null;
@@ -37,7 +37,6 @@ import com.en.product.model.vo.ProductReview;
          try{
             pstmt=conn.prepareStatement(prop.getProperty("productList"));
             rs = pstmt.executeQuery();
-            
             while(rs.next()){
                Product p = new Product();
                p.setProductNo(rs.getInt("product_no"));
@@ -65,6 +64,7 @@ import com.en.product.model.vo.ProductReview;
          return list;
       }
       //상품 상세 조회
+
          public Product detailProduct(Connection conn , int productNo) {
             PreparedStatement pstmt = null;
             ResultSet rs = null;
@@ -295,6 +295,7 @@ import com.en.product.model.vo.ProductReview;
 			   close(pstmt);
 		   }return lc;
 	   }
+
    }
 
 

@@ -48,11 +48,10 @@ public class NoticeWriteEndServlet extends HttpServlet {
 		//파일경로 합쳐서 넣어주기
 		String filepath = "/image/upload/notice/" + mr.getFilesystemName("upload");
 		NoticeBoard nb = new NoticeBoard();
-		nb.setNotice_no(Integer.parseInt(mr.getParameter("no")));
 		nb.setNotice_title(mr.getParameter("title"));
 		nb.setNotice_writer(mr.getParameter("writer"));
 		nb.setNotice_contents(mr.getParameter("content"));
-		nb.setContentImg(mr.getParameter("img"));
+//		nb.setContentImg(mr.getParameter("img"));
 		nb.setFilepath(filepath);
 		
 		System.out.println(mr.getParameter("title"));
