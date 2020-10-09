@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.en.product.model.service.ProductService;
 import com.en.product.model.vo.Product;
+import com.en.product.model.vo.ProductComment;
+import com.en.product.model.vo.ProductReview;
 
 /**
  * Servlet implementation class DetailProductServlet
@@ -36,8 +38,64 @@ public class DetailProductServlet extends HttpServlet {
 		Product p = new ProductService().detailProduct(productNo);
 		String type = p.getProductType();
 	    List<Product> list = new ProductService().relateProduct(type);
-	    request.setAttribute("relateProduct", list);
+	    
+	    String pageBar = "";
+		int cPage;
+		try {
+			cPage = Integer.parseInt(request.getParameter("cPage"));
+
+		} catch (NumberFormatException e) {
+			cPage = 1;
+		}
+		int numPerPage = 5;
+
+		int totalData = 0;
+
+		List<ProductReview> reviewList = new ProductService().ProductReview(productNo, cPage, numPerPage);
+
+		totalData = new ProductService().puoductCount(productNo);
+
+		int totalPage = (int) Math.ceil((double) totalData / numPerPage);
+		int pageBarSize = 5;
+		int pageNo = ((cPage - 1) / pageBarSize) * pageBarSize + 1;
+		int pageEnd = pageNo + pageBarSize - 1;
+
+		if (pageNo == 1) {
+			pageBar += "<span>[이전]</span>";
+		} else {
+			pageBar += "<a href='" + request.getContextPath() + "/product/detailProduct?productNo=" + productNo
+					+ "&cPage=" + (pageNo - 1) + "'>[이전]</a>";
+		}
+
+		while (!(pageNo > pageEnd || pageNo > totalPage)) {
+			if (pageNo == cPage) {
+				pageBar += "<span>" + pageNo + "</span>";
+			} else {
+				pageBar += "<a href='" + request.getContextPath() + "/product/detailProduct?productNo=" + productNo
+						+ "&cPage=" + pageNo + "'>" + pageNo + "</a>";
+			}
+			pageNo++;
+		}
+
+		if (pageNo > totalPage) {
+			pageBar += "<span>[다음]</span>";
+		} else {
+			pageBar += "<a href='" + request.getContextPath() + "/product/detailProduct?productNo=" + productNo
+					+ "&cPage=" + pageNo + "'>[다음]</a>";
+		}
+		List<ProductComment> commentList = new ProductService().searchComment();
+		
+		
+		//댓글 리스트
+		request.setAttribute("commentList", commentList);
+		//페이징바
+		request.setAttribute("pageBar", pageBar);
+		//상품리뷰 리스트
+		request.setAttribute("relateProduct", list);
+		//상품
 		request.setAttribute("selectProduct", p);
+		
+		request.setAttribute("reviewList",reviewList);
 		request.getRequestDispatcher("/view/product/productDetail.jsp").forward(request, response);
 	}
 
