@@ -33,9 +33,9 @@ public class ProductService {
 	   return p;
    }
    //관련상품
-   public List<Product> relateProduct(String type){
+   public List<Product> relateProduct(String type,int productNo){
       Connection conn = getConnection();
-      List<Product> types = dao.relateProduct(conn, type);
+      List<Product> types = dao.relateProduct(conn, type,productNo);
       close(conn);
       return types;
    }
@@ -102,7 +102,6 @@ public class ProductService {
 		 return result;
 	 }
    public int searchCount(int cIdx) {
-	   System.out.println(cIdx);
 		 Connection conn=getConnection();
 		 int likeCount=dao.searchCount(conn,cIdx);
 		 close(conn);

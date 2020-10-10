@@ -37,8 +37,9 @@ public class DetailProductServlet extends HttpServlet {
 		int productNo = Integer.parseInt(request.getParameter("productNo"));
 		//관련 상품 정보출력
 		Product p = new ProductService().detailProduct(productNo);
+		System.out.println(p.getProductName());
 		String type = p.getProductType();
-	    List<Product> list = new ProductService().relateProduct(type);
+	    List<Product> list = new ProductService().relateProduct(type,productNo);
 	    
 
 	    String pageBar = "";
@@ -49,7 +50,7 @@ public class DetailProductServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			cPage = 1;
 		}
-		int numPerPage = 5;
+		int numPerPage = 10;
 
 		int totalData = 0;
 
@@ -58,7 +59,7 @@ public class DetailProductServlet extends HttpServlet {
 		totalData = new ProductService().puoductCount(productNo);
 
 		int totalPage = (int) Math.ceil((double) totalData / numPerPage);
-		int pageBarSize = 5;
+		int pageBarSize = 10;
 		int pageNo = ((cPage - 1) / pageBarSize) * pageBarSize + 1;
 		int pageEnd = pageNo + pageBarSize - 1;
 
@@ -92,9 +93,8 @@ public class DetailProductServlet extends HttpServlet {
 		request.setAttribute("commentList", commentList);
 		//페이징바
 		request.setAttribute("pageBar", pageBar);
-		//상품리뷰 리스트
+		//상품리뷰 리스트 & 관련상품
 		request.setAttribute("relateProduct", list);
-		//상품
 
 	  
 

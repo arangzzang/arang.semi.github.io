@@ -7,10 +7,8 @@
 
 
 <%@include file="/view/common/header.jsp"%>
-
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/productDetail.css">
 <%
-
-	
 	DecimalFormat formatter=new DecimalFormat("###,###");//숫자 3자리마다 ,표시해주는 클래스
 	Product p = (Product) request.getAttribute("selectProduct");//서블렛에 있는 키값으로 불러와야함.
 	
@@ -35,16 +33,16 @@
 	
 	
 
+
 %>
 <!-- Swiper JS -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+<!-- <script src="../package/swiper-bundle.min.js"></script> -->
+<!-- <script src="../package/swiper-bundle.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
 
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/css/productDetail.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/productDetail.css">
 
 
 <section class="thisproduct">
@@ -55,6 +53,7 @@
 			<!-- 상품 썸네일 이미지 -->
 			<div class="img">
 				<img src="" alt="">
+
 			</div>
 			<!-- 상품 정보 -->
 			<div class="productinformation">
@@ -86,29 +85,32 @@
 	</div>
 	<!-- 관련상품 -->
 	<div class="relate">
-		<div class="swiper-container">
-			<div class="swiper-wrapper">
-				<%for(int i=0;i < Math.ceil(list.size()/4);i++){ %>
-				<div class="swiper-slide">
-					<ul>
-						<%for(int j=i*4;j<(i+1)*4;j++){%>
-						<li><a
-							href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=p.getProductNo()%>">
-								<img alt="" src="<%=list.get(i).getProductThumbnail() %>"
-								class="product-img">
-								<p><%=list.get(i).getProductName() %></p>
-								<p><%=formatter.format(list.get(i).getProductPrice()) %></p>
-						</a></li>
-						<%} %>
-					</ul>
-				</div>
-				<%} %>
-			</div>
+        <div class="swiper-container a-container">
+            <div class="swiper-wrapper a-wrapper">
+               <%for(int i=0;i < Math.ceil((double)list.size()/4);i++){%>
+              <div class="swiper-slide a-slide">
+                <ul>
+                 <%for(int j=i*4;j<(i+1)*4;j++){%> 
+                 
+                   <li>    
+	                  <a href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=list.get(j).getProductNo()%>">
+		                  <img alt="" src="<%=list.get(j).getProductThumbnail() %>" class="product-img">
+		                  <p><%=list.get(j).getProductName() %></p>
+		                  <p><%=formatter.format(list.get(j).getProductPrice()) %></p> 
+	                  </a>
+	               </li>
+	                  <% if(list.size()-1==j){ 
+ 	                	  break;}%>
+            	<%} %>
+	            </ul>
+	          </div>
+	            <%} %>
+            </div>
 			<!-- Add Pagination -->
-			<div class="swiper-pagination"></div>
+			<div class="swiper-pagination a-pagination"></div>
 			<!-- Add Arrows -->
-			<div class="swiper-button-next"></div>
-			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next a-button-next"></div>
+			<div class="swiper-button-prev a-button-prev"></div>
 		</div>
 	</div>
 	<!-- 상품 상세 이미지 -->
@@ -135,7 +137,7 @@
 					src="<%=request.getContextPath()%>/image/product/common/common2.jpg">
 				<img alt=""
 					src="<%=request.getContextPath()%>/image/product/common/common3.jpg">
-				<img alt=""
+				<img alt="" 
 					src="<%=request.getContextPath()%>/image/product/common/common4.jpg">
 			</div>
 		</div>
@@ -166,30 +168,22 @@
 
 
 
-		<!-- 클래스명은 변경하면 안 됨 -->
-		<div class="swiper-container">
-			<div class="swiper-wrapper">
+		<!-- 클래스명은 변경하면 안 됨 스와이퍼 -->
+		<div class="swiper-container b-container">
+			<div class="swiper-wrapper b-wrapper">
 				<%for(ProductReview prs:reviewList ){ %>
-				<div class="swiper-slide">
+				<div class="swiper-slide b-slide">
 					<img
 						style="background-image: url('<%=request.getContextPath() %><%=prs.getFilepath() %>')">
 				</div>
 				<%} %>
-
 			</div>
 			<!-- Add Pagination -->
-			<div class="swiper-pagination"></div>
+			<div class="swiper-pagination b-pagination"></div>
 			<!-- Add Arrows -->
-			<div class="swiper-button-next"></div>
-			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next b-button-next"></div>
+			<div class="swiper-button-prev b-button-prev"></div>
 		</div>
-
-		<!-- Swiper JS -->
-		<script src="../package/swiper-bundle.min.js"></script>
-
-		<!-- Initialize Swiper -->
-
-
 	</div>
 	<%
 		for (ProductReview pr : reviewList) {
@@ -281,7 +275,7 @@
 					<tr class="level2">
 						<td><sub><%=pc.getProductCommentWriter()%></sub> <sub><%=pc.getProductCommentDate()%></sub>
 							<br> <%=pc.getProductCommentContent()%></td>
-						<td>
+						<td> 
 							<%-- <button class="btn-reply" value="<%=bc.getBoardCommentNo()%>">답글</button> --%>
 						</td>
 					</tr>
@@ -305,381 +299,6 @@
 	</div>
 	</div>
 </section>
-<style>
-hr {
-	margin: 50px;
-}
-/* 세션 */
-.thisproduct {
-	/* 헤더와 풋터 간격 */
-	margin: 50px 50px;
-}
-
-/* 상품 썸네일 / 정보 부모창 */
-.infromation-parent {
-	display: table;
-	margin: auto;
-}
-/* 상품 썸네일 이미지/ 상품정보 자식창 */
-.information {
-	display: flex;
-	margin-bottom: 20px;
-}
-/* 썸네일 이미지 */
-.img {
-	width: 500px;
-	height: 400px;
-	border: 1px red solid;
-}
-/* 상품 정보 창 */
-.productinformation {
-	width: 500px;
-	height: 400px;
-	border: 1px blue solid;
-}
-/* 주문하기 / 장바구니 버튼 */
-.btn {
-	
-}
-
-.jangbtn {
-	border: 3px green solid;
-	background-color: white;
-	color: green;
-	width: 200px;
-	height: 50px;
-	margin-left: 30px;
-	cursor: pointer;
-}
-
-.jangbtn:hover {
-	background: green;
-	color: white;
-}
-/* 주문하기 */
-.orderbtn {
-	border: 3px green solid;
-	background-color: white;
-	color: green;
-	width: 200px;
-	height: 50px;
-	margin-left: 30px;
-	cursor: pointer;
-}
-
-.orderbtn:hover {
-	background: green;
-	color: white;
-}
-/* 관련상품 */
-.relate {
-	position: relative;
-	height: 400px;
-}
-
-body {
-	background: #eee;
-	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	color: #000;
-	margin: 0;
-	padding: 0;
-}
-</style>
-
-<style>
-.a3 {
-	width: 5px;
-	height: 5px;
-}
-
-hr {
-	margin: 50px;
-}
-/* 세션 */
-.thisproduct {
-	/* 헤더와 풋터 간격 */
-	margin: 50px 50px;
-}
-
-/* 상품 썸네일 / 정보 부모창 */
-.infromation-parent {
-	display: table;
-	margin: auto;
-}
-/* 상품 썸네일 이미지/ 상품정보 자식창 */
-.information {
-	display: flex;
-	margin-bottom: 20px;
-}
-/* 썸네일 이미지 */
-.img {
-	width: 500px;
-	height: 400px;
-	border: 1px red solid;
-}
-/* 상품 정보 창 */
-.productinformation {
-	width: 500px;
-	height: 400px;
-	border: 1px blue solid;
-}
-/* 주문하기 / 장바구니 버튼 */
-.btn {
-	
-}
-/* 장바구니 */
-.jangbtn {
-	border: 3px green solid;
-	background-color: white;
-	width: 200px;
-	height: 50px;
-	margin-left: 30px;
-}
-/* 주문하기 */
-.orderbtn {
-	border: 3px green solid;
-	background-color: green;
-	width: 200px;
-	height: 50px;
-	margin-left: 30px;
-}
-/* 관련상품 */
-.relate {
-	position: relative;
-	height: 400px;
-}
-
-body {
-	background: #eee;
-	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	color: #000;
-	margin: 0;
-	padding: 0;
-}
-
-.swiper-container {
-	width: 100%;
-	height: 100%;
-}
-
-.swiper-slide {
-	text-align: center;
-	font-size: 18px;
-	background: #fff;
-	/* Center slide text vertically */
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	-webkit-justify-content: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
-}
-
-/* .swiper-slide>ul {
-	display: flex;
-}
-
-.swiper-slide>ul>li {
-	list-style: none;
-}
-
-.swiper-slide>ul>li>a>.product-img {
-	width: 200px;
-	height: 230px;
-	background-color: red;
-} */
-
-/* 상품 상세 이미지 */
-.detail-product-img {
-	border: 1px tomato solid;
-	display: table;
-	margin: 20px auto;
-	width: 800px;
-	height: 3000px;
-}
-
-div#puoduct_list {
-	width: 100%;
-}
-
-div#puoduct_list_content {
-	display: none;
-	height: auto;
-}
-
-table#tavle_Table {
-	position: relative;
-	left: 100px;
-}
-
-img#puduct_size {
-	width: 11px;
-	height: 14px;
-	vertical-align: middle;
-	margin: 0 1px;
-}
-
-td {
-	padding: 14px 3px 13px;
-	border-bottom: 1px solid #e3e3e3;
-}
-
-td.tableTd, .tableTd_2 {
-	width: 100px;
-	text-align: center;
-}
-
-td.tableTd_3 {
-	width: 700px;
-	text-align: left;
-}
-
-table#tbl-comment {
-	width: 580px;
-	margin: 0 auto;
-	border-collapse: collapse;
-	clear: both;
-}
-
-table#tbl-comment tr td {
-	border-bottom: 1px solid;
-	border-top: 1px solid;
-	padding: 5px;
-	text-align: left;
-	line-height: 120%;
-}
-
-table#tbl-comment tr td:first-of-type {
-	padding: 5px 5px 5px 50px;
-}
-
-table#tbl-comment tr td:last-of-type {
-	text-align: right;
-	width: 100px;
-}
-
-table#tbl-comment button.btn-reply {
-	display: none;
-}
-
-table#tbl-comment button.btn-delete {
-	display: none;
-}
-
-table#tbl-comment tr:hover {
-	background: lightgray;
-}
-
-table#tbl-comment tr:hover button.btn-reply {
-	display: inline;
-}
-
-table#tbl-comment tr:hover button.btn-delete {
-	display: inline;
-}
-
-table#tbl-comment tr.level2 {
-	color: gray;
-	font-size: 14px;
-}
-
-table#tbl-comment sub.comment-writer {
-	color: navy;
-	font-size: 14px
-}
-
-table#tbl-comment sub.comment-date {
-	color: tomato;
-	font-size: 10px
-}
-
-table#tbl-comment tr.level2 td:first-of-type {
-	padding-left: 100px;
-}
-
-table#tbl-comment tr.level2 sub.comment-writer {
-	color: #8e8eff;
-	font-size: 14px
-}
-
-table#tbl-comment tr.level2 sub.comment-date {
-	color: #ff9c8a;
-	font-size: 10px
-}
-/*답글관련*/
-table#tbl-comment textarea {
-	margin: 4px 0 0 0;
-}
-
-table#tbl-comment button.btn-insert2 {
-	width: 60px;
-	height: 23px;
-	color: white;
-	background: #3300ff;
-	position: relative;
-	top: -5px;
-	left: 10px;
-}
-  .swiper-container {
-      width: 100%;
-      height: 100%;
-    }
-
-    .swiper-slide {
-  
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-
-       Center slide text vertically 
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-       display: flex; 
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
-
-.swiper-slide img {
-	width:200px;
-	height:200px;
-	background-repeat: no-repeat;
-     background-position: 50% 50%; 
-    background-size: cover;
-}
-.swiper-wrapper {
-	width:200px;
-	height:200px;
-}
-    @media (max-width: 760px) {
-      .swiper-button-next {
-        right: 20px;
-        transform: rotate(90deg);
-      }
-
-      .swiper-button-prev {
-        left: 20px;
-        transform: rotate(90deg);
-      }
-    } 
-</style>
-
-
-
 
 
 <script type="text/javascript">
@@ -793,32 +412,7 @@ table#tbl-comment button.btn-insert2 {
     		}, function(){
     		  $(".img_span").not(this).css("display","none");
     		}); 
-        //스와이퍼
-       /*  var swiper = new Swiper('.swiper-container', {
-	    spaceBetween: 30,
-	    centeredSlides: true,
-	    autoplay: {
-       	delay: 2500,
-       	disableOnInteraction: false,
-     	},
-     	agination: {
-       	el: '.swiper-pagination',
-       	clickable: true,
-     	},
-     	navigation: {
-       	nextEl: '.swiper-button-next',
-       	prevEl: '.swiper-button-prev',
-	   		},		
-	   	}); */
 
-	 $(function() {
-     	$(".puoduct_slide").click(function() {
-     		$(".puoduct_list_content2").css("display","none");
-     		$(this).next().slideToggle(500);
-     		
-     	});
-     	
-     });
 
     	$(".btn-reply").click(e=>{
     	<%if (loginMember != null) {%>
@@ -875,20 +469,39 @@ table#tbl-comment button.btn-insert2 {
    			
    		})
    	})
-   	
-   	
-    //설진호 스와이퍼
-     var swiper = new Swiper('.swiper-container', {
-	      slidesPerView: 5,
-	      spaceBetween: 3,
-	      slidesPerGroup: 5,
-	      direction: getDirection(),
-	      navigation: {nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev',},
-	      on: {
-	        resize: function () {
-	          swiper.changeDirection(getDirection());
-	        }
-	      }
+        //스와이퍼
+        var swiper = new Swiper('.a-container', {
+	      spaceBetween: 30,
+	      centeredSlides: true,
+	      autoplay: {
+	        delay: 2500,
+	        disableOnInteraction: false,
+	      },
+	      pagination: {
+	        el: '.swiper-pagination',
+	        clickable: true,
+	      },
+	      navigation: {
+	        nextEl: '.swiper-button-next ',
+	        prevEl: '.swiper-button-prev',
+	      },
+	    });
+        
+    	 	  //설진호 스와이퍼
+     var swiper = new Swiper('.b-container', {
+      slidesPerView: 5,
+      spaceBetween: 3,
+      slidesPerGroup: 5,
+      direction: getDirection(),
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      on: {
+        resize: function () {
+          swiper.changeDirection(getDirection());
+        }
+      }
     });
 
     function getDirection() {
@@ -900,4 +513,4 @@ table#tbl-comment button.btn-insert2 {
        
         </script>
 
-<%-- <%@include file="/view/common/footer.jsp"%> --%>
+<%@include file="/view/common/footer.jsp"%>

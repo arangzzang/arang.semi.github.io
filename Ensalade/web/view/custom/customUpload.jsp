@@ -60,7 +60,7 @@ enctype="multipart/form-data">
    
    <!-- 글올리기 버튼 -->
    <div>
-   <input type="submit" value="글 등록">
+   <button type="submit">등록</button>
    </div>
    <input type="hidden" value="<%=loginMember.getMemberId()%>" name="userId">
 </form>
