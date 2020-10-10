@@ -874,33 +874,29 @@ table#tbl-comment button.btn-insert2 {
    			}
    			
    		})
-   		              console.log($(e.target).parent().parent().prev().children().children().children().children().first().text());
    	})
-    	 	  //설진호 스와이퍼
+   	
+   	
+    //설진호 스와이퍼
      var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 5,
-      spaceBetween: 3,
-      slidesPerGroup: 5,
-      direction: getDirection(),
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      on: {
-        resize: function () {
-          swiper.changeDirection(getDirection());
-        }
-      }
+	      slidesPerView: 5,
+	      spaceBetween: 3,
+	      slidesPerGroup: 5,
+	      direction: getDirection(),
+	      navigation: {nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev',},
+	      on: {
+	        resize: function () {
+	          swiper.changeDirection(getDirection());
+	        }
+	      }
     });
 
     function getDirection() {
       var windowWidth = window.innerWidth;
       var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
-
       return direction;
     } 
   
-    			
        
         </script>
 

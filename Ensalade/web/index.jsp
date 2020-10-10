@@ -24,21 +24,17 @@
 		<div class="swiper-slide">
 			<!--swiper-wrap : 이미지와 텍스트를 감싸는 div-->
 			<div class="swiper-wrap" id="customSection">
-				<img src="image/main/이미지1.jpg" alt="" width=100%>
+				<img class="opacity" src="image/main/custom_main.jpg" width="100%">
 				<!--innerText : 텍스트와 버튼을 감싸는 div -->
 				<div class="innerText">
 					<!-- introText : 소개글 div -->
 					<div class="introText" id="customIntro">
-						<p class="introSubject">
-							<strong>커스텀</strong>
-						</p>
+						<p class="introSubject"><strong>커스텀</strong></p>
 						<p>여기는 커스텀 소개하는 글을 쓰는 p 입니다</p>
 					</div>
 					<!-- btn_box : 버튼박스div -->
 					<div class="btn_box" id="btn_box">
-						<p>
-							<a class="btn" href="#"><span>커스텀보러가기</span></a>
-						</p>
+						<p><a class="btn" href="<%=request.getContextPath()%>/custom/customList"><span>커스텀보러가기</span></a></p>
 					</div>
 				</div>
 			</div>
@@ -46,21 +42,15 @@
 		<div class="swiper-slide">
 			<!--swiper-wrap : 이미지와 텍스트를 감싸는 div-->
 			<div class="swiper-wrap" id="productSection">
-				<img src="image/main/이미지2.jpg" alt="" width=100%>
+				<img class="opacity" src="image/main/이미지2.jpg" alt="" width=100%>
 				<!--innerText : 텍스트와 버튼을 감싸는 div -->
 				<div class="innerText">
 					<!-- introText : 소개글 div -->
-					<p class="introSubject">
-						<strong>샐러드</strong>
-					</p>
-					<div class="introText" id="customIntro">
-						<p>여기는 일반샐러드 소개하는 글을 쓰는 p 입니다</p>
-					</div>
+					<p class="introSubject"><strong>샐러드</strong></p>
+					<div class="introText" id="customIntro"><p>여기는 일반샐러드 소개하는 글을 쓰는 p 입니다</p></div>
 					<!-- btn_box : 버튼박스div -->
 					<div class="btn_box" id="btn_box">
-						<p>
-							<a class="btn" href="#"><span>샐러드보러가기</span></a>
-						</p>
+						<p><a class="btn" href="<%=request.getContextPath()%>/product/productAll"><span>샐러드보러가기</span></a></p>
 					</div>
 				</div>
 			</div>
@@ -68,21 +58,17 @@
 		</div>
 		<div class="swiper-slide">
 			<div class="swiper-wrap" id="eventSection">
-				<img src="image/main/이미지3.jpg" alt="" width=100%>
+				<img class="opacity" src="image/main/이미지3.jpg" alt="" width=100%>
 				<!--innerText : 텍스트와 버튼을 감싸는 div -->
 				<div class="innerText">
 					<!-- introText : 소개글 div -->
 					<div class="introText" id="customIntro">
-						<p class="introSubject">
-							<strong>이벤트</strong>
-						</p>
+						<p class="introSubject"><strong>이벤트</strong></p>
 						<p>여기는 이벤트 소개하는 글을 쓰는 p 입니다</p>
 					</div>
 					<!-- btn_box : 버튼박스div -->
 					<div class="btn_box" id="btn_box">
-						<p>
-							<a class="btn" href="#"><span>이벤트보러가기</span></a>
-						</p>
+						<p><a class="btn" href="<%=request.getContextPath()%>/event/eventList"><span>이벤트보러가기</span></a></p>
 					</div>
 				</div>
 			</div>
@@ -99,9 +85,7 @@
 				</h4>
 				<h2 class="">@en_salade</h2>
 				<div class="">
-					<p>
-						어쩌구 저쩌구 인스타그램 구경하셍<br> 앤샐러드 인사타
-					</p>
+					<p>어쩌구 저쩌구 인스타그램 구경하셍<br> 앤샐러드 인사타</p>
 				</div>
 				<div class="">
 					<img src="image/main/img1.png" id="instaimg1" width="200"
@@ -131,17 +115,18 @@
 	<div class="swiper-pagination"></div>
 </section>
 <script>
-	  <!-- Initialize Swiper -->
-	    var swiper = new Swiper('.swiper-container', {
-	        direction: 'vertical',
-	        slidesPerView: 1,
-	        spaceBetween: 90,
-	        mousewheel: true,
-	        pagination: {
-	            el: '.swiper-pagination',
-	            clickable: true,
-	        },
-	    });
-    </script>
+<!-- Initialize Swiper -->
+  var swiper = new Swiper('.swiper-container', {
+      direction: 'vertical',
+      slidesPerView: 1,
+      spaceBetween: 90,
+      mousewheel: true,
+      pagination: {el: '.swiper-pagination', clickable: true},
+  });
+</script>
 </body>
 </html>
+<style>
+html,body{height:100%;}
+.opacity{opacity: 0.5;}
+</style>
