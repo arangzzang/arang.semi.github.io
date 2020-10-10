@@ -5,84 +5,113 @@
 <%@ include file="/view/common/header.jsp" %>
 
 <%
-	List<NoticeBoard> list = (List) request.getAttribute("list");
-	String pageBar2 = (String) request.getAttribute("pageBar2");
+	List<Member> list = (List) request.getAttribute("list");
+	String pageBar1 = (String)request.getAttribute("pageBar1");
 	String type = request.getParameter("searchType");
-	String key = request.getParameter("searchKeyword");
-%>
+	String key = request.getParameter("searchKeyword");	
+%>	
 
 <section class="contents-wrap">
 	<div class="content-title">
-    	<p>공지사항</p>
+        <p>회원관리</p>
     </div>
     <div class="notice-wrap">
 		<table class="notice-table" id="tbl-notice">
 			<thead class="notice-table_thead">
 				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>첨부파일</th>
-					<th>작성일</th>
+					<th>회원아이디</th>
+					<th>회원이름</th>
+					<th>성별</th>
+					<th>전화번호</th>
+					<th>주소</th>
+					<th>이메일</th>
+					<th>생일</th>
+					<th>포인트</th>
+					<th>매니저YN</th>
 				</tr>
 			</thead>
 			<tbody>
 			<%if (list.isEmpty()) {	%>
 				<tr>
-					<td colspan="5">검색한 공지사항이 없습니다</td>
+					<td colspan="9">존재하는 회원이 없습니다.</td>
 				</tr>
 			<%} else {
-				for (NoticeBoard nb : list) {%>
+				for (Member m : list) {%>
 				<tr>
-					<td><%=nb.getNotice_no()%></td>
-					<td><a href="<%=request.getContextPath()%>/notice/noticeView?no=<%=nb.getNotice_no()%>"><%=nb.getNotice_title()%></a></td>
-					<td><%=nb.getNotice_writer()%></td>
-					<td>
-				<%if (nb.getFilepath() != null) {%> 
-						<img src="<%=request.getContextPath()%>/image/file.png"	width="20" height="20"> 
-				<%} %>
-					</td>
-					<td><%=nb.getNotice_write_date()%></td>
+					<td><%=m.getMemberId()%></td>
+					<td><%=m.getMemberName() %></td>
+					<td><%=m.getMemberGender()%></td>
+					<td><%=m.getMemberPhone()%></td>
+					<td><%=m.getMemberAddress()%></td>
+					<td><%=m.getEmail()%></td>
+					<td><%=m.getBirthday()%></td>
+					<td><%=m.getPoint()%></td>
+					<td><%=m.getMangerYn()%></td>
 				</tr>
-			<%	}
-			}	%>
+			<%}}%>
 			</tbody>
 		</table>
 	</div>
 	<div class="search-form">
 		<div class="search-form_wrap">
 		<span>검색타입 : </span> <select id="searchType" class="form-control">
-			<option value="notice_title"
-				<%=type != null && type.equals("notice_title") ? "selected" : ""%>>제목</option>
-			<option value="notice_write_date"
-				<%=type != null && type.equals("notice_write_date") ? "selected" : ""%>>작성일</option>
+			<option value="member_name"
+				<%=type != null && type.equals("member_name") ? "selected" : ""%>>이름</option>
+			<option value="member_id"
+				<%=type != null && type.equals("member_id") ? "selected" : ""%>>아이디</option>
+			<option value="brithday"
+				<%=type != null && type.equals("brithday") ? "selected" : ""%>>생일</option>
+			<option value="manager_yn"
+				<%=type != null && type.equals("manager_yn") ? "selected" : ""%>>매니저</option>
 		</select></div>
-		<div id="search_notice_title">
+		
+		<div id="search_member_name">
 			<form id="formCss"
-				action="<%=request.getContextPath()%>/searchNotice">
-				<input type="hidden" name="searchType" value="notice_title">
+				action="<%=request.getContextPath()%>/admin/memberAll">
+				<input type="hidden" name="searchType" value="member_name">
 				<div class="formCss-submit-wrap">
-					<input class="form-control" id="inputNotice" type="text" name="searchKeyword"
-						placeholder="제목검색" size="25"
-						value="<%=key != null && type != null && type.equals("notice_title") ? key : ""%>">
+					<input class="form-control" id="inputMember" type="text" name="searchKeyword" placeholder="이름검색" size="25"
+						value="<%=key != null && type != null && type.equals("member_name") ? key : ""%>">
 					<button class="formCss-submit-btn" id="submitCss" type="submit">검색</button>
 				</div>
 			</form>
 		</div>
-		<div id="search_notice_write_date">
+		<div id="search_member_id">
 			<form id="formCss"
-				action="<%=request.getContextPath()%>/searchNotice">
-				<input type="hidden" name="searchType" value="notice_write_date">
+				action="<%=request.getContextPath()%>/admin/memberAll">
+				<input type="hidden" name="searchType" value="member_id">
 				<div class="formCss-submit-wrap">
-					<input class="form-control" id="inputNotice" type="text"
-						name="searchKeyword" maxlength="8" placeholder="YY/MM/DD"
-						value="<%=key != null && type != null && type.equals("notice_write_date") ? key : "YY/MM/DD"%>">
+					<input class="form-control" id="inputMember" type="text" name="searchKeyword" placeholder="아이디검색" size="25"
+						value="<%=key != null && type != null && type.equals("member_id") ? key : ""%>">
+					<button class="formCss-submit-btn" id="submitCss" type="submit">검색</button>
+				</div>
+			</form>
+		</div>
+		<div id="search_brithday">
+			<form id="formCss"
+				action="<%=request.getContextPath()%>/admin/memberAll">
+				<input type="hidden" name="searchType" value="brithday">
+				<div class="formCss-submit-wrap">
+					<input class="form-control" id="inputMember" type="text" name="searchKeyword" placeholder="생일검색" size="25"
+						value="<%=key != null && type != null && type.equals("brithday") ? key : "YY/MM/DD"%>">
+					<button class="formCss-submit-btn" id="submitCss" type="submit">검색</button>
+				</div>
+			</form>
+		</div>
+		<div id="search_manager_yn">
+			<form id="formCss"
+				action="<%=request.getContextPath()%>/admin/memberAll">
+				<input type="hidden" name="searchType" value="manager_yn">
+				<div class="formCss-submit-wrap">
+					<input class="form-control" id="inputMember" type="text" name="searchKeyword" placeholder="Y/N" size="25"
+						value="<%=key != null && type != null && type.equals("manager_yn") ? key : "Y/N"%>">
 					<button class="formCss-submit-btn" id="submitCss" type="submit">검색</button>
 				</div>
 			</form>
 		</div>
 	</div>
-	<div id="pagebar2"><%=pageBar2%></div>
+	<div id="pagebar2"><%=pageBar1%></div>
+	<%-- 
 	<div class="noticeV-button">
          <%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
          <span class="gRight">
@@ -91,18 +120,23 @@
              </div>
          </span>
          <%} %>
-     </div>
+     </div> --%>
      
      
 	<script type="text/javascript">
+		let pagebar=$("#pageBar")
+
 		$(function(){
-			let title=$("#search_notice_title");
-			let write_date=$("#search_notice_write_date");
-			let pagebar=$("#pageBar")
+			let name=$("#search_member_name");
+			let id=$("#search_member_id");
+			let birth=$("#search_brithday");
+			let manager=$("#search_manager_yn");
 			
 			$("#searchType").change(e=>{
-				title.css("display","none");
-				write_date.css("display","none");
+				name.css("display","none");
+				id.css("display","none");
+				birth.css("display","none");
+				manager.css("display","none");
 				let s=$(e.target).val();
 				$("#search_"+s).css("display","inline-block");
 			});
@@ -110,7 +144,7 @@
 		$(function(){$("#searchType").change()});
 		
 		$("#writeBtn").click(e =>{
-			location.assign('<%=request.getContextPath()%>/admin/noticeWrite');
+			location.assign('');
 		});
 	</script>
 </section>

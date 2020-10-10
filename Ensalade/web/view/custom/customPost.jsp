@@ -173,7 +173,7 @@
 }
 
 .img1 {
-	background-image: url("<%=request.getContextPath()%>/image/img1.jpg");
+	background-image: url("<%=request.getContextPath()%>/image/img4.jpg");
 	border-radius: 5px;
 	width: 240px;
 	height: 60%;

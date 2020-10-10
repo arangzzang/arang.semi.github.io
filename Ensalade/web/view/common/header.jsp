@@ -11,7 +11,6 @@
 <title>Ensalad</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/test.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/swiper.css">
 <script src="<%=request.getContextPath() %>/js/jquery-3.5.1.min.js"></script>
 <!-- Menubar -->
 <script src="<%=request.getContextPath() %>/js/menuBar.js"></script>	
