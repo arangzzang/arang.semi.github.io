@@ -1,3 +1,4 @@
+<%@page import="sun.invoke.empty.Empty"%>
 <%@page import="com.en.product.model.vo.ProductComment"%>
 <%@page import="com.en.product.model.vo.ProductReview"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,6 +8,7 @@
 
 
 <%@include file="/view/common/header.jsp"%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 <%
 
@@ -139,26 +141,24 @@
 					src="<%=request.getContextPath()%>/image/product/common/common4.jpg">
 			</div>
 		</div>
-		<div class="review-go">
+		
+		<div id="review-go">
+		
 			<div id="infobtn2">
 				<!-- 이동 2 -->
-				<span>후기를 작성해보세요!</span>
-				<button type="button"
+				
+				<span id="icon">
+				<i class="far fa-comments fa-2x"></i>
+				</span>
+				<span id="font-color">지금, 후기를 작성해보세요!</span>
+				<button id="button-color"type="button"
 					onclick="location.assign('<%=request.getContextPath()%><%=loginMember != null
 					? "/view/product/productWrite.jsp?productNo=" + p.getProductNo()
-					: "/view/login.jsp"%>')">후기
-					쓰러가기</button>
+					: "/view/login.jsp"%>')"><span id="bold">후기
+					쓰러가기</span></button>
 			</div>
 		</div>
-		<h3>사진 모아보기</h3>
-		<div class="review-img">
-			<div id="infobtn3">
-				<!-- 이동 3 -->
-				<img src="<%=request.getContextPath() %>/image/product/salad1.jpg">
-				<img src="<%=request.getContextPath() %>/image/product/salad1.jpg">
-				<hr>
-			</div>
-		</div>
+		
 
 
 
@@ -167,21 +167,26 @@
 
 
 		<!-- 클래스명은 변경하면 안 됨 -->
+		<%for(ProductReview prs:reviewList ){ %>
+				<%if(!prs.getFilepath().contains("null")){ %>
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
-				<%for(ProductReview prs:reviewList ){ %>
+				
 				<div class="swiper-slide">
-					<img
-						style="background-image: url('<%=request.getContextPath() %><%=prs.getFilepath() %>')">
+					<a>
+						<img style="background-image: url('<%=request.getContextPath() %><%=prs.getFilepath() %>')">
+						<%System.out.println(prs.getFilepath()); %>
+					</a>
 				</div>
-				<%} %>
+				
+				
 
 			</div>
 			<!-- Add Pagination -->
-			<div class="swiper-pagination"></div>
+			<div class="swiper-pagination1"></div>
 			<!-- Add Arrows -->
-			<div class="swiper-button-next"></div>
-			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next1"></div>
+			<div class="swiper-button-prev1"></div>
 		</div>
 
 		<!-- Swiper JS -->
@@ -191,6 +196,7 @@
 
 
 	</div>
+	<%}} %>
 	<%
 		for (ProductReview pr : reviewList) {
 	%>
@@ -237,7 +243,9 @@
 				<p class="m1"><%=pr.getReviewViews()%></p>
 
 				<p><%=pr.getReviewContent()%></p>
-				<img src="<%=request.getContextPath()%><%=pr.getFilepath()%>">
+				<%if(!pr.getFilepath().contains("null")){ %>
+				<img class=" img-list" src="<%=request.getContextPath()%><%=pr.getFilepath()%>">
+				<%} %>
 				<div id="comment-container">
 					<div class="comment-editor">
 						<%
@@ -299,609 +307,15 @@
 				}
 			%>
 
-
+			<%if(!reviewList.isEmpty()){ %>
 			<div id="pagebar"><%=pageBar%></div>
+			<%} %>
 		</div>
 	</div>
 	</div>
 </section>
-<style>
-hr {
-	margin: 50px;
-}
-/* 세션 */
-.thisproduct {
-	/* 헤더와 풋터 간격 */
-	margin: 50px 50px;
-}
-
-/* 상품 썸네일 / 정보 부모창 */
-.infromation-parent {
-	display: table;
-	margin: auto;
-}
-/* 상품 썸네일 이미지/ 상품정보 자식창 */
-.information {
-	display: flex;
-	margin-bottom: 20px;
-}
-/* 썸네일 이미지 */
-.img {
-	width: 500px;
-	height: 400px;
-	border: 1px red solid;
-}
-/* 상품 정보 창 */
-.productinformation {
-	width: 500px;
-	height: 400px;
-	border: 1px blue solid;
-}
-/* 주문하기 / 장바구니 버튼 */
-.btn {
-	
-}
-
-.jangbtn {
-	border: 3px green solid;
-	background-color: white;
-	color: green;
-	width: 200px;
-	height: 50px;
-	margin-left: 30px;
-	cursor: pointer;
-}
-
-.jangbtn:hover {
-	background: green;
-	color: white;
-}
-/* 주문하기 */
-.orderbtn {
-	border: 3px green solid;
-	background-color: white;
-	color: green;
-	width: 200px;
-	height: 50px;
-	margin-left: 30px;
-	cursor: pointer;
-}
-
-.orderbtn:hover {
-	background: green;
-	color: white;
-}
-/* 관련상품 */
-.relate {
-	position: relative;
-	height: 400px;
-}
-
-body {
-	background: #eee;
-	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	color: #000;
-	margin: 0;
-	padding: 0;
-}
-</style>
-
-<style>
-.a3 {
-	width: 5px;
-	height: 5px;
-}
-
-hr {
-	margin: 50px;
-}
-/* 세션 */
-.thisproduct {
-	/* 헤더와 풋터 간격 */
-	margin: 50px 50px;
-}
-
-/* 상품 썸네일 / 정보 부모창 */
-.infromation-parent {
-	display: table;
-	margin: auto;
-}
-/* 상품 썸네일 이미지/ 상품정보 자식창 */
-.information {
-	display: flex;
-	margin-bottom: 20px;
-}
-/* 썸네일 이미지 */
-.img {
-	width: 500px;
-	height: 400px;
-	border: 1px red solid;
-}
-/* 상품 정보 창 */
-.productinformation {
-	width: 500px;
-	height: 400px;
-	border: 1px blue solid;
-}
-/* 주문하기 / 장바구니 버튼 */
-.btn {
-	
-}
-/* 장바구니 */
-.jangbtn {
-	border: 3px green solid;
-	background-color: white;
-	width: 200px;
-	height: 50px;
-	margin-left: 30px;
-}
-/* 주문하기 */
-.orderbtn {
-	border: 3px green solid;
-	background-color: green;
-	width: 200px;
-	height: 50px;
-	margin-left: 30px;
-}
-/* 관련상품 */
-.relate {
-	position: relative;
-	height: 400px;
-}
-
-body {
-	background: #eee;
-	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	color: #000;
-	margin: 0;
-	padding: 0;
-}
-
-.swiper-container {
-	width: 100%;
-	height: 100%;
-}
-
-.swiper-slide {
-	text-align: center;
-	font-size: 18px;
-	background: #fff;
-	/* Center slide text vertically */
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	-webkit-justify-content: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
-}
-
-/* .swiper-slide>ul {
-	display: flex;
-}
-
-.swiper-slide>ul>li {
-	list-style: none;
-}
-
-.swiper-slide>ul>li>a>.product-img {
-	width: 200px;
-	height: 230px;
-	background-color: red;
-} */
-
-/* 상품 상세 이미지 */
-.detail-product-img {
-	border: 1px tomato solid;
-	display: table;
-	margin: 20px auto;
-	width: 800px;
-	height: 3000px;
-}
-
-div#puoduct_list {
-	width: 100%;
-}
-
-div#puoduct_list_content {
-	display: none;
-	height: auto;
-}
-
-table#tavle_Table {
-	position: relative;
-	left: 100px;
-}
-
-img#puduct_size {
-	width: 11px;
-	height: 14px;
-	vertical-align: middle;
-	margin: 0 1px;
-}
-
-td {
-	padding: 14px 3px 13px;
-	border-bottom: 1px solid #e3e3e3;
-}
-
-td.tableTd, .tableTd_2 {
-	width: 100px;
-	text-align: center;
-}
-
-td.tableTd_3 {
-	width: 700px;
-	text-align: left;
-}
-
-table#tbl-comment {
-	width: 580px;
-	margin: 0 auto;
-	border-collapse: collapse;
-	clear: both;
-}
-
-table#tbl-comment tr td {
-	border-bottom: 1px solid;
-	border-top: 1px solid;
-	padding: 5px;
-	text-align: left;
-	line-height: 120%;
-}
-
-table#tbl-comment tr td:first-of-type {
-	padding: 5px 5px 5px 50px;
-}
-
-table#tbl-comment tr td:last-of-type {
-	text-align: right;
-	width: 100px;
-}
-
-table#tbl-comment button.btn-reply {
-	display: none;
-}
-
-table#tbl-comment button.btn-delete {
-	display: none;
-}
-
-table#tbl-comment tr:hover {
-	background: lightgray;
-}
-
-table#tbl-comment tr:hover button.btn-reply {
-	display: inline;
-}
-
-table#tbl-comment tr:hover button.btn-delete {
-	display: inline;
-}
-
-table#tbl-comment tr.level2 {
-	color: gray;
-	font-size: 14px;
-}
-
-table#tbl-comment sub.comment-writer {
-	color: navy;
-	font-size: 14px
-}
-
-table#tbl-comment sub.comment-date {
-	color: tomato;
-	font-size: 10px
-}
-
-table#tbl-comment tr.level2 td:first-of-type {
-	padding-left: 100px;
-}
-
-table#tbl-comment tr.level2 sub.comment-writer {
-	color: #8e8eff;
-	font-size: 14px
-}
-
-table#tbl-comment tr.level2 sub.comment-date {
-	color: #ff9c8a;
-	font-size: 10px
-}
-/*답글관련*/
-table#tbl-comment textarea {
-	margin: 4px 0 0 0;
-}
-
-table#tbl-comment button.btn-insert2 {
-	width: 60px;
-	height: 23px;
-	color: white;
-	background: #3300ff;
-	position: relative;
-	top: -5px;
-	left: 10px;
-}
-  .swiper-container {
-      width: 100%;
-      height: 100%;
-    }
-
-    .swiper-slide {
-  
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-
-       Center slide text vertically 
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-       display: flex; 
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
-
-.swiper-slide img {
-	width:200px;
-	height:200px;
-	background-repeat: no-repeat;
-     background-position: 50% 50%; 
-    background-size: cover;
-}
-.swiper-wrapper {
-	width:200px;
-	height:200px;
-}
-    @media (max-width: 760px) {
-      .swiper-button-next {
-        right: 20px;
-        transform: rotate(90deg);
-      }
-
-      .swiper-button-prev {
-        left: 20px;
-        transform: rotate(90deg);
-      }
-    } 
-</style>
 
 
 
-
-
-<script type="text/javascript">
-  
-  
-
-  		//주문하기이동
-
-  		function moveorder(){
-  			var su=$("#amount").val();
-
-  			<%if(loginMember==null){
-  				String loc="/order/productOrder";%>
-
-  				location.assign('<%=request.getContextPath()%>/view/login.jsp?productNo=<%=p.getProductNo()%>&loc=<%=loc%>&su='+su);
-  			<%} else {%>
-  				location.assign('<%=request.getContextPath()%>/order/productOrder?productNo=<%=p.getProductNo()%>&amount='+su);
-  		<%}%>
-  		}
-  		//장바구니이동
-  		function movecart(){
-  			var su=$("#amount").val();
-  			location.assign('<%=request.getContextPath()%>/basket/inBasket?productNo=<%=p.getProductNo()%>&su='+su);
-  		}
-        // 수량/가격 기능 script 구문
-        var price = <%=p.getProductPrice()%>;
-        var amount;
-        onload=function(){
-   			document.getElementById("sum").textContent = price.toLocaleString();
-   		}
-        //사용자가 수량 직접 입력시 -> 문자입력 X 경고창 첫글자 0X
-        $("#amount").keyup(function(){
-        	var sum = document.getElementById("sum");
-        	var hm = document.getElementById("amount");
-        	if(hm.value=this.value.replace(/[^0-9]/g, '')){
-        		sum.textContent = (parseInt(hm.value)*price).toLocaleString();
-        	}else if(hm.value==0||hm.value.chatAt(0)==0){
-        		alert("0이상의 숫자만 입력해주세요.")
-        		hm.value=1;
-        	}
-        });
-        //수량 값을 0을 보낼수 없음
-        $("#amount").keyup(e=>{
-            let a=$(e.target).val();
-            var sum = document.getElementById("sum");
-            if(a==0){
-               $("#amount").val(1);
-            }
-         });
-//         if(hm.value==0||hm.value.chatAt(0)==0){
-//     		alert("0이상의 숫자만 입력해주세요.")
-// 			hm.value=1;        		
-//     	}
-//     	else{
-//     		sum.textContent = parseInt(hm.value)*price+"원";
-//     	}
-        //수량 버튼 클릭시 태그 색변경
-        $("#amount").focus(e=>{
-        	$(e.target).css("outline-color","#27b06e");
-    	})
-      //수량추가 하는 함수
-        function add() {
-            hm = document.getElementById("amount");
-            sum = document.getElementById("sum");
-            hm.value++;
-        
-            sum.textContent = (parseInt(hm.value) * price).toLocaleString();;
-        }
-      //수량감소 하는 함수
-        function del() {
-            hm = document.getElementById("amount");
-            sum = document.getElementById("sum");
-            if (hm.value > 1) {
-                hm.value--;
-                sum.textContent = (parseInt(hm.value) * price).toLocaleString();;
-            }
-        }
-        //상품 정보,배송 정보, 상품 후기
-        function move(seq){
-        	var offset = $("#infobtn" + seq).offset();
-            $('html, body').animate({scrollTop : offset.top}, 400);
-        }
-        //버튼 클릭시 색상 변경하고 다른 버튼들은 원래 색상
-        var infosch2 = document.getElementsByClassName("infos-ch2");
-
-        for (var i = 0; i < infosch2.length; i++) {
-        	infosch2[i].addEventListener('click', function(){
-            for (var j = 0; j < infosch2.length; j++) {
-            	infosch2[j].style.color = "black";
-            }
-            this.style.color = "gold";
-          })
-        }
-        //스크롤 내릴시 css(sticky) 설정
-//         window.onscroll = function(){scrollsticky()};
-//         let infobtns = doucument.getElementById("infobtns-ch");
-//         let sticbar = infobtns.offsetTop;
-// 		function scrollsticky(){
-// 			if (window.pageYOffset >= sticbar) {
-// 				infobtns.classList.add("sticbar")
-// 			  } else {
-// 				  infobtns.classList.remove("sticbar");
-// 			  }
-// 		}
-        
-       
-
-       
-        $(".puduct_size").hover(e=> {
-    		$(e.target).next().css("display","inline-block");
-    		}, function(){
-    		  $(".img_span").not(this).css("display","none");
-    		}); 
-        //스와이퍼
-       /*  var swiper = new Swiper('.swiper-container', {
-	    spaceBetween: 30,
-	    centeredSlides: true,
-	    autoplay: {
-       	delay: 2500,
-       	disableOnInteraction: false,
-     	},
-     	agination: {
-       	el: '.swiper-pagination',
-       	clickable: true,
-     	},
-     	navigation: {
-       	nextEl: '.swiper-button-next',
-       	prevEl: '.swiper-button-prev',
-	   		},		
-	   	}); */
-
-	 $(function() {
-     	$(".puoduct_slide").click(function() {
-     		$(".puoduct_list_content2").css("display","none");
-     		$(this).next().slideToggle(500);
-     		
-     	});
-     	
-     });
-
-    	$(".btn-reply").click(e=>{
-    	<%if (loginMember != null) {%>
-    	
-    	
-    		let tr=$("<tr>");
-    		let form=$("#form1").clone();
-    		form.find("textarea").attr("rows","1");
-    		form.find("[name=productCommentLevel]").val("2");
-    		form.find("[name=productCommentRef]").val(e.target.value);
-    		form.find("[name=productRef]").val(e.target.id);
-    		form.find("[type=submit]").addClass("btn-insert2");
-    		let td=$("<td>").attr("colspan","2");
-    		console.log(form);
-    		td.append(form);
-    		tr.append(td);
-    		tr.find("td").css("display","none");
-    		$(e.target).parents("tr").after(tr.children("td").slideDown(800));
-    		$(e.target).off("click");//클릭이벤트제거하기
-    		
-    		
-    	
-    	<%}%>
-    	
-    });
-    	$(function(){
-    		<%if (productRef != 0||pages!=null) {%>
-    		
-    		
-    		/* var location= $("#scroll").offset(); */
-    		console.log(location);
-    		window.scrollTo({left: 85.3046875 , top: 4339.59375, behavior:'auto'});
-    		
-    		for(var i=0;i<$(".tableTd").length;i++){
-    		
-    			if(<%=productRef%>==$(".tableTd")[i].textContent){
-    			
-    			$(".puoduct_slide")[i].click();
-    			};};
-    			
-    			<%}%>
-    		});
-    	
-    	$(".like").click(e=>{
-   		 $.ajax({
-   			url:"<%=request.getContextPath()%>/Produnt/ProduntLikeCountServlet",
-   			data:{"like_count":$(e.target).parent().parent().prev().children().children().children().children().first().text(),"userId":"<%=loginMember != null ? loginMember.getMemberId() : ""%>"},
-   			dataType:"html",
-   			type:"post",
-   			success:data=>{
-   				
-   				$(e.target).parent().next().html(data);
-   			}
-   			
-   		})
-   		              console.log($(e.target).parent().parent().prev().children().children().children().children().first().text());
-   	})
-    	 	  //설진호 스와이퍼
-     var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 5,
-      spaceBetween: 3,
-      slidesPerGroup: 5,
-      direction: getDirection(),
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      on: {
-        resize: function () {
-          swiper.changeDirection(getDirection());
-        }
-      }
-    });
-
-    function getDirection() {
-      var windowWidth = window.innerWidth;
-      var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
-
-      return direction;
-    } 
-  
-    			
-       
-        </script>
 
 <%-- <%@include file="/view/common/footer.jsp"%> --%>

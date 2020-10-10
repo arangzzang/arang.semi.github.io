@@ -49,7 +49,7 @@ public class DetailProductServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			cPage = 1;
 		}
-		int numPerPage = 5;
+		int numPerPage = 10;
 
 		int totalData = 0;
 
@@ -58,7 +58,7 @@ public class DetailProductServlet extends HttpServlet {
 		totalData = new ProductService().puoductCount(productNo);
 
 		int totalPage = (int) Math.ceil((double) totalData / numPerPage);
-		int pageBarSize = 5;
+		int pageBarSize = 10;
 		int pageNo = ((cPage - 1) / pageBarSize) * pageBarSize + 1;
 		int pageEnd = pageNo + pageBarSize - 1;
 
