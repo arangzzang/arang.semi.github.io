@@ -33,12 +33,12 @@
                 </ul>
             </div>
             <div id="inquiry-contents">
-                <div>
+                <div class="inquiry-contents_p">
                     <p><%=ii.getInquiryContent()%></p>
                 </div>
                 <hr>
-                <div>
-                    <img src="<%=request.getContextPath()%><%=ii.getFilePath()%>" width="300" height="300">
+                <div class="inquiry-contents_img">
+                    <img src="<%=request.getContextPath()%><%=ii.getFilePath()%>">
                 </div>
 				<%if(ii.getInquiryComment() != null) {%>
 				<div id="inquiry_Manager_answer">
@@ -56,117 +56,124 @@
 
 </html>
 <style>
-    .content_top {
-        margin-top: 10px;
-    }
+.inquiry-contents_img{
+	width: 100%;
+	border:1px solid;
+}
+.inquiry-contents_p{
+	width:100%;
+}
+.content_top {
+	margin-top: 10px;
+}
 
-    .content_row {
-        margin-bottom: 10px;
-    }
+.content_row {
+	margin-bottom: 10px;
+}
 
-    .form-control {
-        display: block;
-        box-sizing: border-box;
-        height: 40px;
-        width: 80%;
-        padding: 0 15px;
-        line-height: 40px;
-        border-radius: 4px;
-        border: solid 1px #dbdbdb;
-        background-color: #ffffff;
-        color: #424242;
-        font-size: 12px;
-    }
+.form-control {
+	display: block;
+	box-sizing: border-box;
+	height: 40px;
+	width: 80%;
+	padding: 0 15px;
+	line-height: 40px;
+	border-radius: 4px;
+	border: solid 1px #dbdbdb;
+	background-color: #ffffff;
+	color: #424242;
+	font-size: 12px;
+}
 
-    textarea.form-control {
-        resize: none;
-        line-height: 20px;
-        padding-top: 9px;
-        padding-bottom: 9px;
-        min-height: 200px;
-        min-width: 600px;
-    }
+textarea.form-control {
+	resize: none;
+	line-height: 20px;
+	padding-top: 9px;
+	padding-bottom: 9px;
+	min-height: 200px;
+	min-width: 600px;
+}
 
-    .form-control_input_btn {
-        height: 25px;
-        width: 115px;
-        height: 40px;
-        box-sizing: border-box;
-        border-radius: 4px;
-        font-size: 14px;
-        font-weight: 400;
-        cursor: pointer;
-        border-style: none;
-        font-weight: inherit;
-        background: #27b06e;
-        color: #ffffff;
-    }
+.form-control_input_btn {
+	height: 25px;
+	width: 115px;
+	height: 40px;
+	box-sizing: border-box;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 400;
+	cursor: pointer;
+	border-style: none;
+	font-weight: inherit;
+	background: #27b06e;
+	color: #ffffff;
+}
 
-    div#inquiryUI-wrap {
-        position: relative;
-    }
+div#inquiryUI-wrap {
+	position: relative;
+}
 
-    ul#inquiryUl {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-        background-color: rgba(187, 184, 184, 0.438);
-    }
+ul#inquiryUl {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	background-color: rgba(187, 184, 184, 0.438);
+}
 
-    ul#inquiryUl li {
-        list-style-type: none;
-    }
+ul#inquiryUl li {
+	list-style-type: none;
+}
 
-    div#inquiry-contents {
-        display: none;
-        width: 500px;
-        height: auto;
-    }
+div#inquiry-contents {
+	display: none;
+	height: auto;
+}
 
-    #inquiry-sort {
-        width: 500px;
-    }
+#inquiry-sort {
+	width: 500px;
+}
 
-    #container {
-        display: flex;
-    }
+#container {
+	display: flex;
+}
 
-    hr {
-        width: 100%;
-    }
+hr {
+	width: 100%;
+}
 
-    .inquiry-left {
-        position: relative;
-        width: 500px;
-    }
+.inquiry-left {
+	position: relative;
+	width: 500px;
+}
 
-    .inquiry-right {
-        width: 100%;
-    }
+.inquiry-right {
+	width: 100%;
+}
 
-    .inquiry-right h1 {
-        margin: 0 50px;
-        font-size: 50px;
-        left: 0;
-    }
-    .inquiry-right h2 {
-        margin: 10px;
-        font-size: 30px;
-        left: 0;
-    }
+.inquiry-right h1 {
+	margin: 0 50px;
+	font-size: 50px;
+	left: 0;
+}
 
-    section {
-        padding-top: 150px;
-        height: auto;
-    }
+.inquiry-right h2 {
+	margin: 10px;
+	font-size: 30px;
+	left: 0;
+}
 
-    section#inquiry-container {
-        position: relative;
-        height: 100%;
-        width: 600px;
-        margin: 0 auto;
-        text-align: center;
-    }
+section {
+	padding-top: 150px;
+	height: auto;
+}
+
+section#inquiry-container {
+	position: relative;
+	height: 100%;
+	width: 600px;
+	margin: 0 auto;
+	text-align: center;
+}
 </style>
 <script type="text/javascript">
    /* $("#inquiryUl").ho */

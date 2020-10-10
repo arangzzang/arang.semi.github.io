@@ -103,7 +103,7 @@
       position: relative;
       height: 400px;
     }
-    .swiper-slide>ul>li{
+    .a-slide>ul>li{
     	margin-left:20px;
     	margin-right:20px;
     }
@@ -147,9 +147,37 @@
         width: 800px;
         height: 3000px;
         overflow: hidden;
+        background:auto;
     }
     
-    .swiper-container {
+    .a3{
+		width:20px;
+		height:20px;
+	}
+  .b-slide img {
+		width:200px;
+		height:200px;
+		background-repeat: no-repeat;
+	    background-position: 50% 50%; 
+	    background-size: cover;
+	}
+	.b-wrapper {
+		width:200px;
+		height:200px;
+	}
+    @media (max-width: 760px) {
+      .b-button-next {
+        right: 20px;
+        transform: rotate(90deg);
+      }
+
+      .b-button-prev {
+        left: 20px;
+        transform: rotate(90deg);
+      }
+    }
+    
+    .swiper-container{
       width: 100%;
       height: 100%;
     }
@@ -157,7 +185,7 @@
       text-align: center;
       font-size: 18px;
       background: #fff;
-      /* Center slide text vertically */
+/*       Center slide text vertically */
       display: -webkit-box;
       display: -ms-flexbox;
       display: -webkit-flex;
@@ -171,12 +199,135 @@
       -webkit-align-items: center;
       align-items: center;
     }
-    .swiper-slide>ul{display:flex;}
-    .swiper-slide>ul>li{list-style:none;}
-    .swiper-slide>ul>li>a>.product-img{width:200px; height:230px; background-color:red;}
+    .a-slide>ul{display:flex;}
+    .a-slide>ul>li{list-style:none;}
+    .a-slide>ul>li>a>.product-img{width:200px; height:230px; background-color:red;}
     
+    
+    
+div#puoduct_list {
+	width: 100%;
+}
 
-  
+div#puoduct_list_content {
+	display: none;
+	height: auto;
+}
+
+table#tavle_Table {
+	position: relative;
+	left: 100px;
+}
+
+img#puduct_size {
+	width: 11px;
+	height: 14px;
+	vertical-align: middle;
+	margin: 0 1px;
+}
+
+td {
+	padding: 14px 3px 13px;
+	border-bottom: 1px solid #e3e3e3;
+}
+
+td.tableTd, .tableTd_2 {
+	width: 100px;
+	text-align: center;
+}
+
+td.tableTd_3 {
+	width: 700px;
+	text-align: left;
+}
+
+table#tbl-comment {
+	width: 580px;
+	margin: 0 auto;
+	border-collapse: collapse;
+	clear: both;
+}
+
+table#tbl-comment tr td {
+	border-bottom: 1px solid;
+	border-top: 1px solid;
+	padding: 5px;
+	text-align: left;
+	line-height: 120%;
+}
+
+table#tbl-comment tr td:first-of-type {
+	padding: 5px 5px 5px 50px;
+}
+
+table#tbl-comment tr td:last-of-type {
+	text-align: right;
+	width: 100px;
+}
+
+table#tbl-comment button.btn-reply {
+	display: none;
+}
+
+table#tbl-comment button.btn-delete {
+	display: none;
+}
+
+table#tbl-comment tr:hover {
+	background: lightgray;
+}
+
+table#tbl-comment tr:hover button.btn-reply {
+	display: inline;
+}
+
+table#tbl-comment tr:hover button.btn-delete {
+	display: inline;
+}
+
+table#tbl-comment tr.level2 {
+	color: gray;
+	font-size: 14px;
+}
+
+table#tbl-comment sub.comment-writer {
+	color: navy;
+	font-size: 14px
+}
+
+table#tbl-comment sub.comment-date {
+	color: tomato;
+	font-size: 10px
+}
+
+table#tbl-comment tr.level2 td:first-of-type {
+	padding-left: 100px;
+}
+
+table#tbl-comment tr.level2 sub.comment-writer {
+	color: #8e8eff;
+	font-size: 14px
+}
+
+table#tbl-comment tr.level2 sub.comment-date {
+	color: #ff9c8a;
+	font-size: 10px
+}
+/*답글관련*/
+table#tbl-comment textarea {
+	margin: 4px 0 0 0;
+}
+
+table#tbl-comment button.btn-insert2 {
+	width: 60px;
+	height: 23px;
+	color: white;
+	background: #3300ff;
+	position: relative;
+	top: -5px;
+	left: 10px;
+}
+
 
     
 

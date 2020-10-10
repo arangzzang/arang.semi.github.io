@@ -58,7 +58,6 @@ public class ProductReviewInsertSevlet extends HttpServlet {
 		pr.setReviewWriter(mr.getParameter("ReviewWriter"));
 		pr.setReviewContent(mr.getParameter("ReviewContent"));
 		pr.setFilepath(filename);
-
 		int result = new ProductService().insertReview(pr);
 		
 		request.setAttribute("result", result);
