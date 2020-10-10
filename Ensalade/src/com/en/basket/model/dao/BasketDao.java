@@ -18,7 +18,7 @@ public class BasketDao {
 	private Properties prop = new Properties();
 	
 	public BasketDao() {
-		String path = BasketDao.class.getResource("/basket/basket_sql.properties").getPath();
+		String path = BasketDao.class.getResource("/sql/basket/basket_sql.properties").getPath();
 		try {
 			prop.load(new FileReader(path));
 		}catch(IOException e) {

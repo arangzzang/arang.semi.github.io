@@ -40,21 +40,24 @@ public class NoticeWriteEndServlet extends HttpServlet {
 			request.setAttribute("msg", "작성오류! [form:enctype에러!]");
 			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
+			return; //종료
 		}
 
 		MultipartRequest mr = new MultipartRequest(request, getServletContext().getRealPath("/image/upload/notice"),
 				1024 * 1024 * 50, "UTF-8", new DefaultFileRenamePolicy());
-
+		//파일경로 합쳐서 넣어주기
 		String filepath = "/image/upload/notice/" + mr.getFilesystemName("upload");
-
 		NoticeBoard nb = new NoticeBoard();
 		nb.setNotice_title(mr.getParameter("title"));
 		nb.setNotice_writer(mr.getParameter("writer"));
 		nb.setNotice_contents(mr.getParameter("content"));
+//		nb.setContentImg(mr.getParameter("img"));
 		nb.setFilepath(filepath);
+		
+		System.out.println(mr.getParameter("title"));
+		System.out.println(mr.getParameter("content"));
 
 		int result = new AdminService().insertNotice(nb);
-
 		String msg = "";
 		String loc = "";
 		if (result > 0) {

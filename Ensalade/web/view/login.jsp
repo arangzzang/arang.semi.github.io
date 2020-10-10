@@ -7,6 +7,13 @@
 	String loc=(String)request.getAttribute("loc");
 	
 %>
+
+<script>
+     $(".form2").focus(e=> {
+        $(e.target).css("outline-color","#27b06e");
+     });
+</script>
+
 <section class="contents-wrap">
     <% if(loc==null){%>
     <form class="login-form" action="<%=request.getContextPath()%>/loginjoin/login.do" method='post'>
@@ -20,9 +27,9 @@
                 <p>로그인</p>
             </div>
             <div class="login-textbox">
-                <div class="id-textbox content_row"><input type="text" class="form-control_input" name="userId"
+                <div class="id-textbox content_row"><input type="text" class="form-control_input form2" name="userId"
                         id="userId_" placeholder="아이디 입력"><br></div>
-                <div class="pw-textbox content_row"><input type="password" class="form-control_input"
+                <div class="pw-textbox content_row"><input type="password" class="form-control_input form2"
                         name="password" id="password_" placeholder="비밀번호 입력"><br></div>
             </div>
             <div class="login-btnbox content_row">
@@ -40,13 +47,16 @@
         </form>
 </section>
 <style>
-	a{
+
+    a {
         text-decoration: none;
     }
+
     .login-findbox_en_f {
         display: inline-block;
         padding: 3px 5px;
     }
+
     .login-findbox_en {
         display: inline-block;
         padding: 3px 5px;
@@ -59,6 +69,8 @@
         color: #424242;
         font-size: 15px;
         line-height: 1.4;
+        text-align: -webkit-center;
+        min-width: 665px;
     }
 
     .button-wrap {
@@ -74,7 +86,7 @@
 
     .form-control_input_btn {
         height: 25px;
-        width: 100%;
+        width: 60%;
         border: solid 1px #dbdbdb00;
         display: block;
         height: 40px;
@@ -83,7 +95,7 @@
         font-size: 1rem;
         font-weight: 400;
         color: #fff;
-        background: #45be3a;
+        background: #27b06e;
         cursor: pointer;
         outline: none;
     }
@@ -91,6 +103,8 @@
     .login-btnbox {
         display: block;
         padding: 0 25px;
+        width: 100%;
+        text-align: -webkit-center;
     }
 
     .login-textbox {
@@ -105,7 +119,7 @@
     .form-control_input {
         box-sizing: border-box;
         height: 40px;
-        width: 100%;
+        width: 60%;
         min-width: 250px;
         padding: 0 15px;
         line-height: 40px;
@@ -135,6 +149,7 @@
 
     .login-form {
         display: inline-block;
+        width: 40%;
     }
 
     section.contents-wrap {

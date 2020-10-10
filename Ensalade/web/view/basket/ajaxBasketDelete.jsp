@@ -61,7 +61,7 @@
          $(".total-price").html(totalPrice);
      });
 
-   	  total_price=0;
+   	  var total_price=0;
     	$(".add").click(e=>{
     	for(var i=0;i<prices.length;i++){
     		if(e.target==adds[i]){//for문 이용하여 클릭이벤트 발생한 e.target과 더하기버튼이 같은것을 찾는다

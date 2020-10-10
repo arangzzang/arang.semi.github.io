@@ -8,20 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.en.admin.model.service.AdminService;
-import com.en.notice.model.service.NoticeService;
-import com.en.notice.model.vo.NoticeBoard;
 
 /**
- * Servlet implementation class NoticeUpdateServlet
+ * Servlet implementation class NoticeDeleteServlet
  */
-@WebServlet("/admin/updateNotice")
-public class NoticeUpdateServlet extends HttpServlet {
+@WebServlet("/admin/deleteNotice")
+public class NoticeDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeUpdateServlet() {
+    public NoticeDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,9 +29,17 @@ public class NoticeUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int no = Integer.parseInt(request.getParameter("no"));
-		NoticeBoard nb = new NoticeService().selectNoticeOne(no);
-		request.setAttribute("nb", nb);
-		request.getRequestDispatcher("/view/admin/noticeUpdate.jsp").forward(request, response);
+		int result = new AdminService().deleteNotice(no);
+		String msg = "";
+		String loc="/searchNotice";
+		if(result>0) {
+			msg="삭제가 완료되었습니다.";
+		}else {
+			msg = "삭제되지 않았습니다ㅠㅠ";
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
 	}
 
 	/**

@@ -8,55 +8,173 @@
 %>
  
 <%@ include file="/view/common/header.jsp"%>
-<style>
-section {padding-top: 100px; height:auto;}	
-div#tbl-FAQ {position: relative;left: 30%;}
-ul#inquiryUl {display: flex;justify-content: space-around; width: 500px; background-color: aqua;}
-li {list-style-type: none;}
-div#tjfwlsgh {display: none; width: 500px;height: auto;}
-</style>
-
 <script type="text/javascript">
-   $(function() {
-      $(".tjfwlsdgh").click(function() {
-         $(this).next().slideToggle(500);
-      })
-   })
+    $(function () {
+        $(".inquiryUI").click(function () {
+            $(this).next().slideToggle(500);
+        })
+    })
 </script>
-
-<section>
-   <h2>1:1문의</h2>
-   <button type="button" onclick="location.assign('<%=request.getContextPath()%>/inquiry/inquiryWrite')">1:1 문의하기</button>
-   <div class="tjfwlsdgh">
-      <div id="tbl-FAQ" class="tjfwlsdgh">
-      
-         <%for(Inquiry ii : list){ %>
-         <div class="tjfwlsdgh">
-            <ul id="inquiryUl">
-               <li><%=ii.getInquiryType() %></li>
-               <li><%=ii.getInquiryTitle() %></li>
-               <li><%=ii.getInquiryWriteDate() %></li>
-               <li><%=ii.getCommentStatus() %></li>
-            </ul>
-         </div>
-         <div id="tjfwlsgh">
-            <div>
-               <p><%=ii.getInquiryContent() %></p>
+<section id="inquiry-container">
+    <div class="inquiry-left"></div>
+    <div class="inquiry-right">
+        <h1>Ensalade</h1>
+        <h2>1:1문의</h2>
+        <hr>
+        <div id="inquiryUI-wrap">
+            <%for (Inquiry ii : list) {	%>
+            <div class="inquiryUI content_top">
+                <ul id="inquiryUl" class="form-control">
+                    <li><%=ii.getInquiryType()%></li>
+                    <li><%=ii.getInquiryTitle()%></li>
+                    <!-- <li><%=ii.getInquiryWriter()%></li> -->
+                    <li><%=ii.getInquiryWriteDate()%></li>
+                    <li><%=ii.getCommentStatus()%></li>
+                </ul>
             </div>
-            <hr>
-            <div>
-               <img src="<%=request.getContextPath()%><%=ii.getFilePath()%>">
-            </div>
-            <div>
-               <label>운영자 : </label>
-               <p><%=ii.getInquiryComment() %></p>
-            </div>
-         </div>
-      <%} %>
-      </div>
-   		
-   </div>
+            <div id="inquiry-contents">
+                <div class="inquiry-contents_p">
+                    <p><%=ii.getInquiryContent()%></p>
+                </div>
+                <hr>
+                <div class="inquiry-contents_img">
+                    <img src="<%=request.getContextPath()%><%=ii.getFilePath()%>">
+                </div>
+				<%if(ii.getInquiryComment() != null) {%>
+				<div id="inquiry_Manager_answer">
+					<label>운영자 : </label>
+					<p><%=ii.getInquiryComment()%></p>
+				</div>
+				<%}	%>
+			</div>
+            <%} %>
+        </div>
+    </div>
+    <div id="inquiry-sort"></div>
 </section>
+</body>
+
+</html>
+<style>
+.inquiry-contents_img{
+	width: 100%;
+	border:1px solid;
+}
+.inquiry-contents_p{
+	width:100%;
+}
+.content_top {
+	margin-top: 10px;
+}
+
+.content_row {
+	margin-bottom: 10px;
+}
+
+.form-control {
+	display: block;
+	box-sizing: border-box;
+	height: 40px;
+	width: 80%;
+	padding: 0 15px;
+	line-height: 40px;
+	border-radius: 4px;
+	border: solid 1px #dbdbdb;
+	background-color: #ffffff;
+	color: #424242;
+	font-size: 12px;
+}
+
+textarea.form-control {
+	resize: none;
+	line-height: 20px;
+	padding-top: 9px;
+	padding-bottom: 9px;
+	min-height: 200px;
+	min-width: 600px;
+}
+
+.form-control_input_btn {
+	height: 25px;
+	width: 115px;
+	height: 40px;
+	box-sizing: border-box;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 400;
+	cursor: pointer;
+	border-style: none;
+	font-weight: inherit;
+	background: #27b06e;
+	color: #ffffff;
+}
+
+div#inquiryUI-wrap {
+	position: relative;
+}
+
+ul#inquiryUl {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	background-color: rgba(187, 184, 184, 0.438);
+}
+
+ul#inquiryUl li {
+	list-style-type: none;
+}
+
+div#inquiry-contents {
+	display: none;
+	height: auto;
+}
+
+#inquiry-sort {
+	width: 500px;
+}
+
+#container {
+	display: flex;
+}
+
+hr {
+	width: 100%;
+}
+
+.inquiry-left {
+	position: relative;
+	width: 500px;
+}
+
+.inquiry-right {
+	width: 100%;
+}
+
+.inquiry-right h1 {
+	margin: 0 50px;
+	font-size: 50px;
+	left: 0;
+}
+
+.inquiry-right h2 {
+	margin: 10px;
+	font-size: 30px;
+	left: 0;
+}
+
+section {
+	padding-top: 150px;
+	height: auto;
+}
+
+section#inquiry-container {
+	position: relative;
+	height: 100%;
+	width: 600px;
+	margin: 0 auto;
+	text-align: center;
+}
+</style>
 <script type="text/javascript">
    /* $("#inquiryUl").ho */
 </script>

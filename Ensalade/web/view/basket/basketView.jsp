@@ -1,9 +1,10 @@
 <%@page import="oracle.net.aso.b"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.en.basket.model.vo.Basket,java.util.List"%>
+<%@page import="com.en.basket.model.vo.Basket,java.util.List,java.text.DecimalFormat"%>
 <%@include file="/view/common/header.jsp"%>
 <%
+	DecimalFormat formatter=new DecimalFormat("###,###");//숫자 3자리마다 ,표시해주는 클래스
 	List<Basket> list=(List)request.getAttribute("list");
 	int totalPrice=0;
 	int ba=0;
@@ -19,17 +20,17 @@
     <div class="basket">
         <label class="basket"><h2>장바구니</h2></label>
         <!-- 전체 선택 -->
-        <div id="choice"><input type="checkbox" id="cartListAll" value="productList();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전체선택</div>
+        <!-- <div id="choice"><input type="checkbox" id="cartListAll" value="productList();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전체선택</div> -->
         <hr>
         <!-- 상품 정보 -->
         <div id="cartList">
             <!-- 상품 선택 -->
-            <input type="checkbox" id="list">
+           <!--  <input type="checkbox" id="list"> -->
             <div id="cartList-children">
                 <!-- 상품 상세 내용 -->
                 <div id="productContent">
                     <table>
-                        <caption style="text-align: center;">장바구니 담신상품 목록</caption>
+                        <caption style="text-align: center;font-weight:bold">장바구니 담긴상품 목록</caption>
                         <colgroup>
 
                         </colgroup>
@@ -43,7 +44,7 @@
                                 <th>비고</th>
                             </tr>
                         </thead>
-                        <form class="count" method="post" id="moveorder" action="<%=request.getContextPath()%>/order/productOrder">  
+                        <form method="post" id="moveorder" action="<%=request.getContextPath()%>/order/productOrder">  
                             <tbody class="basketList"> 
         <% for(Basket b : list) {%>
                                 <tr>
@@ -55,22 +56,24 @@
                                     </td>
                                     <!-- 제품정보 -->
                                     <td>
-                                            <p><%=b.getProductName()%></p>
+                                            <p class="p-info"><%=b.getProductName()%></p>
+                                            <p class="p-info"><%=b.getProductContent() %></p>
                                     </td>
                                     <!-- 수량 -->
                                     <td>
                                        수량 : 
                                        		<input type="button" value=" - " class="del">
-                                            <input type="text" class="amount" name="amount" value="<%=b.getMount() %>" size="3">
+                                            <input type="text" class="amount" name="amount" value="<%=b.getMount() %>" size="3" style="text-align:center;">
                                             <input type="button" value=" + " class="add"><br>
-                                            금액 :  <p class=sum><%=b.getPrice()*b.getMount() %></p>원    
+                                            금액 :    <i class=sum><%=formatter.format(b.getPrice()*b.getMount()) %></i>원      
+                                            <%--  <i class=sum><%=b.getPrice()*b.getMount() %></i>  --%>
                                     </td>
                                     <!-- 배송비 -->
                                     <td>
                                             <span>[기본 배송조건]</span>
                                     </td>
                                     <!-- 가격 -->
-                                    <td><p class="price"><%=b.getPrice()%></p>원</td>
+                                    <td><i class="price"><%=formatter.format(b.getPrice())%></i>원</td>
                                     <!-- 비고 -->
                                     <td>
                                          
@@ -83,14 +86,14 @@
                          <tfoot> 
                             <tr>
                                 <td colspan="6">
-                                    총구매 금액 : 상품가격 + 배송비(2500원) = 총 상품가격<p class="total-price"></p> 원
+                                    총구매 금액 : 상품가격 + 배송비(2500원) = 총 상품가격<i class="total-price"></i>원
                                 </td>
                             </tr>
                          </tfoot> 
                        
                     </table>
-                    <div>
-                        <button form="moveorder">주문하기</button>
+                    <div class="moveorder">
+                        <button class="moveBtn" form="moveorder">주문하기</button>
                         
                     </div>
                 </div>
@@ -100,42 +103,95 @@
 </section>
 
 <style>
+	.p-info{
+		margin:30px;
+	}
+	
+	.amount{
+		border: 0;
+		height:42px;
+	}
+	.moveorder{
+		
+		 display: flex; 
+		 justify-content: center; 
+	}
+	.moveBtn{
+		border:3px green solid;
+        background-color: white;
+        color: green;
+        width: 250px;
+        height: 70px;
+        margin-left: 30px;
+        cursor: pointer;
+        border-top-left-radius:10px;
+	    border-bottom-left-radius:10px;
+	    border-top-right-radius:10px;
+	    border-bottom-right-radius:10px;
+	}
+	.moveBtn:hover{
+       background: green;
+       color: white;
+    }
+		i{
+	    font-size: 20px;
+	    font-weight: bold;
+	    font-style: normal;
+	    }
+	.del,.add{
+	      border:1px solid limegreen;
+	      color: limegreen;
+	      background-color:rgba(0,0,0,0);
+	      padding:10px;
+	      cursor: pointer;
+	   }    
+	   .del:hover,.add:hover{
+	      color:white;
+	      background-color:lightgreen;
+	   }
+	   .del{
+	      border-top-left-radius:5px;
+	      border-bottom-left-radius:5px;
+	      margin-right:-1.5px;
+	      margin-left:15px;
+	   }
+	   .add{
+	      border-top-right-radius:5px;
+	      border-bottom-right-radius:5px;
+	      margin-left:-3px;
+	   }
     .basket{
         margin-top: 50px;
         margin-bottom: 50px;
     }
     td{
-        border: blueviolet 2px solid;
+        border: lightgray 1px solid;
+        
     }
 	#cartList-children{
         width: 100%;
         height: 100%;
-        border: 1px red solid;
-        display: flex;
-    }
-    #productContent{
+       /*  border: 1px red solid; */
+        display: flex; 
         
+    }
+    #productContent{	
         width: 100%;
-        border: 1px blueviolet solid;
-        align-items: center;
+      /*   border: 1px blueviolet solid; */
+        
+        
     }
     table{
-    	width:80%;
+    	width:90%;
         text-align: center;
         margin: auto;
+        border-collapse: collapse;
     }
-    #thumnail{
-    	
-        width: 200px;
-        height: 200px;
-        border: 1px turquoise solid;
+    tr{
+    	height:165px;
     }
-    #product{
-        border: 1px tomato solid;
-    }
-    #amount{
-        border: 1px blue solid;
-    }
+    
+    
 </style>
 
 <script>
@@ -150,26 +206,36 @@
      var basketNos=$(".b-No");//장바구니번호 클래스명들의 배열 
      
      
-     var totalPrice=<%=totalPrice+ba %>;
+     var totalPrice="<%=formatter.format(totalPrice+ba) %>";//처음 총 구매금액
      $(document).ready(function(){
-         $(".total-price").html(totalPrice);
+         $(".total-price").html(totalPrice);//onload로 페이지 처음에 처음 총 구매금액을 보여줌
      });
-
+   //사용자가 수량 직접 입력시
+     $(".amount").keyup(e=>{
+    	 
+        var sum = document.getElementById("sum");
+        var hm = document.getElementById("amount");
+       /*  if(hm.value=this.value.replace(/[^0-9]/g, '')){
+        	
+        } */
+     });
+   
    	  var total_price=0;
     	$(".add").click(e=>{
     	for(var i=0;i<prices.length;i++){
     		if(e.target==adds[i]){//for문 이용하여 클릭이벤트 발생한 e.target과 더하기버튼이 같은것을 찾는다
     			hm=amounts[i];
-        		sum=sums[i];
         		hm.value++; 
-        		sum.textContent = parseInt(hm.value) * prices[i].textContent;
-        		total_price+=parseInt(sum.textContent);
+        		sums[i].textContent = (parseInt(hm.value) * parseInt(prices[i].textContent.replace(/,/g, ""))).toLocaleString();//수량*가격 곱한후에 콤마붙여줌
+        		total_price+=parseInt(sums[i].textContent.replace(/,/g, ""));
+        		//toLocaleString()함수는 숫자3자리마다 콤마를 붙여주고 replace(/,/g, "")는 콤마를 없애줌
     		}else{
-    			total_price+=parseInt(sums[i].textContent);
+    			total_price+=parseInt(sums[i].textContent.replace(/,/g, ""));
+    			
     		}
-    		
     		 }
-    		$(".total-price")[0].textContent=total_price+2500;
+    		
+    		$(".total-price")[0].textContent=(total_price+2500).toLocaleString();
     		total_price=0;
     	});
 	     $(".del").click(e=>{
@@ -178,19 +244,16 @@
 	     			hm=amounts[i];
 	         		if(hm.value>1){
 	         			hm.value--; 
-		         		sums[i].textContent = parseInt(hm.value) * prices[i].textContent;
-		         		total_price+=parseInt(sums[i].textContent);
-		         		
-	        		}else{//해당인덱스이지만 수량이1일때"web/view/basket/ajaxBasketDelete.jsp"
-	        			total_price+=parseInt(sums[i].textContent);
+		         		sums[i].textContent = (parseInt(hm.value) * parseInt(prices[i].textContent.replace(/,/g, ""))).toLocaleString();
+		         		total_price+=parseInt(sums[i].textContent.replace(/,/g, ""));
+	        		}else{//해당인덱스이지만 수량이1일때
+	        			total_price+=parseInt(sums[i].textContent.replace(/,/g, ""));
 	        		}
-	         		
-	        	}else{"web/view/basket/ajaxBasketDelete.jsp"
-	        		
-        			total_price+=parseInt(sums[i].textContent);
+	        	}else{
+        			total_price+=parseInt(sums[i].textContent.replace(/,/g, ""));
 	     		}
 	     	}
-	     	$(".total-price")[0].textContent=total_price+2500;
+	     	$(".total-price")[0].textContent=(total_price+2500).toLocaleString();
 	     	total_price=0;
 	     	}); 
 	   //장바구니 목록 삭제
