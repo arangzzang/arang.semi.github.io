@@ -147,17 +147,45 @@
         width: 800px;
         height: 3000px;
         overflow: hidden;
+        background:auto;
     }
     
-    .a-container,.b-container {
+    .a3{
+		width:20px;
+		height:20px;
+	}
+  .b-slide img {
+		width:200px;
+		height:200px;
+		background-repeat: no-repeat;
+	    background-position: 50% 50%; 
+	    background-size: cover;
+	}
+	.b-wrapper {
+		width:200px;
+		height:200px;
+	}
+    @media (max-width: 760px) {
+      .b-button-next {
+        right: 20px;
+        transform: rotate(90deg);
+      }
+
+      .b-button-prev {
+        left: 20px;
+        transform: rotate(90deg);
+      }
+    }
+    
+    .swiper-container{
       width: 100%;
       height: 100%;
     }
-    .a-slide,b-slide {
+    .swiper-slide {
       text-align: center;
       font-size: 18px;
       background: #fff;
-      /* Center slide text vertically */
+/*       Center slide text vertically */
       display: -webkit-box;
       display: -ms-flexbox;
       display: -webkit-flex;
@@ -174,6 +202,8 @@
     .a-slide>ul{display:flex;}
     .a-slide>ul>li{list-style:none;}
     .a-slide>ul>li>a>.product-img{width:200px; height:230px; background-color:red;}
+    
+    
     
 div#puoduct_list {
 	width: 100%;
@@ -297,32 +327,7 @@ table#tbl-comment button.btn-insert2 {
 	top: -5px;
 	left: 10px;
 }
-.a3{
-	width:20px;
-	height:20px;
-}
-  .b-slide img {
-	width:200px;
-	height:200px;
-	background-repeat: no-repeat;
-    background-position: 50% 50%; 
-    background-size: cover;
-}
-.b-wrapper {
-	width:200px;
-	height:200px;
-}
-    @media (max-width: 760px) {
-      .b-button-next {
-        right: 20px;
-        transform: rotate(90deg);
-      }
 
-      .b-button-prev {
-        left: 20px;
-        transform: rotate(90deg);
-      }
-    }
 
     
 

@@ -37,6 +37,7 @@ public class DetailProductServlet extends HttpServlet {
 		int productNo = Integer.parseInt(request.getParameter("productNo"));
 		//관련 상품 정보출력
 		Product p = new ProductService().detailProduct(productNo);
+		System.out.println(p.getProductName());
 		String type = p.getProductType();
 	    List<Product> list = new ProductService().relateProduct(type,productNo);
 	    
@@ -92,9 +93,8 @@ public class DetailProductServlet extends HttpServlet {
 		request.setAttribute("commentList", commentList);
 		//페이징바
 		request.setAttribute("pageBar", pageBar);
-		//상품리뷰 리스트
+		//상품리뷰 리스트 & 관련상품
 		request.setAttribute("relateProduct", list);
-		//상품
 
 	  
 

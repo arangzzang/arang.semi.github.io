@@ -35,9 +35,9 @@
 
 
 %>
-<!-- Swiper JS 진호형-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/swiper-bundle.min.js"></script>
-<!-- Swiper JS 현-->
+<!-- Swiper JS -->
+<!-- <script src="../package/swiper-bundle.min.js"></script> -->
+<!-- <script src="../package/swiper-bundle.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
@@ -93,14 +93,14 @@
                  <%for(int j=i*4;j<(i+1)*4;j++){%> 
                  
                    <li>    
-	                  <a href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=p.getProductNo()%>">
+	                  <a href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=list.get(j).getProductNo()%>">
 		                  <img alt="" src="<%=list.get(j).getProductThumbnail() %>" class="product-img">
 		                  <p><%=list.get(j).getProductName() %></p>
 		                  <p><%=formatter.format(list.get(j).getProductPrice()) %></p> 
 	                  </a>
 	               </li>
 	                  <% if(list.size()-1==j){ 
-	                	  break;}%>
+ 	                	  break;}%>
             	<%} %>
 	            </ul>
 	          </div>
@@ -137,7 +137,7 @@
 					src="<%=request.getContextPath()%>/image/product/common/common2.jpg">
 				<img alt=""
 					src="<%=request.getContextPath()%>/image/product/common/common3.jpg">
-				<img alt=""
+				<img alt="" 
 					src="<%=request.getContextPath()%>/image/product/common/common4.jpg">
 			</div>
 		</div>
@@ -168,16 +168,15 @@
 
 
 
-		<!-- 클래스명은 변경하면 안 됨 -->
+		<!-- 클래스명은 변경하면 안 됨 스와이퍼 -->
 		<div class="swiper-container b-container">
 			<div class="swiper-wrapper b-wrapper">
 				<%for(ProductReview prs:reviewList ){ %>
-				<div class="b-swiper-slide b-slide">
+				<div class="swiper-slide b-slide">
 					<img
 						style="background-image: url('<%=request.getContextPath() %><%=prs.getFilepath() %>')">
 				</div>
 				<%} %>
-
 			</div>
 			<!-- Add Pagination -->
 			<div class="swiper-pagination b-pagination"></div>
@@ -185,7 +184,6 @@
 			<div class="swiper-button-next b-button-next"></div>
 			<div class="swiper-button-prev b-button-prev"></div>
 		</div>
-
 	</div>
 	<%
 		for (ProductReview pr : reviewList) {
@@ -473,44 +471,39 @@
    		              console.log($(e.target).parent().parent().prev().children().children().children().children().first().text());
    	})
         //스와이퍼
-        var swiper = new Swiper('.swiper-container a-container', {
-	    spaceBetween: 30,
-	    centeredSlides: true,
-	    autoplay: {
-       	delay: 2500,
-       	disableOnInteraction: false,
-     	},
-     	agination: {
-       	el: '.swiper-pagination a-pagination',
-       	clickable: true,
-     	},
-     	navigation: {
-       	nextEl: '.swiper-button-next a-button-next',
-       	prevEl: '.swiper-button-prev a-button-prev',
-	   		},		
-	   	});
-	 	$(function() {
-     		$(".puoduct_slide").click(function() {
-     			$(".puoduct_list_content2").css("display","none");
-     			$(this).next().slideToggle(500);
-     		});
-     	});
+        var swiper = new Swiper('.a-container', {
+	      spaceBetween: 30,
+	      centeredSlides: true,
+	      autoplay: {
+	        delay: 2500,
+	        disableOnInteraction: false,
+	      },
+	      pagination: {
+	        el: '.swiper-pagination',
+	        clickable: true,
+	      },
+	      navigation: {
+	        nextEl: '.swiper-button-next ',
+	        prevEl: '.swiper-button-prev',
+	      },
+	    });
+        
     	 	  //설진호 스와이퍼
-//      var swiper = new Swiper('.swiper-container b-container', {
-//       slidesPerView: 5,
-//       spaceBetween: 3,
-//       slidesPerGroup: 5,
-//       direction: getDirection(),
-//       navigation: {
-//         nextEl: '.swiper-button-next b-button-next',
-//         prevEl: '.swiper-button-prev b-button-prev',
-//       },
-//       on: {
-//         resize: function () {
-//           swiper.changeDirection(getDirection());
-//         }
-//       }
-//     });
+     var swiper = new Swiper('.b-container', {
+      slidesPerView: 5,
+      spaceBetween: 3,
+      slidesPerGroup: 5,
+      direction: getDirection(),
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      on: {
+        resize: function () {
+          swiper.changeDirection(getDirection());
+        }
+      }
+    });
 
     function getDirection() {
       var windowWidth = window.innerWidth;
