@@ -77,7 +77,7 @@
 
 		<!-- 글올리기 버튼 -->
 		<div>
-			<input type="submit" class="form-control_input_btn" value="글 등록" class="form-control">
+			<input type="submit" class="form-control_input_btn" value="글 등록">
 		</div>
 		<input type="hidden" value="<%=loginMember.getMemberId()%>"
 			name="userId">
@@ -169,15 +169,18 @@
 <style>
     .form-control_input_btn {
         height: 25px;
-        width: 100px;
+        width: 150px;
         height: 25px;
         box-sizing: border-box;
         border-radius: 4px;
         font-size: 14px;
-        font-weight: 400;
+        font-weight: 700;
+        background-color:#27b06e;
+        color:white;
         cursor: pointer;
         border-style: none;
         font-weight: inherit;
+        padding: 10px 0px 30px;
     }
     .cimg {
         width: 500px;
