@@ -3,6 +3,7 @@ package com.en.admin.model.service;
 import java.sql.Connection;
 import java.util.List;
 
+import com.en.FAQ.model.vo.FAQ;
 import com.en.admin.model.dao.AdminDao;
 import static com.en.common.Template.getConnection;
 import static com.en.common.Template.close;
@@ -55,6 +56,25 @@ public class AdminService {
 	public int deleteNotice(int no) {
 		Connection conn = getConnection();
 		int result = dao.deleteNotice(conn, no);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
+	public int insertFAQ(FAQ f) {
+		Connection conn = getConnection();
+		int result = dao.insertFAQ(conn, f);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
+	public FAQ selectFAQ(int no) {
+		Connection conn = getConnection();
+		FAQ f = dao.selectFAQ(conn, no);
+		return f;
+	}
+	public int updateFAQ(FAQ f) {
+		Connection conn = getConnection();
+		int result = dao.updateFAQ(conn, f);
 		if(result>0) commit(conn);
 		else rollback(conn);
 		return result;

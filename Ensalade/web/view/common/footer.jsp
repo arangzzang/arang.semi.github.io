@@ -92,6 +92,16 @@
 		</div>
 	</div>
 </footer>
+<!-- <div class="footer_wrap">
+	<h2 class="footer_logo">
+		<br>Ensalade
+	</h2>
+
+	<div class="footer_body">
+		ⓒ 2020. Ensalade, Inc. All Rights Reserved
+		<address class="footer_address"></address>
+	</div>
+</div> -->
 <style>
 .white {background-color: white;}
 .footer_bottom {background-color: mintcream;height: 400px;}

@@ -95,7 +95,7 @@ a:visited{
     position: absolute;
     left:0
 	}
-.menu:hover{
+.sidemenu:hover{
 	color: #f1f1f1;
 	background-color: #9EF048;
 }

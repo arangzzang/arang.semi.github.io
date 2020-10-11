@@ -34,8 +34,9 @@ public class FAQDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				FAQ f = new FAQ();
+				f.setFaqNo(rs.getInt("FAQ_NO"));
 				f.setFaqQuestion(rs.getString("FAQ_QUESTION"));
-				f.setFaqAnswer(rs.getString("FAQ_ANSWER"));
+				f.setFaqAnswer(rs.getString("FAQ_ANSWER").replace("\r\n", "<br>"));
 				f.setFaqWriter(rs.getString("FAQ_WRITER"));
 				f.setFaqWriteDate(rs.getDate("FAQ_WRITE_DATE"));
 				list.add(f);
