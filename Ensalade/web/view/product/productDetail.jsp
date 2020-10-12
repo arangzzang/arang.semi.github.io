@@ -554,7 +554,6 @@
    			}
    			
    		})
-   		              console.log($(e.target).parent().parent().prev().children().children().children().children().first().text());
    	})
         //스와이퍼
         var swiper = new Swiper('.a-container', {
@@ -596,11 +595,9 @@
     function getDirection() {
       var windowWidth = window.innerWidth;
       var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
-
       return direction;
     } 
   
-    			
        
         </script>
 

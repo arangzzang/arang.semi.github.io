@@ -1,5 +1,7 @@
 package com.en.admin.model.dao;
 
+import static com.en.common.Template.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,7 +14,6 @@ import java.util.Properties;
 
 import com.en.member.model.vo.Member;
 import com.en.notice.model.vo.NoticeBoard;
-import static com.en.common.Template.close;
 
 
 public class AdminDao {
@@ -26,20 +27,97 @@ public class AdminDao {
 			e.printStackTrace();
 		}
 	}
-	public List<Member> selectMemberAll(Connection conn) {
+	public List<Member> selectMemberAll(Connection conn, int cPage, int numPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Member> list = new ArrayList<Member>();
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("selectMemberAll"));
+			pstmt.setInt(1, cPage);
+			pstmt.setInt(2, numPerPage);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-
+				Member m = new Member();
+				m.setMemberId(rs.getString("member_id"));
+				m.setMemberName(rs.getString("member_name"));
+				m.setMemberGender(rs.getString("member_gender"));
+				m.setMemberPhone(rs.getString("phone"));
+				m.setMemberAddress(rs.getString("address"));
+				m.setMangerYn(rs.getString("manager_yn"));
+				m.setEmail(rs.getString("email"));
+				m.setPoint(rs.getInt("point"));
+				m.setBirthday(rs.getDate("brithday"));
+				m.setEnrollDate(rs.getDate("enrolldate"));
+				list.add(m);
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return list;
+	}
+	public int memberCount(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("memberCount"));
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return result;
+	}
+	public List<Member> selectMemberAll(Connection conn, int cPage, int numPerPage, String type, String key) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Member> list = new ArrayList<Member>();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectMemberType").replaceAll("#type", type));
+			pstmt.setString(1, "%" + key + "%");
+			pstmt.setInt(2, (cPage - 1) * numPerPage + 1);
+			pstmt.setInt(3, cPage * numPerPage);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Member m = new Member();
+				m.setMemberId(rs.getString("member_id"));
+				m.setMemberName(rs.getString("member_name"));
+				m.setMemberGender(rs.getString("member_gender"));
+				m.setMemberPhone(rs.getString("phone"));
+				m.setMemberAddress(rs.getString("address"));
+				m.setMangerYn(rs.getString("manager_yn"));
+				m.setEmail(rs.getString("email"));
+				m.setPoint(rs.getInt("point"));
+				m.setBirthday(rs.getDate("brithday"));
+				m.setEnrollDate(rs.getDate("enrolldate"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	public int memberCount(Connection conn, String type, String key) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("memberCountType").replaceAll("#type", type));
+			pstmt.setString(1, "%"+key+"%");
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return result;
 	}
 	public int insertNotice(Connection conn, NoticeBoard nb) {
 		PreparedStatement pstmt = null;

@@ -4,6 +4,12 @@
 	import="java.util.List"%>
 <%
 	List<Inquiry> list = (List) request.getAttribute("list");
+
+	String msg = request.getParameter("msg");
+	int no = 0;
+	if(msg != null){
+		no = Integer.parseInt(request.getParameter("no")); 
+	}
 %>
 <%@ include file="/view/common/header.jsp"%>
 
@@ -13,6 +19,9 @@
             $(this).next().slideToggle(500);
         })
     });
+	$("#listBack").click(e =>{
+		location.assign('<%=request.getContextPath()%>/searchNotice');
+	});
 </script>
 
 <section id="inquiry-container">
@@ -29,13 +38,13 @@
                         <li><%=ii.getInquiryTitle()%></li>
                         <!-- <li><%-- <%=ii.getInquiryWriter()%> --%></li> -->
                         <li><%=ii.getInquiryWriteDate()%></li>
-                        <li><%=ii.getCommentStatus()%></li>
+                        <li class="answer-check"><p><%=ii.getCommentStatus()%></p></li>
                     </ul>
                 </div>
                 <div id="inquiry-contents">
                     <div>
                         <p><%=ii.getInquiryContent()%></p>
-                    </div>
+                    </div> 
                     <hr>
                     <div>
                         <img src="<%=request.getContextPath()%><%=ii.getFilePath()%>" width="600" height="500">
@@ -60,6 +69,9 @@
     </section>
 
 <style>
+.answer-check>p{
+	color:red;
+}
 .content_top {
 	margin-top: 10px;
 }
@@ -172,4 +184,10 @@ section#inquiry-container {
 	text-align: center;
 }
 </style>
+<script>
+	<%for(Inquiry i : list){
+		if(i.getCommentStatus().contains("완료")){ %>
+			$(".answer-check>p:contains('답변완료')").css("color","blue");
+	<%}}%>
+</script>
 <%-- <%@ include file="/view/MyPage/inquiry/inquiryManger.jsp"%> --%>
