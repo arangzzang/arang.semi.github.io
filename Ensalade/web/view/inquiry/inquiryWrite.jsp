@@ -49,107 +49,111 @@
 
 </html>
 <style>
-    .form-control_input_btn {
-        height: 25px;
-        width: 115px;
-        height: 40px;
-        box-sizing: border-box;
-        border-radius: 4px;
-        font-size: 14px;
-        font-weight: 400;
-        cursor: pointer;
-        border-style: none;
-        font-weight: inherit;
-        background: #27b06e;
-        color: #ffffff;
-    }
+.form-control_input_btn {
+	height: 25px;
+	width: 115px;
+	height: 40px;
+	box-sizing: border-box;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 400;
+	cursor: pointer;
+	border-style: none;
+	font-weight: inherit;
+	background: #27b06e;
+	color: #ffffff;
+}
 
-    .text {
-        padding: 10px 5px;
-        width: 100px;
-    }
+.text {
+	padding: 10px 5px;
+	width: 100px;
+}
 
-    .file {
-        text-align: left;
-    }
+.file {
+	text-align: left;
+}
 
-    .file-upload {
-        display: flex;
-    }
+.file-upload {
+	display: flex;
+}
 
-    textarea.form-control {
-        resize: none;
-        line-height: 20px;
-        padding-top: 9px;
-        padding-bottom: 9px;
-        min-height: 200px;
-    }
+textarea.form-control {
+	resize: none;
+	line-height: 20px;
+	padding-top: 9px;
+	padding-bottom: 9px;
+	min-height: 200px;
+}
 
-    .select {
-        width: 50%;
-    }
+.select {
+	width: 50%;
+}
 
-    .form-control {
-        display: block;
-        box-sizing: border-box;
-        height: 40px;
-        width: 100%;
-        padding: 0 15px;
-        line-height: 40px;
-        border-radius: 4px;
-        border: solid 1px #dbdbdb;
-        background-color: #ffffff;
-        color: #424242;
-        font-size: 12px;
-    }
+.form-control {
+	display: block;
+	box-sizing: border-box;
+	height: 40px;
+	width: 100%;
+	padding: 0 15px;
+	line-height: 40px;
+	border-radius: 4px;
+	border: solid 1px #dbdbdb;
+	background-color: #ffffff;
+	color: #424242;
+	font-size: 12px;
+}
 
-    .content_row {
-        margin-bottom: 10px;
-    }
+.content_top {
+	margin-top: 10px;
+}
 
-    .select-input {
-        position: relative;
-    }
+.content_row {
+	margin-bottom: 10px;
+}
 
-    #sort {
-        width: 200px;
-    }
+.select-input {
+	position: relative;
+}
 
-    #container {
-        display: flex;
-    }
+#sort {
+	width: 200px;
+}
 
-    hr {
-        width: 100%;
-    }
+#container {
+	display: flex;
+}
 
-    .left {
-        position: relative;
-        width: 200px;
-    }
+hr {
+	width: 100%;
+}
 
-    .right {
-        width: 100%;
-    }
+.left {
+	position: relative;
+	width: 200px;
+}
 
-    .right h1 {
-        margin: 50px;
-        font-size: 42px;
-        left: 0;
-    }
+.right {
+	width: 100%;
+}
 
-    section {
-        padding-top: 150px;
-        height: auto;
-    }
+.right h1 {
+	margin: 50px;
+	font-size: 42px;
+	left: 0;
+}
 
-    section#inquiry-container {
-        position: relative;
-        height: 100%;
-        width: 600px;
-        margin: 0 auto;
-        text-align: center;
-    }
+section {
+	padding-top: 150px;
+	height: auto;
+}
+
+section#inquiry-container {
+	position: relative;
+	height: 100%;
+	width: 600px;
+	margin: 0 auto;
+	text-align: center;
+}
 </style>
 
 <%@ include file="/view/common/footer.jsp"%>

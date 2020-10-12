@@ -1,6 +1,7 @@
 package com.en.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -31,9 +32,76 @@ public class SelectMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Member> list = new AdminService().selectMemberAll();
-	
-	
+		int cPage = 0;
+		try {
+			cPage = Integer.parseInt(request.getParameter("cPage"));
+		} catch (NumberFormatException e) {
+			cPage=1;
+		}
+		int numPerPage=5;
+		String type = request.getParameter("searchType");
+		String key = request.getParameter("searchKeyword");
+		int totalData = 0;
+		List<Member> list = new ArrayList<Member>();
+		String pageBar = "";
+		//전체 리스트보기
+		if(type==null && key == null) {
+			list = new AdminService().selectMemberAll(cPage, numPerPage);
+			totalData = new AdminService().memberCount();
+			int totalPage = (int)Math.ceil((double)totalData/numPerPage);
+			int pageBarSize = 5;
+			int pageNo = ((cPage-1)/pageBarSize)*pageBarSize +1;
+			int pageEnd = pageNo + pageBarSize -1;
+			if(pageNo ==1) {
+				pageBar += "<span>[이전]<span>";
+			}else {
+				pageBar += "<a href='"+request.getContextPath()+"/admin/memberAll?cPage="+(pageNo-1)+"'>[이전]</a>";
+			}
+			while (!(pageNo > pageEnd || pageNo > totalPage)) {
+				if (pageNo == cPage) {
+					pageBar += "<span>" + pageNo + "</span>";
+				} else {
+					pageBar += "<a href='" + request.getContextPath() + "/admin/memberAll?cPage=" + pageNo + "'>" + pageNo + "</a>";
+				}
+				pageNo++;
+			}
+			if (pageNo > totalPage) {
+				pageBar += "<span>[다음]</span>";
+			} else {
+				pageBar += "<a href='" + request.getContextPath() + "/admin/memberAll?cPage=" + pageNo + "'>[다음]</a>";
+			}
+			
+		//이름, 아이디, 생일, 매니저여부 리스트
+		}else {
+			list = new AdminService().selectMemberAll(cPage, numPerPage, type, key);
+			totalData = new AdminService().memberCount(type, key);
+			int totalPage = (int)Math.ceil((double)totalData/numPerPage);
+			int pageBarSize = 5;
+			int pageNo = ((cPage-1)/pageBarSize)*pageBarSize +1;
+			int pageEnd = pageNo + pageBarSize -1;
+			if(pageNo ==1) {
+				pageBar += "<span>[이전]<span>";
+			}else {
+				pageBar += "<a href='"+request.getContextPath()+"/admin/memberAll?cPage="+(pageNo-1)+"&searchType="+type+"&searchKeyword="+key+"'>[이전]</a>";
+			}
+			while (!(pageNo > pageEnd || pageNo > totalPage)) {
+				if (pageNo == cPage) {
+					pageBar += "<span>" + pageNo + "</span>";
+				} else {
+					pageBar += "<a href='" + request.getContextPath() + "/admin/memberAll?cPage=" + pageNo 
+							+ "&searchType="+type+"&searchKeyword="+key+"'>[이전]</a>";
+				}
+				pageNo++;
+			}
+			if (pageNo > totalPage) {
+				pageBar += "<span>[다음]</span>";
+			} else {
+				pageBar += "<a href='" + request.getContextPath() + "/admin/memberAll?cPage=" + pageNo + "&searchType="+type+"&searchKeyword="+key+"'>[다음]</a>";
+			}
+		}
+		request.setAttribute("pageBar1", pageBar);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/view/admin/memberList.jsp").forward(request, response);
 	}
 
 	/**

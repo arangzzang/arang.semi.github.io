@@ -13,7 +13,7 @@
 
 <section class="contents-wrap">
 	<div class="content-title">
-            <p>공지사항</p>
+    	<p>공지사항</p>
     </div>
     <div class="notice-wrap">
 		<table class="notice-table" id="tbl-notice">

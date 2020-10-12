@@ -64,4 +64,12 @@ public class BasketService {
 		      close(conn);
 		      return pNo;
 		   }
+	   public int dropBasket(int basketNo) {
+		      Connection conn = getConnection();
+		      int result = dao.dropBasket(conn, basketNo);
+		      if(result>0) commit(conn);
+		      else rollback(conn);
+		      close(conn);
+		      return result;
+		   }
 }

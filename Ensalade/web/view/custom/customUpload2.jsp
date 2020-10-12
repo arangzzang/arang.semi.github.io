@@ -16,8 +16,7 @@
 <section class="contents-wrap">
 	<h2>글 올리기</h2>
 
-	<form action="<%=request.getContextPath()%>/upload/customUpload"
-		method="post" enctype="multipart/form-data">
+	<form action="<%=request.getContextPath()%>/upload/customUpload" method="post" enctype="multipart/form-data">
 		<div class="cbox">
 
 			<!-- 파일첨부&미리보기박스  -->
@@ -52,16 +51,10 @@
 				<div class="select-input content_row">
 					<select id="customNo" name="customNo" class="form-control">
 						<option selected disabled>커스텀을 골라주세요.</option>
-						<%
-							for (CustomOrder p : list) {
-						%>
-						<%
-							CustomOrder co = new CustomService().memberCustom2(p.getCustomNo());
-						%>
+						<%for (CustomOrder p : list) {
+							CustomOrder co = new CustomService().memberCustom2(p.getCustomNo());%>
 						<option value="<%=p.getCustomNo()%>"><%=co.getCustomName()%></option>
-						<%
-							}
-						%>
+						<%} %>
 					</select>
 				</div>
 				<!-- 제목작성 div -->
@@ -77,10 +70,9 @@
 
 		<!-- 글올리기 버튼 -->
 		<div>
-			<input type="submit" class="form-control_input_btn" value="글 등록" class="form-control">
+			<input type="submit" class="form-control_input_btn" value="글 등록">
 		</div>
-		<input type="hidden" value="<%=loginMember.getMemberId()%>"
-			name="userId">
+		<input type="hidden" value="<%=loginMember.getMemberId()%>"	name="userId">
 	</form>
 </section>
 
@@ -169,15 +161,18 @@
 <style>
     .form-control_input_btn {
         height: 25px;
-        width: 100px;
+        width: 150px;
         height: 25px;
         box-sizing: border-box;
         border-radius: 4px;
         font-size: 14px;
-        font-weight: 400;
+        font-weight: 700;
+        background-color:#27b06e;
+        color:white;
         cursor: pointer;
         border-style: none;
         font-weight: inherit;
+        padding: 10px 0px 30px;
     }
     .cimg {
         width: 500px;

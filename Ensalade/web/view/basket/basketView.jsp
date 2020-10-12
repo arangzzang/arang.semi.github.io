@@ -7,29 +7,33 @@
 	DecimalFormat formatter=new DecimalFormat("###,###");//숫자 3자리마다 ,표시해주는 클래스
 	List<Basket> list=(List)request.getAttribute("list");
 	int totalPrice=0;
-	int ba=0;
+	
 	for(Basket b : list){
 		totalPrice+=b.getMount()*b.getPrice();
 		
 	}
-	if(totalPrice!=0){
-		ba=2500;
-	}
+	
 %>
 <section>
+ <form method="post" id="moveorder" action="<%=request.getContextPath()%>/order/productOrder">
     <div class="basket">
-        <label class="basket"><h2>장바구니</h2></label>
-        <!-- 전체 선택 -->
-        <!-- <div id="choice"><input type="checkbox" id="cartListAll" value="productList();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전체선택</div> -->
-        <hr>
+    	<div class="orderHeader">
+        <label class="basket" style="margin-left:120px"><h2>장바구니</h2></label>
+        <ul class="orderState">
+        	<li class="order1">01 장바구니</li>
+        	<li class="order2">02 주문서</li>
+        	<li class="order3">03 주문완료</li>
+        </ul>
+        </div> 
+        <hr class="header-line">
         <!-- 상품 정보 -->
         <div id="cartList">
             <!-- 상품 선택 -->
-           <!--  <input type="checkbox" id="list"> -->
+           
             <div id="cartList-children">
                 <!-- 상품 상세 내용 -->
                 <div id="productContent">
-                    <table>
+                    <table class="basketTable">
                         <caption style="text-align: center;font-weight:bold">장바구니 담긴상품 목록</caption>
                         <colgroup>
 
@@ -44,15 +48,16 @@
                                 <th>비고</th>
                             </tr>
                         </thead>
-                        <form method="post" id="moveorder" action="<%=request.getContextPath()%>/order/productOrder">  
-                            <tbody class="basketList"> 
+                          <form method="post" id="moveorder" action="<%=request.getContextPath()%>/order/productOrder">
+                            <tbody class="basketList">
+                                 
         <% for(Basket b : list) {%>
                                 <tr>
                                     <!-- 사진 -->
                                     <td>
 	                                    <input type="hidden" class="b-No" name="basketNo" value="<%=b.getBasketNo() %>">
 	                                	<input type="hidden" class="p-No" name="productNo" value="<%=b.getProductNo() %>">  
-                                            <img src="" alt="">
+                                            <img src="<%=request.getContextPath()+b.getProductThumbnail() %>" alt="">
                                     </td>
                                     <!-- 제품정보 -->
                                     <td>
@@ -81,12 +86,13 @@
                                     </td>
                                 </tr>
                                 <%} %>
+                                
                                  </tbody> 
-                      	 </form> 
+                      	    </form>
                          <tfoot> 
                             <tr>
                                 <td colspan="6">
-                                    총구매 금액 : 상품가격 + 배송비(2500원) = 총 상품가격<i class="total-price"></i>원
+                                     	 총 상품가격<i class="total-price"></i>원
                                 </td>
                             </tr>
                          </tfoot> 
@@ -103,6 +109,40 @@
 </section>
 
 <style>
+
+		img{
+			width:100px;
+			height:100px;
+		}
+			.header-line{
+        	margin-top:0px;
+        	margin-bottom:15px;
+        	border-color:lightgray;
+        	background-color:lightgray;
+        	color:lightgray;
+        	opacity: 0.2;
+        	}
+			.order1{
+        		background-color:green;
+        		color:white;
+        	}
+        	.orderHeader{
+        		display:flex;
+        		justify-content: space-between;
+        	}
+        	.orderState{
+        		margin-right:120px;
+        		display:flex;
+        		list-style:none;
+        	}
+        	.orderState>li{
+        	border:lightgray 1px solid;
+        	border-radius:10px;
+        	padding: 10px 15px 11px 15px;
+        	font-weight: bold;
+        	text-align: center;
+        	height:43px;
+        	}
 	.p-info{
 		margin:30px;
 	}
@@ -133,7 +173,7 @@
        background: green;
        color: white;
     }
-		i{
+		.total-price,.sum,.price{
 	    font-size: 20px;
 	    font-weight: bold;
 	    font-style: normal;
@@ -161,8 +201,8 @@
 	      margin-left:-3px;
 	   }
     .basket{
-        margin-top: 50px;
-        margin-bottom: 50px;
+        /* margin-top: 50px;
+        margin-bottom: 50px; */
     }
     td{
         border: lightgray 1px solid;
@@ -181,7 +221,7 @@
         
         
     }
-    table{
+    .basketTable{
     	width:90%;
         text-align: center;
         margin: auto;
@@ -204,23 +244,50 @@
      var removes=$(".remove");//삭제버튼 클래스명들의 배열
      var productNos=$(".p-No");//상품번호 클래스명들의 배열
      var basketNos=$(".b-No");//장바구니번호 클래스명들의 배열 
+     var total_price=0;
      
+   	    $(".amount").keyup(e=>{
+   	    	for(var i=0;i<amounts.length;i++){
+   	    		if(e.target==amounts[i]){
+     				if(amounts[i].value=amounts[i].value.replace(/[^0-9]/g, '')){
+     					sums[i].textContent=($(e.target).val()*parseInt(prices[i].textContent.replace(/,/g, ""))).toLocaleString();
+     					total_price+=parseInt(sums[i].textContent.replace(/,/g, ""));
+     	 		}
+   	    	}else{
+    			total_price+=parseInt(sums[i].textContent.replace(/,/g, ""));
+    			
+    		}  
+   	    }
+   	    
+   	     $(".total-price")[0].textContent=(total_price).toLocaleString();
+ 		total_price=0;
+     });   
+     $(".amount").blur(e=>{
+    		    for(var i=0;i<amounts.length;i++){
+    			  if($(e.target).val()==0&&e.target==amounts[i]){
+    				 $(e.target).val(1);
+    	    		  sums[i].textContent=($(e.target).val()*parseInt(prices[i].textContent.replace(/,/g, ""))).toLocaleString(); 
+    	    		  total_price+=parseInt(sums[i].textContent.replace(/,/g, ""));
+    			 }else{
+    	    			total_price+=parseInt(sums[i].textContent.replace(/,/g, ""));
+    	    			
+    	    		} 
+    		 }
+    		    $(".total-price")[0].textContent=(total_price).toLocaleString();
+        		total_price=0;
+     });
+    //수량 버튼 클릭시 태그 색변경
+    $(".amount").focus(e=>{
+    	$(e.target).css("outline-color","#27b06e");
+	});
      
-     var totalPrice="<%=formatter.format(totalPrice+ba) %>";//처음 총 구매금액
+     var totalPrice="<%=formatter.format(totalPrice) %>";//처음 총 구매금액
      $(document).ready(function(){
          $(".total-price").html(totalPrice);//onload로 페이지 처음에 처음 총 구매금액을 보여줌
      });
-   //사용자가 수량 직접 입력시
-     $(".amount").keyup(e=>{
-    	 
-        var sum = document.getElementById("sum");
-        var hm = document.getElementById("amount");
-       /*  if(hm.value=this.value.replace(/[^0-9]/g, '')){
-        	
-        } */
-     });
    
-   	  var total_price=0;
+   
+   	  
     	$(".add").click(e=>{
     	for(var i=0;i<prices.length;i++){
     		if(e.target==adds[i]){//for문 이용하여 클릭이벤트 발생한 e.target과 더하기버튼이 같은것을 찾는다
@@ -235,7 +302,7 @@
     		}
     		 }
     		
-    		$(".total-price")[0].textContent=(total_price+2500).toLocaleString();
+    		$(".total-price")[0].textContent=(total_price).toLocaleString();
     		total_price=0;
     	});
 	     $(".del").click(e=>{
@@ -253,7 +320,7 @@
         			total_price+=parseInt(sums[i].textContent.replace(/,/g, ""));
 	     		}
 	     	}
-	     	$(".total-price")[0].textContent=(total_price+2500).toLocaleString();
+	     	$(".total-price")[0].textContent=(total_price).toLocaleString();
 	     	total_price=0;
 	     	}); 
 	   //장바구니 목록 삭제
@@ -271,16 +338,12 @@
         	  url :"<%=request.getContextPath()%>/ajax/deleteBasket",
         	  data:{"productNo":productNo,"basketNo":basketNo},
         	  success:function(data){
-        		     $("tbody").empty();
-        		     $("tbody").append(data);  
+        		     $("tbody").empty(); 
+        		     $("tbody").html(data);  
         		   
         	  }
           }); 
        });   
-	     
-	     
-	     
-	  
 </script>
 
 <%@include file="/view/common/footer.jsp"%>
