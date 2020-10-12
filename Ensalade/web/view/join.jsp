@@ -139,7 +139,7 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             outline-color: rgb(120, 228, 106);
-            outline-style: inherit;
+            /* outline-style: inherit; */
             outline-width: thin;
         }
 
@@ -328,7 +328,20 @@
                    }
                }).open();
            }
-       </script> 
+           $(".text_").focus(e=>{
+          	 $(e.target).css("outline-color","#27b06e");
+           })
+       </script>
+       
+       <style>
+       		.btn_1:hover{
+       			background-color:#3B966E;
+       			cursor:pointer;
+       		}
+       		svg:hover{
+       			cursor:pointer;
+       		}
+       </style>
 <%@include file="/view/common/footer.jsp"%>
 	
 	

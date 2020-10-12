@@ -134,4 +134,10 @@ public class CustomService {
 		return result;
 	}
 	
+	public int commentCount(int no) {
+		Connection conn=getConnection();
+		int cCount=cd.commentCount(conn,no);
+		close(conn);
+		return cCount;
+	}
 }

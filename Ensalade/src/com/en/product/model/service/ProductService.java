@@ -102,7 +102,6 @@ public class ProductService {
 		 return result;
 	 }
    public int searchCount(int cIdx) {
-	   System.out.println(cIdx);
 		 Connection conn=getConnection();
 		 int likeCount=dao.searchCount(conn,cIdx);
 		 close(conn);

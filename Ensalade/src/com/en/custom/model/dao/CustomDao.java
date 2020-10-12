@@ -1,16 +1,19 @@
 package com.en.custom.model.dao;
 
+import static com.en.common.Template.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-
-import static com.en.common.Template.close;
 
 import com.en.custom.model.vo.CustomComment;
 import com.en.custom.model.vo.CustomOrder;
@@ -307,7 +310,7 @@ public class CustomDao {
 		   
 	   }
 
-	public List<CustomComment> commentList(Connection conn, int no) {
+	public List<CustomComment> commentList(Connection conn, int no){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<CustomComment> list=new ArrayList();
@@ -323,12 +326,21 @@ public class CustomDao {
 				cc.setCustomCommentContent(rs.getNString("custom_comment_content"));
 				cc.setCustomRef(rs.getInt("custom_ref"));
 				cc.setCustomCommentRef(rs.getInt("custom_comment_ref"));
-				cc.setCustomCommentDate(rs.getDate("custom_comment_date"));
+//				cc.setCustomCommentDate(rs.getDate("custom_comment_date"));
+				String date=rs.getString("custom_comment_date");
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				Date to=sdf.parse(date);
+				cc.setCustomCommentDate(to);
+//				System.out.println(to);
+//				System.out.println(date+"===============================");
 				list.add(cc);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}catch(ParseException e){
+			e.printStackTrace();
 		}finally {
+		
 			close(rs);
 			close(pstmt);
 		}
@@ -365,6 +377,26 @@ public class CustomDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public int commentCount(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int cCount=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("commentCount"));
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				cCount=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return cCount;
 	}
 	   
 }
