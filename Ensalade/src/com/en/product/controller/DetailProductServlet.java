@@ -37,8 +37,9 @@ public class DetailProductServlet extends HttpServlet {
 		int productNo = Integer.parseInt(request.getParameter("productNo"));
 		//관련 상품 정보출력
 		Product p = new ProductService().detailProduct(productNo);
+		System.out.println(p.getProductName());
 		String type = p.getProductType();
-	    List<Product> list = new ProductService().relateProduct(type);
+	    List<Product> list = new ProductService().relateProduct(type,productNo);
 	    
 
 	    String pageBar = "";
@@ -58,32 +59,32 @@ public class DetailProductServlet extends HttpServlet {
 		totalData = new ProductService().puoductCount(productNo);
 
 		int totalPage = (int) Math.ceil((double) totalData / numPerPage);
-		int pageBarSize = 10;
+		int pageBarSize = 5;
 		int pageNo = ((cPage - 1) / pageBarSize) * pageBarSize + 1;
 		int pageEnd = pageNo + pageBarSize - 1;
 
 		if (pageNo == 1) {
-			pageBar += "<span>[이전]</span>";
+			pageBar += "<i class='"+"fas fa-chevron-left fa-1x"+"'></i>";
 		} else {
 			pageBar += "<a href='" + request.getContextPath() + "/product/detailProduct?productNo=" + productNo
-					+ "&cPage=" + (pageNo - 1) + "'>[이전]</a>";
+					+ "&cPage=" + (pageNo - 1) + "'><i class='"+"fas fa-chevron-left fa-1x"+"'></i></a>";
 		}
 
 		while (!(pageNo > pageEnd || pageNo > totalPage)) {
 			if (pageNo == cPage) {
-				pageBar += "<span>" + pageNo + "</span>";
+				pageBar += "<span class='"+"number_color"+"'>" + pageNo + "</span>";
 			} else {
-				pageBar += "<a href='" + request.getContextPath() + "/product/detailProduct?productNo=" + productNo
+				pageBar += "<a class='"+"number_color"+"'href='" + request.getContextPath() + "/product/detailProduct?productNo=" + productNo
 						+ "&cPage=" + pageNo + "'>" + pageNo + "</a>";
 			}
 			pageNo++;
 		}
 
 		if (pageNo > totalPage) {
-			pageBar += "<span>[다음]</span>";
+			pageBar += "<i class='"+"fas fa-chevron-right fa-1x"+"'></i>";
 		} else {
 			pageBar += "<a href='" + request.getContextPath() + "/product/detailProduct?productNo=" + productNo
-					+ "&cPage=" + pageNo + "'>[다음]</a>";
+					+ "&cPage=" + pageNo + "'><i class='"+"fas fa-chevron-right fa-1x"+"'></i></a>";
 		}
 		List<ProductComment> commentList = new ProductService().searchComment();
 		
@@ -92,14 +93,13 @@ public class DetailProductServlet extends HttpServlet {
 		request.setAttribute("commentList", commentList);
 		//페이징바
 		request.setAttribute("pageBar", pageBar);
-		//상품리뷰 리스트
+		//상품리뷰 리스트 & 관련상품
 		request.setAttribute("relateProduct", list);
-		//상품
 
 	  
 
 		request.setAttribute("selectProduct", p);
-		
+		request.setAttribute("totalData",totalData);
 		request.setAttribute("reviewList",reviewList);
 		request.getRequestDispatcher("/view/product/productDetail.jsp").forward(request, response);
 	}

@@ -33,7 +33,6 @@ import com.en.product.model.vo.ProductReview;
          PreparedStatement pstmt=null;
          ResultSet rs = null;
          List<Product> list=new ArrayList();
-         
          try{
             pstmt=conn.prepareStatement(prop.getProperty("productList"));
             rs = pstmt.executeQuery();
@@ -65,63 +64,68 @@ import com.en.product.model.vo.ProductReview;
       }
       //상품 상세 조회
 
-         public Product detailProduct(Connection conn , int productNo) {
-            PreparedStatement pstmt = null;
-            ResultSet rs = null;
-            Product p = null;
-            try {
-               pstmt = conn.prepareStatement(prop.getProperty("selectProduct"));
-               pstmt.setInt(1, productNo);
-               rs=pstmt.executeQuery();
-               
-               while(rs.next()) {
-                  p=new Product();
-                  p.setProductNo(rs.getInt("product_no"));
-                  p.setProductName(rs.getString("product_name"));
-                  p.setProductPrice(rs.getInt("product_price"));
-                  p.setProductContent(rs.getString("product_content"));
-                  p.setProductType(rs.getString("product_type"));
-                  p.setEventCode(rs.getString("event_code"));
-                  p.setProductThumbnail(rs.getString("product_thumbnail"));
-                  p.setProductSubimg(rs.getString("product_subimg"));
-                  p.setProductImg1(rs.getString("product_img1"));
-                  p.setProductImg2(rs.getString("product_img2"));
-                  p.setProductImg3(rs.getString("product_img3"));
-                  p.setProductImg4(rs.getString("product_img4"));
-                  p.setProductImg5(rs.getString("product_img5"));
-                  p.setProductImg5(rs.getString("product_img6"));
-               }
-            }catch(SQLException e) {
-               e.printStackTrace();
-            }finally {
-               close(rs);
-               close(pstmt);
-            }
-            return p;
-         }
-       //관련상품
-         public List<Product> relateProduct(Connection conn, String type){
-            PreparedStatement pstmt = null;
-            ResultSet rs = null;
-            List<Product> list = new ArrayList();
-            try {
-               pstmt = conn.prepareStatement(prop.getProperty("relateProduct"));
-               pstmt.setString(1, type);
-               rs = pstmt.executeQuery();
-               while(rs.next()) {
-                  Product p = new Product();
-                  p.setProductName(rs.getString("product_name"));
-                  p.setProductPrice(rs.getInt("product_price"));
-                  p.setProductThumbnail(rs.getString("product_thumbnail"));
-                  list.add(p);
-               }
-            }catch(SQLException e) {
-               e.printStackTrace();
-            }finally {
-               close(rs);
-               close(pstmt);
-            }return list;
-         }
+      public Product detailProduct(Connection conn , int productNo) {
+    	  PreparedStatement pstmt = null;
+    	  ResultSet rs = null;
+    	  Product p = null;
+    	  try {
+	           pstmt = conn.prepareStatement(prop.getProperty("selectProduct"));
+	           pstmt.setInt(1, productNo);
+	           rs=pstmt.executeQuery();
+	           while(rs.next()) {
+	              p=new Product();
+	              p.setProductNo(rs.getInt("product_no"));
+	              p.setProductName(rs.getString("product_name"));
+	              p.setProductPrice(rs.getInt("product_price"));
+	              p.setProductContent(rs.getString("product_content"));
+	              p.setProductType(rs.getString("product_type"));
+	              p.setEventCode(rs.getString("event_code"));
+	              p.setProductThumbnail(rs.getString("product_thumbnail"));
+	              p.setProductSubimg(rs.getString("product_subimg"));
+	              p.setProductImg1(rs.getString("product_img1"));
+	              p.setProductImg2(rs.getString("product_img2"));
+	              p.setProductImg3(rs.getString("product_img3"));
+	              p.setProductImg4(rs.getString("product_img4"));
+	              p.setProductImg5(rs.getString("product_img5"));
+	              p.setProductImg5(rs.getString("product_img6"));
+	           }
+    	  }catch(SQLException e) {
+    		  e.printStackTrace();
+    	  }finally {
+	           close(rs);
+	           close(pstmt);
+    	  }
+    	  return p;
+	     }
+      //관련상품
+      public List<Product> relateProduct(Connection conn, String type,int productNo){
+    	  PreparedStatement pstmt = null;
+    	  ResultSet rs = null;
+    	  List<Product> list = new ArrayList();
+    	  try {
+    		  pstmt = conn.prepareStatement(prop.getProperty("relateProduct"));
+    		  pstmt.setString(1, type);
+    		  pstmt.setInt(2, productNo);
+    		  rs = pstmt.executeQuery();
+	           while(rs.next()) {
+	              Product p = new Product();
+	              p.setProductName(rs.getString("product_name"));
+	              p.setProductPrice(rs.getInt("product_price"));
+	              p.setProductThumbnail(rs.getString("product_thumbnail"));
+	              list.add(p);
+	           }
+	        }catch(SQLException e) {
+	           e.printStackTrace();
+	        }finally {
+	           close(rs);
+	           close(pstmt);
+	        }return list;
+	        
+	        
+	     }
+
+
+         
          public List<ProductReview> ProductReview(int productNo, Connection conn, int cPage, int numPerPage) {
      		PreparedStatement pstmt = null;
      		ResultSet rs = null;
@@ -295,6 +299,7 @@ import com.en.product.model.vo.ProductReview;
 			   close(pstmt);
 		   }return lc;
 	   }
+
 
    }
 

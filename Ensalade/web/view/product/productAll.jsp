@@ -52,7 +52,6 @@
       </div>
       <div id="sort"></div>
    </div>
-  
 </section>
     
     
