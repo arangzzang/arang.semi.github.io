@@ -15,9 +15,7 @@
 <script src="<%=request.getContextPath() %>/js/jquery-3.5.1.min.js"></script>
 <!-- Menubar -->
 <script src="<%=request.getContextPath() %>/js/menuBar.js"></script>	
-
 </head>
-
 <body>
     <!--<div class="swiper-container">
         <div class="swiper-wrapper"> -->
@@ -29,7 +27,7 @@
                 <ul>
                 <!-- 관리자 로그인시 -->
                  <%if(loginMember!=null && loginMember.getMemberId().equals("admin")) { %>
-                    <li><a href="<%=request.getContextPath()%>/product/productAll">관리자전용 메뉴</a>
+                    <li><a href="#">관리자전용 메뉴</a>
                         <ul>
                             <li><a href="<%=request.getContextPath()%>/admin/memberAll">회원관리</a></li>
                             <li><a href="">상품관리</a></li>

@@ -39,23 +39,26 @@
 				</ul>
 			</div>
 			<div id="inquiry-contents">
+				<%if(ii.getFilePath().contains("null")){ %>
+				
+				<%}else{%>
 				<div class="image-upload-wrap cimg content_row" id="imgContainer">
 					<img class="form_image"
 						src="<%=request.getContextPath()%><%=ii.getFilePath()%>"
 						width="100%" height="100%">
 				</div>
-				<div class="content_row">
+				<% }%>
+				<div class="content_row border">
 					<p><%=ii.getInquiryContent()%></p>
 				</div>
 
 				<%if (ii.getInquiryComment() != null) {	%>
-				<div class="mamager-answer content_row content_top"
-					id="inquiry_Manager_answer">
+				<div class="mamager-answer content_row content_top"	id="inquiry_Manager_answer">
 					<div class="mamager-answer_label">
 						<label>A</label>
 					</div>
 					<div class="mamager-answer_content">
-						<textarea><%=ii.getInquiryComment()%></textarea>
+						<p><%=ii.getInquiryComment()%></p>
 					</div>
 				</div>
 				<%}	%>
@@ -75,24 +78,9 @@
 </section>
 
 <style>
+.border{border-bottom: 1px solid rgba(187, 184, 184, 0.438);}
 .answer-check>p{
 	color:red;
-}
-.form-control_input_btn {
-	height: 25px;
-	width: 100px;
-	height: 25px;
-	box-sizing: border-box;
-	border-radius: 4px;
-	font-size: 14px;
-	font-weight: 400;
-	cursor: pointer;
-	border-style: none;
-	font-weight: inherit;
-}
-
-.padd {
-	margin-right: 10px;
 }
 
 .inquiryV-button-wrap {
@@ -103,140 +91,56 @@
 	margin: 0 50px;
 }
 
-.mamager-answer_content>textarea {
-	font-size: 16px;
-	width: 100%;
-	height: 50px;
-	float: left;
-	margin: -39px 0 0 0;
-	border: none;
-	resize: none;
-}
+.mamager-answer_content>p {font-size: 16px;width: 100%;height: 50px;float: left;margin: -39px 0 0 0;resize: none;}
 
-.mamager-answer_label>label {
-	font: normal;
-	font-weight: 700;
-	font-size: 20px;
-}
+.mamager-answer_label>label {font-weight: 700;
+    font-size: 20px;
+    padding: 0 55px 0 55px;
+    margin-top: -9px;
+    float: left;}
 
-.mamager-answer_content {
-	float: right;
-	width: 80%;
-}
+.mamager-answer_content {float: right;padding:10px;}
 
-.mamager-answer_label {
-	float: left;
-	width: 20%;
-	font-size: 15px;
-}
+.mamager-answer_label {float: left;font-size: 15px;}
 
-.mamager-answer {
-	display: flex;
-	white-space: pre;
-}
+.mamager-answer {display: flex;white-space: pre-wrap;}
 
-.form_image {
-	top: 50%;
-	left: 50%;
-	width: 100%;
-}
+.form-control_input_btn {height: 25px;width: 100px;height: 25px;box-sizing: border-box;border-radius: 4px;font-size: 14px;font-weight: 400;cursor: pointer;border-style: none;	font-weight: inherit;}
 
-.content_top {
-	margin-top: 10px;
-}
+.padd {margin-right: 10px;}
+.form_image {top: 50%;left: 50%;width: 100%;}
 
-.content_row {
-	margin-bottom: 10px;
-}
+.content_top {margin-top: 10px;}
 
-.form-control {
-	display: block;
-	box-sizing: border-box;
-	height: 40px;
-	width: 80%;
-	padding: 0 15px;
-	line-height: 40px;
-	border-radius: 4px;
-	border: solid 1px #dbdbdb;
-	background-color: #ffffff;
-	color: #424242;
-	font-size: 12px;
-}
+.content_row {margin-bottom: 10px;}
 
-textarea.form-control {
-	resize: none;
-	line-height: 20px;
-	padding-top: 9px;
-	padding-bottom: 9px;
-	min-height: 200px;
-	min-width: 600px;
-}
+.form-control {display: block;box-sizing: border-box;height: 40px;width: 80%;padding: 0 15px;line-height: 40px;border-radius: 4px;border: solid 1px #dbdbdb;background-color: #ffffff;color: #424242;font-size: 12px;}
 
-div#inquiryUI-wrap {
-	position: relative;
-}
+textarea.form-control {resize: none;line-height: 20px;padding-top: 9px;padding-bottom: 9px;min-height: 200px;min-width: 600px;}
 
-ul#inquiryUl {
-	display: flex;
-	justify-content: space-around;
-	width: 100%;
-	background-color: rgba(187, 184, 184, 0.438);
-}
+div#inquiryUI-wrap {position: relative;}
 
-ul#inquiryUl li {
-	list-style-type: none;
-}
+ul#inquiryUl {display: flex;justify-content: space-around;width: 100%;background-color: rgba(187, 184, 184, 0.438);}
 
-div#inquiry-contents {
-	display: none;
-	height: auto;
-}
+ul#inquiryUl li {list-style-type: none;}
 
-#inquiry-sort {
-	width: 500px;
-}
+div#inquiry-contents {display: none;height: auto;}
 
-#container {
-	display: flex;
-}
+#inquiry-sort {width: 500px;}
 
-hr {
-	width: 100%;
-}
+#container {display: flex;}
 
-.inquiry-left {
-	position: relative;
-	width: 500px;
-}
+.inquiry-right hr {width: 100%;}
 
-.inquiry-right {
-	width: 100%;
-}
+.inquiry-left {position: relative;width: 500px;}
 
-.inquiry-right h1 {
-	margin: 0 50px;
-	font-size: 50px;
-	left: 0;
-}
+.inquiry-right {width: 100%;}
 
-.inquiry-right h2 {
-	margin: 10px;
-	font-size: 30px;
-	left: 0;
-}
+.inquiry-right h1 {margin: 0 50px;font-size: 50px;left: 0;}
 
-section {
-	padding-top: 150px;
-	height: auto;
-}
+.inquiry-right h2 {margin: 10px;font-size: 30px;left: 0;}
 
-section#inquiry-container {
-	position: relative;
-	height: 100%;
-	width: 800px;
-	margin: 0 auto;
-	text-align: center;
-}
+section#inquiry-container {position: relative;height: auto;width: 800px;margin: 0 auto;padding-top: 150px;	text-align: center;}
 </style>
 
 <script>

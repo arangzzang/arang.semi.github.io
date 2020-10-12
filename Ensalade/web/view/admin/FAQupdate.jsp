@@ -10,11 +10,9 @@
      $(".form2").focus(e=>{
         $(e.target).css("outline-color","#27b06e");
      });
-     
      $("#backList").click(e => {
     	location.replace("<%=request.getContextPath()%>/FAQ/FAQboard"); 
      });
-     
 </script>
 <section class="contents-wrap">
         <div id="notice-container">
@@ -24,7 +22,7 @@
 			</div>
 			<div class="notice-view_area">
 				<div id="title">
-					<input class="form-control content_row form2" type="text" name="question"><%=f.getFaqQuestion()%>
+					<input class="form-control content_row form2" type="text" name="question" value="<%=f.getFaqQuestion()%>">
 				</div>
 				<div id="">
 					<textarea class="form-control content_row form2" name="content" cols="60" rows="5"><%=f.getFaqAnswer() %></textarea>
@@ -42,7 +40,6 @@
 		</form>
 	</div>
 </section>
-
 <style>
 section {
 	padding-top: 150px;
