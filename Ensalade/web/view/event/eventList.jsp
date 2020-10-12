@@ -8,11 +8,11 @@
     List<Event> list= (List)request.getAttribute("list");
 %>
 <section class="event-wrap">
-   <%for(Event e: list){%>
    <div class="event-container">
 		<div class="event-title-wrap">
 			<h2>Event</h2>
 		</div>
+   <%for(Event e: list){%>
 		<div class="event-view_area">
 			<a class="aEvent" href="<%=request.getContextPath()%>/event/eventView?code=<%=e.getEventCode()%>">
 				<img class="imageEvent" src="<%=request.getContextPath()%><%=e.getThumnail()%>">

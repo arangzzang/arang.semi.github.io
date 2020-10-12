@@ -36,7 +36,7 @@
 			         <!-- 상품 상세 페이지로 가는 서블릿 호출( 쿼리스트링 상품번호) -->
 				         <a href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=p.getProductNo() %>">
 				            <!-- 상품정보 -->
-				            <img src="<%=request.getContextPath()%>/image/salad1.jpg">
+				            <img src="<%=request.getContextPath()%><%=p.getProductThumbnail()%>">
 				            <p>
 					            <h5><strong><%=p.getProductName() %></strong></h5>
 					            <p><%=p.getProductContent() %></p>

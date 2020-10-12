@@ -5,6 +5,9 @@ import java.util.List;
 
 import com.en.FAQ.model.vo.FAQ;
 import com.en.admin.model.dao.AdminDao;
+import com.en.event.model.vo.Event;
+import com.en.event.model.vo.EventContent;
+
 import static com.en.common.Template.getConnection;
 import static com.en.common.Template.close;
 import static com.en.common.Template.rollback;
@@ -75,6 +78,20 @@ public class AdminService {
 	public int updateFAQ(FAQ f) {
 		Connection conn = getConnection();
 		int result = dao.updateFAQ(conn, f);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
+	public int insertEvent(Event e) {
+		Connection conn = getConnection();
+		int result = dao.insertEvent(conn, e);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
+	public int insertEventContent(EventContent ec) {
+		Connection conn = getConnection();
+		int result = dao.insertEventContent(conn, ec);
 		if(result>0) commit(conn);
 		else rollback(conn);
 		return result;

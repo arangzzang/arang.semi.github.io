@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.en.FAQ.model.vo.FAQ;
+import com.en.event.model.vo.Event;
+import com.en.event.model.vo.EventContent;
 import com.en.member.model.vo.Member;
 import com.en.notice.model.vo.NoticeBoard;
 
@@ -214,6 +216,34 @@ public class AdminDao {
 			pstmt.setString(1, f.getFaqQuestion());
 			pstmt.setString(2, f.getFaqAnswer());
 			pstmt.setInt(3, f.getFaqNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	public int insertEvent(Connection conn, Event e) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertEvent"));
+			
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	public int insertEventContent(Connection conn, EventContent ec) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertEventContent"));
+			
+			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
