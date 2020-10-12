@@ -36,6 +36,7 @@ public class ProductOrderServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String[] amount=request.getParameterValues("amount");
+		request.setAttribute("basketNo", request.getParameter("basketNo"));
 		List<String> aList=new ArrayList();
 		for(String su:amount){
 			aList.add(su);

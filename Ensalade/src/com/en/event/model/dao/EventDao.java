@@ -50,7 +50,7 @@ public class EventDao {
 		return list;
 	}
 
-	public void deletsEvent(Connection conn) {
+	public int deletsEvent(Connection conn) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
@@ -60,7 +60,7 @@ public class EventDao {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
-		}
+		}return result;
 	}
 	
 	

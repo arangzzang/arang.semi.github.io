@@ -12,8 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+
+import com.en.custom.model.vo.CustomComment;
+import com.en.FAQ.model.vo.FAQ;
 import com.en.member.model.vo.Member;
 import com.en.notice.model.vo.NoticeBoard;
+
 
 
 public class AdminDao {
@@ -161,6 +165,113 @@ public class AdminDao {
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("deleteNotice"));
 			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+
+	public List<CustomComment> customCommentList(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<CustomComment> list=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("customCommentList"));
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CustomComment c=new CustomComment();
+				c.setCustomCommentContent(rs.getNString("CUSTOM_COMMENT_CONTENT"));
+				c.setCustomCommentDate(rs.getDate("CUSTOM_COMMENT_DATE"));
+				c.setCustomCommentLevel(rs.getInt("CUSTOM_COMMENT_LEVEL"));
+				c.setCustomCommentNo(rs.getInt("CUSTOM_COMMENT_NO"));
+				c.setCustomCommentRef(rs.getInt("CUSTOM_COMMENT_REF"));
+				c.setCustomCommentWriter(rs.getNString("CUSTOM_COMMENT_WRITER"));
+				c.setCustomRef(rs.getInt("CUSTOM_REF"));
+				list.add(c);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	public int customPostDelete(Connection conn, int cNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("customPostDelete"));
+			pstmt.setInt(1, cNo);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int customCommentDelete(Connection conn, int ccNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("customCommentDelete"));
+			pstmt.setInt(1, ccNo);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int insertFAQ(Connection conn, FAQ f) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertFAQ"));
+			pstmt.setString(1, f.getFaqQuestion());
+			pstmt.setString(2, f.getFaqAnswer());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	public FAQ selectFAQ(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		FAQ f = new FAQ();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectFAQ"));
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				f.setFaqNo(rs.getInt("FAQ_NO"));
+				f.setFaqQuestion(rs.getString("FAQ_QUESTION"));
+				f.setFaqAnswer(rs.getString("FAQ_ANSWER"));
+				f.setFaqDeleteAt(rs.getString("DELETE_AT"));
+				f.setFaqWriter(rs.getString("FAQ_WRITER"));
+				f.setFaqWriteDate(rs.getDate("FAQ_WRITE_DATE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return f;
+	}
+	public int updateFAQ(Connection conn, FAQ f) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateFAQ"));
+			pstmt.setString(1, f.getFaqQuestion());
+			pstmt.setString(2, f.getFaqAnswer());
+			pstmt.setInt(3, f.getFaqNo());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

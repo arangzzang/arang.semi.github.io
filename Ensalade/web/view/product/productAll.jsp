@@ -18,11 +18,11 @@
       <div class="left">
          <nav id="sidebar">
              <ul class="productul">
-                <li><strong><p class="menu" style="cursor:pointer;">전체보기</p></strong></li>
-                <li><strong><p class="menu" style="cursor:pointer;">비건</p></strong></li>
-                <li><strong><p class="menu" style="cursor:pointer;">육류</p></strong></li>
-                <li><strong><p class="menu" style="cursor:pointer;">해산물</p></strong></li>
-                <li><strong><p class="menu" style="cursor:pointer;">유제품</p></strong></li>
+                <li><strong><p class="sidemenu" style="cursor:pointer;">전체보기</p></strong></li>
+                <li><strong><p class="sidemenu" style="cursor:pointer;">비건</p></strong></li>
+                <li><strong><p class="sidemenu" style="cursor:pointer;">육류</p></strong></li>
+                <li><strong><p class="sidemenu" style="cursor:pointer;">해산물</p></strong></li>
+                <li><strong><p class="sidemenu" style="cursor:pointer;">유제품</p></strong></li>
              </ul>
           </nav>
    	  </div>
@@ -74,7 +74,7 @@
           });
       });
       //사이드바 클릭 이벤트
-      $(".menu").click(e=>{<!-- ajax로 상품종류를 분류하여 덮어씌움 -->
+      $(".sidemenu").click(e=>{<!-- ajax로 상품종류를 분류하여 덮어씌움 -->
     	  $.ajax({
     		  url:"<%=request.getContextPath()%>/ajax/selectType",
     		   data:{"type":e.target.textContent},

@@ -8,12 +8,14 @@
 DecimalFormat formatter=new DecimalFormat("###,###");//숫자 3자리마다 ,표시해주는 클래스
 List<String> aList=(List)request.getAttribute("amount");
 List<Product> list=(List)request.getAttribute("list");
+/* int basketNo=(int)request.getAttribute("basketNo"); */
 int totalPrice=0;
 for(int i=0;i<list.size();i++){
 	int amount=Integer.parseInt(aList.get(i));
 	int price=list.get(i).getProductPrice();
 	totalPrice+=amount*price;
 }
+String[] address=loginMember.getMemberAddress().split(",");
 %>
 
 <script>
@@ -27,32 +29,39 @@ for(int i=0;i<list.size();i++){
     </script>
     
     <section>
- 		<form name="orderInfo" action="<%=request.getContextPath()%>/order/orderInsert" method="post">
- 		<div class="orderState">
+ 		<form name="orderInfo" action="<%=request.getContextPath()%>/order/orderInsert<%=request.getAttribute("basketNo")!=null?"?basketNo="+request.getAttribute("basketNo"):""%>" method="post">
+ 		 <%-- <input type="hidden" name="basketNo" value="<%=basketNo %>">  --%>
+ 		 <%-- <input type="hidden" name="basketNo" value="<%=request.getAttribute("basketNo") %>"> --%>
+ 		<div class="orderHeader">
         <h1>주문결제</h1>
+        <ul class="orderState">
+        	<li class="order1">01 장바구니</li>
+        	<li class="order2">02 주문서</li>
+        	<li class="order3">03 주문완료</li>
+        </ul>
         </div>
          <hr class="line">
         <div class="container">
             <div class="left">
            
                 <div class="left-address">
-                		<label><input type="radio" name="address" value="default" class="address" checked><span>기본배송</span></label>
-                		<label><input type="radio" name="address" value="search" class="address" ><span>검색으로 찾기</span></label>
+                		<label><input type="radio" name="address-select" value="default" class="address" checked><span>기본배송</span></label>
+                		<label><input type="radio" name="address-select" value="search" class="address" ><span>검색으로 찾기</span></label>
                    		<div class="address-type"> 
-		                   	<input type="text" style="margin-top:20px;" class='address-detail' name="address" value="<%=loginMember.getMemberAddress()%>">
-		                   	<input type="text" style="margin-top:20px;" class='address-detail' name="address" value="<%=loginMember.getMemberAddress()%>">
-		                   	<input type="text" style="margin-top:20px;" class='address-detail' name="address" value="<%=loginMember.getMemberAddress()%>">
+		                   	<input type="text" style="margin-top:20px;" class='address-detail' name="address" value="<%=address[0]%>" readonly>
+		                   	<input type="text" style="margin-top:20px;" class='address-detail address-ch' name="address" value="<%=address[1]%>" required>
+		                   	<input type="text" style="margin-top:20px;" class='address-detail' name="address" value="<%=address[2]%>" required>
 						</div>
 	                    <div class="left-request">
-		                    <select name="" id="" style="width:300px;height:50px;">
-		                        <option >배송시 요청사항</option>
-		                        <option >빠른 배송 부탁드립니다.</option>
-		                        <option >배송 전,연락주세요.</option>
-		                        <option >부재 시,휴대폰으로 연락주세요.</option>
-		                        <option >부재 시,경비실에 맡겨주세요.</option>
-		                        <option >경비실이 없습니다.배송 전,연락주세요.</option>
-		                        <option >배송 전,연락주세요.</option>
-		                        <option >선택안함.</option>
+		                    <select name="memo" id="" style="width:300px;height:50px;">
+		                        <option value="배송시 요청사항">배송시 요청사항</option>
+		                        <option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
+		                        <option value="배송 전,연락주세요.">배송 전,연락주세요.</option>
+		                        <option value="부재 시,휴대폰으로 연락주세요.">부재 시,휴대폰으로 연락주세요.</option>
+		                        <option value="부재 시,경비실에 맡겨주세요.">부재 시,경비실에 맡겨주세요.</option>
+		                        <option value="경비실이 없습니다.배송 전 연락주세요.">경비실이 없습니다.배송 전,연락주세요.</option>
+		                        <option value="배송 전,연락주세요.">배송 전,연락주세요.</option>
+		                        <option value="선택안함.">선택안함.</option>
 		                    </select>
 	                	</div>
                 </div>
@@ -60,9 +69,9 @@ for(int i=0;i<list.size();i++){
                 
                 
                 <hr>
-                <h3>주문상품</h3>
+                <h3 style="margin-bottom:15px">주문상품</h3>
                 <div class="left-productinfo">
-	                <table>
+	                <table class="orderTable">
 		                <tr>
 		                	<th width=5%>사진</th>
 		                	<th width=50%>제품정보</th>
@@ -74,7 +83,7 @@ for(int i=0;i<list.size();i++){
 		                 
 		                <tr>
 		                	<td>
-			                <img src="<%=request.getContextPath() %>/img/test1.jpg" alt="">
+			                <img src="<%=request.getContextPath()+list.get(i).getProductThumbnail() %>" alt="">
 			                </td>
 		                	<td>
 		                	 <input type="hidden" name="productNo" value="<%=list.get(i).getProductNo() %>">
@@ -86,7 +95,7 @@ for(int i=0;i<list.size();i++){
 			                </td>
 			                <td>
 			                 <input class="del" type="button" value=" - " > 
-	                        <input type="text" class="amount" value=" <%=Integer.parseInt(aList.get(i)) %>" size="10" style="text-align:center;">
+	                        <input type="text" name="amount" class="amount" value="<%=Integer.parseInt(aList.get(i)) %>" size="10" style="text-align:center;">
 	                        <input class="add" type="button" value=" + " ><br>
 			                </td>
 		                	
@@ -113,7 +122,10 @@ for(int i=0;i<list.size();i++){
                         
                        	 <span>상품금액 :</span> <i class="total-price"></i>원<br>
                        	 <span>사용포인트:</span> <i class="point"></i>원<br>
-                       	 <span>최종금액:</span><i class=""></i>원 <br>
+                       	 <span>배송비:</span><i class="ba"></i>원<br>
+                       	 <span>최종금액:</span><i class="total-pay"></i>원 <br> 
+                       	 <input type="hidden" id="ba" name="ba">
+                       	 <input type="hidden" id="total" name="total-pay">
                        	<!-- <button class="payBtn">주문하기</button> -->
                        	<input type="button" class="payBtn" value="결제하기">
                     
@@ -125,6 +137,26 @@ for(int i=0;i<list.size();i++){
     </section>
         
         <style>
+        	.order2{
+        		background-color:green;
+        		color:white;
+        	}
+        	.orderHeader{
+        		display:flex;
+        		justify-content: space-between;
+        	}
+        	.orderState{
+        		margin-right:120px;
+        		display:flex;
+        		list-style:none;
+        	}
+        	.orderState>li{
+        	border:lightgray 1px solid;
+        	border-radius:10px;
+        	padding: 10px 15px 11px 15px;
+        	font-weight: bold;
+        	text-align: center;
+        	}
         	.p-info{
         		margin:30px;
         	}
@@ -219,7 +251,7 @@ for(int i=0;i<list.size();i++){
         	.left-request{
 			margin-top:10px;        	
         	}
-	        i{
+	        .ba,.total-pay,.total-price,.price{
 		    font-size: 20px;
 		    font-weight: bold;
 		    font-style: normal;
@@ -252,7 +284,7 @@ for(int i=0;i<list.size();i++){
 	        	border-bottom: lightgray 1px solid;
 	        	padding:20px;
 	        }
-	        table{
+	        .orderTable{
 	        	margin: auto;
 	       		width:800px;
 	        	text-align:center;
@@ -307,33 +339,98 @@ for(int i=0;i<list.size();i++){
         var adds=$(".add");//더하기버튼 클래스명들의 배열
         var dels=$(".del");//빼기버튼 클래스명들의 배열
         var prices=$(".price");//가격클래스명들 배열
-        	
+        var total_price=0;
+        var ba;
+        		
+		        $(document).on("change",".address-detail",function(){//생성된 주소 태그에 값이 변경되면 	배송비 변경
+		        	//지역별 배송비 설정
+					var address=$(".address-ch").val();
+	                if(address.includes("서울")||address.includes("경기")){
+	                	ba=2500;
+	                }else if(address.includes("제주")){
+	                	ba=7000;
+	                }else{
+	                	ba=5000;
+	                }
+	                $(".ba").html(ba.toLocaleString());//배송비 설정
+	                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba).toLocaleString());//상품총가격+배송비 최종가격
+	                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));
+	                $("#ba").val(ba);
+		       	});
+		        $(".amount").keyup(e=>{
+		   	    	for(var i=0;i<amounts.length;i++){
+		   	    		if(e.target==amounts[i]){//해당인덱스
+		     				if(amounts[i].value=amounts[i].value.replace(/[^0-9]/g, '')){
+		     					console.log($(e.target).val());
+		     					total_price+=parseInt($(e.target).val())*prices[i].textContent.replace(/,/g, "");
+		     	 		}
+		   	    	}else{
+		   	    		total_price+=parseInt(amounts[i].value)*prices[i].textContent.replace(/,/g, "");
+	           		} 	
+		   	    }
+		   	    	$(".total-price")[0].textContent=(total_price).toLocaleString();
+		   	    	$(".total-pay")[0].textContent=(total_price+ba).toLocaleString();
+		   	     	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));//hidden에 값주기
+	           		total_price=0;
+		     });   
+		     $(".amount").blur(e=>{
+		    		    for(var i=0;i<amounts.length;i++){
+		    			  if($(e.target).val()==0&&e.target==amounts[i]){
+		    				 $(e.target).val(1);
+		    				 total_price+=parseInt($(e.target).val())*prices[i].textContent.replace(/,/g, ""); 
+		    			 }else{
+		    				 total_price+=parseInt(amounts[i].value)*prices[i].textContent.replace(/,/g, "");
+			           		}   	
+		    		 }
+		    		    $(".total-price")[0].textContent=(total_price).toLocaleString();
+		    		    $(".total-pay")[0].textContent=(total_price+ba).toLocaleString();
+		    		    $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));//hidden에 값주기
+	             		total_price=0;
+		     });
+		    //수량 버튼 클릭시 태그 색변경
+		    $(".amount").focus(e=>{
+		    	$(e.target).css("outline-color","#27b06e");
+			});
         	
             $(".address").click(e=>{//배송주소 라디오버튼 클릭시
             	
             if($(e.target).val()=="default"){
             	
             	<%-- $(".address-type").html("<input id='default' class='address-detail' type='text' name='address' value='<%=loginMember.getMemberAddress()%>'>"); --%>
-            	$(".address-type").html("<div style='display:flex;width:80%;' class='id_ margin_'>"+"<input class='address-detail' type='text' name='address' value='<%=loginMember.getMemberAddress()%>'>"+
+            	$(".address-type").html("<div style='display:flex;width:80%;' class='id_ margin_'>"+"<input class='address-detail' type='text' name='address' value='<%=address[0]%>' readonly>"+
             			"</div>"+
-            			"<input type='text' class='address-detail' name='address' value='<%=loginMember.getMemberAddress()%>'>"+"<br>"+
-            			"<input type='text' class='address-detail' name='address' value='<%=loginMember.getMemberAddress()%>'>");
+            			"<input type='text' class='address-detail address-ch' name='address' value='<%=address[1]%>' required>"+"<br>"+
+            			"<input type='text' class='address-detail' name='address' value='<%=address[2]%>' required>");
             }else{
             	
             	$(".address-type").html("<div style='display:flex;width:80%;' class='id_ margin_'>"+"<input class='address-detail' type='text' name='address' id='sample6_postcode' placeholder='우편번호' readonly>"+
             			"<input type='button' class='search' onclick='sample6_execDaumPostcode()' value='우편번호 찾기' style='width: 50%;'>"+"</div>"+
-            			"<input type='text' class='address-detail' name='address' id='sample6_address' placeholder='주소'>"+"<br>"+
-            			"<input type='text' class='address-detail' name='address' id='sample6_detailAddress' placeholder='상세주소'>");
-            } 
+            			"<input type='text' class='address-detail address-ch' name='address' id='sample6_address' placeholder='주소' required>"+"<br>"+
+            			"<input type='text' class='address-detail' name='address' id='sample6_detailAddress' placeholder='상세주소' required>");
+            }
+          
             
             });
         
-            var totalPrice="<%=formatter.format(totalPrice+2500) %>";
+            var totalPrice="<%=formatter.format(totalPrice) %>";
             $(document).ready(function(){//처음에 한번실행
                 $(".total-price").html(totalPrice);
+            	//지역별 배송비 설정
+            	var address=$(".address-ch").val();
+                if(address.includes("서울")||address.includes("경기")){
+                	ba=2500;
+                }else if(address.includes("제주")){
+                	ba=7000;
+                }else{
+                	ba=5000;
+                }
+                $(".ba").html(ba.toLocaleString());//배송비 설정
+                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba).toLocaleString());//상품총가격+배송비 최종가격
+                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));//hidden에 값주기
+                $("#ba").val(ba);
             });
 
-          	 var total_price=0;
+          	
           	  
            	$(".add").click(e=>{
 	           	for(var i=0;i<amounts.length;i++){
@@ -346,7 +443,9 @@ for(int i=0;i<list.size();i++){
 	           			total_price+=parseInt(hm.value)*prices[i].textContent.replace(/,/g, "");
 	           		}
 	           	}
-           		$(".total-price")[0].textContent=(total_price+2500).toLocaleString();
+           		$(".total-price")[0].textContent=(total_price).toLocaleString();
+           		$(".total-pay")[0].textContent=(total_price+ba).toLocaleString();
+           	 	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));//hidden에 값주기
            		total_price=0;
            		
            	});
@@ -368,7 +467,9 @@ for(int i=0;i<list.size();i++){
             			total_price+=parseInt(hm.value)*parseInt(prices[i].textContent.replace(/,/g, ""));
     	     		}
     	     	}
-    	     	$(".total-price")[0].textContent=(total_price+2500).toLocaleString();
+    	     	$(".total-price")[0].textContent=(total_price).toLocaleString();
+    	     	$(".total-pay")[0].textContent=(total_price+ba).toLocaleString();
+    	     	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));//hidden에 값주기
     	     	total_price=0;
     	     	}); 
         </script>
@@ -428,10 +529,11 @@ for(int i=0;i<list.size();i++){
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;
 			        orderInfo.submit();
+			        
 			    }
 			    alert(msg);
 			});
 
 	});
 </script> 
-        <%@include file="/view/common/footer.jsp" %>
+         <%@include file="/view/common/footer.jsp" %> 

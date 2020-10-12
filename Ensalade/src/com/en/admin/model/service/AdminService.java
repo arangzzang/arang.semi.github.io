@@ -3,7 +3,10 @@ package com.en.admin.model.service;
 import java.sql.Connection;
 import java.util.List;
 
+import com.en.FAQ.model.vo.FAQ;
 import com.en.admin.model.dao.AdminDao;
+import com.en.custom.model.vo.CustomComment;
+
 import static com.en.common.Template.getConnection;
 import static com.en.common.Template.close;
 import static com.en.common.Template.rollback;
@@ -55,6 +58,51 @@ public class AdminService {
 	public int deleteNotice(int no) {
 		Connection conn = getConnection();
 		int result = dao.deleteNotice(conn, no);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
+	
+	public List<CustomComment> customCommentList(){//전체 댓글 가져오기위해
+		Connection conn=getConnection();
+		List<CustomComment> list=dao.customCommentList(conn);
+		close(conn);
+		return list;
+	}
+	
+	public int customPostDelete(int cNo) {
+		Connection conn=getConnection();
+		int result=dao.customPostDelete(conn,cNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	public int customCommentDelete(int ccNo) {
+		Connection conn=getConnection();
+		int result=dao.customCommentDelete(conn,ccNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	public int insertFAQ(FAQ f) {
+		Connection conn = getConnection();
+		int result = dao.insertFAQ(conn, f);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
+	public FAQ selectFAQ(int no) {
+		Connection conn = getConnection();
+		FAQ f = dao.selectFAQ(conn, no);
+		return f;
+	}
+	public int updateFAQ(FAQ f) {
+		Connection conn = getConnection();
+		int result = dao.updateFAQ(conn, f);
 		if(result>0) commit(conn);
 		else rollback(conn);
 		return result;
