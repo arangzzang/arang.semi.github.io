@@ -17,7 +17,7 @@
 	    </div>
 	    <div>
 	      <h4>적립금</h4>
-	      <p>1,000</p>
+	      <p>0</p>
 	    </div>
 	    <div>
 	      <h4>총 주문</h4>
@@ -158,7 +158,6 @@
 	          <td></td>
 	        </tr>
 	      </table>
-	      <p>여긴 게시글</p>
 	    </div>
 	    <div class="contents">
 	      <table class="myborder">
@@ -188,7 +187,6 @@
 	          <td></td>
 	        </tr>
 	      </table>
-	      <p>여긴 게시글</p>
 	    </div>
 	  </div>
 	</div>
