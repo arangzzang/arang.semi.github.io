@@ -54,9 +54,6 @@ public class NoticeWriteEndServlet extends HttpServlet {
 //		nb.setContentImg(mr.getParameter("img"));
 		nb.setFilepath(filepath);
 		
-		System.out.println(mr.getParameter("title"));
-		System.out.println(mr.getParameter("content"));
-
 		int result = new AdminService().insertNotice(nb);
 		String msg = "";
 		String loc = "";

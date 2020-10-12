@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.en.FAQ.model.vo.FAQ;
 import com.en.member.model.vo.Member;
 import com.en.notice.model.vo.NoticeBoard;
 
@@ -161,6 +162,58 @@ public class AdminDao {
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("deleteNotice"));
 			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	public int insertFAQ(Connection conn, FAQ f) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertFAQ"));
+			pstmt.setString(1, f.getFaqQuestion());
+			pstmt.setString(2, f.getFaqAnswer());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	public FAQ selectFAQ(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		FAQ f = new FAQ();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectFAQ"));
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				f.setFaqNo(rs.getInt("FAQ_NO"));
+				f.setFaqQuestion(rs.getString("FAQ_QUESTION"));
+				f.setFaqAnswer(rs.getString("FAQ_ANSWER"));
+				f.setFaqDeleteAt(rs.getString("DELETE_AT"));
+				f.setFaqWriter(rs.getString("FAQ_WRITER"));
+				f.setFaqWriteDate(rs.getDate("FAQ_WRITE_DATE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return f;
+	}
+	public int updateFAQ(Connection conn, FAQ f) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateFAQ"));
+			pstmt.setString(1, f.getFaqQuestion());
+			pstmt.setString(2, f.getFaqAnswer());
+			pstmt.setInt(3, f.getFaqNo());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

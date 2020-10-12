@@ -2,6 +2,8 @@ package com.en.event.model.service;
 
 import static com.en.common.Template.close;
 import static com.en.common.Template.getConnection;
+import static com.en.common.Template.commit;
+import static com.en.common.Template.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -17,8 +19,9 @@ public class EventService {
 	
 	public List<Event> secherEvent(){
         Connection conn=getConnection();
-        dao.deletsEvent(conn);
-        
+        int result = dao.deletsEvent(conn);
+        if(result>0) commit(conn);
+        else rollback(conn);
         List<Event> list=dao.secherEvent(conn);
         close(conn);
         return list;
