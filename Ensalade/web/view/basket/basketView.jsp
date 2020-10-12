@@ -25,7 +25,7 @@
         	<li class="order3">03 주문완료</li>
         </ul>
         </div> 
-        <hr class="line">
+        <hr class="header-line">
         <!-- 상품 정보 -->
         <div id="cartList">
             <!-- 상품 선택 -->
@@ -57,7 +57,7 @@
                                     <td>
 	                                    <input type="hidden" class="b-No" name="basketNo" value="<%=b.getBasketNo() %>">
 	                                	<input type="hidden" class="p-No" name="productNo" value="<%=b.getProductNo() %>">  
-                                            <img src="" alt="">
+                                            <img src="<%=request.getContextPath()+b.getProductThumbnail() %>" alt="">
                                     </td>
                                     <!-- 제품정보 -->
                                     <td>
@@ -110,8 +110,11 @@
 
 <style>
 
-
-			.line{
+		img{
+			width:100px;
+			height:100px;
+		}
+			.header-line{
         	margin-top:0px;
         	margin-bottom:15px;
         	border-color:lightgray;
