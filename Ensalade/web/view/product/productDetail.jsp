@@ -71,6 +71,7 @@
 					<div class="su-form">
 						<form class="count" name="form" method="get">
 							<div id="price">
+								<!-- 할인 적용 로직  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 								 <%if(product_number!=null){ %>
 								 <%System.out.println(p.getSalePer()); %>
 								<p><strong class="price-strong">판매가격</strong>
