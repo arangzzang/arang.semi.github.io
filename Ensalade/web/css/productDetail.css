@@ -22,9 +22,13 @@ hr {
 	margin-bottom: 20px;
 }
 /* 썸네일 이미지 */
-.img {
+.img-style {
 	width: 500px;
-	height: 400px;
+    height: 430px;
+    margin-right: 30px;
+	/* background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center; */
 }
 /* 상품 정보 창 */
 .productinformation {

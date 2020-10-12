@@ -54,8 +54,8 @@
 		<!-- 상품 썸네일 이미지/ 상품정보 자식창  -->
 		<div class="information">
 			<!-- 상품 썸네일 이미지 -->
-			<div class="img">
-				<img src="" alt="">
+			<div >
+				<img class="img-style" src="<%=request.getContextPath()%><%=p.getProductThumbnail()%>"alt="">
 
 			</div>
 			<!-- 상품 정보 -->
@@ -174,17 +174,30 @@
 			<div id="infobtn1">
 				<!-- 이동 1 -->
 				<img alt=""
-					src="<%=request.getContextPath()%>/image/product/common/common.jpg">
+					src="<%=request.getContextPath()%><%=p.getProductSubimg() %>">
+				
 				<img alt=""
-					src="<%=request.getContextPath()%>/image/product/common/common1.jpg">
+					src="<%=request.getContextPath()%><%=p.getProductImg1() %>">
+				<%if(p.getProductImg2()!=null) {%>
 				<img alt=""
-					src="<%=request.getContextPath()%>/image/product/common/common2.jpg">
+					src="<%=request.getContextPath()%><%=p.getProductImg2() %>">
+					<%} %>
+				<%if(p.getProductImg3()!=null) {%>
 				<img alt=""
-					src="<%=request.getContextPath()%>/image/product/common/common3.jpg">
+					src="<%=request.getContextPath()%><%=p.getProductImg3() %>">
+					<%} %>
+				<%if(p.getProductImg4()!=null) {%>
 				<img alt="" 
-					src="<%=request.getContextPath()%>/image/product/common/common4.jpg">
-					
-					
+					src="<%=request.getContextPath()%><%=p.getProductImg4() %>">
+					<%} %>
+				<%if(p.getProductImg5()!=null) {%>
+				<img alt="" 
+					src="<%=request.getContextPath()%><%=p.getProductImg5() %>">	
+					<%} %>
+				<%if(p.getProductImg6()!=null) {%>
+				<img alt="" 
+					src="<%=request.getContextPath()%><%=p.getProductImg6() %>">	
+					<%} %>
 				<img id="infobtn3" alt="" 
 					src="<%=request.getContextPath()%>/image/product/common/02_delivery_bn_2007.jpg">
 				<img alt="" 
@@ -601,5 +614,5 @@
        
         </script>
 
-<%@include file="/view/common/footer.jsp"%>
+ <%@include file="/view/common/footer.jsp"%> 
 
