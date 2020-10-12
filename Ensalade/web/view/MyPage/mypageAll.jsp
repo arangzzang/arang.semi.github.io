@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/view/common/header.jsp"%>
-<link src="<%=request.getContextPath()%>/css/mypageAll.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/mypageAll.css">
 <section style="text-align:center;">
+<%@page import="java.util.List,com.en.product.model.vo.Product,com.en.notice.model.vo.NoticeBoard"  %>
 <%
 	
 %>
