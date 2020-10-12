@@ -1,30 +1,26 @@
-package com.en.inquiry.controller;
+package com.en.admin.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.en.inquiry.model.service.InquiryService;
-import com.en.inquiry.model.vo.Inquiry;
+import com.en.FAQ.model.vo.FAQ;
+import com.en.admin.model.service.AdminService;
 
 /**
- * Servlet implementation class InquiryMemberSearchServlet
+ * Servlet implementation class FAQupdateServlet
  */
-
-//일반 회원 1대1문의 서블릿
-@WebServlet("/inquiry/searchInquiryMem")
-public class InquiryMemberSearchServlet extends HttpServlet {
+@WebServlet("/admin/updateFAQ")
+public class FAQupdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InquiryMemberSearchServlet() {
+    public FAQupdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,12 +29,12 @@ public class InquiryMemberSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//회원용 리스트 출력
-		int memberNo = Integer.parseInt(request.getParameter("no"));
-		List<Inquiry> member = new InquiryService().searchMemberInquiry(memberNo);
-		request.setAttribute("list", member);
-		request.getRequestDispatcher("/view/MyPage/inquiry/inquiry.jsp").forward(request, response);
+		int no = Integer.parseInt(request.getParameter("no"));
+		FAQ f = new AdminService().selectFAQ(no);
+		request.setAttribute("f", f);
+		request.getRequestDispatcher("/view/admin/FAQupdate.jsp").forward(request, response);
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
