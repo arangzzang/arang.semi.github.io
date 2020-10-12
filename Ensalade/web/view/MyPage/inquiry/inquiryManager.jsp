@@ -56,20 +56,20 @@
                     </div> 
                     <hr>
                     <div class="mamager-answer content_row content_top"	id="inquiry_Manager_answer">
-                    <%-- <%if(ii.getInquiryComment()==null){ %>
+                    <%if(ii.getInquiryComment()==null){ %>
                         <form action="<%=request.getContextPath()%>/Inquriry/InquriryManagerTextServlet">
                             <input type="hidden" name="no" value="<%=ii.getInquiryNo()%>">
                             <textarea class="form-control content_row" name="MangerText" rows="5" cols="33"></textarea>
                             <button type="submit">답변</button>
                         </form>
-					<%}else{ %> --%>
+					<%}else{ %>
 						<div class="mamager-answer_label">
 							<label>A</label>
 						</div>
 						<div class="mamager-answer_content">
 							<p><%=ii.getInquiryComment()%></p>
 						</div>
-					<%-- <%} %> --%>
+					<%} %>
                     </div>
                 </div>
                 <%}%>

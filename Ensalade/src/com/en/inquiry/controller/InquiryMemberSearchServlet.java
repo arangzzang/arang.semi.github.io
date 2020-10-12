@@ -15,6 +15,8 @@ import com.en.inquiry.model.vo.Inquiry;
 /**
  * Servlet implementation class InquiryMemberSearchServlet
  */
+
+//일반 회원 1대1문의 서블릿
 @WebServlet("/inquiry/searchInquiryMem")
 public class InquiryMemberSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
