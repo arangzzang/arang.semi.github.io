@@ -285,8 +285,11 @@ public class AdminDao {
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("insertEvent"));
-			
-			
+			pstmt.setString(1, e.getEventCategory());
+			pstmt.setString(2, e.getEventName());
+			pstmt.setDate(3, e.getEventEndDate());
+			pstmt.setInt(4, e.getSalePer());
+			pstmt.setString(5, e.getThumnail());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e2) {
 			e2.printStackTrace();
@@ -299,8 +302,8 @@ public class AdminDao {
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("insertEventContent"));
-			
-			
+			pstmt.setString(1, ec.getEventCode());
+			pstmt.setString(1, ec.getEventImg());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
