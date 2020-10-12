@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.en.custom.model.vo.CustomComment;
 import com.en.member.model.vo.Member;
 import com.en.notice.model.vo.NoticeBoard;
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 
 public class AdminDao {
@@ -167,5 +169,59 @@ public class AdminDao {
 		}finally {
 			close(pstmt);
 		}return result;
+	}
+	public List<CustomComment> customCommentList(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<CustomComment> list=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("customCommentList"));
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CustomComment c=new CustomComment();
+				c.setCustomCommentContent(rs.getNString("CUSTOM_COMMENT_CONTENT"));
+				c.setCustomCommentDate(rs.getDate("CUSTOM_COMMENT_DATE"));
+				c.setCustomCommentLevel(rs.getInt("CUSTOM_COMMENT_LEVEL"));
+				c.setCustomCommentNo(rs.getInt("CUSTOM_COMMENT_NO"));
+				c.setCustomCommentRef(rs.getInt("CUSTOM_COMMENT_REF"));
+				c.setCustomCommentWriter(rs.getNString("CUSTOM_COMMENT_WRITER"));
+				c.setCustomRef(rs.getInt("CUSTOM_REF"));
+				list.add(c);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	public int customPostDelete(Connection conn, int cNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("customPostDelete"));
+			pstmt.setInt(1, cNo);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int customCommentDelete(Connection conn, int ccNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("customCommentDelete"));
+			pstmt.setInt(1, ccNo);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 }

@@ -35,9 +35,9 @@
             <div class="login-btnbox content_row">
                 <input type="submit" class="form-control_input_btn" value="로그인">
             </div>
-            <div class="login-findbox content_row">
+            <div class="login-findbox content_row" style="text-align:left;margin-left: 30px;">
                 <div class="login-findbox_en">
-                    <a type="button" class="login-findbox_en_f" href="<%=request.getContextPath()%>/view/search/searchId.jsp">아이디 찾기</a>
+                    <a type="button" class="login-findbox_en_f" href="<%=request.getContextPath()%>/view/search/searchId.jsp" style="margin-left: 110px;">아이디 찾기</a>
                     <a type="button" class="login-findbox_en_f" href="<%=request.getContextPath()%>/view/search/searchPw.jsp">비밀번호 찾기</a><br>
                 </div>
                 <div class="login-findbox_en">
@@ -54,13 +54,14 @@
 
     .login-findbox_en_f {
         display: inline-block;
-        padding: 3px 5px;
+ 
     }
 
     .login-findbox_en {
         display: inline-block;
         padding: 3px 5px;
-        margin: 0 100px;
+        /* margin: 0 100px; */
+        margin-right: 60px;
     }
 
     .login-findbox {
@@ -158,6 +159,7 @@
         min-height: 100%;
         padding-bottom: 20px;
         text-align: center;
+        margin-bottom: 50px;
     }
 </style>
 <%@include file="/view/common/footer.jsp"%>

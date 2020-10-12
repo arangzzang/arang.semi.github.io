@@ -119,7 +119,7 @@
   var swiper = new Swiper('.swiper-container', {
       direction: 'vertical',
       slidesPerView: 1,
-      spaceBetween: 90,
+      spaceBetween: 135,
       mousewheel: true,
       pagination: {el: '.swiper-pagination', clickable: true},
   });

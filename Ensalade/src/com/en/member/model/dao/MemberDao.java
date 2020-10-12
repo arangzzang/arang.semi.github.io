@@ -149,4 +149,23 @@ public class MemberDao {
 		}
 		return result;
 	}
+
+	public int modifyInfo(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("modifyInfo"));
+			pstmt.setString(1,m.getMemberPw());
+			pstmt.setString(2,m.getEmail());
+			pstmt.setString(3,m.getMemberPhone());
+			pstmt.setString(4,m.getMemberAddress());
+			pstmt.setString(5,m.getMemberId());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }
