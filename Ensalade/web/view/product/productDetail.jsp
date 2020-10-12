@@ -39,6 +39,8 @@
 	List<ProductComment> commentList = (List) request.getAttribute("commentList");
 	
 	int totalData=(int)request.getAttribute("totalData");
+	
+	String product_number = request.getParameter("product_number");
 
 	
 	
@@ -69,9 +71,20 @@
 					<div class="su-form">
 						<form class="count" name="form" method="get">
 							<div id="price">
+								 <%if(product_number!=null){ %>
+								 <%System.out.println(p.getSalePer()); %>
 								<p><strong class="price-strong">판매가격</strong>
-								<%=formatter.format(p.getProductPrice())%>원
+									<s class="won-color"><%=p.getProductPrice() %>원</s>
 								</p>
+								<strong class="prive-strongs">할인판매가격</strong>
+								<p class="won-color-to won-color-wer" >  
+									<%=product_number %>
+								</p>원
+									<% }else {%>
+								<p><strong class="price-strong">판매가격</strong>
+									<%=p.getProductPrice() %>원
+								</p>
+								<%} %>	
 							</div>
 							<div class="product-cout">
 							 <strong>수량</strong> 
@@ -409,7 +422,14 @@
   			location.assign('<%=request.getContextPath()%>/basket/inBasket?productNo=<%=p.getProductNo()%>&su='+su);
   		}
         // 수량/가격 기능 script 구문
-        var price = <%=p.getProductPrice()%>;
+    	 
+          <%if(product_number!=null){ %>
+        var price = parseInt($(".won-color-wer").text().replace(/,/g, ""));
+       <%}else{%>
+       var price = <%=p.getProductPrice()%>
+        
+       <%}%>
+       
         var amount;
         onload=function(){
    			document.getElementById("sum").textContent = price.toLocaleString();
@@ -451,7 +471,7 @@
             
             hm.value++;
             
-            sum.textContent = (parseInt(hm.value) * price).toLocaleString();;
+            sum.textContent = (parseInt(hm.value) * price).toLocaleString();
            
         }
       //수량감소 하는 함수
