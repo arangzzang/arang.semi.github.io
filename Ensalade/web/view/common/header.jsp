@@ -62,9 +62,9 @@
                             <li><a href="<%=request.getContextPath()%>/FAQ/FAQboard">FAQ</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">마이페이지</a>
+                    <li><a href="<%=request.getContextPath()%>/MyPage/mypageAll">마이페이지</a>
                         <ul>
-                            <li><a href="#">장바구니</a></li>
+                            <li><a href="<%=request.getContextPath()%>/basket/basketView">장바구니</a></li>
                             <li><a href="#">배송현황</a></li>
                             <li><a href="#">나의 커스텀</a></li>
                             <li><a href="<%=request.getContextPath()%>/inquiry">1:1문의 답변</a></li>
