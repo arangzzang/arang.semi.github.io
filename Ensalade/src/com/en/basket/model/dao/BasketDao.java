@@ -18,7 +18,7 @@ public class BasketDao {
 	private Properties prop = new Properties();
 	
 	public BasketDao() {
-		String path = BasketDao.class.getResource("/sql/basket/basketsql.properties").getPath();
+		String path = BasketDao.class.getResource("/sql/basket/basket_sql.properties").getPath();
 		try {
 			prop.load(new FileReader(path));
 		}catch(IOException e) {
@@ -157,4 +157,18 @@ public class BasketDao {
 			}
 			return pNo;
 	   }
+	   //장바구니로 주문했을때 장바구니 삭제
+	   public int dropBasket(Connection conn, int basketNo) {
+		      PreparedStatement pstmt = null;
+		      int result = 0;
+		      try {
+		         pstmt=conn.prepareStatement(prop.getProperty("DROPBASKET"));
+		         pstmt.setInt(1, basketNo);
+		         result = pstmt.executeUpdate();
+		      }catch(SQLException e) {
+		         e.printStackTrace();
+		      }finally {
+		         close(pstmt);
+		      }return result;
+		   }
 }
