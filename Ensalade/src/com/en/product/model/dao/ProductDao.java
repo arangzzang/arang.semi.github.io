@@ -52,6 +52,7 @@ import com.en.product.model.vo.ProductReview;
                p.setProductImg4(rs.getString("product_img4"));
                p.setProductImg5(rs.getString("product_img5"));
                p.setProductImg6(rs.getString("product_img6"));
+               p.setSalePer(rs.getInt("sale_per"));
                list.add(p);
             }
          }catch(SQLException e){

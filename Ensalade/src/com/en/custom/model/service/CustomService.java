@@ -140,4 +140,21 @@ public class CustomService {
 		close(conn);
 		return cCount;
 	}
+	
+	public String postList(int no){
+		Connection conn=getConnection();
+		String c=cd.postList(conn,no);
+		close(conn);
+		return c;
+	}
+	
+	public int updatePost(CustomPost c) {
+		Connection conn=getConnection();
+		int result=cd.updatePost(conn,c);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
 }
