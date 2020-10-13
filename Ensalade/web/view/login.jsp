@@ -41,7 +41,7 @@
                     <a type="button" class="login-findbox_en_f" href="<%=request.getContextPath()%>/view/search/searchPw.jsp">비밀번호 찾기</a><br>
                 </div>
                 <div class="login-findbox_en">
-                    <a type="button" class="login-findbox_en_f">회원가입</a><br>
+                    <a type="button" class="login-findbox_en_f" href="<%=request.getContextPath()%>/view/join.jsp">회원가입</a><br>
                 </div>
             </div>
         </form>
