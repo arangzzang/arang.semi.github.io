@@ -44,7 +44,7 @@
 					         	
 					         	<!-- 할인 적용 로직  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 					          <%if(p.getSalePer()!=0){ %>
-					          <%System.out.println(p.getSalePer()); %>
+					         
 					            <span class="productInfo"><em><%=formatter.format(p.getProductPrice()-(p.getProductPrice()*p.getSalePer()/100)) %></em>원</span>
 				            	<span class="productInfoin"><em><s><%=formatter.format(p.getProductPrice()) %>원</s></em></span>
 				            	<% }else {%>

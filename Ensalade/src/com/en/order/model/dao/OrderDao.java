@@ -105,6 +105,7 @@ public class OrderDao {
 				o.setMemo(rs.getString("MEMO"));
 				o.setOrderAddress(rs.getString("ORDER_ADDRESS"));
 				o.setTotalPrice(rs.getInt("TOTAL_PRICE"));
+				o.setSalePer(rs.getInt("SALE_PER"));
 				list.add(o);
 			}
 		}catch(SQLException e) {

@@ -91,6 +91,7 @@ public class BasketDao {
 				b.setProductContent(rs.getString("product_content"));
 				b.setMount(rs.getInt("mount"));
 				b.setPrice(rs.getInt("product_price"));
+				b.setSalePrice(rs.getInt("SALE_PER"));
 				list.add(b);
 			}
 		}catch(SQLException e) {

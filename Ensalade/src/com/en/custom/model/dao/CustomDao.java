@@ -399,6 +399,61 @@ public class CustomDao {
 		return cCount;
 	}
 
+	public int searchCustomCount(Connection conn, String memberId) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int count=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("SEARCHCUSTOMCOUNT"));
+			pstmt.setString(1, memberId);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return count;
+	}   
+	
+	public int insertCustom(Connection conn, int price,String pName,String content,String memberId) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("INSERTCUSTOM"));
+			pstmt.setInt(1, price);
+			pstmt.setNString(2, pName);
+			pstmt.setNString(3, content);
+			pstmt.setString(4,memberId);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public int searchCustomNo(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("SEARCHCUSTOMNO"));
+			
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+
+
 	public String postList(Connection conn, int no) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -438,4 +493,5 @@ public class CustomDao {
 		return result;
 	}
 	   
+
 }

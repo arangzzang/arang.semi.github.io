@@ -33,11 +33,11 @@ public class ProductReviewSevelet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int level=Integer.parseInt(request.getParameter("productCommentLevel"));
-		System.out.println(level);
+		
 		String writer=request.getParameter("productCommentWriter");
 		
 		int productRef=Integer.parseInt(request.getParameter("productRef"));
-		System.out.println(productRef);
+		
 		int productNo=Integer.parseInt(request.getParameter("productNo"));
 		
 		int productCommentRef=Integer.parseInt(request.getParameter("productCommentRef"));
