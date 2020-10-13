@@ -16,8 +16,8 @@
         <p>회원관리</p>
     </div>
     <div class="member-wrap">
-		<table class="member-table" id="tbl-notice">
-			<thead class="notice-table_thead">
+		<table class="member-table" id="tbl-member">
+			<thead class="member-table_thead">
 				<tr>
 					<th>회원아이디</th>
 					<th>회원이름</th>
@@ -103,10 +103,8 @@
 				action="<%=request.getContextPath()%>/admin/memberAll">
 				<input type="hidden" name="searchType" value="manager_yn">
 				<div class="formCss-submit-wrap">
-					<select>
-						<option>Y</option>
-						<option>N</option>
-					</select>
+					<label class="input-label content-interval"><input class="input-label" type="radio" name="searchKeyword" value="Y">Y</label>
+            		<label class="input-label content-interval"><input class="input-label" type="radio" name="searchKeyword" value="N">N</label>
 					<%-- <input class="form-control" id="inputMember" type="text" name="searchKeyword" placeholder="Y/N" size="25"
 						value="<%=key != null && type != null && type.equals("manager_yn") ? key : "Y/N"%>"> --%>
 					<button class="formCss-submit-btn" id="submitCss" type="submit">검색</button>
@@ -115,17 +113,6 @@
 		</div>
 	</div>
 	<div id="pagebar2"><%=pageBar1%></div>
-	<%-- 
-	<div class="noticeV-button">
-         <%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
-         <span class="gRight">
-             <div style="display: flex;margin-right: 20px;">
-                 <input class="form-control_input_btn padd" type="button" value="글쓰기" id="writeBtn">
-             </div>
-         </span>
-         <%} %>
-     </div> --%>
-     
      
 	<script type="text/javascript">
 		let pagebar=$("#pageBar")
@@ -154,144 +141,30 @@
 </section>
 
 <style type="text/css">
-.form-control_input_btn {
-	height: 25px;
-	width: 100px;
-	height: 25px;
-	box-sizing: border-box;
-	border-radius: 4px;
-	font-size: 14px;
-	font-weight: 400;
-	cursor: pointer;
-	border-style: none;
-	font-weight: inherit;
-}
-.padd {
-	margin-right: 10px;
-}
-
-.noticeV-button {
-	margin: 10px 0 40px;
-	font-size: 0;
-	padding: 20px 0;
-	text-align: center;
-	margin: 0 50px;
-}
-
-.gRight {
-	float: right;
-	text-align: right;
-}
-
-.search-form_wrap>span {
-	font-size: 17px;
-	padding: 2px 10px;
-}
-
-.search-form_wrap, .formCss-submit-wrap {
-	margin: 0 10px;
-}
-
-body {
-	position: relative;
-}
-
-.formCss-submit-wrap {
-	display: flex;
-}
-
-.form-control {
-	display: block;
-	box-sizing: border-box;
-	padding: 0 15px;
-	line-height: 6px;
-	border-radius: 2px;
-	border: solid 1px #dbdbdb;
-	background-color: #ffffff;
-	color: #424242;
-	font-size: 13px;
-	height: 30px;
-}
-
-.formCss-submit-btn {
-	border-radius: 2px;
-	border: solid 1px #dbdbdb;
-	background-color: #dbdbdbaf;
-	color: #535353;
-	font-size: 12px;
-	height: 30px;
-	width: 30px;
-}
-
-section.contents-wrap {
-	padding-top: 100px;
-	height: auto;
-	margin: 0 auto;
-	text-align: center;
-}
-
-table.table {
-	position: absolute;
-	top: 200px;
-	left: 160px;
-}
-
-table#tbl-notice {
-	width: 80%;
-	margin: 0 auto;
-	border: solid 1px #dbdbdb;
-	border-collapse: collapse;
-}
-table#tbl-notice td:nth-child(5){width:30px}
-
-table#tbl-notice th, table#tbl-notice td {
-	border: 1px solid #dbdbdb;
-	padding: 5px 0;
-	text-align: center;
-}
-
-div#search_notice_title {
-	display: inline-block;
-}
-
-div#search_notice_write_date {
-	display: none;
-}
-
-.content-title {
-	height: 60px;
-}
-
-.content-title>p {
-	font-size: 30px;
-	font-weight: 700;
-}
-
-.member-table {
-	min-width: 100%;
-	border: 0;
-	border-spacing: 0;
-	table-layout: fixed;
-}
-
-.member-table_thead {
-	background-color: #dbdbdbaf;
-}
-
-.member-wrap {
-	padding-bottom: 30px;
-	margin: 0 50px;
-}
-
-.search-form {
-	display: flex;
-	justify-content: center;
-	position: relative;
-}
-
-.search-form_wrap {
-	display: flex;
-}
+.input-label{padding:8px;}
+.form-control_input_btn {height: 25px;width: 100px;height: 25px;box-sizing: border-box;border-radius: 4px;font-size: 14px;font-weight: 400;cursor: pointer;border-style: none;font-weight: inherit;}
+.padd {margin-right: 10px;}
+.search-form_wrap>span {font-size: 17px;padding: 2px 10px;}
+.search-form_wrap, .formCss-submit-wrap {margin: 0 10px;}
+.formCss-submit-wrap {display: flex;}
+.form-control {display: block;box-sizing: border-box;padding: 0 15px;line-height: 6px;border-radius: 2px;border: solid 1px #dbdbdb;background-color: #ffffff;color: #424242;font-size: 13px;	height: 30px;}
+.formCss-submit-btn {	border-radius: 2px;	border: solid 1px #dbdbdb;	background-color: #dbdbdbaf;	color: #535353;	font-size: 12px;	height: 30px;	width: 30px;}
+section.contents-wrap {	padding-top: 100px;	height: auto;	margin: 0 auto;	text-align: center;}
+table#tbl-member {	width: 80%;	margin: 0 auto;	border: solid 1px #dbdbdb;	border-collapse: collapse;}
+table#tbl-member th:nth-child(1){width:80px}
+table#tbl-member th:nth-child(2){width:80px}
+table#tbl-member th:nth-child(3){width:50px}
+table#tbl-member th:nth-child(4){width:150px}
+table#tbl-member th:nth-child(5){width:250px}
+table#tbl-member th:nth-child(6){width:200px}
+table#tbl-member th, table#tbl-member td {	border: 1px solid #dbdbdb;	padding: 5px 0;	text-align: center;}
+.content-title {	height: 60px;}
+.content-title>p {	font-size: 30px;	font-weight: 700;}
+.member-table {	min-width: 60%;	border: 0;	border-spacing: 0;	table-layout: fixed;}
+.member-table_thead {	background-color: #dbdbdbaf;}
+.member-wrap {	padding-bottom: 30px;	margin: 0 50px;}
+.search-form {	display: flex;	justify-content: center;	position: relative;}
+.search-form_wrap {	display: flex;}
 </style>
 
 <%@ include file="/view/common/footer.jsp" %>

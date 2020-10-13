@@ -284,7 +284,7 @@ html,body{height:100%;}
 
 .footer_logo {margin-top: 30px;margin-bottom: 10px;/* padding-left : 200px;  */text-align: center;}
 
-.footer_body {margin-top: 20px;/* margin-bottom: 200px; */}
+.footer_body {margin-top: 20px;margin-bottom: 150px;}
 
 .footer_menu>div>a {justify-content: space-around;text-decoration: none;text-align: left;font-size: 12px;font: lightgrey;}
 

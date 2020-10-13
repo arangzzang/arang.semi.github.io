@@ -41,6 +41,10 @@ public class SelectMemberServlet extends HttpServlet {
 		int numPerPage=5;
 		String type = request.getParameter("searchType");
 		String key = request.getParameter("searchKeyword");
+		
+		System.out.println(type);
+		System.out.println(key);
+		
 		int totalData = 0;
 		List<Member> list = new ArrayList<Member>();
 		String pageBar = "";
@@ -89,7 +93,7 @@ public class SelectMemberServlet extends HttpServlet {
 					pageBar += "<span>" + pageNo + "</span>";
 				} else {
 					pageBar += "<a href='" + request.getContextPath() + "/admin/memberAll?cPage=" + pageNo 
-							+ "&searchType="+type+"&searchKeyword="+key+"'>[이전]</a>";
+							+ "&searchType="+type+"&searchKeyword="+key+"'></a>";
 				}
 				pageNo++;
 			}
