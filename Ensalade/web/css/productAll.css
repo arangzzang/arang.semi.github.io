@@ -100,6 +100,23 @@ a:visited{
 	background-color: #9EF048;
 }
 
+.productInfoin{
+	position: relative;
+	color: lightgrey;
+	font-size: 15px;
+}
+.productInfo{
+	color: rgb(58, 182, 47);
+	font-size: 17px;
+	margin-right: 5px;
+}
+.productInfoin2{
+	font-size:17px;
+}
+.main-product-img{
+	width: 200px;
+	height: 200px;
+}
 	
 	
 	

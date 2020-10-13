@@ -21,13 +21,11 @@ public class EncryptorWrapper extends HttpServletRequestWrapper {
       // 아닌 것들
       String result = "";
       String ori=super.getParameter(name);
-      if (name.equals("password")||name.equals("new_password")||name.equals("newPw")) {
+
+      if ((name.equals("password")||name.equals("new_password")||name.equals("newPw"))) {
          
          //암호화 처리한 값을 전송함
-         System.out.println("암호화 전 :" +ori);
          result=getSha512(ori);
-         System.out.println("암호화 후 :" +result);
-
       } else {
          // 원본값보내기
          result = super.getParameter(name);
