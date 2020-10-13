@@ -17,6 +17,7 @@
 	List<ProductReview> prList = new ProductService().myPage(loginMember.getMemberId());
 	List<CustomPost> cpList =new CustomService().customList();
 	List<Inquiry> iList = new InquiryService().searchMemberInquiry(loginMember.getUser_no());
+	int oNo = 0;
 %>
 			
 	<!--마이페이지 헤드공용-->
@@ -125,10 +126,11 @@
 	          <th>비고</th>
 	        </tr>
 	        <%if(oList != null) {%>
-	        	<%for(Order o : oList) {%>
+	        	<%for(Order o : oList) {
+	        	oNo=o.getOrderNo();%>
 	        <tr>
 	          <td><%=o.getOrderDate() %></td>
-	          <td><%=o.getProductThumbnail() %></td>
+	          <td><img style="width:200px;,height:200px;" src=<%=o.getProductThumbnail() %>></td>
 	          <td>
 	          	<p><%=o.getProductName() %></p>
 	          	<p><%=o.getProductContent() %></p>
@@ -136,9 +138,9 @@
 	          <td><%=o.getOrderMount() %></td>
 	          <td><%=o.getProductPrice() %></td>
 	          <td><%=o.getOrderStatus() %></td>
-	          <%if(o.getOrderStatus() == "주문대기") {%>
+	          <%if(o.getOrderStatus().equals("주문대기")) {%>
 	          <td>
-	          	<button class="remove" onclick="removebtn();">주문 취소</button>
+	          	<button class="remove" onclick="location.replace("<%=request.getContextPath()%>/mypage/orderRemove?no=<%=o.getOrderNo() %>")">주문 취소</button>
 	          </td>
 	          <%} else{ %>
 	          <td>고민중</td>
@@ -277,13 +279,7 @@
         	var offset = $("#mysidemenu" + seq).offset();
             $('html, .mysidemenu').animate({scrollTop : offset.top},400);
         }
-	//행 삭제
-	function remocebtn(){e=>(
-			document.
-		<%if(oList != null){%>
-			for(var i=0; i < )
-		<%}%>
-	)}
+
 	
 </script>
 
