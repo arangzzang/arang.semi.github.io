@@ -29,15 +29,11 @@
         <!-- 상품 정보 -->
         <div id="cartList">
             <!-- 상품 선택 -->
-           
             <div id="cartList-children">
                 <!-- 상품 상세 내용 -->
                 <div id="productContent">
                     <table class="basketTable">
                         <caption style="text-align: center;font-weight:bold">장바구니 담긴상품 목록</caption>
-                        <colgroup>
-
-                        </colgroup>
                         <thead>
                             <tr>
                                 <th>사진</th>
@@ -50,8 +46,7 @@
                         </thead>
                           <form method="post" id="moveorder" action="<%=request.getContextPath()%>/order/productOrder">
                             <tbody class="basketList">
-                                 
-        <% for(Basket b : list) {%>
+        					<% for(Basket b : list) {%>
                                 <tr>
                                     <!-- 사진 -->
                                     <td>
@@ -81,22 +76,19 @@
                                     <td><i class="price"><%=formatter.format(b.getPrice())%></i>원</td>
                                     <!-- 비고 -->
                                     <td>
-                                         
                                           <p class="remove">삭제</p> 
                                     </td>
                                 </tr>
                                 <%} %>
-                                
                                  </tbody> 
                       	    </form>
                          <tfoot> 
                             <tr>
                                 <td colspan="6">
-                                     	 총 상품가격<i class="total-price"></i>원
+                                 총 상품가격<i class="total-price"></i>원
                                 </td>
                             </tr>
                          </tfoot> 
-                       
                     </table>
                     <div class="moveorder">
                         <button class="moveBtn" form="moveorder">주문하기</button>
@@ -110,39 +102,39 @@
 
 <style>
 
-		img{
-			width:100px;
-			height:100px;
-		}
-			.header-line{
-        	margin-top:0px;
-        	margin-bottom:15px;
-        	border-color:lightgray;
-        	background-color:lightgray;
-        	color:lightgray;
-        	opacity: 0.2;
-        	}
-			.order1{
-        		background-color:green;
-        		color:white;
-        	}
-        	.orderHeader{
-        		display:flex;
-        		justify-content: space-between;
-        	}
-        	.orderState{
-        		margin-right:120px;
-        		display:flex;
-        		list-style:none;
-        	}
-        	.orderState>li{
-        	border:lightgray 1px solid;
-        	border-radius:10px;
-        	padding: 10px 15px 11px 15px;
-        	font-weight: bold;
-        	text-align: center;
-        	height:43px;
-        	}
+	img{
+		width:100px;
+		height:100px;
+	}
+	.header-line{
+	   	margin-top:0px;
+	   	margin-bottom:15px;
+	   	border-color:lightgray;
+	   	background-color:lightgray;
+	   	color:lightgray;
+	   	opacity: 0.2;
+	   	}
+	.order1{
+      		background-color:green;
+      		color:white;
+      	}
+   	.orderHeader{
+   		display:flex;
+   		justify-content: space-between;
+   	}
+   	.orderState{
+   		margin-right:120px;
+   		display:flex;
+   		list-style:none;
+   	}
+   	.orderState>li{
+	   	border:lightgray 1px solid;
+	   	border-radius:10px;
+	   	padding: 10px 15px 11px 15px;
+	   	font-weight: bold;
+	   	text-align: center;
+	   	height:43px;
+   	}
 	.p-info{
 		margin:30px;
 	}
@@ -327,7 +319,7 @@
 	   var productNo;
   	   var basketNo;
   	 	
-        $(".remove").click(e => {
+        $(".remove").click(e =>{
     	 for(var i=0;i<prices.length;i++){
     		 if(e.target==removes[i]){
     			 productNo=productNos[i].value;
