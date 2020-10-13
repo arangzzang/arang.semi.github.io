@@ -53,7 +53,7 @@
 </style>
 	<div class="side_">
 	</div>
-<form name="test" method="get" class="form_1">
+<form name="test" method="post" class="form_1">
 	<div class="tag"><h1>MY CUSOM SALAD</h1></div>
 	<div class="customselect">
 		<span><b>베이스 선택 </b></span><span><img
@@ -342,16 +342,18 @@
 
 /* 장바구니, 주문하기 클릭 시 이동 설정 */
 	function test1(){
+   		var price=$(".print4").children()[0].textContent;
 	   <%if(loginMember!=null){%>
-		test.action="<%=request.getContextPath()%>/view/custom/test2.jsp";
+		 test.action="<%=request.getContextPath()%>/basket/customInBasket?price="+price; 
 		<%}else{%>
 		test.action="<%=request.getContextPath()%>/view/loginAlert.jsp";
 		<%}%>
-		test.submit();
+		 test.submit(); 
 	}
 	function test2(){
+		var price=$(".print4").children()[0].textContent;
 		 <%if(loginMember!=null){%>
-			test.action="<%=request.getContextPath()%>";
+			test.action="<%=request.getContextPath()%>/order/customOrder?price="+price;
 			<%}else{%>
 			test.action="<%=request.getContextPath()%>/view/loginAlert.jsp";
 			<%}%>

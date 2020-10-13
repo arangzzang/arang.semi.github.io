@@ -42,6 +42,7 @@ public class ProductOrderServlet extends HttpServlet {
 			aList.add(su);
 		}
 		List<Product> list=new ArrayList();//상품리스트
+		
 		if(amount.length==1){//상품하나 주문하기했을때
 			int productNo = Integer.parseInt(request.getParameter("productNo"));
 			Product p = new ProductService().detailProduct(productNo);
@@ -50,14 +51,19 @@ public class ProductOrderServlet extends HttpServlet {
 			request.setAttribute("amount", aList);
 			request.getRequestDispatcher("/view/order/productOrder.jsp").forward(request, response);
 		}else{//장바구니에서 주문하기 했을때
+			
 			String[] productNo=request.getParameterValues("productNo");//상품번호들을 받음
+			
 			for(String no: productNo){
+				
 				int pNo=Integer.parseInt(no);
+				
 				Product p=new ProductService().detailProduct(pNo);
 				list.add(p);
 			}
 			request.setAttribute("amount", aList);
 			request.setAttribute("list", list);
+			
 			request.getRequestDispatcher("/view/order/productOrder.jsp").forward(request, response);
 		}
 		

@@ -10,12 +10,16 @@ List<String> aList=(List)request.getAttribute("amount");
 List<Product> list=(List)request.getAttribute("list");
 /* int basketNo=(int)request.getAttribute("basketNo"); */
 int totalPrice=0;
+
 for(int i=0;i<list.size();i++){
 	int amount=Integer.parseInt(aList.get(i));
+	
 	int price=list.get(i).getProductPrice();
 	totalPrice+=amount*price;
+	
 }
 String[] address=loginMember.getMemberAddress().split(",");
+
 %>
 
 <script>
