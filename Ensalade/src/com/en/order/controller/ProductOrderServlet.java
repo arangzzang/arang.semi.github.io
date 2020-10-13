@@ -34,7 +34,7 @@ public class ProductOrderServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String product_number=request.getParameter("product_number");
 		String[] amount=request.getParameterValues("amount");
 		request.setAttribute("basketNo", request.getParameter("basketNo"));
 		List<String> aList=new ArrayList();
@@ -42,6 +42,7 @@ public class ProductOrderServlet extends HttpServlet {
 			aList.add(su);
 		}
 		List<Product> list=new ArrayList();//상품리스트
+		
 		if(amount.length==1){//상품하나 주문하기했을때
 			int productNo = Integer.parseInt(request.getParameter("productNo"));
 			Product p = new ProductService().detailProduct(productNo);
@@ -50,14 +51,20 @@ public class ProductOrderServlet extends HttpServlet {
 			request.setAttribute("amount", aList);
 			request.getRequestDispatcher("/view/order/productOrder.jsp").forward(request, response);
 		}else{//장바구니에서 주문하기 했을때
+			
 			String[] productNo=request.getParameterValues("productNo");//상품번호들을 받음
+			
 			for(String no: productNo){
+				
 				int pNo=Integer.parseInt(no);
+				
 				Product p=new ProductService().detailProduct(pNo);
 				list.add(p);
 			}
+			request.setAttribute("product_number",product_number);
 			request.setAttribute("amount", aList);
 			request.setAttribute("list", list);
+			
 			request.getRequestDispatcher("/view/order/productOrder.jsp").forward(request, response);
 		}
 		

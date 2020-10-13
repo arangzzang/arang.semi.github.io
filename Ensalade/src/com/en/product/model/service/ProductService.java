@@ -43,9 +43,8 @@ public class ProductService {
    public List<ProductReview> ProductReview(  int productNo, int cPage,int numPerPage) {
 	   Connection conn=getConnection();
 	   List<ProductReview> list=dao.ProductReview( productNo,conn,cPage,numPerPage);
-	   
-		close(conn);
-		return list;
+	   close(conn);
+	   return list;
 	
    }
    //상품 리뷰 페이징 전체 게시물 수
@@ -107,5 +106,14 @@ public class ProductService {
 		 close(conn);
 		 return likeCount;
 	 }
+   public List<ProductReview> myPage(String id){
+	   Connection conn = getConnection();
+	   List<ProductReview> prList=dao.myPage(conn,id);
+	   close(conn);
+	   System.out.println(prList);
+	   return prList;
+   }
+   
+   
    
 }
