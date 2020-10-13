@@ -6,10 +6,12 @@
 <%
 	DecimalFormat formatter=new DecimalFormat("###,###");//숫자 3자리마다 ,표시해주는 클래스
 	List<Basket> list=(List)request.getAttribute("list");
+	
+	
 	int totalPrice=0;
 	
 	for(Basket b : list){
-		totalPrice+=b.getMount()*b.getPrice();
+		totalPrice+=b.getMount()*( b.getPrice()-(b.getPrice()*b.getSalePrice()/100));
 		
 	}
 	
@@ -61,19 +63,20 @@
                                     </td>
                                     <!-- 수량 -->
                                     <td>
-                                       수량 : 
+                                       수량 : 					<%System.out.println(b.getSalePrice()); %>
                                        		<input type="button" value=" - " class="del">
                                             <input type="text" class="amount" name="amount" value="<%=b.getMount() %>" size="3" style="text-align:center;">
                                             <input type="button" value=" + " class="add"><br>
-                                            금액 :    <i class=sum><%=formatter.format(b.getPrice()*b.getMount()) %></i>원      
+                                            금액 :    <i class=sum><%=formatter.format(b.getSalePrice()!=0?(b.getPrice()-(b.getPrice()*b.getSalePrice()/100))*b.getMount():b.getPrice()*b.getMount()) %></i>원      
+                                          
                                             <%--  <i class=sum><%=b.getPrice()*b.getMount() %></i>  --%>
                                     </td>
                                     <!-- 배송비 -->
                                     <td>
-                                            <span>[기본 배송조건]</span>
+                                            <span>[기본 배송조건]</span>													
                                     </td>
-                                    <!-- 가격 -->
-                                    <td><i class="price"><%=formatter.format(b.getPrice())%></i>원</td>
+                                    <!-- 가격 -->													  				
+                                    <td><i class="price"><%= formatter.format(b.getSalePrice()!=0? b.getPrice()-(b.getPrice()*b.getSalePrice()/100):b.getPrice())%></i>원</td>
                                     <!-- 비고 -->
                                     <td>
                                           <p class="remove">삭제</p> 

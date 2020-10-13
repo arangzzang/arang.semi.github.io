@@ -8,14 +8,19 @@
 DecimalFormat formatter=new DecimalFormat("###,###");//숫자 3자리마다 ,표시해주는 클래스
 List<String> aList=(List)request.getAttribute("amount");
 List<Product> list=(List)request.getAttribute("list");
+
 /* int basketNo=(int)request.getAttribute("basketNo"); */
 int totalPrice=0;
+
 for(int i=0;i<list.size();i++){
 	int amount=Integer.parseInt(aList.get(i));
-	int price=list.get(i).getProductPrice();
+
+	int price=list.get(i).getProductPrice()-(list.get(i).getProductPrice()*list.get(i).getSalePer()/100);
 	totalPrice+=amount*price;
+	
 }
 String[] address=loginMember.getMemberAddress().split(",");
+
 %>
 
 <script>
@@ -79,7 +84,7 @@ String[] address=loginMember.getMemberAddress().split(",");
 		                	<th width=35%>수량</th>
 		                </tr>
 		               
-		                <%for(int i=0;i<list.size();i++){ %>
+		                <%for(int i=0;i<list.size();i++){ System.out.println(list.get(i).getSalePer());%>
 		                 
 		                <tr>
 		                	<td>
@@ -91,9 +96,9 @@ String[] address=loginMember.getMemberAddress().split(",");
 			                <p class="p-info"><%= list.get(i).getProductContent() %></p>
 			                </td>
 			                <td>
-			               	<i class="price"><%=formatter.format(list.get(i).getProductPrice()) %></i>원
+			               	<i class="price"><%=formatter.format(list.get(i).getProductPrice()-(list.get(i).getProductPrice()*list.get(i).getSalePer()/100)) %></i>원
 			                </td>
-			                <td>
+			                <td>								
 			                 <input class="del" type="button" value=" - " > 
 	                        <input type="text" name="amount" class="amount" value="<%=Integer.parseInt(aList.get(i)) %>" size="10" style="text-align:center;">
 	                        <input class="add" type="button" value=" + " ><br>

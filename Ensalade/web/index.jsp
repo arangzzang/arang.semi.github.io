@@ -42,7 +42,7 @@
 		<div class="swiper-slide">
 			<!--swiper-wrap : 이미지와 텍스트를 감싸는 div-->
 			<div class="swiper-wrap" id="productSection">
-				<img class="opacity" src="image/main/이미지2.jpg" alt="" width=100%>
+				<img class="opacity" src="image/main/샐러드배경1.jpg" alt="" width=100%>
 				<!--innerText : 텍스트와 버튼을 감싸는 div -->
 				<div class="innerText">
 					<!-- introText : 소개글 div -->
@@ -58,7 +58,7 @@
 		</div>
 		<div class="swiper-slide">
 			<div class="swiper-wrap" id="eventSection">
-				<img class="opacity" src="image/main/이미지3.jpg" alt="" width=100%>
+				<img class="opacity" src="image/main/샐러드배경2.jpg" alt="" width=100%>
 				<!--innerText : 텍스트와 버튼을 감싸는 div -->
 				<div class="innerText">
 					<!-- introText : 소개글 div -->

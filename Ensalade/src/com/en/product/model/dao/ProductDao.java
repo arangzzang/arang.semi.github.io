@@ -88,7 +88,9 @@ import com.en.product.model.vo.ProductReview;
 	              p.setProductImg3(rs.getString("product_img3"));
 	              p.setProductImg4(rs.getString("product_img4"));
 	              p.setProductImg5(rs.getString("product_img5"));
-	              p.setProductImg6(rs.getString("product_img6"));
+	              p.setProductImg5(rs.getString("product_img6"));
+	              p.setSalePer(rs.getInt("SALE_PER"));
+
 	           }
     	  }catch(SQLException e) {
     		  e.printStackTrace();
@@ -297,6 +299,7 @@ import com.en.product.model.vo.ProductReview;
 			   close(pstmt);
 		   }return lc;
 	   }
+
   	public List<ProductReview> myPage(Connection conn, String id){
   		PreparedStatement pstmt = null;
   		ResultSet rs = null;

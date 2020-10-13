@@ -73,7 +73,7 @@ public class InBasketServle extends HttpServlet {
 				request.setAttribute("loc", loc);
 				request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
 			}else{
-				int result =new BasketService().insertBasket(productNo,memberId,su,bNo);//회원의 기존장바구니번호로 상품을 추가
+				int result =new BasketService().insertBasket(productNo,su,bNo);//회원의 기존장바구니번호로 상품을 추가
 				if(result>0) {//존재하는 장바구니에 상품추가가 됐을때
 					response.sendRedirect(request.getContextPath()+"/basket/basketView?basketNumber="+bNo);
 				}else {//안됐을때

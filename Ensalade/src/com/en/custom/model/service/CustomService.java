@@ -140,6 +140,28 @@ public class CustomService {
 		close(conn);
 		return cCount;
 	}
+
+	public int searchCustomCount(String memberId) {
+		Connection conn=getConnection();
+		int count=cd.searchCustomCount(conn,memberId);
+		close(conn);
+		return count;
+	}
+	public int insertCustom(int price,String pName,String content,String memberId) {
+		Connection conn=getConnection();
+		int result=cd.insertCustom(conn,price,pName,content,memberId);
+		if(result>0){
+			result=cd.searchCustomNo(conn);
+			commit(conn);
+		}else{
+			result=-1;
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
+
 	
 	public String postList(int no){
 		Connection conn=getConnection();
@@ -157,4 +179,5 @@ public class CustomService {
 		return result;
 	}
 	
+
 }

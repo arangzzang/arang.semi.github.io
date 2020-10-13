@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.en.basket.model.service.BasketService;
+import com.en.member.model.service.MemberService;
 import com.en.member.model.vo.Member;
 import com.en.order.model.service.OrderService;
+import com.en.product.model.service.ProductService;
 
 /**
  * Servlet implementation class OrderInsertServlet
@@ -42,6 +44,11 @@ public class OrderInsertServlet extends HttpServlet {
 		address+=request.getParameterValues("address")[2];
 		String memo=request.getParameter("memo");
 		int total=Integer.parseInt(request.getParameter("total-pay"));
+		int totalpay=(total*5)/100;
+		System.out.println(totalpay);
+		
+		
+		int results=new MemberService().pointUpdate(memberId,totalpay);
 		int delivery=Integer.parseInt(request.getParameter("ba"));
 		String[] productNos=request.getParameterValues("productNo");
 		String[] amounts=request.getParameterValues("amount");

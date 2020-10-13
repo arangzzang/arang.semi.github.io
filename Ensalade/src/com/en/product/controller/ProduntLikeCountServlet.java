@@ -41,7 +41,7 @@ public class ProduntLikeCountServlet extends HttpServlet {
 		}
 
 		int cIdx = Integer.parseInt(request.getParameter("like_count"));
-		System.out.println(cIdx);
+		
 		Cookie[] ck = request.getCookies();
 		boolean flag = false;
 		String like = id;
@@ -68,7 +68,7 @@ public class ProduntLikeCountServlet extends HttpServlet {
 			c.setMaxAge(-1);
 			response.addCookie(c);
 			int result = new ProductService().likeCount(cIdx);
-			System.out.println(c.getValue());
+			
 		} else {
 
 			Cookie c = new Cookie("like", like);

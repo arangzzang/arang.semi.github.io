@@ -64,7 +64,7 @@
 							<div id="price">
 								<!-- 할인 적용 로직  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 								 <%if(product_number!=null){ %>
-								 <%System.out.println(p.getSalePer()); %>
+							
 								<p><strong class="price-strong">판매가격</strong>
 									<s class="won-color"><%=p.getProductPrice() %>원</s>
 								</p>
@@ -348,7 +348,7 @@
 
   				location.assign('<%=request.getContextPath()%>/view/login.jsp?productNo=<%=p.getProductNo()%>&loc=<%=loc%>&su='+su);
   			<%} else {%>
-  				location.assign('<%=request.getContextPath()%>/order/productOrder?productNo=<%=p.getProductNo()%>&amount='+su);
+  				location.assign('<%=request.getContextPath()%>/order/productOrder?productNo=<%=p.getProductNo()%>&product_number=<%=product_number%>&amount='+su);
   		<%}%>
   		}
   		//장바구니이동
