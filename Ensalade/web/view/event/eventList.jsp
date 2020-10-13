@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,17 +7,35 @@
 <%@ include file="/view/common/header.jsp"%>
 <%
     List<Event> list= (List)request.getAttribute("list");
+	DecimalFormat formatter=new DecimalFormat("###,###");
+	
+
 %>
 <section class="event-wrap">
-   <%for(Event e: list){%>
    <div class="event-container">
 		<div class="event-title-wrap">
 			<h2>Event</h2>
 		</div>
+   <%for(Event e: list){
+   		String product_number= formatter.format(e.getProductPrice()-(e.getProductPrice()*e.getSalePer()/100));%>
 		<div class="event-view_area">
+			<%if(e.getEventCategory().equals("기타")) {%>
 			<a class="aEvent" href="<%=request.getContextPath()%>/event/eventView?code=<%=e.getEventCode()%>">
 				<img class="imageEvent" src="<%=request.getContextPath()%><%=e.getThumnail()%>">
 			</a>
+			<%}else if(e.getEventCategory().equals("메뉴")) {%>
+			<a class="aEvent" href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=e.getProductNo() %><%=e.getSalePer()!=0 ?"&product_number="+product_number  : ""%>">
+				<img class="imageEvent" src="<%=request.getContextPath()%><%=e.getThumnail()%>">
+			</a>
+			<%}else if(e.getEventCategory().equals("카테고리")) {%>
+			<a class="aEvent" href="#">
+				<img class="imageEvent" src="<%=request.getContextPath()%><%=e.getThumnail()%>">
+			</a>
+			<%}else if(e.getEventCategory().equals("시즌")) {%>
+			<a class="aEvent" href="#">
+				<img class="imageEvent" src="<%=request.getContextPath()%><%=e.getThumnail()%>">
+			</a>
+			<%}%>
 		</div>
 		<input type="hidden" name="code" value="<%=e.getEventCode()%>">
 		<%}

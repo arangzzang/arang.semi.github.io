@@ -72,7 +72,7 @@ public class MemberDao {
 			pstmt.setString(5,m.getMemberPhone());
 			pstmt.setString(6,m.getMemberAddress());
 			pstmt.setString(7,m.getEmail());
-			pstmt.setDate(8,m.getBirthday());
+			pstmt.setDate(8, m.getBirthday());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -146,6 +146,25 @@ public class MemberDao {
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int modifyInfo(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("modifyInfo"));
+			pstmt.setString(1,m.getMemberPw());
+			pstmt.setString(2,m.getEmail());
+			pstmt.setString(3,m.getMemberPhone());
+			pstmt.setString(4,m.getMemberAddress());
+			pstmt.setString(5,m.getMemberId());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
 		return result;
 	}
