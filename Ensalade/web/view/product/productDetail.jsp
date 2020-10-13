@@ -460,7 +460,7 @@
         $(function() {
    		 console.log($(".tableTd").length);
         	$(".puoduct_slide").click(function() {
-        		console.log($(".puoduct_list_content2").not($(this).next()));
+
         		$(".puoduct_list_content2").not($(this).next()).css("display","none");
         	
         		$(this).next().slideToggle(500);

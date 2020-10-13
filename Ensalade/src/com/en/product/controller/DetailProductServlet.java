@@ -39,11 +39,14 @@ public class DetailProductServlet extends HttpServlet {
 		Product p = new ProductService().detailProduct(productNo);
 
 		String type = p.getProductType();
+		
 	    List<Product> list = new ProductService().relateProduct(type,productNo);
+
 	    for(int i = 0; i < list.size();i++) {
 	    	System.out.println(list.get(i).getProductNo());
 	    }
 	    
+
 	    String pageBar = "";
 		int cPage;
 		try {

@@ -11,13 +11,16 @@ List<Product> list=(List)request.getAttribute("list");
 
 /* int basketNo=(int)request.getAttribute("basketNo"); */
 int totalPrice=0;
+
 for(int i=0;i<list.size();i++){
 	int amount=Integer.parseInt(aList.get(i));
+
 	int price=list.get(i).getProductPrice()-(list.get(i).getProductPrice()*list.get(i).getSalePer()/100);
 	totalPrice+=amount*price;
+	
 }
 String[] address=loginMember.getMemberAddress().split(",");
-System.out.println(address);
+
 %>
 
 <script>
@@ -537,7 +540,7 @@ System.out.println(address);
 			});
 
 	});
-	 $.ajax({
+	<%--  $.ajax({
 			url:"<%=request.getContextPath()%>/order/productOrder",
 			data:{"point_count":$(".point_count").val(),"product_point":$(".product_point").val()"},
 			dataType:"html",
@@ -545,6 +548,6 @@ System.out.println(address);
 			success:data=>{
 				
 			}
-		})
+		}) --%>
 </script> 
          <%@include file="/view/common/footer.jsp" %> 
