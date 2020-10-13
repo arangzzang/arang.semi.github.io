@@ -60,7 +60,7 @@
 			src="<%=request.getContextPath() %>/image/downclick2.png" class="down"></span>
 	</div>
 	<hr>
-	<div>
+	<div id="base_">
 		<input type="checkbox" name="base" value="로메인,케일/5000"> 로메인, 케일
 		5.0 <input type="checkbox" name="base" value="로메인,양배추/5000">
 		로메인, 양배추 5.0 <input type="checkbox" name="base" value="로메인,치커리/5000">
@@ -75,7 +75,7 @@
 			src="<%=request.getContextPath() %>/image/downclick2.png" class="down"></span>
 	</div>
 	<hr>
-	<div>
+	<div id="top_">
 		<h5>THE GOODS</h5>
 		<input type="checkbox" name="topping" value="로스트치킨/2500"><span>로스트치킨 2.5</span> 
 		<input type="checkbox" name="topping" value="스파이시치킨/2500"> 스파이시치킨 2.5
@@ -115,7 +115,7 @@
 		<span><b>드레싱 선택 </b></span><span><img src="<%=request.getContextPath() %>/image/downclick2.png" class="down"></span>
 	</div>
 	<hr>
-	<div>
+	<div id="dr_">
 		<input type="checkbox" name="dressing" value="바질페스토/500"> 바질페스토 0.5 
 		<input type="checkbox" name="dressing" value="시저소스/500"> 시저 소스 0.5 
 		<input type="checkbox" name="dressing" value="크리미스리라차/500"> 크리미 스리라차 0.5 <br> 
@@ -165,7 +165,9 @@
 		})
 	})
 	
-
+	$("#base_").hide();//선택
+	$("#dr_").hide();
+	$("#top_").hide();
 
 
 /* 선택한 재료가  totalselect에 나오도록 설정 */
@@ -347,7 +349,31 @@
 		<%}else{%>
 		test.action="<%=request.getContextPath()%>/view/loginAlert.jsp";
 		<%}%>
-		test.submit();
+		let a=0;
+		let b=0;
+		let c=0;
+		
+		 $("#base_").find("[type=checkbox]").each((i,v)=>{
+		    	if($(v).prop("checked")==true){
+		    		a++;
+		    	}
+		    })
+		     $("#top_").find("[type=checkbox]").each((i,v)=>{
+		    	if($(v).prop("checked")==true){
+		    		b++;
+		    	}
+		    })
+		    $("#dr_").find("[type=checkbox]").each((i,v)=>{
+		    	if($(v).prop("checked")==true){
+		    		c++;
+		    	}
+		    })
+		   if(a==1&&b>=1&&c==1){
+			   test.submit();
+			   return;
+		   }
+		 alert('각 한 개 이상씩 골라주세요.');
+		return false;
 	}
 	function test2(){
 		 <%if(loginMember!=null){%>
@@ -355,16 +381,38 @@
 			<%}else{%>
 			test.action="<%=request.getContextPath()%>/view/loginAlert.jsp";
 			<%}%>
-		
-		
-		
-		test.submit();
+			let a=0;
+			let b=0;
+			let c=0;
+			
+			 $("#base_").find("[type=checkbox]").each((i,v)=>{
+			    	if($(v).prop("checked")==true){
+			    		a++;
+			    	}
+			    })
+			     $("#top_").find("[type=checkbox]").each((i,v)=>{
+			    	if($(v).prop("checked")==true){
+			    		b++;
+			    	}
+			    })
+			    $("#dr_").find("[type=checkbox]").each((i,v)=>{
+			    	if($(v).prop("checked")==true){
+			    		c++;
+			    	}
+			    })
+			   if(a==1&&b>=1&&c==1){
+				   test.submit();
+				   return;
+			   }
+			 alert('각 한 개 이상씩 골라주세요.');
+			return false;
 	}
 
    /*  $(function(){
         $("input[type='checkbox']").attr("onclick","count(this,event);");
     }) */
 
+   
 
 </script>
 

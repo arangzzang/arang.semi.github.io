@@ -114,7 +114,32 @@ public class OrderDao {
 			close(pstmt);
 		}
 		return list;
-		
+	}
+	public List<Order> myPage(Connection conn, String id){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Order> list = new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("mypage"));
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Order o = new Order();
+				o.setOrderDate(rs.getDate("order_date"));
+				o.setProductThumbnail(rs.getString("product_thumbnail"));
+				o.setProductName(rs.getString("product_name"));
+				o.setProductContent(rs.getString("product_content"));
+				o.setOrderMount(rs.getInt("order_mount"));
+				o.setProductPrice(rs.getInt("total_price"));
+				o.setOrderStatus(rs.getString("order_status"));
+				list.add(o);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return list;
 	}
 	
 }

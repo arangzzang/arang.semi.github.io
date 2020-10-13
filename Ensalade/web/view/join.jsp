@@ -279,6 +279,14 @@
 			$("#password2").val("");
 		}
 	});
+	
+	$("#userId_").keyup(e=>{//아이디 한글 못받게
+		let t=/[^a-zA-Z]/g;
+		if(t.test($(e.target).val())){
+			alert('아이디는 영문자만 입력해주세요.');
+			$(e.target).val("");
+		}
+	})
        /* $("#password_").click(e=>{
 		if($("#password_").next().attr("type")==("P")){
 			$("#password_").next().remove();

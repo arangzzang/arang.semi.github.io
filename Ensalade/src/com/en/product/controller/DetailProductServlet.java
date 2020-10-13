@@ -37,10 +37,11 @@ public class DetailProductServlet extends HttpServlet {
 		int productNo = Integer.parseInt(request.getParameter("productNo"));
 		//관련 상품 정보출력
 		Product p = new ProductService().detailProduct(productNo);
-		System.out.println(p.getProductName());
 		String type = p.getProductType();
 	    List<Product> list = new ProductService().relateProduct(type,productNo);
-	    
+	    for(int i = 0; i < list.size();i++) {
+	    	System.out.println(list.get(i).getProductNo());
+	    }
 	    
 	    String pageBar = "";
 		int cPage;

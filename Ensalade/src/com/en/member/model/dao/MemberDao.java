@@ -72,7 +72,7 @@ public class MemberDao {
 			pstmt.setString(5,m.getMemberPhone());
 			pstmt.setString(6,m.getMemberAddress());
 			pstmt.setString(7,m.getEmail());
-			pstmt.setDate(8,m.getBirthday());
+			pstmt.setDate(8, m.getBirthday());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
