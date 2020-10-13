@@ -39,15 +39,7 @@
 	List<ProductComment> commentList = (List) request.getAttribute("commentList");
 	
 	int totalData=(int)request.getAttribute("totalData");
-
-	
-	
-
-
 %>
-
-
-
 <section class="thisproduct">
 	<!-- 상품 썸네일 이미지/ 상품 정보 부모창-->
 	<div class="infromation-parent">
@@ -56,7 +48,6 @@
 			<!-- 상품 썸네일 이미지 -->
 			<div >
 				<img class="img-style" src="<%=request.getContextPath()%><%=p.getProductThumbnail()%>"alt="">
-
 			</div>
 			<!-- 상품 정보 -->
 			<div class="productinformation">
@@ -93,7 +84,6 @@
    							&nbsp;&nbsp;&nbsp;있습니다. 이점 양해 부탁드리며, 배송 메세지에 희망 수령일을 기재해주시면
    							<br>
    							&nbsp;&nbsp;&nbsp;최대한 반영해 드리고 있습니다.
-					
 							</p>
 						</form>
 					</div>
@@ -114,7 +104,6 @@
               <div class="swiper-slide a-slide">
                 <ul>
                  <%for(int j=i*4;j<(i+1)*4;j++){%> 
-                 
                    <li>    
 	                  <a href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=list.get(j).getProductNo()%>">
 		                  <img alt="" src="<%=list.get(j).getProductThumbnail() %>" class="product-img">
@@ -157,8 +146,7 @@
 				<span class="infos-ch33">배송안내</span>
 				<span ></span>
 				</a>
-				</li>
-				
+				</li>	
 			</ul>
 			 <!--     		<div class="infos-ch2"> 
 			<button class="infos-ch2" onclick="move('1')" class="infobtn">상품 정보</button>
@@ -222,17 +210,7 @@
 					쓰러가기</span></button>
 			</div>
 		</div>
-		
-
-
-
-
-
-
-
-
 		<!-- 클래스명은 변경하면 안 됨 스와이퍼 -->
-	
 		<h1 id="swiper-view">사진 모아보기</h1>
 		<div class="swiper-container b-container">
 			<div class="swiper-wrapper b-wrapper">
@@ -241,37 +219,26 @@
 				<div class="swiper-slide b-slide">
 					<img
 						style="background-image: url('<%=request.getContextPath() %><%=prs.getFilepath() %>')">
-
 				</div>
-
 				<%}} %>
-
 			</div>
 			<!-- Add Pagination -->
-
 			<div class="swiper-pagination b-pagination"></div>
-
 			<!-- Add Arrows -->
 			<div class="swiper-button-next b-button-next"></div>
 			<div class="swiper-button-prev b-button-prev"></div>
-
 		</div>
 	</div>
 	<span id="scroll"></span>
 	<h1 id="views-list">등록된  리뷰</h1><p id="tatal-Data"><%=totalData%></p>
-	<%
-		for (ProductReview pr : reviewList) {
-	%>
+	<%for (ProductReview pr : reviewList) {%>
 	<div id="review-list">
 		<div id="puoduct_list">
 			<div class="puoduct_slide">
 				<table id="tavle_Table">
-
 					<tbody id="tavle_Puoduct" class="puoduct_slidew2">
-
 						<tr>
 							<td class="tableTd"><%=pr.getReviewtNo()%></td>
-
 							<td class="tableTd_2"><%=pr.getReviewWriter()%></td>
 							<td class="tableTd_3"><%=pr.getReviewTitle()%> 
 							<%if(!pr.getFilepath().contains("null")){ %>
@@ -283,23 +250,16 @@
 							</span><%} %></td>
 							<td class="tableTd_4"><%=pr.getReviewWriteDate()%></td>
 							<td id="tableTD_5" class="tableTd_5"></td>
-
 						</tr>
-
-
 					</tbody>
 				</table>
-
 			</div>
 			<div id="puoduct_list_content" class="puoduct_list_content2">
-
 				<span class="like"> <input type="hidden"
 					value="<%=pr.getReviewtNo()%>"> <svg class="a3"
 						aria-hidden="true" focusable="false" data-prefix="far"
 						data-icon="heart" class="svg-inline--fa fa-heart fa-w-16"
-						role="img" xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 512 512">
-						
+						role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 						<path fill="currentColor"
 							d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"></path></svg></span>
 				<p class="m2"><%=pr.getReviewViews()%></p>
@@ -309,12 +269,9 @@
 				<img class=" img-list" src="<%=request.getContextPath()%><%=pr.getFilepath()%>">
 				<%} %>
 				</div>
-				<%
-						 if(loginMember!=null && loginMember.getMemberId().equals("admin")) { 
-						%>
+				<%if(loginMember!=null && loginMember.getMemberId().equals("admin")) { %>
 				<div class="comment-container">
 					<div class="comment-editor">
-						
 						<form action="<%=request.getContextPath()%>/product/productReview"
 							method="post" class="form1">
 							<input type="hidden" name="productCommentLevel" value="1">
@@ -327,23 +284,17 @@
 							<textarea name="productCommentContent" cols="55" rows="3"></textarea>
 							<input type="submit" value="등록">
 						</form>
-					
 					</div>
 				</div>
-					<%
-							}
-						%>
-				<%
-						for (ProductComment pc : commentList) {
-								if (pc.getProductCommentLevel() == 1 && pc.getProductRef() == pr.getReviewtNo()) {
-					%>
+					<%}%>
+				<%for (ProductComment pc : commentList) {
+					if (pc.getProductCommentLevel() == 1 && pc.getProductRef() == pr.getReviewtNo()) {%>
 				<div class="review-item">
 					<div class="wirter-color"><%=pc.getProductCommentWriter()%> </div>
 					<div><p><%=pc.getProductCommentContent()%></p></div>
 					<div><%=pc.getProductCommentDate()%></div>
 				</div>	
 				<%-- <table id="tbl-comment">
-					
 					<tr class="level1">
 						<td><sub class="comment-writer"><%=pc.getProductCommentWriter()%></sub>
 							<sub class="comment-date"><%=pc.getProductCommentDate()%></sub> <br>
@@ -364,19 +315,10 @@
 						</td>
 					</tr>
 					</table> --%>
-					<%
-						}
-					%>
-					<%
-						}
-					%>
-				
-
+						<%}%>
+					<%}%>
 			</div>
-			<%
-				}
-			%>
-
+			<%}%>
 			<%if(!reviewList.isEmpty()){ %>
 			<div id="pagebar"><%=pageBar%></div>
 			<%} %>
@@ -387,11 +329,7 @@
 
 
 <script type="text/javascript">
-  
-  
-
   		//주문하기이동
-
   		function moveorder(){
   			var su=$("#amount").val();
 
@@ -473,7 +411,7 @@
                 sum.textContent = (parseInt(hm.value) * price).toLocaleString();;
             }
         }
-        //상품 정보,배송 정보, 상품 후기
+        //상품 정보,배송 정보, 상품 후기 클릭시 이동
         function move(seq){
         	var offset = $("#infobtn" + seq).offset();
             $('html, body').animate({scrollTop : offset.top}, 400);
@@ -484,14 +422,6 @@
     	  $(e.target).next().addClass("bars");
     	 
        })
-           
-            	
-         
-            
-        
-        
-      
-       
         //스크롤 내릴시 css(sticky) 설정
 //         window.onscroll = function(){scrollsticky()};
 //         let infobtns = doucument.getElementById("infobtns-ch");
@@ -503,10 +433,7 @@
 // 				  infobtns.classList.remove("sticbar");
 // 			  }
 // 		}
-        
-       
-
-       
+		//리뷰
         $(".puduct_size").hover(e=> {
     		$(e.target).next().css("display","inline-block");
     		}, function(){
@@ -519,14 +446,11 @@
         		$(".puoduct_list_content2").css("display","none");
         	
         		$(this).next().slideToggle(500);
-        		
         	});
-        	
         });
+        //댓글,대댓글 스크립트구문
     	$(".btn-reply").click(e=>{
-    	<%if (loginMember != null) {%>
-    	
-    	
+    		<%if (loginMember != null) {%>
     		let tr=$("<tr>");
     		let form=$("#form1").clone();
     		form.find("textarea").attr("rows","1");
@@ -541,27 +465,18 @@
     		tr.find("td").css("display","none");
     		$(e.target).parents("tr").after(tr.children("td").slideDown(800));
     		$(e.target).off("click");//클릭이벤트제거하기
-    		
-    		
+    		<%}%>
+    	});
     	
-    	<%}%>
-    	
-    });
     	$(function(){
     		<%if (productRef != 0||pages!=null) {%>
-    		
-    		
     		var location = document.querySelector("#scroll").offsetTop;
     		console.log(location);
     		window.scrollTo({ top:location , behavior:'auto'});
-    		
     		for(var i=0;i<$(".tableTd").length;i++){
-    		
     			if(<%=productRef%>==$(".tableTd")[i].textContent){
-    			
     			$(".puoduct_slide")[i].click();
     			};};
-    			
     			<%}%>
     		});
     	
@@ -572,10 +487,8 @@
    			dataType:"html",
    			type:"post",
    			success:data=>{
-   				
    				$(e.target).parent().next().html(data);
    			}
-   			
    		})
    	})
         //스와이퍼
