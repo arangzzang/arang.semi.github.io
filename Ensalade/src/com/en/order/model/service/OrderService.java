@@ -42,4 +42,10 @@ public class OrderService {
 		close(conn);
 		return list;
 	}
+	public List<Order> myPage(String id){
+		Connection conn = getConnection();
+		List<Order> list = dao.myPage(conn, id);
+		close(conn);
+		return list;
+	}
 }

@@ -119,7 +119,7 @@ public class CustomDao {
 				cp.setViewCount(rs.getInt("VIEW_COUNT"));
 				cp.setCustomNo(rs.getInt("CUSTOM_NO"));
 				cp.setMemberId(rs.getString("MEMBER_ID"));
-				cp.setcImage("C_IMAGE");
+				cp.setcImage(rs.getNString("C_IMAGE"));
 				list.add(cp);
 			}
 		}catch(SQLException e) {
@@ -168,7 +168,7 @@ public class CustomDao {
 					cp.setViewCount(rs.getInt("VIEW_COUNT"));
 					cp.setCustomNo(rs.getInt("CUSTOM_NO"));
 					cp.setMemberId(rs.getString("MEMBER_ID"));
-					cp.setcImage("C_IMAGE");
+					cp.setcImage(rs.getString("C_IMAGE"));
 					list.add(cp);
 			   }
 		   }catch(SQLException e){
@@ -299,7 +299,7 @@ public class CustomDao {
 					cp.setViewCount(rs.getInt("VIEW_COUNT"));
 					cp.setCustomNo(rs.getInt("CUSTOM_NO"));
 					cp.setMemberId(rs.getString("MEMBER_ID"));
-					cp.setcImage("C_IMAGE");
+					cp.setcImage(rs.getString("C_IMAGE"));
 			   }
 		   }catch(SQLException e) {
 			   e.printStackTrace();
@@ -398,6 +398,7 @@ public class CustomDao {
 		}
 		return cCount;
 	}
+
 	public int searchCustomCount(Connection conn, String memberId) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -451,4 +452,46 @@ public class CustomDao {
 		return result;
 	}
 	
+
+
+	public String postList(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String c=null;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("postList"));
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				c=rs.getNString("C_IMAGE");
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return c;
+	}
+
+	public int updatePost(Connection conn, CustomPost c) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("updatePost"));
+			pstmt.setString(1, c.getTitle());
+			pstmt.setString(2,c.getContent());
+			pstmt.setString(3, c.getcImage());
+			pstmt.setInt(4,c.getcIdx());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	   
+
 }

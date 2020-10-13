@@ -17,7 +17,7 @@
 		<!-- 사진 및 글 내용 -->
 		<div class="left">
 		<div class="vbox-imgbox">
-			<img src="<%=request.getContextPath()%>/image/img1.jpg" id="img1">
+			<img src="<%=request.getContextPath()%>/upload/custom/<%=cp.getcImage()%>" id="img1">
 		</div>
 		<div class="comment-box">
 		<!-- <h2 class="comment-box_header">
@@ -331,6 +331,11 @@ section.contents-wrap {
 	color:forestgreen;
 }
 
+#img1{
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
 </style>
 
 <%@ include file="/view/common/footer2.jsp"%>

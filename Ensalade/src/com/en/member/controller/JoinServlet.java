@@ -49,6 +49,7 @@ public class JoinServlet extends HttpServlet {
 		Calendar d=Calendar.getInstance();
 		d.set(year,month,date);
 		m.setBirthday(new Date(d.getTimeInMillis()));
+		System.out.println(m);
 		int result=new MemberService().insertMember(m);
 		
 		String msg="";

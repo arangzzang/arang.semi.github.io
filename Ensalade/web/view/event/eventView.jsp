@@ -4,42 +4,35 @@
     pageEncoding="UTF-8"%>
 
 <%@include file="/view/common/header.jsp"%>
-<style>
-section {padding-top: 100px; height:auto;}	
-	div#imgContent{ margin: 20px auto;}
-	div#imgDiv{width:100%;}
-	.eventPageImg{display: block; position: relative; left: 20%;}
-</style>
+
 <%
 	List<EventContent> list = (List)request.getAttribute("list");
 	String code = request.getParameter("code");
 %>
 
-<section style="text-align:center;">
+<section id="content-wrap">
 	<h2>이벤트</h2>
-	<div id = "imgContent">
-	<%for(EventContent e : list){ %>
-		<div id="imgDiv">
-			<img class="eventPageImg" src="<%=request.getContextPath()%><%=e.getEventImg() %>">
+		<div class="e_container">
+			<div id = "imgContent">
+			<%for(EventContent e : list){ %>
+				<div id="imgDiv">
+					<img class="eventPageImg" src="<%=request.getContextPath()%><%=e.getEventImg() %>">
+				</div>
+			<%} %>
+			</div>
+			<div class="noticeV-button">
+					<div>
+						<input class="form-control_input_btn" type="button" value="목록" id="listBack">
+					</div>
+				<%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
+					<div style="display: flex; margin-right: 20px;">
+						<input class="form-control_input_btn padd" type="button" value="수정하기" id="updateBtn">
+						<input class="form-control_input_btn padd" type="button" value="삭제하기"	id="deleteBtn">
+					</div>
+				 <input type="hidden" id="eventNo" value="<%=code%>">
+				<%} %>
+			</div>
 		</div>
-	<%} %>
-	</div>
-
-	<div class="noticeV-button">
-		<span class="gLeft">
-			<div>
-				<input class="form-control_input_btn" type="button" value="목록" id="listBack">
-			</div>
-		</span>
-		<%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
-		<span class="gRight">
-			<div style="display: flex; margin-right: 20px;">
-				<input class="form-control_input_btn padd" type="button" value="수정하기" id="updateBtn">
-				<input class="form-control_input_btn padd" type="button" value="삭제하기"	id="deleteBtn">
-			</div>
-		</span> <input type="hidden" id="eventNo" value="<%=code%>">
-		<%} %>
-	</div>
 </section>
 
 	
@@ -62,6 +55,14 @@ section {padding-top: 100px; height:auto;}
 
 
 <style>
+div#imgContent {
+	margin: 20px auto;
+}
+
+div#imgDiv {
+	width: 100%;
+}
+
 .padd {
 	margin-right: 10px;
 }
@@ -74,15 +75,6 @@ section {padding-top: 100px; height:auto;}
 	margin: 0 50px;
 }
 
-.gRight {
-	float: right;
-	text-align: right;
-}
-
-.gLeft {
-	float: left;
-	text-align: left;
-}
 .form-control_input_btn {
 	height: 25px;
 	width: 100px;
@@ -94,6 +86,16 @@ section {padding-top: 100px; height:auto;}
 	cursor: pointer;
 	border-style: none;
 	font-weight: inherit;
+}
+
+.e_container {
+	width: 100%;
+	display: inline;
+}
+section#content-wrap{
+	text-align:center;
+	padding-top: 100px;
+	height: auto;
 }
 </style>
 <%@include file="/view/common/footer.jsp"%>

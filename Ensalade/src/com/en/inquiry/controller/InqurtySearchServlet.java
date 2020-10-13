@@ -45,6 +45,7 @@ public class InqurtySearchServlet extends HttpServlet {
 			request.setAttribute("msg", "로그인이 필요합니다.");
 			request.setAttribute("loc", "/view/login.jsp");
 			request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
+			return;
 		}
 
 		List<Inquiry> list = new InquiryService().SerchInqurty();
