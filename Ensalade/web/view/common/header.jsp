@@ -41,6 +41,7 @@
                         <ul>
                             <li><a href="<%=request.getContextPath()%>/admin/memberAll">회원관리</a></li>
                             <li><a href="">상품관리</a></li>
+                            <li><a href="<%=request.getContextPath()%>/inquiry">1:1문의 답변</a></li>
                         </ul>
                     </li>
                     <%} %>
@@ -71,12 +72,12 @@
                             <li><a href="<%=request.getContextPath()%>/FAQ/FAQboard">FAQ</a></li>
                         </ul>
                     </li>
-                    <li><a href="<%=request.getContextPath()%>/view/MyPage/mypageAll.jsp">마이페이지</a>
+                    <li><a href="<%=!a.equals("1")?cPath+"/view/MyPage/mypageAll.jsp":login%>">마이페이지</a>
                         <ul>
                             <li><a href="<%=!a.equals("1")?cPath:login%>">장바구니</a></li>
                             <li><a href="<%=!a.equals("1")?cPath:login%>">배송현황</a></li>
                             <li><a href="<%=!a.equals("1")?cPath:login%>">나의 커스텀</a></li>
-                            <li><a href="<%=request.getContextPath()%>/inquiry">1:1문의 답변</a></li>
+                            <li><a href="<%=!a.equals("1")?cPath+"/inquiry/searchInquiryMem?no="+loginMember.getUser_no():login%>">1:1문의</a></li>
                         </ul>
                     </li>
 <%--                  <%}else if(loginMember!=null){ %>
