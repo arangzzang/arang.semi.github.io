@@ -31,14 +31,9 @@ public class FAQBoardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		List<FAQ> list = new FAQService().selectFAQ();
-		
 		request.setAttribute("list", list);
-		
-		
 		request.getRequestDispatcher("/view/FAQ/FAQList.jsp").forward(request, response);
-	
 	}
 
 	/**
