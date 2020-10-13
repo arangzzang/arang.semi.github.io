@@ -13,17 +13,6 @@
 %>
 <%@ include file="/view/common/header.jsp"%>
 
-<script type="text/javascript">
-    $(function () {
-        $(".inquiryUI").click(function () {
-            $(this).next().slideToggle(500);
-        })
-    });
-	$("#listBack").click(e =>{
-		location.assign('<%=request.getContextPath()%>/searchNotice');
-	});
-</script>
-
 <section id="inquiry-container">
         <div class="inquiry-left"></div>
         <div class="inquiry-right">
@@ -33,7 +22,7 @@
             <div id="inquiryUI-wrap">
                 <%for (Inquiry ii : list) {	%>
                 <div class="inquiryUI content_top">
-                    <ul id="inquiryUl" class="form-control">
+                    <ul id="inquiryUl" class="form-control" style="cursor: pointer;">
                         <li><%=ii.getInquiryType()%></li>
                         <li><%=ii.getInquiryTitle()%></li>
                        	<li><%=ii.getInquiryWriter()%></li>
@@ -207,10 +196,22 @@ section#inquiry-container {
 	text-align: center;
 }
 </style>
-<script>
+
+<script type="text/javascript">
+	$(function () {
+	    $(".inquiryUI").click(function () {
+	        $(this).next().slideToggle(500);
+	    })
+	});
+
+	$("#listBack").click(e =>{
+		location.assign('<%=request.getContextPath()%>/searchNotice');
+	});
+
 	<%for(Inquiry i : list){
 		if(i.getCommentStatus().contains("완료")){ %>
 			$(".answer-check>p:contains('답변완료')").css("color","blue");
 	<%}}%>
 </script>
 <%-- <%@ include file="/view/MyPage/inquiry/inquiryManger.jsp"%> --%>
+<%@include file="/view/common/footer.jsp"%>
