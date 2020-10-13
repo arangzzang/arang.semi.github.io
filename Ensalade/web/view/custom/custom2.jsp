@@ -3,8 +3,58 @@
 
 <%@include file="/view/common/header.jsp"%>
 
-<form name="test" method="get">
 <section class="contents-wrap">
+<style>
+.side_ {
+	width: 700px;
+	border: 1px solid black;
+	height: 735px;
+	margin-right: 100px;
+	background-image: url("<%=request.getContextPath()%>/image/cimage.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+.totalselect{
+	overflow: auto;
+	width: 100%;
+	height: 150px;
+	margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.tag {
+	margin-bottom: 80px;
+}
+
+.cBtn {
+	display:flex;
+}
+.cBtn2:hover{
+	background-color:#3B966E;
+}
+
+.cBtn2 {
+	width: 50%;
+	height: 50px;
+	border-radius: 4px;
+	border: 1px solid #fff;
+	font-weight: 700;
+	color:white;
+    cursor: pointer;
+    background-color: #27b06e;
+}
+.form_1{
+	min-width:530.15px;
+}
+.p{
+	margin-bottom:15px;
+}
+</style>
+	<div class="side_">
+	</div>
+<form name="test" method="get" class="form_1">
+	<div class="tag"><h1>MY CUSOM SALAD</h1></div>
 	<div class="customselect">
 		<span><b>베이스 선택 </b></span><span><img
 			src="<%=request.getContextPath() %>/image/downclick2.png" class="down"></span>
@@ -27,7 +77,7 @@
 	<hr>
 	<div>
 		<h5>THE GOODS</h5>
-		<input type="checkbox" name="topping" value="로스트치킨/2500"> 로스트치킨 2.5 
+		<input type="checkbox" name="topping" value="로스트치킨/2500"><span>로스트치킨 2.5</span> 
 		<input type="checkbox" name="topping" value="스파이시치킨/2500"> 스파이시치킨 2.5
 		<input type="checkbox" name="topping" value="포크스테이크/3500"> 포크스테이크 3.5 
 		<input type="checkbox" name="topping" value="로스트쉬림프/3500"> 로스트쉬림프 3.5 
@@ -75,37 +125,36 @@
 	
 	
 	<!-- 선택한 아이템들 나오는 div -->
-	<div class="totalselect" style="overflow: auto; width: 500px; height: 150px;">
-		<div class="print1">
+	<div class="totalselect">
 			<h5>베이스</h5>
-			
+		<hr>
+		<div class="print1 p">
 		</div>
 	
-		<div class="print2">
-			<h5>토핑 (최대 몇개)</h5>
-			<p>
-				테<br>스<br>트<br>중<br>
-			</p>
+			<h5>토핑</h5>
+		<hr>
+		<div class="print2 p">
 		</div>
 	
-		<div class="print3">
 			<h5>드레싱</h5>
-			<p>
-				테<br>스<br>트<br>중<br>
-			</p>
+		<hr>
+		<div class="print3 p">
 		</div>
-		<div class="print4">
+		<h5>합산 가격</h5>
+		<hr>
+		<div class="print4 p">
 		
 		</div>
 	</div>
 	
 	<!-- 장바구니/주문하기 버튼 -->
-	<div>
-		<input type="button" value="장바구니" onclick="test1();"> 
-		<input type="button" value="주문하기" onclick="test2();">
+	<div class="cBtn">
+		<input type="button" value="장바구니" onclick="test1();" class="cBtn2"> 
+		<input type="button" value="주문하기" onclick="test2();" class="cBtn2">
 	</div>
 	</form>
-
+	
+</section>
 <script>
 
 
@@ -149,7 +198,7 @@
 	function updateTopping(){
       let ck="";
       let p=$("<p>"); 
-      let tp=$(".print2").html("<h5>토핑(최대 3개)</h5>");
+      let tp=$(".print2").html("");
       
       $("input[name=topping]:checked").each(function(i){
          if(i!=0){
@@ -170,7 +219,7 @@
    function updateDressing(){
 	   let ck="";
 	      let p=$("<p>"); 
-	      let tp=$(".print3").html("<h5>드레싱</h5>");
+	      let tp=$(".print3").html("");
 	      
 	      $("input[name=dressing]:checked").each(function(i){
 	         if(i!=0){
@@ -332,12 +381,14 @@ section.contents-wrap {
             max-width: 100%;
             box-sizing: border-box;
             min-height: 1px;
+            display:flex;
+            margin-bottom:300px;
+            padding:0px;
         }
 .down {
 	width: 20px;
 	height: 15px;
 }
 </style>
-</section>
 
 <%@include file="/view/common/footer2.jsp"%>

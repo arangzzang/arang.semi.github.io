@@ -65,6 +65,17 @@
     list-style-type: none;
     padding: 10px;
   }
+  .sidebar{
+   	position : relative;
+    width: 200px;
+	}
+  .sidebarnav{
+   	left : 30px;
+   	height: 200px;
+   	width: 100%;
+   	position: absolute;
+   	left:0
+	}
   /*상세내용*/
   .myPage{
     margin: 0px 50px 30px ;
@@ -79,7 +90,7 @@
   .myPage>div{
     margin-bottom: 20px;
   }
-  .myPage>div>table,p{
+  .myPage>div>table{
     border: 1px solid black;
     text-align: center;
   }

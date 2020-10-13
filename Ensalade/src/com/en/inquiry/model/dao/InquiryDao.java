@@ -50,13 +50,12 @@ public class InquiryDao {
 	public List<Inquiry> SerchInqurty(Connection conn) {
 	      PreparedStatement pstmt=null;
 	      ResultSet rs=null;
-	      List<Inquiry>list=new ArrayList();
+	      List<Inquiry>list=new ArrayList<Inquiry>();
 	      try {
 	         pstmt=conn.prepareStatement(prop.getProperty("SerchInqurty"));
 	         rs=pstmt.executeQuery();
 	         while(rs.next()) {
 	            Inquiry ii=new Inquiry();
-	            
 	            ii.setInquiryNo(rs.getInt("INQUIRY_NO"));
 	            ii.setInquiryType(rs.getString("INQUIRY_TYPE"));
 	            ii.setInquiryTitle(rs.getString("INQUIRY_TITLE"));
@@ -65,16 +64,16 @@ public class InquiryDao {
 	            ii.setFilePath(rs.getString("FILEPATH"));
 	            ii.setInquiryWriteDate(rs.getDate("INQUIRY_WRITE_DATE"));
 	            ii.setCommentStatus(rs.getString("COM_STATUS"));
+	            ii.setInquiryComment(rs.getString("INQUIRY_COMMENT_CONTENT"));
+	            ii.setCommentDate(rs.getDate("INQUIRY_COMMENT_DATE"));
 	            list.add(ii);
-	            
 	         }
 	      }catch(SQLException e) {
 	         e.printStackTrace();
 	      }finally {
 	         close(pstmt);
 	         close(rs);
-	      }
-	      return list;
+	      }return list;
 	   }
 	
 	public List<Inquiry> searchMemberInquiry(Connection conn, int no){

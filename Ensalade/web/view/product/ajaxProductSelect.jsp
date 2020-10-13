@@ -16,9 +16,9 @@ List<Product> list = (List)request.getAttribute("list");%>
 		            <!-- 상품정보 -->
 		            <img src="<%=request.getContextPath()%>/image/salad1.jpg">
 		             <p>
-					<h5><strong><%=p.getProductName() %></strong></h5>
-					<p><%=p.getProductContent() %></p>
-					<span class="productInfo"><em><%=formatter.format(p.getProductPrice()) %></em></span>
+						<h5><strong><%=p.getProductName() %></strong></h5>
+							<p><%=p.getProductContent() %></p>
+						<span class="productInfo"><em><%=formatter.format(p.getProductPrice()) %></em></span>
 					</p>
 		         </a>
 		     </div>
