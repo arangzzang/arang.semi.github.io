@@ -58,10 +58,10 @@
                             <li><a href="<%=request.getContextPath()%>/custom/customList">커뮤니티</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">매장찾기</a>
+                    <li><a href="<%=request.getContextPath()%>/view/store/store.jsp">매장찾기</a>
                         <ul>
-                            <li><a href="">주소검색</a></li>
-                            <li><a href="">매장찾기</a></li>
+                            <li><a href="<%=request.getContextPath()%>/view/store/store.jsp">주소검색</a></li>
+                            <li><a href="<%=request.getContextPath()%>/view/store/store.jsp">매장찾기</a></li>
                         </ul>
                     </li>
                     <li><a href="<%=request.getContextPath()%>/searchNotice">고객센터</a>
