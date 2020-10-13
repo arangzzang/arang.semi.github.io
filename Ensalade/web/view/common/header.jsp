@@ -75,7 +75,7 @@
                             <li><a href="<%=request.getContextPath()%>/FAQ/FAQboard">FAQ</a></li>
                         </ul>
                     </li>
-                    <li><a href="*">마이페이지</a>
+                    <li><a href="<%=request.getContextPath()%>/view/MyPage/mypageAll.jsp">마이페이지</a>
                         <ul>
                             <li><a href="<%=request.getContextPath() %>/basket/basketView">장바구니</a></li>
                             <li><a href="<%=!a.equals("1")?cPath:login%>">배송현황</a></li>
@@ -112,7 +112,11 @@
                             <li><a href="<%=request.getContextPath()%>/FAQ/FAQboard">FAQ</a></li>
                         </ul>
                     </li>
+<<<<<<< HEAD
+                 	<li><a href="<%=request.getContextPath()%>/view/MyPage/mypageAll.jsp">마이페이지</a>
+=======
                  	<li><a href="<%=request.getContextPath()%>/view/MyPage/myInformation/modifyInformation.jsp">마이페이지</a>
+>>>>>>> branch 'develop' of https://github.com/ui0426/EnsaladTeam.git
                         <ul>
                             <li><a href="<%=request.getContextPath() %>/basket/basketView">장바구니</a></li>
                             <li><a href="#">배송현황</a></li>
@@ -150,7 +154,11 @@
                             <li><a href="<%=request.getContextPath()%>/FAQ/FAQboard">FAQ</a></li>
                         </ul>
                     </li>
+<<<<<<< HEAD
+                 	<li><a href="<%=request.getContextPath()%>/view/MyPage/mypageAll.jsp">마이페이지</a>
+=======
                  	<li><a href="*">마이페이지</a>
+>>>>>>> branch 'develop' of https://github.com/ui0426/EnsaladTeam.git
                         <ul>
                             <li><a href="#">장바구니</a></li>
                             <li><a href="#">배송현황</a></li>

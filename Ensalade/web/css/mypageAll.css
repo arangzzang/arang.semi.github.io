@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+/*마이페이지 헤드*/
+  .mypageHead{
+    margin: 0 auto;
+    display: table;
+    width: 80%;
+  }
+  .headfix {
+    padding: 10px;
+    margin: 20px 100px 50px;
+    text-align: center;
+    border: 1px solid red;
+    display: flex;
+  }
+  .headfix>div:nth-child(1){
+    padding-left: 50px;
+    text-align: left;
+    border: 1px solid blue;
+    width: 50%;
+  }
+  .headfix>div:nth-child(2){
+    border: 1px solid greenyellow;
+    width: 25%;
+  }
+  .headfix>div:nth-child(3){
+    border: 1px solid black;
+    width: 25%;
+  }
+  /*배송현황*/
+  .status{
+    padding: 10px;
+    margin: 20px 100px 50px;
+    border: 1px solid red;
+  }
+  .status>h3{
+    padding-left: 10px;
+  }
+  .status>ul{
+    padding: 0;
+    text-align: center;
+    width: calc(20% * 5);
+  }
+  .status>ul>li{
+    list-style-type: none;
+    display: inline;
+    width: calc(20%/5);
+  }
+  /*마이페이지 바디*/
+   #mypagebody{
+    display: flex;
+    width: 100%;
+  }
+  /*사이드 바*/
+  .sidebar-container{
+    border: 1px solid;
+  }
+  .sidebar h3{
+    text-align: center;
+  }
+  .sidebar>nav li{
+    border-bottom: 1px solid lightgray;
+  }
+  .sidebar ul>li{
+    list-style-type: none;
+    padding: 10px;
+  }
+  .sidebar{
+   	position : relative;
+    width: 200px;
+	}
+  .sidebarnav{
+   	left : 30px;
+   	height: 200px;
+   	width: 100%;
+   	position: absolute;
+   	left:0
+	}
+  /*상세내용*/
+  .myPage{
+    margin: 0px 50px 30px ;
+  }
+  table>p{
+    text-align: center;
+  }
+  /*주문내역*/
+  .orderHistory>caption,.myborder>caption{
+    text-align: left;
+  }
+  .myPage>div{
+    margin-bottom: 20px;
+  }
+  .myPage>div>table{
+    border: 1px solid black;
+    text-align: center;
+  }
+  .thead{
+    text-align: center;
+    padding: 15px 0;
+    margin: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    color: black;
+    font-weight:lighter;
+    font-size: 14px;
+  }

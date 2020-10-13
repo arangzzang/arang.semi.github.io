@@ -90,6 +90,7 @@ import com.en.product.model.vo.ProductReview;
 	              p.setProductImg5(rs.getString("product_img5"));
 	              p.setProductImg5(rs.getString("product_img6"));
 	              p.setSalePer(rs.getInt("SALE_PER"));
+
 	           }
     	  }catch(SQLException e) {
     		  e.printStackTrace();
@@ -111,6 +112,7 @@ import com.en.product.model.vo.ProductReview;
     		  rs = pstmt.executeQuery();
 	           while(rs.next()) {
 	              Product p = new Product();
+	              p.setProductNo(rs.getInt("product_no"));
 	              p.setProductName(rs.getString("product_name"));
 	              p.setProductPrice(rs.getInt("product_price"));
 	              p.setProductThumbnail(rs.getString("product_thumbnail"));
@@ -135,7 +137,6 @@ import com.en.product.model.vo.ProductReview;
 
      		try {
      			pstmt = conn.prepareStatement(prop.getProperty("puoductComment"));
-
      			pstmt.setInt(1, productNo);
      			pstmt.setInt(2, (cPage - 1) * numPerPage + 1);
      			pstmt.setInt(3, cPage * numPerPage);
@@ -238,9 +239,6 @@ import com.en.product.model.vo.ProductReview;
   		int result = 0;
   		try {
   			pstmt = conn.prepareStatement(prop.getProperty("insertReview"));
-  		
-  			
-  			
   			pstmt.setInt(1, pr.getPageRef());
   			pstmt.setNString(2, pr.getReviewTitle());
   			pstmt.setString(3, pr.getReviewWriter());
@@ -301,8 +299,33 @@ import com.en.product.model.vo.ProductReview;
 			   close(pstmt);
 		   }return lc;
 	   }
-  	
-  	
+
+  	public List<ProductReview> myPage(Connection conn, String id){
+  		PreparedStatement pstmt = null;
+  		ResultSet rs = null;
+  		List<ProductReview> list = new ArrayList();
+  		try {
+  			pstmt = conn.prepareStatement(prop.getProperty("mypage"));
+  			pstmt.setString(1, id);
+  			rs=pstmt.executeQuery();
+  			while(rs.next()) {
+  				ProductReview pr = new ProductReview();
+  				pr.setReviewtNo(rs.getInt("product_review_no"));
+  				pr.setReviewTitle(rs.getString("product_review_title"));
+  				pr.setReviewWriter(rs.getString("product_review_writer"));
+  				pr.setReviewContent(rs.getString("product_review_content"));
+  				pr.setReviewWriteDate(rs.getDate("product_review_write_date"));
+  				list.add(pr);
+  				System.out.println(list.add(pr));
+  			}
+  		}catch(SQLException e) {
+  			e.printStackTrace();
+  		}finally {
+  			close(rs);
+  			close(pstmt);
+  		}
+  		return list;
+  	}
 
    }
 
