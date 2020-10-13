@@ -100,34 +100,33 @@ import com.en.product.model.vo.ProductReview;
     	  }
     	  return p;
 	     }
-      //관련상품
+    //관련상품
       public List<Product> relateProduct(Connection conn, String type,int productNo){
-    	  PreparedStatement pstmt = null;
-    	  ResultSet rs = null;
-    	  List<Product> list = new ArrayList();
-    	  try {
-    		  pstmt = conn.prepareStatement(prop.getProperty("relateProduct"));
-    		  pstmt.setString(1, type);
-    		  pstmt.setInt(2, productNo);
-    		  rs = pstmt.executeQuery();
-	           while(rs.next()) {
-	              Product p = new Product();
-	              p.setProductNo(rs.getInt("product_no"));
-	              p.setProductName(rs.getString("product_name"));
-	              p.setProductPrice(rs.getInt("product_price"));
-	              p.setProductThumbnail(rs.getString("product_thumbnail"));
-	              list.add(p);
-	           }
-	        }catch(SQLException e) {
-	           e.printStackTrace();
-	        }finally {
-	           close(rs);
-	           close(pstmt);
-	        }return list;
-	        
-	        
-	     }
-
+         PreparedStatement pstmt = null;
+         ResultSet rs = null;
+         List<Product> list = new ArrayList();
+         try {
+            pstmt = conn.prepareStatement(prop.getProperty("relateProduct"));
+            pstmt.setString(1, type);
+            pstmt.setInt(2, productNo);
+            rs = pstmt.executeQuery();
+              while(rs.next()) {
+                 Product p = new Product();
+                 p.setProductNo(rs.getInt("product_no"));
+                 p.setProductName(rs.getString("product_name"));
+                 p.setProductPrice(rs.getInt("product_price"));
+                 p.setProductThumbnail(rs.getString("product_thumbnail"));
+                 list.add(p);
+              }
+           }catch(SQLException e) {
+              e.printStackTrace();
+           }finally {
+              close(rs);
+              close(pstmt);
+           }return list;
+           
+           
+        }
 
          
          public List<ProductReview> ProductReview(int productNo, Connection conn, int cPage, int numPerPage) {

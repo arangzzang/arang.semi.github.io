@@ -39,12 +39,13 @@
             <nav>
                 <!-- 관리자 로그인시 -->
 
-                <ul>
+                <ul id="pcolor">
                  <%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
                     <li><a href="<%=request.getContextPath()%>/product/productAll">관리자전용 메뉴</a>
                         <ul>
                             <li><a href="<%=request.getContextPath()%>/admin/memberAll">회원관리</a></li>
                             <li><a href="">상품관리</a></li>
+                            <li><a href="<%=request.getContextPath()%>/inquiry">1:1문의 답변</a></li>
                         </ul>
                     </li>
                     <%} %>
@@ -62,10 +63,10 @@
                             <li><a href="<%=request.getContextPath()%>/custom/customList">커뮤니티</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">매장찾기</a>
+                    <li><a href="<%=request.getContextPath()%>/view/store/store.jsp">매장찾기</a>
                         <ul>
-                            <li><a href="">주소검색</a></li>
-                            <li><a href="">매장찾기</a></li>
+                            <li><a href="<%=request.getContextPath()%>/view/store/store.jsp">주소검색</a></li>
+                            <li><a href="<%=request.getContextPath()%>/view/store/store.jsp">매장찾기</a></li>
                         </ul>
                     </li>
                     <li><a href="<%=request.getContextPath()%>/searchNotice">고객센터</a>
@@ -75,12 +76,12 @@
                             <li><a href="<%=request.getContextPath()%>/FAQ/FAQboard">FAQ</a></li>
                         </ul>
                     </li>
-                    <li><a href="<%=request.getContextPath()%>/view/MyPage/mypageAll.jsp">마이페이지</a>
+                    <li><a href="<%=!a.equals("1")?cPath+"/view/MyPage/mypageAll.jsp":login%>">마이페이지</a>
                         <ul>
                             <li><a href="<%=request.getContextPath() %>/basket/basketView">장바구니</a></li>
                             <li><a href="<%=!a.equals("1")?cPath:login%>">배송현황</a></li>
                             <li><a href="<%=!a.equals("1")?cPath:login%>">나의 커스텀</a></li>
-                            <li><a href="<%=request.getContextPath()%>/inquiry">1:1문의 답변</a></li>
+                            <li><a href="<%=!a.equals("1")?cPath+"/inquiry/searchInquiryMem?no="+loginMember.getUser_no():login%>">1:1문의</a></li>
                         </ul>
                     </li>
 <%--                  <%}else if(loginMember!=null){ %>
