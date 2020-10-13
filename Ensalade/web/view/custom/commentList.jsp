@@ -113,41 +113,45 @@
 			})
 		})
 		
+		$(function(){
+		$(".time_").each((i,v)=>{
+			   let t=$(v).html();
+			   timeForToday(i,t);
+			   		  
+		  })
+		  })
+		
 		 	function timeForToday(i,value) {
         const today = new Date();
         const timeValue = new Date(value);
         let a=$(".time_")[i];
-
+		console.log(a);
+		console.log(a.innerHTML);
            const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
-        if (betweenTime < 1) return '방금전';
+        if (betweenTime < 1) {a.innerHTML='방금전'; 
+        return;
+        }
         if (betweenTime < 60) {
-            a.innerHTML=betweenTime+'분전';
+        	a.innerHTML=betweenTime+'분전';
             return;
         }
 
         const betweenTimeHour = Math.floor(betweenTime / 60);
         if (betweenTimeHour < 24) {
-            a.innerHTML=betweenTimeHour+'시간전';
+        	a.innerHTML=betweenTimeHour+'시간전';
             return;
         }
 
         const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
         if (betweenTimeDay < 365) {
         	console.log(betweenTimeDay);
-            a.innerHTML=betweenTimeDay+"일전";
+        	a.innerHTML=betweenTimeDay+"일전";
             return;
         }
 
         a.innerHTML=Math.floor(betweenTimeDay / 365)+'년전';
  }
 		
-	 	$(function(){
-		$(".time_").each((i,v)=>{
-			   const t=$(v).html();
-			   timeForToday(i,t);
-			   		  
-		  })
-		  })
 	 	
 		
 		

@@ -27,7 +27,7 @@
 <section style="text-align: center;">
 	<!--마이페이지 헤드공용-->
 	<div class="mypageHead">
-		<div class="headfix">
+		<%-- <div class="headfix">
 			<div>
 				<h4><%=loginMember.getMemberName()%></h4>
 				<p><%=loginMember.getEmail()%></p>
@@ -40,7 +40,7 @@
 				<h4>총 주문</h4>
 				<p><%=oList%></p>
 			</div>
-		</div>
+		</div> --%>
 		<div class="status">
 			<h3>배송현황</h3>
 			<ul>

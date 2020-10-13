@@ -39,7 +39,7 @@
             <nav>
                 <!-- 관리자 로그인시 -->
 
-                <ul>
+                <ul id="pcolor">
                  <%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
                     <li><a href="<%=request.getContextPath()%>/product/productAll">관리자전용 메뉴</a>
                         <ul>
