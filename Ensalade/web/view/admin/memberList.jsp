@@ -15,8 +15,8 @@
 	<div class="content-title">
         <p>회원관리</p>
     </div>
-    <div class="notice-wrap">
-		<table class="notice-table" id="tbl-notice">
+    <div class="member-wrap">
+		<table class="member-table" id="tbl-notice">
 			<thead class="notice-table_thead">
 				<tr>
 					<th>회원아이디</th>
@@ -103,8 +103,12 @@
 				action="<%=request.getContextPath()%>/admin/memberAll">
 				<input type="hidden" name="searchType" value="manager_yn">
 				<div class="formCss-submit-wrap">
-					<input class="form-control" id="inputMember" type="text" name="searchKeyword" placeholder="Y/N" size="25"
-						value="<%=key != null && type != null && type.equals("manager_yn") ? key : "Y/N"%>">
+					<select>
+						<option>Y</option>
+						<option>N</option>
+					</select>
+					<%-- <input class="form-control" id="inputMember" type="text" name="searchKeyword" placeholder="Y/N" size="25"
+						value="<%=key != null && type != null && type.equals("manager_yn") ? key : "Y/N"%>"> --%>
 					<button class="formCss-submit-btn" id="submitCss" type="submit">검색</button>
 				</div>
 			</form>
@@ -238,6 +242,7 @@ table#tbl-notice {
 	border: solid 1px #dbdbdb;
 	border-collapse: collapse;
 }
+table#tbl-notice td:nth-child(5){width:30px}
 
 table#tbl-notice th, table#tbl-notice td {
 	border: 1px solid #dbdbdb;
@@ -262,18 +267,18 @@ div#search_notice_write_date {
 	font-weight: 700;
 }
 
-.notice-table {
-	width: 100%;
+.member-table {
+	min-width: 100%;
 	border: 0;
 	border-spacing: 0;
 	table-layout: fixed;
 }
 
-.notice-table_thead {
+.member-table_thead {
 	background-color: #dbdbdbaf;
 }
 
-.notice-wrap {
+.member-wrap {
 	padding-bottom: 30px;
 	margin: 0 50px;
 }
