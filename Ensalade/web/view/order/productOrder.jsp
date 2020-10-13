@@ -111,8 +111,8 @@ System.out.println(address);
                 <div class="left-point">
                     <h3>할인포인트</h3>
                     <span>보유포인트</span>
-                    <input type="text" value="<%=loginMember.getPoint() %>" dir="rtl" readonly>
-                    <input type="text" dir="rtl" placeholder="사용할포인트">
+                    <input class="product_point"type="text" value="<%=loginMember.getPoint() %>" dir="rtl" readonly>
+                    <input class="point_count" type="text" dir="rtl" placeholder="사용할포인트">
                 </div>
                 <hr>               
                 
@@ -537,5 +537,14 @@ System.out.println(address);
 			});
 
 	});
+	 $.ajax({
+			url:"<%=request.getContextPath()%>/order/productOrder",
+			data:{"point_count":$(".point_count").val(),"product_point":$(".product_point").val()"},
+			dataType:"html",
+			type:"post",
+			success:data=>{
+				
+			}
+		})
 </script> 
          <%@include file="/view/common/footer.jsp" %> 
