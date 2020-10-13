@@ -34,6 +34,7 @@ public class BasketViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		int bNo=0;
 		
 		HttpSession session=request.getSession();

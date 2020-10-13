@@ -9,7 +9,7 @@
 	}catch(NullPointerException e){
 	a="1";
 	}
-	System.out.println(a);
+	
 	String cPath=request.getContextPath();
 	String login=request.getContextPath()+"/view/loginAlert.jsp";
 %>
@@ -29,8 +29,12 @@
     <!--<div class="swiper-container">
         <div class="swiper-wrapper"> -->
     <header id="headcap">
-        <div id="logo"><img src="<%=request.getContextPath() %>/image/main/logo.png"
-         alt="" width="90" height="70" onclick="location.replace('<%=request.getContextPath()%>')"></div>
+        <div id="logo">
+        <img src="<%=request.getContextPath() %>/image/main/logo.png"
+         alt="" width="50" height="50" onclick="location.replace('<%=request.getContextPath()%>')">
+         <p id="logo_ensalad">ENSALAD</p>
+         </div>
+         
         <div id="menu">
             <nav>
                 <!-- 관리자 로그인시 -->
@@ -73,7 +77,7 @@
                     </li>
                     <li><a href="*">마이페이지</a>
                         <ul>
-                            <li><a href="<%=!a.equals("1")?cPath:login%>">장바구니</a></li>
+                            <li><a href="<%=request.getContextPath() %>/basket/basketView">장바구니</a></li>
                             <li><a href="<%=!a.equals("1")?cPath:login%>">배송현황</a></li>
                             <li><a href="<%=!a.equals("1")?cPath:login%>">나의 커스텀</a></li>
                             <li><a href="<%=request.getContextPath()%>/inquiry">1:1문의 답변</a></li>

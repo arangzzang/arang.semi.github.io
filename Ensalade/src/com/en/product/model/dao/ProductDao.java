@@ -89,6 +89,7 @@ import com.en.product.model.vo.ProductReview;
 	              p.setProductImg4(rs.getString("product_img4"));
 	              p.setProductImg5(rs.getString("product_img5"));
 	              p.setProductImg5(rs.getString("product_img6"));
+	              p.setSalePer(rs.getInt("SALE_PER"));
 	           }
     	  }catch(SQLException e) {
     		  e.printStackTrace();
@@ -300,7 +301,8 @@ import com.en.product.model.vo.ProductReview;
 			   close(pstmt);
 		   }return lc;
 	   }
-
+  	
+  	
 
    }
 

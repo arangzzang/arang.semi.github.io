@@ -34,7 +34,7 @@ public class ProductOrderServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String product_number=request.getParameter("product_number");
 		String[] amount=request.getParameterValues("amount");
 		request.setAttribute("basketNo", request.getParameter("basketNo"));
 		List<String> aList=new ArrayList();
@@ -56,6 +56,7 @@ public class ProductOrderServlet extends HttpServlet {
 				Product p=new ProductService().detailProduct(pNo);
 				list.add(p);
 			}
+			request.setAttribute("product_number",product_number);
 			request.setAttribute("amount", aList);
 			request.setAttribute("list", list);
 			request.getRequestDispatcher("/view/order/productOrder.jsp").forward(request, response);

@@ -7,7 +7,7 @@
 		int totalPrice=0;
 		
 		for(Basket b : list){
-			totalPrice+=b.getMount()*b.getPrice();
+			totalPrice+=b.getMount()*(b.getSalePrice()!=0? b.getPrice()-(b.getPrice()*b.getSalePrice()/100):b.getPrice());
 			
 		}
 		
@@ -32,7 +32,7 @@
                                        		<input type="button" value=" - " class="del">
                                             <input type="text" class="amount" name="amount" value="<%=b.getMount() %>" size="3" style="text-align:center;">
                                             <input type="button" value=" + " class="add"><br>
-                                            금액 :    <i class=sum><%=formatter.format(b.getPrice()*b.getMount()) %></i>원      
+                                            금액 :    <i class=sum><%=formatter.format((b.getMount()*(b.getSalePrice()!=0? b.getPrice()-(b.getPrice()*b.getSalePrice()/100):b.getPrice()))*b.getMount()) %></i>원      
                                             <%--  <i class=sum><%=b.getPrice()*b.getMount() %></i>  --%>
                                     </td>
                                     <!-- 배송비 -->
@@ -40,7 +40,7 @@
                                             <span>[기본 배송조건]</span>
                                     </td>
                                     <!-- 가격 -->
-                                    <td><i class="price"><%=formatter.format(b.getPrice())%></i>원</td>
+                                    <td><i class="price"><%=formatter.format((b.getSalePrice()!=0? b.getPrice()-(b.getPrice()*b.getSalePrice()/100):b.getPrice()))%></i>원</td>
                                     <!-- 비고 -->
                                     <td>
                                          

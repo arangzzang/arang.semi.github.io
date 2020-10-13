@@ -39,7 +39,7 @@ List<Order> list=(List)request.getAttribute("list"); %>
 				<p><%=list.get(i).getProductContent() %></p>
 				</td>
 				<td><%=list.get(i).getOrderMount() %></td>
-				<td><i class="price"><%=formatter.format(list.get(i).getOrderMount()*list.get(i).getProductPrice()) %></i>원</td>
+				<td><i class="price"><%=formatter.format(list.get(i).getOrderMount()*(list.get(i).getProductPrice()-(list.get(i).getProductPrice()*list.get(i).getSalePer()/100))) %></i>원</td>
 				<td><%=list.get(i).getOrderStatus() %></td>
 			</tr>
 			<%} %>

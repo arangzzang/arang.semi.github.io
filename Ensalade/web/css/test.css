@@ -10,9 +10,7 @@
 }
 
 
-a{
-	color:forestgreen;
-}
+
 
 a:hover {
 	color: green;
@@ -25,6 +23,7 @@ a:hover {
 	padding: 0;
 	/*전체 화면 양사이드의 빈공간을 제거하기 위해 0을 줌*/
 	box-sizing: border-box;
+	
 }
 
 html, body {
@@ -85,6 +84,9 @@ section {
 	cursor: pointer;
 	position: absolute;
     bottom: 2px;
+    display: inline-block;
+   
+ 	
 }
 
 #menu>nav ul li ul {
@@ -365,4 +367,8 @@ video {
 	-ms-flex-align: center;
 	-webkit-align-items: center;
 	align-items: center;
+}
+#logo_ensalad{
+	display: inline-block;
+	 /* margin-bottom: 15px; */
 }
