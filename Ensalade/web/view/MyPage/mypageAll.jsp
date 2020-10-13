@@ -13,6 +13,11 @@
 				,com.en.product.model.vo.ProductReview,com.en.custom.model.vo.CustomPost
 				,com.en.inquiry.model.vo.Inquiry"  %>
 <%
+	if(loginMember==null){
+		response.sendRedirect(request.getContextPath()+"/view/login.jsp");
+		return;
+	}
+
 	List<Order> oList = new OrderService().myPage(loginMember.getMemberId());
 	List<ProductReview> prList = new ProductService().myPage(loginMember.getMemberId());
 	List<CustomPost> cpList =new CustomService().customList();
