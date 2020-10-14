@@ -63,15 +63,17 @@
                                     </td>
                                     <!-- 수량 -->
                                     <td>
-                                       수량 : 					<%System.out.println(b.getSalePrice()); %>
-                                       		<input type="button" value=" - " class="del">
+                      					<div>  수량 : 
+                                       		<input type="button" class="del far fa-minus-square fa-2x" value="-" style="width:26px; height:29px;">
                                             <input type="text" class="amount" name="amount" value="<%=b.getMount() %>" size="3" style="text-align:center;">
-                                            <input type="button" value=" + " class="add"><br>
+                                            <input type="button" class="add far fa-plus-square fa-2x" value="+">
+                                        <div>
+                                        <div>
                                             금액 :    <i class=sum><%=formatter.format(b.getSalePrice()!=0?(b.getPrice()-(b.getPrice()*b.getSalePrice()/100))*b.getMount():b.getPrice()*b.getMount()) %></i>원      
-                                          
+                                          <div> 
                                             <%--  <i class=sum><%=b.getPrice()*b.getMount() %></i>  --%>
                                     </td>
-                                    <!-- 배송비 -->
+                                    <!-- 배송비 -->	
                                     <td>
                                             <span>[기본 배송조건]</span>													
                                     </td>
@@ -79,7 +81,9 @@
                                     <td><i class="price"><%= formatter.format(b.getSalePrice()!=0? b.getPrice()-(b.getPrice()*b.getSalePrice()/100):b.getPrice())%></i>원</td>
                                     <!-- 비고 -->
                                     <td>
-                                          <p class="remove">삭제</p> 
+                                         
+                                          <input type="button" class="remove" value="삭제하기"> 
+
                                     </td>
                                 </tr>
                                 <%} %>
@@ -105,46 +109,77 @@
 
 <style>
 
-	img{
-		width:100px;
-		height:100px;
-	}
-	.header-line{
-	   	margin-top:0px;
-	   	margin-bottom:15px;
-	   	border-color:lightgray;
-	   	background-color:lightgray;
-	   	color:lightgray;
-	   	opacity: 0.2;
-	   	}
-	.order1{
-      		background-color:green;
-      		color:white;
-      	}
-   	.orderHeader{
-   		display:flex;
-   		justify-content: space-between;
-   	}
-   	.orderState{
-   		margin-right:120px;
-   		display:flex;
-   		list-style:none;
-   	}
-   	.orderState>li{
-	   	border:lightgray 1px solid;
-	   	border-radius:10px;
-	   	padding: 10px 15px 11px 15px;
-	   	font-weight: bold;
-	   	text-align: center;
-	   	height:43px;
-   	}
+		
+		
+			.remove{
+			width:100px;
+			height:35px;
+			background-color:green;
+			color:white;
+			border:green solid 1px;
+			cursor:pointer;
+			border-radius:10px;
+			outline:0;
+			}
+        	.del,.add{
+        	vertical-align:bottom;
+			outline: 0;
+			color: green;
+			background-color: #fff;
+			cursor: pointer;
+			line-height: 0.8;
+			border : green solid 3px;
+			}
+			 .fab:hover, .far:hover {
+			color: white;
+			background-color: #35ad73;
+			line-height: 0.8;
+			}
+			button{
+			outline:0;
+			}
+		img{
+			width:100px;
+			height:100px;
+		}
+			.header-line{
+        	margin-top:0px;
+        	margin-bottom:15px;
+        	border-color:lightgray;
+        	background-color:lightgray;
+        	color:lightgray;
+        	opacity: 0.2;
+        	}
+			.order1{
+        		background-color:green;
+        		color:white;
+        	}
+        	.orderHeader{
+        		display:flex;
+        		justify-content: space-between;
+        	}
+        	.orderState{
+        		margin-right:120px;
+        		display:flex;
+        		list-style:none;
+        	}
+        	.orderState>li{
+        	border:lightgray 1px solid;
+        	border-radius:10px;
+        	padding: 10px 15px 11px 15px;
+        	font-weight: bold;
+        	text-align: center;
+        	height:43px;
+        	}
+
 	.p-info{
 		margin:30px;
 	}
 	
 	.amount{
+		
 		border: 0;
-		height:42px;
+		height:26px;
 	}
 	.moveorder{
 		
@@ -173,28 +208,8 @@
 	    font-weight: bold;
 	    font-style: normal;
 	    }
-	.del,.add{
-	      border:1px solid limegreen;
-	      color: limegreen;
-	      background-color:rgba(0,0,0,0);
-	      padding:10px;
-	      cursor: pointer;
-	   }    
-	   .del:hover,.add:hover{
-	      color:white;
-	      background-color:lightgreen;
-	   }
-	   .del{
-	      border-top-left-radius:5px;
-	      border-bottom-left-radius:5px;
-	      margin-right:-1.5px;
-	      margin-left:15px;
-	   }
-	   .add{
-	      border-top-right-radius:5px;
-	      border-bottom-right-radius:5px;
-	      margin-left:-3px;
-	   }
+	
+	  
     .basket{
         /* margin-top: 50px;
         margin-bottom: 50px; */
@@ -240,8 +255,29 @@
      var productNos=$(".p-No");//상품번호 클래스명들의 배열
      var basketNos=$(".b-No");//장바구니번호 클래스명들의 배열 
      var total_price=0;
-     
-   	    $(".amount").keyup(e=>{
+     var productNo;
+	   var basketNo;
+	 
+	 //장바구니 목록 삭제
+      $(document).on("click",".remove",function(e){
+    	  console.log("실행");
+    	 for(var i=0;i<prices.length;i++){
+    		 if(e.target==removes[i]){
+    			 productNo=productNos[i].value;
+    			 basketNo=basketNos[i].value;
+    		 }
+    	 }
+          $.ajax({
+        	  url :"<%=request.getContextPath()%>/ajax/deleteBasket",
+        	  data:{"productNo":productNo,"basketNo":basketNo},
+        	  success:function(data){
+        		     $("tbody").empty(); 
+        		     $("tbody").html(data);  
+        		   
+        	  }
+          }); 
+    	}); 
+      $(document).on("keyup",".amount",function(e){
    	    	for(var i=0;i<amounts.length;i++){
    	    		if(e.target==amounts[i]){
      				if(amounts[i].value=amounts[i].value.replace(/[^0-9]/g, '')){
@@ -257,7 +293,7 @@
    	     $(".total-price")[0].textContent=(total_price).toLocaleString();
  		total_price=0;
      });   
-     $(".amount").blur(e=>{
+     $(document).on("blur",".amount",function(e){
     		    for(var i=0;i<amounts.length;i++){
     			  if($(e.target).val()==0&&e.target==amounts[i]){
     				 $(e.target).val(1);
@@ -272,7 +308,7 @@
         		total_price=0;
      });
     //수량 버튼 클릭시 태그 색변경
-    $(".amount").focus(e=>{
+     $(document).on("focus",".amount",function(e){
     	$(e.target).css("outline-color","#27b06e");
 	});
      
@@ -282,8 +318,8 @@
      });
    
    
-   	  
-    	$(".add").click(e=>{
+     $(document).on("click",".add",function(e){
+    	 console.log(amounts);
     	for(var i=0;i<prices.length;i++){
     		if(e.target==adds[i]){//for문 이용하여 클릭이벤트 발생한 e.target과 더하기버튼이 같은것을 찾는다
     			hm=amounts[i];
@@ -300,7 +336,7 @@
     		$(".total-price")[0].textContent=(total_price).toLocaleString();
     		total_price=0;
     	});
-	     $(".del").click(e=>{
+    	 $(document).on("click",".del",function(e){;
 	     	for(var i=0;i<prices.length;i++){
 	     		if(e.target==dels[i]){//발생버튼과 같은인덱스
 	     			hm=amounts[i];
@@ -318,27 +354,9 @@
 	     	$(".total-price")[0].textContent=(total_price).toLocaleString();
 	     	total_price=0;
 	     	}); 
-	   //장바구니 목록 삭제
-	   var productNo;
-  	   var basketNo;
+	   
+	   
   	 	
-        $(".remove").click(e =>{
-    	 for(var i=0;i<prices.length;i++){
-    		 if(e.target==removes[i]){
-    			 productNo=productNos[i].value;
-    			 basketNo=basketNos[i].value;
-    		 }
-    	 }
-          $.ajax({
-        	  url :"<%=request.getContextPath()%>/ajax/deleteBasket",
-        	  data:{"productNo":productNo,"basketNo":basketNo},
-        	  success:function(data){
-        		     $("tbody").empty(); 
-        		     $("tbody").html(data);  
-        		   
-        	  }
-          }); 
-       });   
 </script>
 
 <%@include file="/view/common/footer.jsp"%>

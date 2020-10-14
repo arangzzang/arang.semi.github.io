@@ -185,4 +185,23 @@ public int pointUpdate(Connection conn,int totalpay,String memberId) {
 
   			
    }
+public int pointDown(Connection conn,int point,String memberId) {
+		
+		PreparedStatement pstmt=null;
+		int results=0;
+		try { 
+			pstmt=conn.prepareStatement(prop.getProperty("pointDown"));
+	   pstmt.setInt(1, point);
+	   pstmt.setString(2, memberId);
+	   results=pstmt.executeUpdate();
+   }catch(SQLException e) {
+	   e.printStackTrace();
+   }finally {
+	   close(pstmt);
+   }return results;
+
+			
+}
+
+
 }

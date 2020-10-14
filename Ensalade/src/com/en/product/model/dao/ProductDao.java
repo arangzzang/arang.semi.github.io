@@ -116,6 +116,7 @@ import com.en.product.model.vo.ProductReview;
                  p.setProductName(rs.getString("product_name"));
                  p.setProductPrice(rs.getInt("product_price"));
                  p.setProductThumbnail(rs.getString("product_thumbnail"));
+                 p.setSalePer(rs.getInt("SALE_PER"));
                  list.add(p);
               }
            }catch(SQLException e) {
