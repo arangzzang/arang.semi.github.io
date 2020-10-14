@@ -1,7 +1,6 @@
 package com.en.order.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.en.order.model.service.OrderService;
-import com.en.order.model.vo.Order;
 
 /**
- * Servlet implementation class OrderViewServlet
+ * Servlet implementation class OrderRemoveServlet
  */
-@WebServlet("/order/orderView")
-public class OrderViewServlet extends HttpServlet {
+@WebServlet("/mypage/orderRemove")
+public class OrderRemoveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderViewServlet() {
+    public OrderRemoveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +29,15 @@ public class OrderViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//주문하기 눌러서 바로 넘어왔을때
-		int orderNo=Integer.parseInt(request.getParameter("orderNo"));
+	
 		
-		List<Order> list=new OrderService().orderView(orderNo);//해당주문번호에 대한 리스트 가져옴
-		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/view/order/orderDetail.jsp").forward(request, response);
+		int no = Integer.parseInt(request.getParameter("no"));
+		System.out.println(no);
+		int result = new OrderService().orderRemove(no);
+		String msg="";
+		String loc="/view/MyPage/mypageAll.jsp";
+		msg=result>0?"상품의 주문이 취소되었습니다.":"주문취소 실패하였습니다.";
+		request.getRequestDispatcher(loc).forward(request, response);
 	}
 
 	/**
