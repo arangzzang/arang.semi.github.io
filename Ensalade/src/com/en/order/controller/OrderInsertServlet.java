@@ -45,7 +45,7 @@ public class OrderInsertServlet extends HttpServlet {
 		String memo=request.getParameter("memo");
 		int total=Integer.parseInt(request.getParameter("total-pay"));
 		int totalpay=(total*5)/100;
-		System.out.println(totalpay);
+		
 		
 		
 		int results=new MemberService().pointUpdate(memberId,totalpay);

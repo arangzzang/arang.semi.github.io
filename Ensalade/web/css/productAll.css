@@ -71,7 +71,8 @@ a:visited{
 
 /* 	좌측메뉴바 */
 .left{
-   	position : relative;
+	margin:100px;
+   position : relative; 
     width: 200px;
 	}
 .productul>li:after{
@@ -89,11 +90,12 @@ a:visited{
 	padding:0;
 }
 #sidebar{
+	
     left : 30px;
     height: 200px;
     width: 100%;
     position: absolute;
-    left:0
+    left:0;
 	}
 .sidemenu:hover{
 	color: #f1f1f1;
