@@ -43,10 +43,10 @@ public class NoticeWriteEndServlet extends HttpServlet {
 			return; //종료
 		}
 
-		MultipartRequest mr = new MultipartRequest(request, getServletContext().getRealPath("/image/upload/notice"),
+		MultipartRequest mr = new MultipartRequest(request, getServletContext().getRealPath("/upload/notice"),
 				1024 * 1024 * 50, "UTF-8", new DefaultFileRenamePolicy());
 		//파일경로 합쳐서 넣어주기
-		String filepath = "/image/upload/notice/" + mr.getFilesystemName("upload");
+		String filepath = "/upload/notice/" + mr.getFilesystemName("upload");
 		NoticeBoard nb = new NoticeBoard();
 		nb.setNotice_title(mr.getParameter("title"));
 		nb.setNotice_writer(mr.getParameter("writer"));
