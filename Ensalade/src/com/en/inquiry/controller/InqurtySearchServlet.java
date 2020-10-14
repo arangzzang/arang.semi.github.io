@@ -17,7 +17,7 @@ import com.en.member.model.vo.Member;
 /**
  * Servlet implementation class InquiryServlet
  */
-@WebServlet("/inquiry")
+@WebServlet("/admin/inquiry")
 
 //관리자 1대1문의 서블릿
 public class InqurtySearchServlet extends HttpServlet {

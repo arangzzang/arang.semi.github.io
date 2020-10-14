@@ -67,7 +67,7 @@
                     </div> --%> 
                     <%if(ii.getInquiryComment()==null){ %>
                     <div class="inquiry_Manager_answer content_row content_top"	id="inquiry_Manager_answer">
-                        <form action="<%=request.getContextPath()%>/Inquriry/InquriryManagerTextServlet"  name="answerFrm">
+                        <form action="<%=request.getContextPath()%>/admin/InquriryManagerTextServlet"  name="answerFrm">
                             <input type="hidden" name="no" value="<%=ii.getInquiryNo()%>">
                             <textarea class="form-control content_row" name="ManagerText" rows="5" cols="33"></textarea>
                             <input type="submit" class="answer-btn" onclick="ckAlert();" value="답변하기">

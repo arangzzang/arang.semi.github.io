@@ -16,7 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 /**
  * Servlet implementation class InquriryMangerTextServlet
  */
-@WebServlet("/Inquriry/InquriryManagerTextServlet")
+@WebServlet("/admin/InquriryManagerTextServlet")
 public class InquriryManagerTextServlet extends HttpServlet {
    private static final long serialVersionUID = 1L;
        
