@@ -13,10 +13,10 @@
     %>
     <%if(result==null){%>
     	<input type="hidden" value="1" id="h1">
-    	사용가능한 아이디입니다.
+    	사용가능한 아이디입니다.<style>#cId{color:green;}</style>
     <%}else if(!id.equals("")){ %>
     	<input type="hidden" value="0" id="h1">
-    	아이디가 존재합니다.
+    	아이디가 존재합니다.<style>#cId{color:red;}</style>
     <%}else{ %>
     	<input type="hidden" value="0" id="h1">
     <%} %>

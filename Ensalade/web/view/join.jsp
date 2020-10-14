@@ -18,7 +18,7 @@
 					<input type='button' value='중복확인' class="btn_1" id="cBtn_">
 					<!--아이디 중복확인을 위한 기능 / 4글자 이상 입력-->
 				</div>
-					<p id="cId" style="color:green;font-size:12px;"></p>
+					<p id="cId" style="font-size:12px;"></p>
 			</div>
 			<label for="password">비밀번호<label class="star">*</label></label>
 			<input type="password" name="password" id="password_" placeholder="비밀번호 4글자 이상 입력 (숫자와 문자포함)" required
@@ -413,6 +413,7 @@
         		   url:'<%=request.getContextPath()%>/view/check/checkDuplicate.jsp',
         		   data:{'id':$("#userId_").val()},
         		   success:data=>{
+        			   
         			   $("#cId").html(data);
         	   			a=$("#h1").val();
         	   			console.log(a);
