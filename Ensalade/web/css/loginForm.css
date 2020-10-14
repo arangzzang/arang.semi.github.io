@@ -3,11 +3,13 @@
 section.contents-wrap {
 	display: inline-block;
 	min-height: 100%;
+	padding-top:200px;
 	padding-bottom: 20px;
 	text-align: center;
 	margin-bottom: 50px;
 	margin: 0 37%;
 	min-width: 432px;
+	
 }
 
 section#contents-wrap a {
