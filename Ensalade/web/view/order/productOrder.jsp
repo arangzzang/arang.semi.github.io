@@ -116,7 +116,7 @@ String[] address=loginMember.getMemberAddress().split(",");
                     <span>보유포인트</span>
                  
                     	<input id="1" class="product_point"type="text" value="<%=loginMember.getPoint()%>" dir="rtl" readonly>
-                    	<input id="2" class="point_count" type="text" name="point" dir="rtl" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' placeholder="사용할포인트">
+                    	<input id="2" class="point_count" type="text" name="point" dir="rtl" value="0" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' placeholder="사용할포인트">
                 	
                 </div>
                 <hr>               
@@ -340,8 +340,8 @@ String[] address=loginMember.getMemberAddress().split(",");
         }
         
         </style>
-        <script>
-        
+        <script>	
+        $(function(){$(".point").text(0)});
         var point= console.log(Number($(".point").html()));
         var amounts=$(".amount");//수량 클래스명들의 배열
         var adds=$(".add");//더하기버튼 클래스명들의 배열
@@ -367,7 +367,20 @@ String[] address=loginMember.getMemberAddress().split(",");
             else
                 event.target.value = event.target.value.replace(/[^0-9]/g, "");
         }
-     
+         $("#2").focusout(e=>{
+        	 if($(e.target).val()=='0'){
+        		 $(e.target).val('');
+        	 }
+        }); 
+  
+        $("#2").blur(e=>{
+        if($(e.target).val()==''){
+        	
+        	$(e.target).val('0');
+        	
+        	console.log($(e.target).val());
+        }
+        });
         $("#2").keyup(e=>{
         	   
 			 let b=$("#1").val();
@@ -384,8 +397,8 @@ String[] address=loginMember.getMemberAddress().split(",");
 			}
 			
 			var tjf =Number($(".point").html());
-			$(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf).toLocaleString());//상품총가격+배송비 최종가격
-            $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));
+			$(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf).toLocaleString());//상품총가격+배송비 최종가격
+            $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));
     	
 			
 		})
@@ -401,8 +414,8 @@ String[] address=loginMember.getMemberAddress().split(",");
 	                }
 	                var tjf =Number($(".point").html());
 	                $(".ba").html(ba.toLocaleString());//배송비 설정
-	                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf).toLocaleString());//상품총가격+배송비 최종가격
-	                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));
+	                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf).toLocaleString());//상품총가격+배송비 최종가격
+	                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));
 	                $("#ba").val(ba);
 		       	});
 		        $(".amount").keyup(e=>{
@@ -419,8 +432,8 @@ String[] address=loginMember.getMemberAddress().split(",");
 		   	    	var tjf =Number($(".point").html());
 		   	    	console.log(Number($(".point").html()));
 		   	    	$(".total-price")[0].textContent=(total_price).toLocaleString();
-		   	    	$(".total-pay")[0].textContent=(total_price+ba+tjf).toLocaleString();
-		   	     	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));//hidden에 값주기
+		   	    	$(".total-pay")[0].textContent=(total_price+ba-tjf).toLocaleString();
+		   	     	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));//hidden에 값주기
 	           		total_price=0;
 		     });   
 		     $(".amount").blur(e=>{
@@ -434,8 +447,8 @@ String[] address=loginMember.getMemberAddress().split(",");
 		    		 }
 		    		    var tjf =Number($(".point").html());
 		    		    $(".total-price")[0].textContent=(total_price).toLocaleString();
-		    		    $(".total-pay")[0].textContent=(total_price+ba+tjf).toLocaleString();
-		    		    $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));//hidden에 값주기
+		    		    $(".total-pay")[0].textContent=(total_price+ba-tjf).toLocaleString();
+		    		    $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));//hidden에 값주기
 	             		total_price=0;
 		     });
 		    //수량 버튼 클릭시 태그 색변경
@@ -479,8 +492,8 @@ String[] address=loginMember.getMemberAddress().split(",");
                 }
                 var tjf =Number($(".point").html());
                 $(".ba").html(ba.toLocaleString());//배송비 설정
-                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf).toLocaleString());//상품총가격+배송비 최종가격
-                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));//hidden에 값주기
+                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf).toLocaleString());//상품총가격+배송비 최종가격
+                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));//hidden에 값주기
                 $("#ba").val(ba);
             });
 
@@ -499,8 +512,8 @@ String[] address=loginMember.getMemberAddress().split(",");
 	           	}
 	            var tjf =Number($(".point").html());
            		$(".total-price")[0].textContent=(total_price).toLocaleString();
-           		$(".total-pay")[0].textContent=(total_price+ba+tjf).toLocaleString();
-           	 	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));//hidden에 값주기
+           		$(".total-pay")[0].textContent=(total_price+ba-tjf).toLocaleString();
+           	 	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));//hidden에 값주기
            		total_price=0;
            		
            	});
@@ -524,8 +537,8 @@ String[] address=loginMember.getMemberAddress().split(",");
     	     	}
     	     	var tjf =Number($(".point").html());
     	     	$(".total-price")[0].textContent=(total_price).toLocaleString();
-    	     	$(".total-pay")[0].textContent=(total_price+ba+tjf).toLocaleString();
-    	     	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));//hidden에 값주기
+    	     	$(".total-pay")[0].textContent=(total_price+ba-tjf).toLocaleString();
+    	     	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));//hidden에 값주기
     	     	total_price=0;
     	     	}); 
         </script>
