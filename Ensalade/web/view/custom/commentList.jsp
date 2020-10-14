@@ -7,9 +7,10 @@
     pageEncoding="UTF-8"%>
 
     <%
-    	List<CustomComment> list=(List)request.getAttribute("comment");
     	Member loginMember=(Member)session.getAttribute("loginMember");
     	int ref=Integer.parseInt(String.valueOf(request.getAttribute("ref")));
+    	//List<CustomComment> list=(List)request.getAttribute("comment");
+    	List<CustomComment> list=new CustomService().commentList(ref);
     %>
     
     
@@ -50,6 +51,10 @@
 			<content>·</content>
 			<span class="time_ time_font"><%=a%></span>
 			<button class="btn_2" value="<%=c.getCustomCommentNo()%>"><content>·</content>답글달기</button>
+			<%if(loginMember!=null&&loginMember.getMemberId().equals(c.getCustomCommentWriter())){%>			
+			<button class="btn_3" value="<%=c.getCustomCommentNo()%>"><content>·</content>삭제</button>
+			<input type="hidden" value="<%=ref%>" id="postNo">
+			<%} %>			
 			</div>
 			</div>
 			</article>
@@ -66,6 +71,9 @@
 			<div>
 			<content>·</content>
 			<span class="time_ time_font"><%=a%></span>
+			<%if(loginMember!=null&&loginMember.getMemberId().equals(c.getCustomCommentWriter())){%>			
+			<button class="btn_3" value="<%=c.getCustomCommentNo()%>"><content>·</content>삭제</button>
+			<%} %>
 			</div>
 			</div>
 			</article>
@@ -125,8 +133,7 @@
         const today = new Date();
         const timeValue = new Date(value);
         let a=$(".time_")[i];
-		console.log(a);
-		console.log(a.innerHTML);
+        
            const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
         if (betweenTime < 1) {a.innerHTML='방금전'; 
         return;
@@ -152,6 +159,19 @@
         a.innerHTML=Math.floor(betweenTimeDay / 365)+'년전';
  }
 		
+		$(".btn_3").click(e=>{
+			if(confirm('댓글을 삭제하시겠습니까?')){
+			$.ajax({
+				url:"<%=request.getContextPath()%>/view/custom/deleteComment.jsp",
+				data:{"cNo":$(e.target).val(),"postNo":$("#postNo").val()},
+				success:data=>{
+					alert("삭제되었습니다.");
+					$(".comment-box").html(data);
+				}
+			});
+			}
+		})
+		
 	 	
 		
 		
@@ -171,6 +191,14 @@
 		
 		 <style>
     .btn_2{
+    	background-color:rgb(255,255,255,0);
+    	border:none;
+    	color: inherit;
+    font-size: inherit;
+    font-weight: 600;
+    outline-color:rgb(255,255,255,0);
+    }
+    .btn_3{
     	background-color:rgb(255,255,255,0);
     	border:none;
     	color: inherit;

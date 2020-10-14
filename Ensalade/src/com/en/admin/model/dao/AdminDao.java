@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.en.FAQ.model.vo.FAQ;
+import com.en.admin.model.vo.Store;
 import com.en.event.model.vo.Event;
 import com.en.event.model.vo.EventContent;
 import com.en.custom.model.vo.CustomComment;
@@ -310,5 +311,30 @@ public class AdminDao {
 		}finally {
 			close(pstmt);
 		}return result;
+	}
+	public List<Store> storeList(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Store> list=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("storeList"));
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Store s=new Store();
+				s.setStoreName(rs.getNString("STORE_NAME"));
+				s.setStorAdr(rs.getNString("STORE_ADR"));
+				s.setStoreAddress(rs.getDouble("STORE_ADDRESS"));
+				s.setStoreAddress2(rs.getDouble("STORE_ADDRESS2"));
+				s.setStoreImg(rs.getNString("STORE_IMAGE"));
+				s.setStorePhone(rs.getNString("STORE_PHONE"));
+				list.add(s);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
 	}
 }

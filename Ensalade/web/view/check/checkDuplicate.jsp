@@ -1,12 +1,26 @@
+<%@page import="com.en.member.model.service.MemberService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
     <% 
-    String result=(String)request.getAttribute("result");
-    String id=(String)request.getAttribute("id");
-  
+   
+    String id=request.getParameter("id");
+    System.out.println(id);
+    String result="";
+ 	if(!id.equals("")){
+    result=new MemberService().checkDuplicate(id);
+ 	}
     %>
-<!DOCTYPE html>
+    <%if(result==null){%>
+    	<input type="hidden" value="1" id="h1">
+    	사용가능한 아이디입니다.
+    <%}else if(!id.equals("")){ %>
+    	<input type="hidden" value="0" id="h1">
+    	아이디가 존재합니다.
+    <%}else{ %>
+    	<input type="hidden" value="0" id="h1">
+    <%} %>
+<%-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -45,4 +59,4 @@
 			console.log(123);
 		}
 	</script>
-</html>
+</html> --%>
