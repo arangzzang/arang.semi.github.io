@@ -63,14 +63,14 @@
 						<form class="count" name="form" method="get">
 							<div id="price">
 								<!-- 할인 적용 로직  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-								 <%if(product_number!=null){ %>
+								 <%if(p.getSalePer()!=0){ %>
 							
 								<p><strong class="price-strong">판매가격</strong>
 									<s class="won-color"><%=p.getProductPrice() %>원</s>
 								</p>
 								<strong class="prive-strongs">할인판매가격</strong>
 								<p class="won-color-to won-color-wer" >  
-									<%=product_number %>
+									<%=formatter.format(p.getProductPrice()-(p.getProductPrice()*p.getSalePer()/100)) %>
 								</p>원
 									<% }else {%>
 								<p><strong class="price-strong">판매가격</strong>
@@ -122,8 +122,10 @@
 	                  <a href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=list.get(j).getProductNo()%>">
 		                  <img alt="" src="<%=list.get(j).getProductThumbnail() %>" class="product-img">
 		                  <p><%=list.get(j).getProductName() %></p>
-		                  <p><%=formatter.format(list.get(j).getProductPrice()) %></p> 
-	                  </a>
+		                  <p><%=list.get(j).getSalePer()!=0?formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100)) : formatter.format(list.get(j).getProductPrice())   %></p> 
+	                  	<%System.out.println(list.get(j).getSalePer());
+	                  	System.out.println(formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100))); %>
+	                  </a><!-- p.getProductPrice()-(p.getProductPrice()*p.getSalePer()/100) -->
 	               </li>
 	                  <% if(list.size()-1==j){ 
  	                	  break;}%>
@@ -460,7 +462,8 @@
         $(function() {
    		 console.log($(".tableTd").length);
         	$(".puoduct_slide").click(function() {
-        		$(".puoduct_list_content2").css("display","none");
+
+        		$(".puoduct_list_content2").not($(this).next()).css("display","none");
         	
         		$(this).next().slideToggle(500);
         	});

@@ -31,15 +31,11 @@
         <!-- 상품 정보 -->
         <div id="cartList">
             <!-- 상품 선택 -->
-           
             <div id="cartList-children">
                 <!-- 상품 상세 내용 -->
                 <div id="productContent">
                     <table class="basketTable">
                         <caption style="text-align: center;font-weight:bold">장바구니 담긴상품 목록</caption>
-                        <colgroup>
-
-                        </colgroup>
                         <thead>
                             <tr>
                                 <th>사진</th>
@@ -52,8 +48,7 @@
                         </thead>
                           <form method="post" id="moveorder" action="<%=request.getContextPath()%>/order/productOrder">
                             <tbody class="basketList">
-                                 
-        <% for(Basket b : list) {%>
+        					<% for(Basket b : list) {%>
                                 <tr>
                                     <!-- 사진 -->
                                     <td>
@@ -88,20 +83,19 @@
                                     <td>
                                          
                                           <input type="button" class="remove" value="삭제하기"> 
+
                                     </td>
                                 </tr>
                                 <%} %>
-                                
                                  </tbody> 
                       	    </form>
                          <tfoot> 
                             <tr>
                                 <td colspan="6">
-                                     	 총 상품가격<i class="total-price"></i>원
+                                 총 상품가격<i class="total-price"></i>원
                                 </td>
                             </tr>
                          </tfoot> 
-                       
                     </table>
                     <div class="moveorder">
                         <button class="moveBtn" form="moveorder">주문하기</button>
@@ -114,6 +108,7 @@
 </section>
 
 <style>
+
 		
 		
 			.remove{
@@ -176,6 +171,7 @@
         	text-align: center;
         	height:43px;
         	}
+
 	.p-info{
 		margin:30px;
 	}
@@ -361,7 +357,6 @@
 	   
 	   
   	 	
-        
 </script>
 
 <%@include file="/view/common/footer.jsp"%>

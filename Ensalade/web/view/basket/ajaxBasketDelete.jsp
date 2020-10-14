@@ -47,12 +47,12 @@
                                     <!-- 비고 -->
                                     <td>
                                          
-                                          <p class="remove">삭제</p> 
+                                         <input type="button" class="remove" value="삭제하기"> 
                                     </td>
                                 </tr>
                                 <%} %>
 <style> 
-			.del,.add{
+			 .del,.add{
         	vertical-align:bottom;
 			outline: 0;
 			color: green;
@@ -84,7 +84,7 @@
 	    font-size: 20px;
 	    font-weight: bold;
 	    font-style: normal;
-	    }
+	    } 
 	
     .basket{
         /* margin-top: 50px;

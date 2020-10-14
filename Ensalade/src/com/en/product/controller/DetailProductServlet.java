@@ -41,7 +41,9 @@ public class DetailProductServlet extends HttpServlet {
 		String type = p.getProductType();
 		
 	    List<Product> list = new ProductService().relateProduct(type,productNo);
-
+	    for(int i=0;i<list.size();i++){
+	    	System.out.println(list.get(i).getSalePer());
+	    }
 
 	    String pageBar = "";
 		int cPage;
@@ -88,23 +90,17 @@ public class DetailProductServlet extends HttpServlet {
 					+ "&cPage=" + pageNo + "'><i class='"+"fas fa-chevron-right fa-1x"+"'></i></a>";
 		}
 		List<ProductComment> commentList = new ProductService().searchComment();
-		
-		
 		//댓글 리스트
 		request.setAttribute("commentList", commentList);
 		//페이징바
 		request.setAttribute("pageBar", pageBar);
 		//상품리뷰 리스트 & 관련상품
 		request.setAttribute("relateProduct", list);
-
-	  
-
 		request.setAttribute("selectProduct", p);
 		request.setAttribute("totalData",totalData);
 		request.setAttribute("reviewList",reviewList);
 		request.getRequestDispatcher("/view/product/productDetail.jsp").forward(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

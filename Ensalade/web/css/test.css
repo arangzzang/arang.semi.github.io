@@ -145,6 +145,7 @@ section {
 	/*a태그 밑줄삭제 및 사이 공간 확보*/
 	text-decoration: none;
 	padding: 30px;
+	color:black;
 }
 
 #headcap {
@@ -154,10 +155,11 @@ section {
 	width: 100%;
 	position: fixed;
 	z-index: 1000;
-	background-color: rgba(255, 255, 255, 1);
+	/* background-color: rgba(255, 255, 255, 1); */
 	height:75.6px;
-	border-bottom: 1px solid #999999;
+	
 	min-width: 1000px;
+	background: linear-gradient(to right, #ffffff 20%, #4dff4a 100%);
 }
 
 #loginjoin ul {
@@ -173,6 +175,7 @@ section {
 
 #loginjoin ul li a {
 	text-decoration: none;
+	color:black;
 }
 
 #loginjoin {
