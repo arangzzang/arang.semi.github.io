@@ -14,6 +14,11 @@ section.contents-wrap {
 
 section#contents-wrap a {
 	text-decoration: none;
+	color: black;
+}
+section#contents-wrap a:hover {
+	text-decoration: none;
+	color: green;
 }
 
 .form-control_input {
@@ -71,6 +76,8 @@ section#contents-wrap a {
 	cursor: pointer;
 	outline: none;
 }
+
+.form-control_input_btn:hover {background: #27B000; }
 
 .login-btnbox {
 	display: block;

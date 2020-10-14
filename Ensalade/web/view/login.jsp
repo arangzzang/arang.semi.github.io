@@ -8,11 +8,6 @@
 	
 %>
 
-<script>
-     $(".form2").focus(e=> {
-        $(e.target).css("outline-color","#27b06e");
-     });
-</script>
 
 <section class="contents-wrap" id="contents-wrap">
     <% if(loc==null){%>
@@ -48,5 +43,10 @@
 </section>
 
 <%-- <%@include file="/view/common/footer2.jsp"%> --%>
+<script>
+     $(".form2").focus(e=> {
+        $(e.target).css("outline-color","#27b06e");
+     });
+</script>
 
 
