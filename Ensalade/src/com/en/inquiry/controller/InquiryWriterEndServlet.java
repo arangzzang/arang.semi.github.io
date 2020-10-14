@@ -36,6 +36,8 @@ public class InquiryWriterEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		int memberNo = Integer.parseInt(request.getParameter("no"));
+		
 		if (!ServletFileUpload.isMultipartContent(request)) {
 			request.setAttribute("msg", "작성오류! 관리자에게 문의하세요");
 			request.setAttribute("loc", "/");
@@ -64,8 +66,8 @@ public class InquiryWriterEndServlet extends HttpServlet {
 		request.setAttribute("result", result);
 
 		String msg = "";
-		String loc = "/";
-		msg = result > 0 ? "문의하기가 완료되었습다! 금방 답변드릴게요!" : "문의하기 실패. 다시 등록해주세요ㅠㅠ";
+		String loc = "/inquiry/searchInquiryMem?no="+memberNo;
+		msg = result > 0 ? "문의하기가 완료되었습니다! 금방 답변드릴게요!" : "문의하기 실패. 다시 등록해주세요ㅠㅠ";
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);

@@ -12,6 +12,8 @@
 	
 	String cPath=request.getContextPath();
 	String login=request.getContextPath()+"/view/loginAlert.jsp";
+	
+	
 %>
 <!DOCTYPE html>
 <html>

@@ -35,7 +35,7 @@ public class InquriryManagerTextServlet extends HttpServlet {
       // TODO Auto-generated method stub
       
 
-      String mangerText=request.getParameter("MangerText");
+      String mangerText=request.getParameter("ManagerText");
       System.out.println(mangerText);
       int no=Integer.parseInt(request.getParameter("no"));
       System.out.println(no);

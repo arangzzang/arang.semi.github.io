@@ -1,0 +1,167 @@
+@charset "UTF-8";
+
+.form_image {
+	top: 50%;
+    left: 50%;
+    width: 50%;
+    height: auto;
+}
+.answer-btn {
+	width: 50%;
+	height: 50px;
+	border-radius: 4px;
+	border: 1px solid #fff;
+	font-weight: 700;
+	color: white;
+	cursor: pointer;
+	background-color: #27b06e;
+	font-size: 18px;
+}
+
+.manager-answer_content>p {
+	font-size: 16px;
+	width: 100%;
+	height: auto;
+	float: left;
+	margin: -7px 0 0 0;
+	white-space: pre-wrap;
+}
+
+.manager-answer_label>label {
+	font-weight: 700;
+	font-size: 20px;
+	padding: 0 0 0 55px;
+	float: left;
+}
+
+.manager-answer_content {
+	float: right;
+	padding: 10px;
+}
+
+.manager-answer_label {
+	float: left;
+	font-size: 15px;
+}
+
+.manager-answer{
+	display: flex;
+}
+
+.inquiry_Manager_answer {
+	display: inline-block;
+}
+
+.answer-check>p {
+	color: red;
+}
+.inquiry-contents-p p{
+	font-size: 14px;
+    white-space: pre-wrap;
+}
+.inquiry-answer-wrap{
+	top: 50%;
+    left: 50%;
+    width: 50%;
+    height: auto;
+}
+.inquiry-contents-wrap{
+	display: flex;
+}
+
+.content_top {
+	margin-top: 10px;
+}
+
+.content_row {
+	margin-bottom: 10px;
+}
+
+.form-control {
+	display: block;
+	box-sizing: border-box;
+	height: 40px;
+	width: 80%;
+	padding: 0 15px;
+	line-height: 40px;
+	border-radius: 4px;
+	border: solid 1px #fafcfb;
+	background-color: #fafcfb;
+	color: #424242;
+	font-size: 12px;
+}
+
+textarea.form-control {
+	resize: none;
+	line-height: 20px;
+	padding-top: 9px;
+	padding-bottom: 9px;
+	min-height: 200px;
+	min-width: 600px;
+}
+
+.form-control_input_btn {
+	height: 25px;
+	width: 115px;
+	height: 40px;
+	box-sizing: border-box;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 400;
+	cursor: pointer;
+	border-style: none;
+	font-weight: inherit;
+	background: #27b06e;
+	color: #ffffff;
+}
+
+div#inquiryUI-wrap {
+	position: relative;
+}
+
+ul#inquiryUl {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	background-color: rgba(187, 184, 184, 0.438);
+}
+
+ul#inquiryUl li {
+	list-style-type: none;
+}
+div#inquiry-contents p{
+	white-space: pre-wrap;
+}
+div#inquiry-contents {
+	display: none;
+	height: auto;
+}
+
+inquiry-container hr {
+	width: 100%;
+}
+
+.inquiry-right {
+	width: 100%;
+}
+
+.inquiry-right h1 {
+	margin: 0 50px;
+	font-size: 50px;
+	left: 0;
+}
+
+.inquiry-right h2 {
+	margin: 10px;
+	font-size: 30px;
+	left: 0;
+}
+
+section#inquiry-container {
+	position: relative;
+	width: 70%;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 150px;
+	height: auto;
+}

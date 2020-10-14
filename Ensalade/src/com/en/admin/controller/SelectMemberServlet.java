@@ -59,20 +59,20 @@ public class SelectMemberServlet extends HttpServlet {
 			if(pageNo ==1) {
 				pageBar += "<span>[이전]<span>";
 			}else {
-				pageBar += "<a href='"+request.getContextPath()+"/admin/memberAll?cPage="+(pageNo-1)+"'>[이전]</a>";
+				pageBar += "<a href='"+request.getContextPath()+"/admin/memberAll?cPage="+(pageNo-1)+"'> [이전] </a>";
 			}
 			while (!(pageNo > pageEnd || pageNo > totalPage)) {
 				if (pageNo == cPage) {
 					pageBar += "<span>" + pageNo + "</span>";
 				} else {
-					pageBar += "<a href='" + request.getContextPath() + "/admin/memberAll?cPage=" + pageNo + "'>" + pageNo + "</a>";
+					pageBar += "<a href='" + request.getContextPath() + "/admin/memberAll?cPage=" + pageNo + "'> " + pageNo + " </a>";
 				}
 				pageNo++;
 			}
 			if (pageNo > totalPage) {
 				pageBar += "<span>[다음]</span>";
 			} else {
-				pageBar += "<a href='" + request.getContextPath() + "/admin/memberAll?cPage=" + pageNo + "'>[다음]</a>";
+				pageBar += "<a href='" + request.getContextPath() + "/admin/memberAll?cPage=" + pageNo + "'> [다음] </a>";
 			}
 			
 		//이름, 아이디, 생일, 매니저여부 리스트
@@ -86,21 +86,21 @@ public class SelectMemberServlet extends HttpServlet {
 			if(pageNo ==1) {
 				pageBar += "<span>[이전]<span>";
 			}else {
-				pageBar += "<a href='"+request.getContextPath()+"/admin/memberAll?cPage="+(pageNo-1)+"&searchType="+type+"&searchKeyword="+key+"'>[이전]</a>";
+				pageBar += "<a href='"+request.getContextPath()+"/admin/memberAll?cPage="+(pageNo-1)+"&searchType="+type+"&searchKeyword="+key+"'> [이전] </a>";
 			}
 			while (!(pageNo > pageEnd || pageNo > totalPage)) {
 				if (pageNo == cPage) {
-					pageBar += "<span>" + pageNo + "</span>";
+					pageBar += "<span> " + pageNo + " </span>";
 				} else {
 					pageBar += "<a href='" + request.getContextPath() + "/admin/memberAll?cPage=" + pageNo 
-							+ "&searchType="+type+"&searchKeyword="+key+"'></a>";
+							+ "&searchType="+type+"&searchKeyword="+key+"'> "+ pageNo +" </a>";
 				}
 				pageNo++;
 			}
 			if (pageNo > totalPage) {
 				pageBar += "<span>[다음]</span>";
 			} else {
-				pageBar += "<a href='" + request.getContextPath() + "/admin/memberAll?cPage=" + pageNo + "&searchType="+type+"&searchKeyword="+key+"'>[다음]</a>";
+				pageBar += "<a href='" + request.getContextPath() + "/admin/memberAll?cPage=" + pageNo + "&searchType="+type+"&searchKeyword="+key+"'> [다음] </a>";
 			}
 		}
 		request.setAttribute("pageBar1", pageBar);
