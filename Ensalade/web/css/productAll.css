@@ -64,6 +64,8 @@ a:visited{
 	content: "";
 	display: block;
 	clear: both;
+	
+}
 	}	
 #sort{
 	width:200px;
@@ -88,16 +90,20 @@ a:visited{
 	margin-left:0;
 	padding:0;
 }
-#sidebar{
-    left : 30px;
+ #sidebar {
+   
     height: 200px;
     width: 100%;
     position: absolute;
-    left:0
+    left:30px;
 	}
+	
 .sidemenu:hover{
-	color: #f1f1f1;
-	background-color: #9EF048;
+	color: #808080;
+	/* background-color: #9EF048; */
+	/* background:; */
+	transition: 0.5s ease-out;
+	
 }
 
 .productInfoin{
@@ -117,7 +123,56 @@ a:visited{
 	width: 200px;
 	height: 200px;
 }
+ .productul{
 	
+   margin:40px auto;
+   padding:10px 0px 20px 0px;
+  /*   border:1px solid #111; 
+   border-radius:4px;
+    box-shadow:0px 4px 5px rgba(0, 0, 0, 0.75); */ */
+} 
+.cjfdn{
+	
+   /* font-size:16px; */
+   font-weight:300;
+   text-align:center;
+   position:relative;
+   height:40px;
+   line-height:40px;
+   margin-top:10px;
+   overflow:hidden;
+   width:90%;
+   margin-left:5%;
+   cursor:pointer;
+}
+.cjfdn:after{
+   content: '';
+   position:absolute;
+   width:80%;
+   border-bottom:2px solid #9EF048;
+   bottom:50%;
+   left:-100%;
+   transition-delay: all 0.5s;
+   transition: all 0.5s;
+}
+.cjfdn:hover:after,
+.cjfdn.hover:after{
+   left:100%;
+}
+.cjfdn .sidemenu{
+   text-shadow:0px -40px 0px #818181;
+   transition:all 0.75s;
+   transform:translateY(100%) translateZ(0);
+   transition-delay:all 0.25s;
+}
+.cjfdn:hover .sidemenu,
+.cjfdn.hover .sidemenu{
+   text-shadow:0px -40px 0px  #818181;;
+   transform:translateY(0%) translateZ(0) scale(1.1);
+   font-weight:600;
+}
+}
+.	
 	
 	
 	

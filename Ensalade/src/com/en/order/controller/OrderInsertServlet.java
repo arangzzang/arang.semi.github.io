@@ -36,15 +36,23 @@ public class OrderInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//장바구니나 상품하나 클릭해서 주문하기 했을때
+		
 		HttpSession session=request.getSession();
+		
 		Member m=(Member)session.getAttribute("loginMember");
-		String memberId=m.getMemberId();
 		String address=request.getParameterValues("address")[0]+",";
+		System.out.println("address");
+		String memberId=m.getMemberId();
+		
+		System.out.println(address);
 		address+=request.getParameterValues("address")[1]+",";
 		address+=request.getParameterValues("address")[2];
 		String memo=request.getParameter("memo");
 		int total=Integer.parseInt(request.getParameter("total-pay"));
-		int totalpay=(total*5)/100;
+		int point= Integer.parseInt(request.getParameter("point"));
+		System.out.println(point);
+		int results2=new MemberService().pointDown(memberId,point);
+		int totalpay=(total*2)/100;
 		System.out.println(totalpay);
 		
 		

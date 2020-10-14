@@ -114,8 +114,10 @@ String[] address=loginMember.getMemberAddress().split(",");
                 <div class="left-point">
                     <h3>할인포인트</h3>
                     <span>보유포인트</span>
-                    <input class="product_point"type="text" value="<%=loginMember.getPoint() %>" dir="rtl" readonly>
-                    <input class="point_count" type="text" dir="rtl" placeholder="사용할포인트">
+                 
+                    	<input id="1" class="product_point"type="text" value="<%=loginMember.getPoint()%>" dir="rtl" readonly>
+                    	<input id="2" class="point_count" type="text" name="point" dir="rtl" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' placeholder="사용할포인트">
+                	
                 </div>
                 <hr>               
                 
@@ -340,13 +342,53 @@ String[] address=loginMember.getMemberAddress().split(",");
         </style>
         <script>
         
+        var point= console.log(Number($(".point").html()));
         var amounts=$(".amount");//수량 클래스명들의 배열
         var adds=$(".add");//더하기버튼 클래스명들의 배열
         var dels=$(".del");//빼기버튼 클래스명들의 배열
         var prices=$(".price");//가격클래스명들 배열
         var total_price=0;
         var ba;
-        		
+        
+        function onlyNumber(event){
+            event = event || window.event;
+            var keyID = (event.which) ? event.which : event.keyCode;
+            if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+                return;
+            else
+                return false;
+        }
+         
+        function removeChar(event) {
+            event = event || window.event;
+            var keyID = (event.which) ? event.which : event.keyCode;
+            if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+                return;
+            else
+                event.target.value = event.target.value.replace(/[^0-9]/g, "");
+        }
+     
+        $("#2").keyup(e=>{
+        	   
+			 let b=$("#1").val();
+			 let a=Number(b);
+			let c=Number($(e.target).val());
+			var amountse=$("#2");
+			$(".point").text(c);
+			
+			
+			if(c>a){
+				alert('포인트가 넘었습니다.');
+				$(e.target).val('');
+				$(".point").text('');
+			}
+			
+			var tjf =Number($(".point").html());
+			$(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf).toLocaleString());//상품총가격+배송비 최종가격
+            $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));
+    	
+			
+		})
 		        $(document).on("change",".address-detail",function(){//생성된 주소 태그에 값이 변경되면 	배송비 변경
 		        	//지역별 배송비 설정
 					var address=$(".address-ch").val();
@@ -357,25 +399,28 @@ String[] address=loginMember.getMemberAddress().split(",");
 	                }else{
 	                	ba=5000;
 	                }
+	                var tjf =Number($(".point").html());
 	                $(".ba").html(ba.toLocaleString());//배송비 설정
-	                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba).toLocaleString());//상품총가격+배송비 최종가격
-	                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));
+	                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf).toLocaleString());//상품총가격+배송비 최종가격
+	                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));
 	                $("#ba").val(ba);
 		       	});
 		        $(".amount").keyup(e=>{
 		   	    	for(var i=0;i<amounts.length;i++){
 		   	    		if(e.target==amounts[i]){//해당인덱스
 		     				if(amounts[i].value=amounts[i].value.replace(/[^0-9]/g, '')){
-		     					console.log($(e.target).val());
+		     				
 		     					total_price+=parseInt($(e.target).val())*prices[i].textContent.replace(/,/g, "");
 		     	 		}
 		   	    	}else{
 		   	    		total_price+=parseInt(amounts[i].value)*prices[i].textContent.replace(/,/g, "");
 	           		} 	
 		   	    }
+		   	    	var tjf =Number($(".point").html());
+		   	    	console.log(Number($(".point").html()));
 		   	    	$(".total-price")[0].textContent=(total_price).toLocaleString();
-		   	    	$(".total-pay")[0].textContent=(total_price+ba).toLocaleString();
-		   	     	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));//hidden에 값주기
+		   	    	$(".total-pay")[0].textContent=(total_price+ba+tjf).toLocaleString();
+		   	     	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));//hidden에 값주기
 	           		total_price=0;
 		     });   
 		     $(".amount").blur(e=>{
@@ -387,9 +432,10 @@ String[] address=loginMember.getMemberAddress().split(",");
 		    				 total_price+=parseInt(amounts[i].value)*prices[i].textContent.replace(/,/g, "");
 			           		}   	
 		    		 }
+		    		    var tjf =Number($(".point").html());
 		    		    $(".total-price")[0].textContent=(total_price).toLocaleString();
-		    		    $(".total-pay")[0].textContent=(total_price+ba).toLocaleString();
-		    		    $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));//hidden에 값주기
+		    		    $(".total-pay")[0].textContent=(total_price+ba+tjf).toLocaleString();
+		    		    $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));//hidden에 값주기
 	             		total_price=0;
 		     });
 		    //수량 버튼 클릭시 태그 색변경
@@ -416,8 +462,10 @@ String[] address=loginMember.getMemberAddress().split(",");
           
             
             });
-        
+            
+           
             var totalPrice="<%=formatter.format(totalPrice) %>";
+            
             $(document).ready(function(){//처음에 한번실행
                 $(".total-price").html(totalPrice);
             	//지역별 배송비 설정
@@ -429,9 +477,10 @@ String[] address=loginMember.getMemberAddress().split(",");
                 }else{
                 	ba=5000;
                 }
+                var tjf =Number($(".point").html());
                 $(".ba").html(ba.toLocaleString());//배송비 설정
-                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba).toLocaleString());//상품총가격+배송비 최종가격
-                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));//hidden에 값주기
+                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf).toLocaleString());//상품총가격+배송비 최종가격
+                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));//hidden에 값주기
                 $("#ba").val(ba);
             });
 
@@ -448,9 +497,10 @@ String[] address=loginMember.getMemberAddress().split(",");
 	           			total_price+=parseInt(hm.value)*prices[i].textContent.replace(/,/g, "");
 	           		}
 	           	}
+	            var tjf =Number($(".point").html());
            		$(".total-price")[0].textContent=(total_price).toLocaleString();
-           		$(".total-pay")[0].textContent=(total_price+ba).toLocaleString();
-           	 	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));//hidden에 값주기
+           		$(".total-pay")[0].textContent=(total_price+ba+tjf).toLocaleString();
+           	 	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));//hidden에 값주기
            		total_price=0;
            		
            	});
@@ -472,9 +522,10 @@ String[] address=loginMember.getMemberAddress().split(",");
             			total_price+=parseInt(hm.value)*parseInt(prices[i].textContent.replace(/,/g, ""));
     	     		}
     	     	}
+    	     	var tjf =Number($(".point").html());
     	     	$(".total-price")[0].textContent=(total_price).toLocaleString();
-    	     	$(".total-pay")[0].textContent=(total_price+ba).toLocaleString();
-    	     	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));//hidden에 값주기
+    	     	$(".total-pay")[0].textContent=(total_price+ba+tjf).toLocaleString();
+    	     	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba+tjf));//hidden에 값주기
     	     	total_price=0;
     	     	}); 
         </script>
@@ -540,14 +591,10 @@ String[] address=loginMember.getMemberAddress().split(",");
 			});
 
 	});
-	<%--  $.ajax({
-			url:"<%=request.getContextPath()%>/order/productOrder",
-			data:{"point_count":$(".point_count").val(),"product_point":$(".product_point").val()"},
-			dataType:"html",
-			type:"post",
-			success:data=>{
-				
-			}
-		}) --%>
+	 
+	  
+		
+		
+		
 </script> 
          <%@include file="/view/common/footer.jsp" %> 
