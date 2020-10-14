@@ -11,7 +11,7 @@
 
 <section class="contents-wrap" id="contents-wrap">
     <% if(loc==null){%>
-    <form class="login-form" action="<%=request.getContextPath()%>/loginjoin/login.do" method='post'></form>
+    <form class="login-form" action="<%=request.getContextPath()%>/loginjoin/login.do" method='post'>
         <%}else{ %>
         <form action="<%=request.getContextPath()%>/loginjoin/login.do?loc=<%=loc %>" method='post'>
             <%} %>

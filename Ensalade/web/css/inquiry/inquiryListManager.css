@@ -3,7 +3,7 @@
 .form_image {
 	top: 50%;
     left: 50%;
-    width: 50%;
+    width: 100%;
     height: auto;
 }
 .answer-btn {
@@ -67,8 +67,13 @@
 }
 .inquiry-contents-wrap{
 	display: flex;
+	padding: 30px;
+    padding-left: 70px;
+    border-bottom: 1px solid #ededed;
 }
-
+.image-upload-wrap{
+	margin-right:5px;
+}
 .content_top {
 	margin-top: 10px;
 }
@@ -81,11 +86,11 @@
 	display: block;
 	box-sizing: border-box;
 	height: 40px;
-	width: 80%;
+	width: 100%;
 	padding: 0 15px;
 	line-height: 40px;
 	border-radius: 4px;
-	border: solid 1px #fafcfb;
+	border: solid 1px #eee;
 	background-color: #fafcfb;
 	color: #424242;
 	font-size: 12px;
@@ -97,7 +102,7 @@ textarea.form-control {
 	padding-top: 9px;
 	padding-bottom: 9px;
 	min-height: 200px;
-	min-width: 600px;
+	min-width:400px;
 }
 
 .form-control_input_btn {
@@ -160,8 +165,35 @@ inquiry-container hr {
 section#inquiry-container {
 	position: relative;
 	width: 70%;
-	margin: 0 auto;
-	text-align: center;
-	padding-top: 150px;
-	height: auto;
+	padding-top: 100px;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+}
+.search-form_wrap>span {
+	font-size: 13px;
+	padding: 2px 10px;
+}
+.formCss-submit-btn {
+	border-radius: 2px;
+	border: solid 1px #dbdbdb;
+	background-color: #dbdbdbaf;
+	color: #535353;
+	font-size: 12px;
+	height: 40px;
+	width: 40px;
+}
+.search-form_wrap, .formCss-submit-wrap {
+	margin: 0 10px;
+}
+.formCss-submit-wrap {
+	display: flex;
+}
+.search-form {
+	display: flex;
+	justify-content: center;
+	position: relative;
+}
+.search-form_wrap {
+	display: flex;
 }

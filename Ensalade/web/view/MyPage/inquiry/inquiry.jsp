@@ -2,10 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.en.inquiry.model.vo.Inquiry"
 	import="java.util.List"%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/inquiry/inquiryListMem.css">
 <%@ include file="/view/common/header.jsp"%>
 <%
 	List<Inquiry> list = (List) request.getAttribute("list");
+	String pageBar = (String)request.getAttribute("pageBar");
 %>
 
 <script type="text/javascript">
@@ -67,6 +69,7 @@
 				<%}	%>
 			</div>
 			<%}	%>
+				<div id="pageBar"><%=pageBar %></div>
 			<!-- 글쓰기버튼 -->
 			<div class="inquiryV-button-wrap">
 				<div style="margin-right: 20px;">

@@ -42,7 +42,7 @@ public class AdminCheckFilter implements Filter {
 		HttpServletRequest rq = (HttpServletRequest)request;
 		HttpSession session = rq.getSession();
 		Member m = (Member)session.getAttribute("loginMember");
-		if(m==null || !m.getMemberId().equals("admin")) {
+		if(m==null || !m.getMangerYn().equals("Y")) {
 			rq.setAttribute("msg", "잘못된 접근입니다.");
 			rq.setAttribute("loc", "/");
 			rq.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
