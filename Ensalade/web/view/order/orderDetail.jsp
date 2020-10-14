@@ -5,7 +5,9 @@
 <script src="<%=request.getContextPath() %>/js/jquery-3.5.1.min.js"></script>
 <%
 DecimalFormat formatter=new DecimalFormat("###,###");//숫자 3자리마다 ,표시해주는 클래스
-List<Order> list=(List)request.getAttribute("list"); %>
+List<Order> list=(List)request.getAttribute("list");
+System.out.println(list.isEmpty());
+%>
 <section>
 <div>
 	<div class="orderHeader">

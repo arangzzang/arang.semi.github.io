@@ -65,8 +65,14 @@ public class CustomUploadServlet extends HttpServlet {
       cp.setContent(mr.getParameter("ctext"));
       cp.setcImage(mr.getFilesystemName("upload"));
       cp.setMemberId(mr.getParameter("userId"));
+      try {
       cp.setCustomNo(Integer.parseInt(mr.getParameter("customNo")));
-      
+      }catch(NumberFormatException e) {
+    	  request.setAttribute("msg", "커스텀 번호를 선택해주세요.");
+    	  request.setAttribute("loc", "/custom/customWrite?userId="+mr.getParameter("userId"));
+    	  request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
+    	  return;
+      }
       int result=new CustomService().insertPost(cp);
       
       String msg="";
