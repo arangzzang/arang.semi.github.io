@@ -82,8 +82,8 @@
                     <li><a  class="mc" href="<%=!a.equals("1")?cPath+"/view/MyPage/mypageAll.jsp":login%>">마이페이지</a>
                         <ul class="ulul">
                             <li class="cjfdnand"><a  class="ullia" href="<%=request.getContextPath() %>/basket/basketView"><text>장바구니</text></a></li>
-                            <li class="cjfdnand"><a class="ullia" href="<%=!a.equals("1")?cPath:login%>"><text>배송현황</text></a></li>
-                            <li class="cjfdnand"><a class="ullia" href="<%=!a.equals("1")?cPath:login%>"><text>나의 커스텀</text></a></li>
+                            <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/view/MyPage/deliveryStatus.jsp"><text>배송조회</text></a></li>
+<%--                             <li class="cjfdnand"><a class="ullia" href="<%=!a.equals("1")?cPath:login%>"><text>나의 커스텀</text></a></li> --%>
                             <li class="cjfdnand"><a class="ullia" href="<%=!a.equals("1")?cPath+"/inquiry/searchInquiryMem?no="+loginMember.getUser_no():login%>"><text>1:1문의</text></a></li>
                         </ul>
                     </li>
