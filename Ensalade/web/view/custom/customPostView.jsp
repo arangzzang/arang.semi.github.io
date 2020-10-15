@@ -18,6 +18,10 @@
 		<div class="left">
 		<div class="vbox-imgbox">
 			<img src="<%=request.getContextPath()%>/upload/custom/<%=cp.getcImage()%>" id="img1">
+			<%if(cp.getMemberId().equals(loginMember.getMemberId())) {%>
+			<button style="border:none;outline:none;background-color:rgb(255,255,255,0);font-weight:600;" id="modi" value="<%=cp.getcIdx()%>">수정</button>
+			<button style="border:none;outline:none;background-color:rgb(255,255,255,0);font-weight:600;" id="del" value="<%=cp.getcIdx()%>">삭제</button>
+			<%} %>
 		</div>
 		<div class="comment-box">
 		<!-- <h2 class="comment-box_header">
@@ -75,8 +79,8 @@
 			</div>
 		</div>
 	</div>
-	<!--<div class="comment-box">
-		< <h2 class="comment-box_header">
+<!-- 	<div class="comment-box">
+<h2 class="comment-box_header">
 			댓글 <span class="comment-box_header_count">16</span>
 		</h2>
 		<div id="comment-box_form">
@@ -106,7 +110,7 @@
 		<div>
 		</div>
 	</div>
-	</div>-->
+	</div> -->
 </section>
 <script>
 
@@ -186,6 +190,7 @@
 	min-height: 100%;
 	position: relative;
 	padding-bottom: 100px;
+	margin-bottom: 33px;
 	/* footer height */
 }
 
@@ -337,5 +342,15 @@ section.contents-wrap {
 	background-size: cover;
 }
 </style>
+<script>
+	$("#modi").click(e=>{
+		location.assign("<%=request.getContextPath()%>/view/custom/modifyCustom.jsp?no="+<%=cp.getcIdx()%>);
+	})
+	$("#del").click(e=>{
+		if(confirm("삭제하시겠습니까?")){
+		location.replace("<%=request.getContextPath()%>/view/custom/deletePost.jsp?no="+<%=cp.getcIdx()%>);
+		}
+	})
+</script>
 
 <%@ include file="/view/common/footer2.jsp"%>

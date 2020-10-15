@@ -3,7 +3,7 @@
 
 <%@include file="/view/common/header.jsp"%>
 <div id="error">
-<h1>로그인을 확인해주세요.</h1>
+<h1>잘못된 요청입니다.</h1>
 	<button onclick="loc();" id="btn">돌아가기</button>
 
 </div>
@@ -26,6 +26,6 @@
 </style>
 <script>
 	function loc(){
-		location.replace("<%=request.getContextPath()%>/view/login.jsp");
+		location.replace("<%=request.getContextPath()%>");
 	}
 </script>

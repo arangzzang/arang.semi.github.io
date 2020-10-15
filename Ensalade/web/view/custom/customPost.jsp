@@ -275,7 +275,7 @@ $("#searchType").change(e=>{
    
    $(".img1").click(e=>{
       let no=$(e.target).parent().children("input[type=hidden]").val();
-      location.replace("<%=request.getContextPath()%>/custom/customView?no="+no);
+      location.assign("<%=request.getContextPath()%>/custom/customView?no="+no);
    })
 
 

@@ -192,5 +192,13 @@ public class CustomService {
 		return list;
 	}
 	
+	public int deletePost(int no) {
+		Connection conn=getConnection();
+		int result=cd.deletePost(conn,no);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 
 }

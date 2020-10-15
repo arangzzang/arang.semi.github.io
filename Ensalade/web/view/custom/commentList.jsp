@@ -223,6 +223,9 @@
 	.comment_1 li{
 		list-style: none;
 	}
+	.comment_1{
+		padding: 0px 10px 0px;
+	}
 	.smile{
 		width:26px;
 		height:26px;
@@ -256,7 +259,7 @@
 
 	}
 	.level2_{
-		background-color: #f7f8fa;
+		background-color: lightgrey;
     	border-radius: 4px;
     	padding: 0px 20px 0px;
 	}

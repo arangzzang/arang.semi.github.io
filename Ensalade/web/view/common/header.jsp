@@ -41,13 +41,14 @@
                 <!-- 관리자 로그인시 -->
 
                 <ul id="pcolor">
-                 <%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
+                 <%if(loginMember!=null && loginMember.getMangerYn().equals("Y")){ %>
                     <li><a href="<%=request.getContextPath()%>/product/productAll">관리자전용 메뉴</a>
 
                         <ul class="ulul">
                             <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/admin/memberAll"><text>회원관리</text></a></li>
                             <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/view/admin/productList.jsp">상품관리</a></li>
                             <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/inquiry"><text>1:1문의 답변</text></a></li>
+                            <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/view/admin/customManager.jsp"><text>커뮤니티 관리</text></a></li>
 
 
                         </ul>
