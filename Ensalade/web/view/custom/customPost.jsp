@@ -111,6 +111,7 @@
 	border-radius: 5px;
 	font-weight: 800;
 	color: white;
+	outline:none;
 }
 
 .btn_1:hover {

@@ -6,7 +6,7 @@
 <!-- Link Swiper's CSS -->
 <!-- <link rel="stylesheet" href="../package/swiper-bundle.min.css"> -->
 <!-- Swiper JS -->
-<script src="../package/swiper-bundle.min.js"></script>
+<!-- <script src="../package/swiper-bundle.min.js"></script> -->`
 <!-- <script src="https://unpkg.com/swiper/swiper-bundle.js"></script> -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!-- Demo styles -->
@@ -32,13 +32,13 @@
 						<p class="introSubject">
 							<strong>커스텀</strong>
 						</p>
-						<p>여기는 커스텀 소개하는 글을 쓰는 p 입니다</p>
+						<p>나만의 커스텀을 만들어보세요!</p>
 					</div>
 					<!-- btn_box : 버튼박스div -->
 					<div class="btn_box" id="btn_box">
 						<p>
 							<a class="btn"
-								href="<%=request.getContextPath()%>/custom/customList"><span>커스텀보러가기</span></a>
+								href="<%=request.getContextPath()%>/custom/customList"><span>커스텀하러가기</span></a>
 						</p>
 					</div>
 				</div>

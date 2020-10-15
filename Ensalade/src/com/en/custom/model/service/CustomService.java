@@ -179,5 +179,12 @@ public class CustomService {
 		return result;
 	}
 	
+	public List<CustomPost> customList(int cPage, int numPerPage){
+		Connection conn=getConnection();
+		List<CustomPost> list=cd.customList(conn,cPage,numPerPage);
+		close(conn);
+		return list;
+	}
+	
 
 }

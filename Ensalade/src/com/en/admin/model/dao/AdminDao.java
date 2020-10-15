@@ -175,12 +175,14 @@ public class AdminDao {
 		}return result;
 	}
 
-	public List<CustomComment> customCommentList(Connection conn) {
+	public List<CustomComment> customCommentList(Connection conn,int cPage,int numPerPage) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<CustomComment> list=new ArrayList();
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("customCommentList"));
+			pstmt.setInt(1,(cPage-1)*numPerPage+1);
+			pstmt.setInt(2,cPage*numPerPage);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				CustomComment c=new CustomComment();
@@ -336,5 +338,41 @@ public class AdminDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	public int postCount(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int total=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("postCount"));
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				total=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return total;
+	}
+	public int commentCount(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int total=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("commentCount"));
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				total=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return total;
 	}
 }

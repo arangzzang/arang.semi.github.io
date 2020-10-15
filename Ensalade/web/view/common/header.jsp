@@ -56,7 +56,7 @@
                             <li class="cjfdnand"><a href="<%=request.getContextPath()%>/product/productAll?type=유제품">유제품</a></li> 
                         </ul>
                     </li>
-                    <li><a href="">커스텀</a>
+                    <li><a href="<%=request.getContextPath()%>/view/custom/custom2.jsp">커스텀</a>
                         <ul>
                         	<li class="cjfdnand"><a href="<%=request.getContextPath()%>/view/custom/custom2.jsp">커스텀하기</a></li>
                             <li class="cjfdnand"><a href="<%=request.getContextPath()%>/custom/customList">커뮤니티</a></li>
