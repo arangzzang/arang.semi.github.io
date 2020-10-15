@@ -39,8 +39,8 @@ public class AdminDao {
 		List<Member> list = new ArrayList<Member>();
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("selectMemberAll"));
-			pstmt.setInt(1, cPage);
-			pstmt.setInt(2, numPerPage);
+			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
+			pstmt.setInt(2, cPage * numPerPage);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Member m = new Member();
@@ -83,7 +83,7 @@ public class AdminDao {
 		ResultSet rs = null;
 		List<Member> list = new ArrayList<Member>();
 		try {
-			pstmt = conn.prepareStatement(prop.getProperty("selectMemberType").replaceAll("#type", type));
+			pstmt = conn.prepareStatement(prop.getProperty("selectMemberType").replaceAll("@type", type));
 			pstmt.setString(1, "%" + key + "%");
 			pstmt.setInt(2, (cPage - 1) * numPerPage + 1);
 			pstmt.setInt(3, cPage * numPerPage);
