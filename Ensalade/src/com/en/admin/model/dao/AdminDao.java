@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.en.FAQ.model.vo.FAQ;
+import com.en.admin.model.vo.Store;
 import com.en.event.model.vo.Event;
 import com.en.event.model.vo.EventContent;
 import com.en.custom.model.vo.CustomComment;
@@ -38,8 +39,8 @@ public class AdminDao {
 		List<Member> list = new ArrayList<Member>();
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("selectMemberAll"));
-			pstmt.setInt(1, cPage);
-			pstmt.setInt(2, numPerPage);
+			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
+			pstmt.setInt(2, cPage * numPerPage);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Member m = new Member();
@@ -82,7 +83,7 @@ public class AdminDao {
 		ResultSet rs = null;
 		List<Member> list = new ArrayList<Member>();
 		try {
-			pstmt = conn.prepareStatement(prop.getProperty("selectMemberType").replaceAll("#type", type));
+			pstmt = conn.prepareStatement(prop.getProperty("selectMemberType").replaceAll("@type", type));
 			pstmt.setString(1, "%" + key + "%");
 			pstmt.setInt(2, (cPage - 1) * numPerPage + 1);
 			pstmt.setInt(3, cPage * numPerPage);
@@ -174,12 +175,14 @@ public class AdminDao {
 		}return result;
 	}
 
-	public List<CustomComment> customCommentList(Connection conn) {
+	public List<CustomComment> customCommentList(Connection conn,int cPage,int numPerPage) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<CustomComment> list=new ArrayList();
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("customCommentList"));
+			pstmt.setInt(1,(cPage-1)*numPerPage+1);
+			pstmt.setInt(2,cPage*numPerPage);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				CustomComment c=new CustomComment();
@@ -310,5 +313,66 @@ public class AdminDao {
 		}finally {
 			close(pstmt);
 		}return result;
+	}
+	public List<Store> storeList(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Store> list=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("storeList"));
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Store s=new Store();
+				s.setStoreName(rs.getNString("STORE_NAME"));
+				s.setStorAdr(rs.getNString("STORE_ADR"));
+				s.setStoreAddress(rs.getDouble("STORE_ADDRESS"));
+				s.setStoreAddress2(rs.getDouble("STORE_ADDRESS2"));
+				s.setStoreImg(rs.getNString("STORE_IMAGE"));
+				s.setStorePhone(rs.getNString("STORE_PHONE"));
+				list.add(s);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	public int postCount(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int total=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("postCount"));
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				total=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return total;
+	}
+	public int commentCount(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int total=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("commentCount"));
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				total=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return total;
 	}
 }

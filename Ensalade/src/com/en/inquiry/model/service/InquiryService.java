@@ -24,11 +24,16 @@ public class InquiryService {
 		close(conn);
 		return result;
 	}
-
-	public List<Inquiry> SerchInqurty() {
+	public List<Inquiry> searchInquiry(int cPage, int numPerPage){
+		Connection conn = getConnection();
+		List<Inquiry> list = dao.searchInquiry(conn, cPage, numPerPage);
+		close(conn);
+		return list;
+	}
+	public List<Inquiry> SerchInqurty(int cPage, int numPerPage, String type, String key) {
 
 		Connection conn = getConnection();
-		List<Inquiry> list = dao.SerchInqurty(conn);
+		List<Inquiry> list = dao.SerchInqurty(conn, cPage, numPerPage, type, key);
 		close(conn);
 		return list;
 	}
@@ -36,6 +41,12 @@ public class InquiryService {
 	public List<Inquiry> searchMemberInquiry(int memberNo) {
 		Connection conn = getConnection();
 		List<Inquiry> list = dao.searchMemberInquiry(conn, memberNo);
+		close(conn);
+		return list;
+	}
+	public List<Inquiry> searchMemberInquiry(int memberNo,int cPage, int numPerPage) {
+		Connection conn = getConnection();
+		List<Inquiry> list = dao.searchMemberInquiry(conn, memberNo, cPage, numPerPage);
 		close(conn);
 		return list;
 	}
@@ -49,5 +60,24 @@ public class InquiryService {
 			rollback(conn);
 		close(conn);
 		return result;
+	}
+	public int inquiryCount(int no) {
+		Connection conn = getConnection();
+		int count = dao.inquiryCount(conn,no);
+		close(conn);
+		return count;
+	}
+	
+	public int inquiryCountManager() {
+		Connection conn = getConnection();
+		int count = dao.inquiryCountManager(conn);
+		close(conn);
+		return count;
+	}
+	public int inquiryCountManager(String type, String key) {
+		Connection conn = getConnection();
+		int count = dao.inquiryCountManager(conn,type, key);
+		close(conn);
+		return count;
 	}
 }

@@ -3,11 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/view/common/header.jsp"%>
-
 <section  id="inquiry-container">
     <div class="left"></div>
     <div class="right">
-        <form action="<%=request.getContextPath()%>/inquiry/inquiryWriteEnd" method="post"
+        <form action="<%=request.getContextPath()%>/inquiry/inquiryWriteEnd?no=<%=loginMember.getUser_no() %>" method="post"
             enctype="multipart/form-data">
             <h1>Ensalade</h1>
             <hr>

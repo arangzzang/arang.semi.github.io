@@ -518,6 +518,36 @@ public class CustomDao {
 		}return list;
 	}
 	   
+	public List<CustomPost> customList(Connection conn,int cPage,int numPerPage){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<CustomPost> list=new ArrayList();
+		
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("adminCustomList"));
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CustomPost cp=new CustomPost();
+				cp.setcIdx(rs.getInt("C_IDX"));
+				cp.setTitle(rs.getString("TITLE"));
+				cp.setContent(rs.getString("CONTENT"));
+				cp.setWriteDate(rs.getDate("WRITE_DATE"));
+				cp.setLikeCount(rs.getInt("LIKE_COUNT"));
+				cp.setViewCount(rs.getInt("VIEW_COUNT"));
+				cp.setCustomNo(rs.getInt("CUSTOM_NO"));
+				cp.setMemberId(rs.getString("MEMBER_ID"));
+				cp.setcImage(rs.getNString("C_IMAGE"));
+				list.add(cp);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return list;
+	}
 
 }
 

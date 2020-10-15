@@ -29,17 +29,20 @@ public class UpdatePwServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id=request.getParameter("userId");
+		String id2=request.getParameter("id2");
 		String newPw=request.getParameter("newPw");
-		
-		int result=new MemberService().updatePw(id,newPw);
-		
+		int result=0;
+		if(id.equals(id2)) {
+		result=new MemberService().updatePw(id,newPw);
+		}
 		if(result>0){
 			request.setAttribute("msg", "비밀 번호가 변경되었습니다.");
 			request.setAttribute("loc", "/view/login.jsp");
 			request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
 		}else {
 			request.setAttribute("check", "ch");
-			request.getRequestDispatcher("/view/search/changePw").forward(request, response);
+			request.setAttribute("id", id2);
+			request.getRequestDispatcher("/view/search/changePw.jsp").forward(request, response);
 		}
 	}
 

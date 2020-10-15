@@ -35,8 +35,7 @@ public class OrderViewServlet extends HttpServlet {
 		int orderNo=Integer.parseInt(request.getParameter("orderNo"));
 		
 		List<Order> list=new OrderService().orderView(orderNo);//해당주문번호에 대한 리스트 가져옴
-		for(int i=0;i<list.size();i++){
-		}
+		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/view/order/orderDetail.jsp").forward(request, response);
 	}

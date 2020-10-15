@@ -15,16 +15,17 @@
     
 <section>
    <div class="container">
-      <div class="left">
+ 
+       <div class="left">
          <nav id="sidebar">
              <ul class="productul">
-                <li><strong><p class="sidemenu" style="cursor:pointer;">전체보기</p></strong></li>
-                <li><strong><p class="sidemenu" style="cursor:pointer;">비건</p></strong></li>
-                <li><strong><p class="sidemenu" style="cursor:pointer;">육류</p></strong></li>
-                <li><strong><p class="sidemenu" style="cursor:pointer;">해산물</p></strong></li>
-                <li><strong><p class="sidemenu" style="cursor:pointer;">유제품</p></strong></li>
+                <li class="cjfdn"><strong><p class="sidemenu" style="cursor:pointer;">전체보기</p></strong></li>
+                <li class="cjfdn"><strong><p class="sidemenu" style="cursor:pointer;">비건</p></strong></li>
+                <li class="cjfdn"><strong><p class="sidemenu" style="cursor:pointer;">육류</p></strong></li>
+                <li class="cjfdn"><strong><p class="sidemenu" style="cursor:pointer;">해산물</p></strong></li>
+                <li class="cjfdn"><strong><p class="sidemenu" style="cursor:pointer;">유제품</p></strong></li>
              </ul>
-          </nav>
+          </nav> 
    	  </div>
       <div class="right">
         <h1>ENSALAD</h1>

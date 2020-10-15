@@ -24,22 +24,21 @@ public class OrderRemoveServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
-   /**
-    * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-    */
-   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-   
-      
-      int no = Integer.parseInt(request.getParameter("no"));
-      int result = new OrderService().orderRemove(no);
-      String msg="";
-      String loc="/view/MyPage/mypageAll.jsp";
-      msg=result>0?"상품의 주문이 취소되었습니다.":"주문취소 실패하였습니다.";
-      request.setAttribute("msg", msg);
-      request.setAttribute("loc", loc);
-      request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
-   }
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		
+		int no = Integer.parseInt(request.getParameter("no"));
+		int result = new OrderService().orderRemove(no);
+		String msg="";
+		String loc="/view/MyPage/mypageAll.jsp";
+		msg=result>0?"상품의 주문이 취소되었습니다.":"주문취소 실패하였습니다.";
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
+	}
 
    /**
     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

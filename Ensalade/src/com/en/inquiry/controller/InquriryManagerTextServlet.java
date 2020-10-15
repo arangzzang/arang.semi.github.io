@@ -16,7 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 /**
  * Servlet implementation class InquriryMangerTextServlet
  */
-@WebServlet("/Inquriry/InquriryManagerTextServlet")
+@WebServlet("/admin/InquriryManagerTextServlet")
 public class InquriryManagerTextServlet extends HttpServlet {
    private static final long serialVersionUID = 1L;
        
@@ -35,14 +35,14 @@ public class InquriryManagerTextServlet extends HttpServlet {
       // TODO Auto-generated method stub
       
 
-      String mangerText=request.getParameter("MangerText");
-      System.out.println(mangerText);
+      String managerText=request.getParameter("ManagerText");
+      System.out.println(managerText);
       int no=Integer.parseInt(request.getParameter("no"));
       System.out.println(no);
-      int result =new InquiryService().managerAnswer(no,mangerText);
+      int result =new InquiryService().managerAnswer(no,managerText);
       request.setAttribute("result", result);
       String msg = "";
-      String loc = "/inquiry";
+      String loc = "/admin/inquiry";
       msg = result > 0 ? "답변이 완료되었습니다!" : "ㅠㅠ";
       request.setAttribute("msg", msg);
       request.setAttribute("loc", loc);

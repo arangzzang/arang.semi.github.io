@@ -15,18 +15,21 @@
 				<label for="userId" class="font_">아이디<label class="star">*</label></label>
 				<div style="display:flex" class="id_ margin_">
 					<input type="text" name="userId" id="userId_" required class="text_">
-					<input type='button' onclick="doubleCheck();" value='중복확인' class="btn_1">
+					<input type='button' value='중복확인' class="btn_1" id="cBtn_">
 					<!--아이디 중복확인을 위한 기능 / 4글자 이상 입력-->
 				</div>
+					<p id="cId" style="font-size:12px;"></p>
 			</div>
 			<label for="password">비밀번호<label class="star">*</label></label>
-			<input type="password" name="password" id="password_" placeholder="비밀번호 8글자 이상 입력 (영문 대소문자 포함)" required
-				class="text_"><br>
+			<input type="password" name="password" id="password_" placeholder="비밀번호 4글자 이상 입력 (숫자와 문자포함)" required
+				class="text_">
+				<p id="pc"></p>
+				<br>
 			<!--8글자 이상 입력, 영문 대소문자 포함-->
 
 			<label for="password2">비밀번호 재확인<label class="star">*</label></label><br>
 			<input type="password" name="password2" id="password2" placeholder="비밀번호 재입력" class="text_" required>
-
+			<p id="pc2"></p>
 			<!-- <br> -->
 			<div style="margin-top: 10px;">
 				<h3>개인 정보</h3>
@@ -34,8 +37,17 @@
 				<input type="text" name="userName" id="userName_" class="text_" required>
 
 				<label for="email">이메일<label class="star">*</label></label>
+				<div style="display:flex;margin-bottom:10px">
 				<input type="text" name="email" id="email_" class="text_" required>
-
+				<input type="button" value="인증" id="check_1" style="padding: 0px 30px 0px;border-radius: 5px;border: 1px solid #fff;color: honeydew;background-color: #27b06e;cursor:pointer;">
+				</div>
+				<div id="emailCheck">
+				<label for="emailCheck" id="clabel">인증번호</label>
+				<div style="display:flex;">
+				<input type="text" name="email" id="cNo_" class="text_" required>
+				<input type="button" value="확인" id="cCheck" style="padding: 0px 30px 0px;border-radius: 5px;border: 1px solid #fff;color: honeydew;background-color: #27b06e;cursor:pointer;">
+				</div>
+				</div>
 				<label for="phone">연락처<label class="star">*</label></label>
 				<input type="text" name="phone" id="phone_" class="text_" required>
 
@@ -49,9 +61,9 @@
 
 				<label for="birth">생년월일<label class="star">*</label></label>
 				<div style="display:flex">
-					<input type="number" name="year" id="year_" placeholder="YYYY" class="text_" required>
-					<input type="number" name="month" id="month_" placeholder="MM" class="text_" required>
-					<input type="number" name="date" id="date_" placeholder="DD" class="text_" required><br>
+					<input type="number" name="year" id="year_" placeholder="YYYY" class="text_" max="2020" min="1900" required>
+					<input type="number" name="month" id="month_" placeholder="MM" class="text_" max="12" min="1" required>
+					<input type="number" name="date" id="date_" placeholder="DD" class="text_" max="31" min="1" required><br>
 				</div>
 				<div style="margin-top: 20px;">
 					<label for="gender">성별<label class="star">*</label></label>
@@ -163,7 +175,7 @@
         }
 
         .margin_ {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .font_ {
@@ -185,19 +197,22 @@
         .check_ {
             width: 20px;
             height: 20px;
-            color: #e7e7e7;
+            color: gray;
             transition: color .24s ease-out;
         }
 
 </style>
 
 <script>
+	let a=0;
+	let b=0;
+	let c=0;
 	/*  전체버튼으로 체크박스의 온오프를 위한 구문 */
 	$("[type=checkbox]").css("display","none");
 	$("#2").click(e=>{
 		if($("#terms1_").prop('checked')==true){
 		$("#terms1_").prop('checked', false);
-		$("#22").css("color","#e7e7e7");
+		$("#22").css("color","gray");
 		}else{
 			$("#terms1_").prop('checked', true);
 			$("#22").css("color","#27b06e");
@@ -206,7 +221,7 @@
 	$("#3").click(e=>{
 		if($("#terms2_").prop('checked')==true){
 		$("#terms2_").prop('checked', false);
-		$("#33").css("color","#e7e7e7");
+		$("#33").css("color","gray");
 		}else{
 			$("#terms2_").prop('checked', true);
 			$("#33").css("color","#27b06e");
@@ -215,6 +230,7 @@
 	
 	$(document).ready(function () {
 		$("#1").click(function () {
+			console.log(a);
 			if($("#checkAll_").prop("checked")!=true){
 				$("#checkAll_").prop("checked",true);
 			}else{
@@ -229,21 +245,32 @@
 			} else {
 				$("#terms1_").prop('checked', false)
 				$("#terms2_").prop('checked', false)
-				$("svg").css("color","#e7e7e7");
+				$("svg").css("color","gray");
 			}
 		})
 
 	});
 	/*  체크박스 두 개가 체크되어있지않으면 다음으로 넘어갈 수 없게 하는 구문 */
 	function enrollDeny() {
+		
 		if ($("#terms1_").prop('checked') == false || $("#terms2_").prop('checked') == false) {
+			alert('모두 체크해주세요.');
 			return false;
-		} else {
+		}else if(a==0){
+			alert('아이디 중복 확인을 해주세요.');
+			return false;
+		}else if(b==0){
+			alert('비밀 번호를 확인해주세요.');
+			return false;
+		}else if(c==0){
+			alert('이메일 인증이 필요합니다.');
+			return false;
+		}else{
 			return true;
 		}
 	}
 	/* 아이디 4글자 이상을 위해 */
-	function doubleCheck() {
+	<%-- function doubleCheck() {
 		let userId = $("#userId_").val();
 		if ($("#userId_").val().trim().length < 4) {
 			alert('아이디를 4글자 이상 입력하세요.');
@@ -258,27 +285,68 @@
 		checkDuplicate.action = url;
 		checkDuplicate.userId.value = userId;
 		checkDuplicate.submit();
-	}
+	} --%>
 
 	/* 비밀번호 영문과 숫자 포함을 위한 패스워드 이벤트 */
-	$("#password_").blur(e => {
+	$("#password_").keyup(e => {
 		let pw = $("#password_").val();
 		let regPw = /^.*(?=^.{4,13})(?=.*\d)(?=.*[a-zA-Z]).*$/;
-		if (!regPw.test(pw)) {
-			alert("비밀번호 4~13글자로 작성하고 숫자, 문자");
-			$("#password_").val("");
+		if(pw==""){
+			$("#pc").html("");
+		}
+		if (!regPw.test(pw)&&pw!="") {
+			$("#pc").attr("style","color:red;font-size:12px;");
+			$("#pc").html("사용 가능하지 않습니다.");
+			b=0;
+			return;
+		}else if(regPw.test(pw)&&pw!=""){
+			$("#pc").attr("style","color:green;font-size:12px;");
+			$("#pc").html("사용가능합니다.");
+			b=1;
 		}
 	});
 
+	$("#password2").keyup(e => {
+		let pw = $("#password_").val();
+		let pw2 = $("#password2").val();
+		let regPw = /^.*(?=^.{4,13})(?=.*\d)(?=.*[a-zA-Z]).*$/;
+		if(pw2==""){
+			$("#pc2").html("");
+		}
+		if(pw!=""&&pw2!=""){
+		if (pw != pw2) {
+			$("#pc2").attr("style","color:red;font-size:12px;");
+			$("#pc2").html("일치하지 않습니다.");
+			b=0;
+			return;
+		}else if(regPw.test(pw)){
+			$("#pc2").attr("style","color:green;font-size:12px;");
+			$("#pc2").html("일치합니다.");
+			b=1;
+			return;
+		}else{
+			$("#pc2").attr("style","color:red;font-size:12px;");
+			$("#pc2").html("사용할 수 없습니다.");
+			b=0;
+			return;
+		}	
+		}
+	});
+	
+	$("#password_").blur(e => {
+		let pw = $("#password_").val();
+		let pw2 = $("#password2").val();
+		if(pw!=pw2){
+			b=0;
+		}
+	})
 	$("#password2").blur(e => {
 		let pw = $("#password_").val();
 		let pw2 = $("#password2").val();
-		if (pw != pw2) {
-			alert('비밀번호가 일치하지 않습니다.');
-			$("#password_").val("");
-			$("#password2").val("");
+		if(pw!=pw2){
+			b=0;
 		}
-	});
+	})
 	
 	$("#userId_").keyup(e=>{//아이디 한글 못받게
 		let t=/[^a-zA-Z0-9]/g;
@@ -339,6 +407,48 @@
            $(".text_").focus(e=>{
           	 $(e.target).css("outline-color","#27b06e");
            })
+           
+           $("#cBtn_").click(e=>{
+        	   $.ajax({
+        		   url:'<%=request.getContextPath()%>/view/check/checkDuplicate.jsp',
+        		   data:{'id':$("#userId_").val()},
+        		   success:data=>{
+        			   
+        			   $("#cId").html(data);
+        	   			a=$("#h1").val();
+        	   			console.log(a);
+        		   }
+        	   });
+           })
+           $("#check_1").click(e=>{
+        	   $("#emailCheck").css("display","block");
+        	   $.ajax({
+        		   url:'<%=request.getContextPath()%>/view/search/searchIdPw.jsp',
+        		   data:{'name':$("#userName_").val(),'email':$("#email_").val()},
+        		   success:data=>{
+        			   $("#emailCheck").append(data);
+        			   console.log($("#h3").val());
+        		   }
+        		   
+        		   
+        	   });
+           })
+           
+           $("#cCheck").click(e=>{
+        	   let c2=$("#cNo_").val();
+        	   let cc=$("#h3").val();
+        	   console.log(c);
+        	   if(c2==cc){
+        		   alert("인증되었습니다.");
+        		   c=1;
+        		   $("#emailCheck").css("display","none");
+        	   }else{
+        		   alert("인증번호가 일치하지않습니다.");
+        		   c=0;
+        	   }
+           })
+           
+           $("#emailCheck").css("display","none");
        </script>
        
        <style>
@@ -350,7 +460,7 @@
        			cursor:pointer;
        		}
        </style>
-<%@include file="/view/common/footer.jsp"%>
+<%-- <%@include file="/view/common/footer.jsp"%> --%>
 	
 	
 	

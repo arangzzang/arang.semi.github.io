@@ -1,6 +1,7 @@
 package com.en.inquiry.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ import com.en.member.model.vo.Member;
 /**
  * Servlet implementation class InquiryServlet
  */
-@WebServlet("/inquiry")
+@WebServlet("/admin/inquiry")
 
 //관리자 1대1문의 서블릿
 public class InqurtySearchServlet extends HttpServlet {
@@ -38,21 +39,85 @@ public class InqurtySearchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		HttpSession session = request.getSession();
-		Member m = (Member) session.getAttribute("loginMember");
-		if (m == null) {
-			request.setAttribute("msg", "로그인이 필요합니다.");
-			request.setAttribute("loc", "/view/login.jsp");
-			request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
-			return;
+		String type = request.getParameter("searchType");
+		String key = request.getParameter("searchKeyword");
+			System.out.println(type);
+			System.out.println(key);
+		int cPage;
+		String pageBar = "";
+		try {
+			cPage = Integer.parseInt(request.getParameter("cPage"));
+		} catch (Exception e) {
+			cPage = 1;
 		}
+		System.out.println(cPage);
+		int numPerPage = 5;
+		int totalData = 0;
+		List<Inquiry> list = new ArrayList<Inquiry>();
+		// 전체리스트
+		if (type == null && key == null) {
+			list = new InquiryService().searchInquiry(cPage, numPerPage);
+			totalData = new InquiryService().inquiryCountManager();
+			int totalPage = (int) Math.ceil((double) totalData / numPerPage);
+			int pageBarSize = 5;
+			int pageNo = ((cPage - 1) / pageBarSize) * pageBarSize + 1;
+			int pageEnd = pageNo + pageBarSize - 1;
+			if (pageNo == 1) {
+				pageBar += "<i class='" + "fas fa-chevron-left fa-1x" + "'></i>";
+			} else {
+				pageBar += "<a href='" + request.getContextPath() + "/admin/inquiry?cPage=" + (pageNo - 1)
+						+ "'> <i class='" + "fas fa-chevron-left fa-1x" + "'></i> </a>";
+			}
+			while (!(pageNo > pageEnd || pageNo > totalPage)) {
+				if (pageNo == cPage) {
+					pageBar += "<span>" + pageNo + "</span>";
+				} else {
+					pageBar += "<a href='" + request.getContextPath() + "/admin/inquiry?cPage=" + pageNo + "'>  "
+							+ pageNo + " </a>";
+				}
+				pageNo++;
+			}
+			if (pageNo > totalPage) {
+				pageBar += "<i class='" + "fas fa-chevron-right fa-1x" + "'></i>";
+			} else {
+				pageBar += "<a href='" + request.getContextPath() + "/admin/inquiry?cPage=" + pageNo + "'><i class='"
+						+ "fas fa-chevron-right fa-1x" + "'></i></a>";
+			}
 
-		List<Inquiry> list = new InquiryService().SerchInqurty();
+		} else {// 검색별
+			list = new InquiryService().SerchInqurty(cPage, numPerPage, type, key);
+			totalData = new InquiryService().inquiryCountManager(type, key);
+			int totalPage = (int) Math.ceil((double) totalData / numPerPage);
+			int pageBarSize = 5;
+			int pageNo = ((cPage - 1) / pageBarSize) * pageBarSize + 1;
+			int pageEnd = pageNo + pageBarSize - 1;
+			if (pageNo == 1) {
+				pageBar += "<i class='" + "fas fa-chevron-left fa-1x" + "'></i>";
+			} else {
+				pageBar += "<a href='" + request.getContextPath() + "/admin/inquiry?cPage=" + (pageNo - 1)
+						+ "&searchType=" + type + "&searchKeyword=" + key + "'> <i class='"
+						+ "fas fa-chevron-left fa-1x" + "'></i> </a>";
+			}
+			while (!(pageNo > pageEnd || pageNo > totalPage)) {
+				if (pageNo == cPage) {
+					pageBar += "<span>" + pageNo + "</span>";
+				} else {
+					pageBar += "<a href='" + request.getContextPath() + "/admin/inquiry?cPage=" + pageNo
+							+ "&searchType=" + type + "&searchKeyword=" + key + "'> " + pageNo + " </a>";
+				}
+				pageNo++;
+			}
+			if (pageNo > totalPage) {
+				pageBar += "<i class='" + "fas fa-chevron-right fa-1x" + "'></i>";
+			} else {
+				pageBar += "<a href='" + request.getContextPath() + "/admin/inquiry?cPage=" + pageNo 
+						+ "&searchType=" + type + "&searchKeyword=" + key +"'><i class='"+ "fas fa-chevron-right fa-1x" + "'></i></a>";
+			}
+		}
+		System.out.println(pageBar);
 		request.setAttribute("list", list);
-
+		request.setAttribute("pageBar", pageBar);
 		request.getRequestDispatcher("/view/MyPage/inquiry/inquiryManager.jsp").forward(request, response);
-
 	}
 
 	/**

@@ -40,8 +40,6 @@
 	mount+= count;
 
 %>
-
-
 <section style="text-align: center;">
 	<!--마이페이지 헤드공용-->
 	<div class="mypageHead">
