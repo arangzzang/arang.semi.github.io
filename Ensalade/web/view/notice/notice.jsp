@@ -17,12 +17,19 @@
     </div>
     <div class="notice-wrap">
 		<table class="notice-table" id="tbl-notice">
+			<caption>게시판 상세</caption>
+            <colgroup>
+                <col style="width: 50px;">
+                <col style="width: auto;">
+                <col style="width: auto;">
+                <col style="width: auto;">
+            </colgroup>	
 			<thead class="notice-table_thead">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
-					<th>첨부파일</th>
+					<!-- <th>첨부파일</th> -->
 					<th>작성일</th>
 				</tr>
 			</thead>
@@ -37,11 +44,11 @@
 					<td><%=nb.getNotice_no()%></td>
 					<td><a href="<%=request.getContextPath()%>/notice/noticeView?no=<%=nb.getNotice_no()%>"><%=nb.getNotice_title()%></a></td>
 					<td><%=nb.getNotice_writer()%></td>
-					<td>
+					<%-- <td>
 				<%if (nb.getFilepath() != null) {%> 
 						<img src="<%=request.getContextPath()%>/image/file.png"	width="20" height="20"> 
 				<%} %>
-					</td>
+					</td> --%>
 					<td><%=nb.getNotice_write_date()%></td>
 				</tr>
 			<%	}
@@ -116,6 +123,20 @@
 </section>
 
 <style type="text/css">
+
+#tbl-notice th:nth-child(1) {
+	width: 50px;
+}
+
+#tbl-notice th:nth-child(2) {
+	width: 857px;
+}
+
+#tbl-notice td:nth-child(2) {
+	text-align: left;
+	padding-left: 24px;
+}
+
 .form-control_input_btn {
 	height: 25px;
 	width: 100px;
@@ -128,6 +149,7 @@
 	border-style: none;
 	font-weight: inherit;
 }
+
 .padd {
 	margin-right: 10px;
 }
@@ -202,11 +224,16 @@ table#tbl-notice {
 	width: 80%;
 	margin: 0 auto;
 	border: solid 1px #dbdbdb;
+	border-right: 0;
+    border-left: 0;
 	border-collapse: collapse;
+	line-height: 30px;
 }
-
+table#tbl-notice a {color:black;}
+table#tbl-notice a:hover {color:green;}
 table#tbl-notice th, table#tbl-notice td {
-	border: 1px solid #dbdbdb;
+border-right: 0;
+	border-left: 0;
 	padding: 5px 0;
 	text-align: center;
 }
@@ -252,6 +279,10 @@ div#search_notice_write_date {
 
 .search-form_wrap {
 	display: flex;
+}
+
+caption {
+	display: none;
 }
 </style>
 

@@ -7,22 +7,7 @@
 <%
 	NoticeBoard nb = (NoticeBoard)request.getAttribute("nb");
 %>
-<script>
-	let no = $("#noticeNo").val();
-	$("#updateBtn").click(e => {
-		location.assign('<%=request.getContextPath()%>/admin/updateNotice?no='+no);
-	});
-	
-	$("#deleteBtn").click(e => {
-		let result = confirm("삭제하시겠습니까?");
-		if(result){
-			location.replace('<%=request.getContextPath()%>/admin/deleteNotice?no='+no);
-		}else{}
-	});
-	$("#listBack").click(e =>{
-		location.assign('<%=request.getContextPath()%>/searchNotice');
-	});
-</script>
+
 <section class="contents-wrap">
         <div id="notice-container">
             <div class="notice-title-wrap">
@@ -52,8 +37,10 @@
                             <div class="detail">
                                 <p style="border-top: 1px solid #eaeaea;">
                                     <%=nb.getNotice_contents() %>
-                                    <img src="<%=request.getContextPath() %><%=nb.getContentImg() %>">
                                 </p>
+                                <%if (nb.getContentImg() != null) {%> 
+									<img src="<%=request.getContextPath()%>/image/file.png"	width="20" height="20"> 
+								<%} %>
                             </div>
                         </td>
                     </tr>
@@ -87,12 +74,28 @@
         </div>
     </section>
     
-
+<script>
+	let no = $("#noticeNo").val();
+	$("#updateBtn").click(e => {
+		location.assign('<%=request.getContextPath()%>/admin/updateNotice?no='+no);
+	});
+	
+	$("#deleteBtn").click(e => {
+		let result = confirm("삭제하시겠습니까?");
+		if(result){
+			location.replace('<%=request.getContextPath()%>/admin/deleteNotice?no='+no);
+		}else{}
+	});
+	$("#listBack").click(e =>{
+		location.assign('<%=request.getContextPath()%>/searchNotice');
+	});
+</script>
 
 <style>
-.notice-title-wrap{
+.notice-title-wrap {
 	text-align: center;
 }
+
 .padd {
 	margin-right: 10px;
 }
@@ -116,11 +119,15 @@
 }
 
 .notice-view_table .detail p {
-	text-align: inherit;
+	text-align: initial;
+	text-align: -webkit-auto;
+	white-space: pre-line;
+	line-height: 24px;
 }
+
 .notice-view_table .detail {
 	margin-top: -9px;
-	padding: 45px 12px 55px;
+	padding: 48px 12px 0;
 	min-height: 100px;
 	border-top: 1px solid #eaeaea;
 	text-align: center;
@@ -181,7 +188,6 @@
 
 .notice-view_area {
 	padding: 39px 0 50px;
-	border-top: 1px solid #cdcdcd;
 }
 
 .notice-view_area th:first-child {
