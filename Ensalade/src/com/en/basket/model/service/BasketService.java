@@ -28,7 +28,7 @@ public class BasketService {
 		return result;
 	}
 	//장바구니 존재할때 상품담기
-	public int insertBasket(int productNo, String memberId, int su,int bNo) {
+	public int insertBasket(int productNo, int su,int bNo) {
 		Connection conn = getConnection();
 		int result = dao.insertInBasket(conn, productNo, su,bNo);
 		if(result>0) commit(conn);

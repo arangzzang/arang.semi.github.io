@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.en.basket.model.service.BasketService;
+import com.en.member.model.service.MemberService;
 import com.en.member.model.vo.Member;
 import com.en.order.model.service.OrderService;
+import com.en.product.model.service.ProductService;
 
 /**
  * Servlet implementation class OrderInsertServlet
@@ -34,14 +36,24 @@ public class OrderInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//장바구니나 상품하나 클릭해서 주문하기 했을때
+		
 		HttpSession session=request.getSession();
+		
 		Member m=(Member)session.getAttribute("loginMember");
+		String address=request.getParameterValues("address")[0]+",";	
 		String memberId=m.getMemberId();
-		String address=request.getParameterValues("address")[0]+",";
 		address+=request.getParameterValues("address")[1]+",";
 		address+=request.getParameterValues("address")[2];
 		String memo=request.getParameter("memo");
 		int total=Integer.parseInt(request.getParameter("total-pay"));
+
+		int point= Integer.parseInt(request.getParameter("point"));
+		int results2=new MemberService().pointDown(memberId,point);
+		int totalpay=(total*2)/100;
+
+		
+		
+		int results=new MemberService().pointUpdate(memberId,totalpay);
 		int delivery=Integer.parseInt(request.getParameter("ba"));
 		String[] productNos=request.getParameterValues("productNo");
 		String[] amounts=request.getParameterValues("amount");

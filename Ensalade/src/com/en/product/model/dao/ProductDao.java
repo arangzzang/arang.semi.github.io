@@ -88,7 +88,9 @@ import com.en.product.model.vo.ProductReview;
 	              p.setProductImg3(rs.getString("product_img3"));
 	              p.setProductImg4(rs.getString("product_img4"));
 	              p.setProductImg5(rs.getString("product_img5"));
-	              p.setProductImg6(rs.getString("product_img6"));
+	              p.setProductImg5(rs.getString("product_img6"));
+	              p.setSalePer(rs.getInt("SALE_PER"));
+
 	           }
     	  }catch(SQLException e) {
     		  e.printStackTrace();
@@ -98,34 +100,34 @@ import com.en.product.model.vo.ProductReview;
     	  }
     	  return p;
 	     }
-      //관련상품
+    //관련상품
       public List<Product> relateProduct(Connection conn, String type,int productNo){
-    	  PreparedStatement pstmt = null;
-    	  ResultSet rs = null;
-    	  List<Product> list = new ArrayList();
-    	  try {
-    		  pstmt = conn.prepareStatement(prop.getProperty("relateProduct"));
-    		  pstmt.setString(1, type);
-    		  pstmt.setInt(2, productNo);
-    		  rs = pstmt.executeQuery();
-	           while(rs.next()) {
-	              Product p = new Product();
-	              p.setProductNo(rs.getInt("product_no"));
-	              p.setProductName(rs.getString("product_name"));
-	              p.setProductPrice(rs.getInt("product_price"));
-	              p.setProductThumbnail(rs.getString("product_thumbnail"));
-	              list.add(p);
-	           }
-	        }catch(SQLException e) {
-	           e.printStackTrace();
-	        }finally {
-	           close(rs);
-	           close(pstmt);
-	        }return list;
-	        
-	        
-	     }
-
+         PreparedStatement pstmt = null;
+         ResultSet rs = null;
+         List<Product> list = new ArrayList();
+         try {
+            pstmt = conn.prepareStatement(prop.getProperty("relateProduct"));
+            pstmt.setString(1, type);
+            pstmt.setInt(2, productNo);
+            rs = pstmt.executeQuery();
+              while(rs.next()) {
+                 Product p = new Product();
+                 p.setProductNo(rs.getInt("product_no"));
+                 p.setProductName(rs.getString("product_name"));
+                 p.setProductPrice(rs.getInt("product_price"));
+                 p.setProductThumbnail(rs.getString("product_thumbnail"));
+                 p.setSalePer(rs.getInt("SALE_PER"));
+                 list.add(p);
+              }
+           }catch(SQLException e) {
+              e.printStackTrace();
+           }finally {
+              close(rs);
+              close(pstmt);
+           }return list;
+           
+           
+        }
 
          
          public List<ProductReview> ProductReview(int productNo, Connection conn, int cPage, int numPerPage) {
@@ -297,6 +299,7 @@ import com.en.product.model.vo.ProductReview;
 			   close(pstmt);
 		   }return lc;
 	   }
+
   	public List<ProductReview> myPage(Connection conn, String id){
   		PreparedStatement pstmt = null;
   		ResultSet rs = null;
@@ -313,7 +316,6 @@ import com.en.product.model.vo.ProductReview;
   				pr.setReviewContent(rs.getString("product_review_content"));
   				pr.setReviewWriteDate(rs.getDate("product_review_write_date"));
   				list.add(pr);
-  				System.out.println(list.add(pr));
   			}
   		}catch(SQLException e) {
   			e.printStackTrace();

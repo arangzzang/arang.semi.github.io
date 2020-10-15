@@ -105,6 +105,7 @@ public class OrderDao {
 				o.setMemo(rs.getString("MEMO"));
 				o.setOrderAddress(rs.getString("ORDER_ADDRESS"));
 				o.setTotalPrice(rs.getInt("TOTAL_PRICE"));
+				o.setSalePer(rs.getInt("SALE_PER"));
 				list.add(o);
 			}
 		}catch(SQLException e) {
@@ -115,6 +116,7 @@ public class OrderDao {
 		}
 		return list;
 	}
+	//마이페이지
 	public List<Order> myPage(Connection conn, String id){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -125,6 +127,7 @@ public class OrderDao {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Order o = new Order();
+				o.setOrderNo(rs.getInt("order_no"));
 				o.setOrderDate(rs.getDate("order_date"));
 				o.setProductThumbnail(rs.getString("product_thumbnail"));
 				o.setProductName(rs.getString("product_name"));
@@ -141,5 +144,48 @@ public class OrderDao {
 			close(pstmt);
 		}return list;
 	}
+	//주문내역 1행 삭제
+	public int orderRemove(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("orderremove"));
+			pstmt.setInt(1, no);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	public int statusCount(Connection conn, String sc, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("statuscount"));
+			pstmt.setString(1, sc);
+			pstmt.setString(2, id);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				result=Integer.parseInt(rs.getString("order_status"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return result;
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+

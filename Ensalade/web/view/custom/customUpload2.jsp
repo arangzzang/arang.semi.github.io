@@ -8,9 +8,6 @@
 
 <%
 	List<CustomOrder> list = (List) request.getAttribute("list");
-	for (CustomOrder c : list) {
-		System.out.println(c);
-	}
 %>
 
 <section class="contents-wrap">

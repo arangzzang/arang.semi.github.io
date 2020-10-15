@@ -15,6 +15,7 @@ public class Order {
 	private String orderAddress;
 	private int delivery;
 	private int totalPrice;
+	private int salePer;
 	
 	public Order() {
 		// TODO Auto-generated constructor stub
@@ -22,7 +23,7 @@ public class Order {
 
 	public Order(int orderNo, Date orderDate, String productThumbnail, String productName, String productContent,
 			int orderMount, int productPrice, String orderStatus, String memo, String orderAddress, int delivery,
-			int totalPrice) {
+			int totalPrice, int salePer) {
 		super();
 		this.orderNo = orderNo;
 		this.orderDate = orderDate;
@@ -36,6 +37,7 @@ public class Order {
 		this.orderAddress = orderAddress;
 		this.delivery = delivery;
 		this.totalPrice = totalPrice;
+		this.salePer = salePer;
 	}
 
 	public int getOrderNo() {
@@ -133,6 +135,24 @@ public class Order {
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+
+	public int getSalePer() {
+		return salePer;
+	}
+
+	public void setSalePer(int salePer) {
+		this.salePer = salePer;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [orderNo=" + orderNo + ", orderDate=" + orderDate + ", productThumbnail=" + productThumbnail
+				+ ", productName=" + productName + ", productContent=" + productContent + ", orderMount=" + orderMount
+				+ ", productPrice=" + productPrice + ", orderStatus=" + orderStatus + ", memo=" + memo
+				+ ", orderAddress=" + orderAddress + ", delivery=" + delivery + ", totalPrice=" + totalPrice
+				+ ", salePer=" + salePer + "]";
+	}
+	
 	
 	
 	

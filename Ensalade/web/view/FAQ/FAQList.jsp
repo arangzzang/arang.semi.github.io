@@ -200,6 +200,7 @@ ul#inquiryUl {
 	justify-content: space-around;
 	width: 100%;
 	background-color: rgba(187, 184, 184, 0.438);
+	 transition: background 3s;
 }
 
 ul#inquiryUl li {
@@ -250,6 +251,22 @@ section#faq-container {
 	width: 800px;
 	margin: 0 auto;
 	text-align: center;
+}
+.faqUI-wrap-list:hover{
+ transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
+    transition: all .4s;
+     background: #f5f5ea;
+  transition: background .45s;
+  barder:0;
+  border-radius: 4px;
+}
+.faqUI-wrap-list:hover:active{
+	transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
+    transition: all .4s;
+   
+ 
 }
 </style>
 <%@include file="/view/common/footer.jsp"%>

@@ -10,53 +10,25 @@ public class Basket {
 	private String productContent;
 	private int mount;
 	private int price;
+	private int salePrice;
 	
 	public Basket() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Basket(int basketNo, String memberId, int productNo, String productName, String productContent, int mount,
-			int price, String productThumbnail) {
+	public Basket(int basketNo, String memberId, int productNo, String productThumbnail, String productName,
+			String productContent, int mount, int price, int salePrice) {
 		super();
 		this.basketNo = basketNo;
 		this.memberId = memberId;
 		this.productNo = productNo;
+		this.productThumbnail = productThumbnail;
 		this.productName = productName;
 		this.productContent = productContent;
 		this.mount = mount;
 		this.price = price;
-		this.productThumbnail = productThumbnail;
+		this.salePrice = salePrice;
 	}
-
-
-
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-	public String getProductContent() {
-		return productContent;
-	}
-
-	public void setProductContent(String productContent) {
-		this.productContent = productContent;
-	}
-
-	public String getProductThumbnail() {
-		return productThumbnail;
-	}
-
-
-
-	public void setProductThumbnail(String productThumbnail) {
-		this.productThumbnail = productThumbnail;
-	}
-
-
 
 	public int getBasketNo() {
 		return basketNo;
@@ -82,6 +54,30 @@ public class Basket {
 		this.productNo = productNo;
 	}
 
+	public String getProductThumbnail() {
+		return productThumbnail;
+	}
+
+	public void setProductThumbnail(String productThumbnail) {
+		this.productThumbnail = productThumbnail;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getProductContent() {
+		return productContent;
+	}
+
+	public void setProductContent(String productContent) {
+		this.productContent = productContent;
+	}
+
 	public int getMount() {
 		return mount;
 	}
@@ -98,12 +94,20 @@ public class Basket {
 		this.price = price;
 	}
 
+	public int getSalePrice() {
+		return salePrice;
+	}
+
+	public void setSalePrice(int salePrice) {
+		this.salePrice = salePrice;
+	}
+
 	@Override
 	public String toString() {
-		return "Basket [toString()=" + super.toString() + ", basketNo=" + basketNo + ", memberId=" + memberId
-				+ ", productNo=" + productNo + ", mount=" + mount + ", price=" + price + "]";
+		return "Basket [basketNo=" + basketNo + ", memberId=" + memberId + ", productNo=" + productNo
+				+ ", productThumbnail=" + productThumbnail + ", productName=" + productName + ", productContent="
+				+ productContent + ", mount=" + mount + ", price=" + price + ", salePrice=" + salePrice + "]";
 	}
-	
 	
 	
 

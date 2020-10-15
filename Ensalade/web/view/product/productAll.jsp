@@ -15,16 +15,17 @@
     
 <section>
    <div class="container">
-      <div class="left">
+ 
+       <div class="left">
          <nav id="sidebar">
              <ul class="productul">
-                <li><strong><p class="sidemenu" style="cursor:pointer;">전체보기</p></strong></li>
-                <li><strong><p class="sidemenu" style="cursor:pointer;">비건</p></strong></li>
-                <li><strong><p class="sidemenu" style="cursor:pointer;">육류</p></strong></li>
-                <li><strong><p class="sidemenu" style="cursor:pointer;">해산물</p></strong></li>
-                <li><strong><p class="sidemenu" style="cursor:pointer;">유제품</p></strong></li>
+                <li class="cjfdn"><strong><p class="sidemenu" style="cursor:pointer;">전체보기</p></strong></li>
+                <li class="cjfdn"><strong><p class="sidemenu" style="cursor:pointer;">비건</p></strong></li>
+                <li class="cjfdn"><strong><p class="sidemenu" style="cursor:pointer;">육류</p></strong></li>
+                <li class="cjfdn"><strong><p class="sidemenu" style="cursor:pointer;">해산물</p></strong></li>
+                <li class="cjfdn"><strong><p class="sidemenu" style="cursor:pointer;">유제품</p></strong></li>
              </ul>
-          </nav>
+          </nav> 
    	  </div>
       <div class="right">
         <h1>ENSALAD</h1>
@@ -44,7 +45,7 @@
 					         	
 					         	<!-- 할인 적용 로직  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 					          <%if(p.getSalePer()!=0){ %>
-					          <%System.out.println(p.getSalePer()); %>
+					         
 					            <span class="productInfo"><em><%=formatter.format(p.getProductPrice()-(p.getProductPrice()*p.getSalePer()/100)) %></em>원</span>
 				            	<span class="productInfoin"><em><s><%=formatter.format(p.getProductPrice()) %>원</s></em></span>
 				            	<% }else {%>
@@ -58,12 +59,10 @@
 		         <%} %>
 			</div>
 		</ul>
-
       </div>
       <div id="sort"></div>
    </div>
 </section>
-    
     
     <script>
       //사이드바 스크롤바

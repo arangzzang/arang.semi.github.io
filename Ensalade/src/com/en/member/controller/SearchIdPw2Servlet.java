@@ -39,6 +39,7 @@ public class SearchIdPw2Servlet extends HttpServlet {
 		}
 		if(type.equals("member_id")) {
 			request.setAttribute("check", "check");
+			request.setAttribute("id", userId);
 			request.getRequestDispatcher("/view/search/changePw.jsp").forward(request, response);;
 		}else if(type.equals("member_name")) {
 			request.setAttribute("msg", "아이디는 "+userId+" 입니다.");

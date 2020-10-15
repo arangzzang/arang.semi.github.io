@@ -63,14 +63,14 @@
 						<form class="count" name="form" method="get">
 							<div id="price">
 								<!-- 할인 적용 로직  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-								 <%if(product_number!=null){ %>
-								 <%System.out.println(p.getSalePer()); %>
+								 <%if(p.getSalePer()!=0){ %>
+							
 								<p><strong class="price-strong">판매가격</strong>
 									<s class="won-color"><%=p.getProductPrice() %>원</s>
 								</p>
 								<strong class="prive-strongs">할인판매가격</strong>
 								<p class="won-color-to won-color-wer" >  
-									<%=product_number %>
+									<%=formatter.format(p.getProductPrice()-(p.getProductPrice()*p.getSalePer()/100)) %>
 								</p>원
 									<% }else {%>
 								<p><strong class="price-strong">판매가격</strong>
@@ -119,11 +119,13 @@
                 <ul>
                  <%for(int j=i*4;j<(i+1)*4;j++){%> 
                    <li>    
-	                  <a href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=list.get(j).getProductNo()%>">
+	                  <a class=" pridse" href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=list.get(j).getProductNo()%>">
 		                  <img alt="" src="<%=list.get(j).getProductThumbnail() %>" class="product-img">
-		                  <p><%=list.get(j).getProductName() %></p>
-		                  <p><%=formatter.format(list.get(j).getProductPrice()) %></p> 
-	                  </a>
+		                  <p class="prids"><%=list.get(j).getProductName() %></p>
+		                  <p class="prids"><%=list.get(j).getSalePer()!=0?formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100)) : formatter.format(list.get(j).getProductPrice())   %>원</p> 
+	                  	<%System.out.println(list.get(j).getSalePer());
+	                  	System.out.println(formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100))); %>
+	                  </a><!-- p.getProductPrice()-(p.getProductPrice()*p.getSalePer()/100) -->
 	               </li>
 	                  <% if(list.size()-1==j){ 
  	                	  break;}%>
@@ -348,7 +350,7 @@
 
   				location.assign('<%=request.getContextPath()%>/view/login.jsp?productNo=<%=p.getProductNo()%>&loc=<%=loc%>&su='+su);
   			<%} else {%>
-  				location.assign('<%=request.getContextPath()%>/order/productOrder?productNo=<%=p.getProductNo()%>&amount='+su);
+  				location.assign('<%=request.getContextPath()%>/order/productOrder?productNo=<%=p.getProductNo()%>&product_number=<%=product_number%>&amount='+su);
   		<%}%>
   		}
   		//장바구니이동
@@ -358,7 +360,7 @@
   		}
         // 수량/가격 기능 script 구문
     	 
-          <%if(product_number!=null){ %>
+          <%if(p.getSalePer()!=0){ %>
         var price = parseInt($(".won-color-wer").text().replace(/,/g, ""));
        <%}else{%>
        var price = <%=p.getProductPrice()%>
@@ -370,16 +372,15 @@
    			document.getElementById("sum").textContent = price.toLocaleString();
    		}
         //사용자가 수량 직접 입력시 -> 문자입력 X 경고창 첫글자 0X
-            $("#amount").keyup(function(){
-        	var sum = document.getElementById("sum");
-        	var hm = document.getElementById("amount");
-        	
-        	 if(hm.value=this.value.replace(/[^0-9]/g, '')){
-        		sum.textContent = (parseInt(hm.value)*price).toLocaleString();
-        	 /* }else if(hm.value==0||hm.value.chatAt(0)==0){
-        		alert("1이상의 숫자만 입력해주세요.");
-        		hm.value=1;*/
-        	} 
+        $("#amount").keyup(function(){
+    	var sum = document.getElementById("sum");
+    	var hm = document.getElementById("amount");
+	  	 	if(hm.value=this.value.replace(/[^0-9]/g, '')){
+	    		sum.textContent = (parseInt(hm.value)*price).toLocaleString();
+	    	 /* }else if(hm.value==0||hm.value.chatAt(0)==0){
+	    		alert("1이상의 숫자만 입력해주세요.");
+	    		hm.value=1;*/
+	    	} 
         });   	 
         //수량 값을 0을 보낼수 없음
       /*   $("#amount").keyup(e=>{
@@ -398,11 +399,11 @@
 //     		sum.textContent = parseInt(hm.value)*price+"원";
 //     	}
          
-          $("#amount").blur(e=>{
-        	 if($(e.target).val()==0){
-        		 $(e.target).val(1);
-        		 sum.textContent=($(e.target).val()*price).toLocaleString();
-        	 }
+         $("#amount").blur(e=>{
+       	 if($(e.target).val()==0){
+       		 $(e.target).val(1);
+       		 sum.textContent=($(e.target).val()*price).toLocaleString();
+       	 }
         	 
          }); 
         //수량 버튼 클릭시 태그 색변경
@@ -437,7 +438,6 @@
        $(".infos-ch2").click(e=>{
     	   $(".infos-ch2").children().removeClass();
     	  $(e.target).next().addClass("bars");
-    	 
        })
         //스크롤 내릴시 css(sticky) 설정
 //         window.onscroll = function(){scrollsticky()};
@@ -460,7 +460,8 @@
         $(function() {
    		 console.log($(".tableTd").length);
         	$(".puoduct_slide").click(function() {
-        		$(".puoduct_list_content2").css("display","none");
+
+        		$(".puoduct_list_content2").not($(this).next()).css("display","none");
         	
         		$(this).next().slideToggle(500);
         	});

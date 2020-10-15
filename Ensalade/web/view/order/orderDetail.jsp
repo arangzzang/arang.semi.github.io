@@ -5,7 +5,9 @@
 <script src="<%=request.getContextPath() %>/js/jquery-3.5.1.min.js"></script>
 <%
 DecimalFormat formatter=new DecimalFormat("###,###");//숫자 3자리마다 ,표시해주는 클래스
-List<Order> list=(List)request.getAttribute("list"); %>
+List<Order> list=(List)request.getAttribute("list");
+
+%>
 <section>
 <div>
 	<div class="orderHeader">
@@ -25,6 +27,7 @@ List<Order> list=(List)request.getAttribute("list"); %>
 				<th>상품정보</th>
 				<th>수량</th>
 				<th>상품구매금액</th>
+				<th>배송비<th>
 				<th>주문처리상태</th>
 				
 			</tr>
@@ -33,20 +36,25 @@ List<Order> list=(List)request.getAttribute("list"); %>
 		<%for(int i=0;i<list.size();i++){ %>
 			<tr>
 				<td><%=list.get(i).getOrderDate() %></td>
-				<td><img src="<%=request.getContextPath()+list.get(i).getProductThumbnail() %>"></td>
+				<td><img class="cjfdn" src="<%=request.getContextPath()+list.get(i).getProductThumbnail() %>"></td>
 				<td>
 				<p><%=list.get(i).getProductName() %></p>
 				<p><%=list.get(i).getProductContent() %></p>
 				</td>
 				<td><%=list.get(i).getOrderMount() %></td>
-				<td><i class="price"><%=formatter.format(list.get(i).getOrderMount()*list.get(i).getProductPrice()) %></i>원</td>
+				<td><i class="price"><%=formatter.format(list.get(i).getOrderMount()*(list.get(i).getProductPrice()-(list.get(i).getProductPrice()*list.get(i).getSalePer()/100))) %></i>원</td>
+				<%if(i==0){%>
+				<td rowspan="4"><i class="ba"><%=formatter.format(list.get(i).getDelivery()) %></i>원</td>
+				 <%-- <%}else{%>
+				<td></td>  --%>
+				<% }%>
 				<td><%=list.get(i).getOrderStatus() %></td>
 			</tr>
 			<%} %>
 		</tbody>
 		<tfoot>
 			<tr>
-				<td colspan="6">
+				<td colspan="7">
 				 총 구매금액 : <i class="total"><%=formatter.format(list.get(0).getTotalPrice()) %> </i>원
 				</td>
 			</tr>
@@ -54,7 +62,7 @@ List<Order> list=(List)request.getAttribute("list"); %>
 	</table>
 </div>
 <style>
-	img{
+	.cjfdn {
 	width:100px;
 	height:100px;
 	}
@@ -63,10 +71,10 @@ List<Order> list=(List)request.getAttribute("list"); %>
 	margin: auto;
 	text-align:center;
 	}
-	td{
+	 td{
 	border-bottom: lightgray 1px solid;
 	padding:20px;	
-	}
+	} 
 	.line{
         	margin-top:0px;
         	margin-bottom:15px;
@@ -99,7 +107,7 @@ List<Order> list=(List)request.getAttribute("list"); %>
         	margin-left:120px;
         	margin-bottom:10px;
         	}
-        	.price,.total{
+        	.ba,.price,.total{
         	  font-size: 20px;
 		    font-weight: bold;
 		    font-style: normal;

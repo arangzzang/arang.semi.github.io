@@ -64,4 +64,21 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	
+	public int pointUpdate(String memberId,int totalpay) {
+		   Connection conn=getConnection();
+		   int resules=dao.pointUpdate(conn,totalpay,memberId);
+		   if(resules>0) commit(conn);
+			 else rollback(conn);
+			 close(conn);
+			 return resules;
+	   };
+	   public int pointDown(String memberId,int point) {
+		   Connection conn=getConnection();
+		   int resules2=dao.pointDown(conn,point,memberId);
+		   if(resules2>0) commit(conn);
+			 else rollback(conn);
+			 close(conn);
+			 return resules2;
+	   };
 }

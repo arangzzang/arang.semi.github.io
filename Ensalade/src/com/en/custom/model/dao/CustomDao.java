@@ -399,6 +399,61 @@ public class CustomDao {
 		return cCount;
 	}
 
+	public int searchCustomCount(Connection conn, String memberId) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int count=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("SEARCHCUSTOMCOUNT"));
+			pstmt.setString(1, memberId);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return count;
+	}   
+	
+	public int insertCustom(Connection conn, int price,String pName,String content,String memberId) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("INSERTCUSTOM"));
+			pstmt.setInt(1, price);
+			pstmt.setNString(2, pName);
+			pstmt.setNString(3, content);
+			pstmt.setString(4,memberId);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public int searchCustomNo(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("SEARCHCUSTOMNO"));
+			
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+
+
 	public String postList(Connection conn, int no) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -437,5 +492,67 @@ public class CustomDao {
 		}
 		return result;
 	}
+	public List<CustomPost> myPage(Connection conn, String id){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CustomPost> list = new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("mypage"));
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+			CustomPost cp = new CustomPost();
+			cp.setcIdx(rs.getInt("c_idx"));
+			cp.setTitle(rs.getString("title"));
+			cp.setContent(rs.getString("content"));
+			cp.setMemberId(rs.getString("member_id"));
+			cp.setWriteDate(rs.getDate("write_date"));
+			cp.setLikeCount(rs.getInt("like_count"));
+			list.add(cp);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return list;
+	}
 	   
+	public List<CustomPost> customList(Connection conn,int cPage,int numPerPage){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<CustomPost> list=new ArrayList();
+		
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("adminCustomList"));
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CustomPost cp=new CustomPost();
+				cp.setcIdx(rs.getInt("C_IDX"));
+				cp.setTitle(rs.getString("TITLE"));
+				cp.setContent(rs.getString("CONTENT"));
+				cp.setWriteDate(rs.getDate("WRITE_DATE"));
+				cp.setLikeCount(rs.getInt("LIKE_COUNT"));
+				cp.setViewCount(rs.getInt("VIEW_COUNT"));
+				cp.setCustomNo(rs.getInt("CUSTOM_NO"));
+				cp.setMemberId(rs.getString("MEMBER_ID"));
+				cp.setcImage(rs.getNString("C_IMAGE"));
+				list.add(cp);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return list;
+	}
+
 }
+
+
+
+
+
+

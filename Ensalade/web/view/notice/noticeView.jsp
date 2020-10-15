@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <th>작성자</th>
-                        <td><%=nb.getNotice_writer() %></td>
+                        <td>운영자</td>
                     </tr>
                     <tr>
                         <td colspan="2">

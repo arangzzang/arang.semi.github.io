@@ -42,10 +42,33 @@ public class OrderService {
 		close(conn);
 		return list;
 	}
+	//마이페이지
 	public List<Order> myPage(String id){
 		Connection conn = getConnection();
 		List<Order> list = dao.myPage(conn, id);
+		for(Order o : list) {
+		}
 		close(conn);
 		return list;
 	}
+	//주문내역 1행 삭제
+	public int orderRemove(int no) {
+		Connection conn = getConnection();
+		int result = dao.orderRemove(conn, no);
+		close(conn);
+		return result;
+	}
+	public int statusCount(String sc, String id) {
+		Connection conn = getConnection();
+		int result = dao.statusCount(conn, sc, id);
+		close(conn);
+		return result;
+	}
 }
+
+
+
+
+
+
+

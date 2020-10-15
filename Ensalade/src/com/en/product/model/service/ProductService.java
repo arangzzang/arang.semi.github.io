@@ -110,8 +110,9 @@ public class ProductService {
 	   Connection conn = getConnection();
 	   List<ProductReview> prList=dao.myPage(conn,id);
 	   close(conn);
-	   System.out.println(prList);
 	   return prList;
    }
+   
+   
    
 }
