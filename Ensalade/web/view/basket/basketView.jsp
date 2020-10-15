@@ -54,8 +54,10 @@
                                     	
                                     <td style="line-height:0">
 	                                    <input type="hidden" class="b-No" name="basketNo" value="<%=b.getBasketNo() %>">
-	                                	<input type="hidden" class="p-No" name="productNo" value="<%=b.getProductNo() %>">
-                                        <img src="<%=request.getContextPath()+b.getProductThumbnail() %>" alt="">
+
+	                                	<input type="hidden" class="p-No" name="productNo" value="<%=b.getProductNo() %>">  
+                                            <img class="jfdnqud" src="<%=request.getContextPath()+b.getProductThumbnail() %>" alt="">
+
                                     </td>
                                     <!-- 제품정보 -->
                                     <td>
@@ -109,8 +111,6 @@
 </section>
 
 <style>
-
-		
 		
 			.remove{
 			width:100px;
@@ -139,9 +139,11 @@
 			button{
 			outline:0;
 			}
-		img{
-			width:204px;
-			height:164px;	
+
+		.jfdnqud{
+			width:100px;
+			height:100px;
+
 		}
 			.header-line{
         	margin-top:0px;
@@ -172,6 +174,7 @@
         	text-align: center;
         	height:43px;
         	}
+
 
 	.p-info{
 		margin:30px;

@@ -36,7 +36,7 @@ List<Order> list=(List)request.getAttribute("list");
 		<%for(int i=0;i<list.size();i++){ %>
 			<tr>
 				<td><%=list.get(i).getOrderDate() %></td>
-				<td><img src="<%=request.getContextPath()+list.get(i).getProductThumbnail() %>"></td>
+				<td><img class="cjfdn" src="<%=request.getContextPath()+list.get(i).getProductThumbnail() %>"></td>
 				<td>
 				<p><%=list.get(i).getProductName() %></p>
 				<p><%=list.get(i).getProductContent() %></p>
@@ -62,7 +62,7 @@ List<Order> list=(List)request.getAttribute("list");
 	</table>
 </div>
 <style>
-	img{
+	.cjfdn {
 	width:100px;
 	height:100px;
 	}

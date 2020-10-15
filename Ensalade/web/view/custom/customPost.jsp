@@ -111,6 +111,7 @@
 	border-radius: 5px;
 	font-weight: 800;
 	color: white;
+	outline:none;
 }
 
 .btn_1:hover {
@@ -208,6 +209,9 @@ svg:hover {
 	-ms-transform: scale(1);
 	-o-transform: scale(1.03);
 	transition: all 0.3s ease-in-out;
+}
+.like{
+	cursor:pointer;
 }
 </style>
 

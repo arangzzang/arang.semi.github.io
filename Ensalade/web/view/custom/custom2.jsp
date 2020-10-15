@@ -3,7 +3,6 @@
 
 <%@include file="/view/common/header.jsp"%>
 
-<section class="contents-wrap">
 <style>
 .side_ {
 	width: 700px;
@@ -15,12 +14,13 @@
 	background-position: center;
 	background-size: cover;
 }
-.totalselect{
+
+.totalselect {
 	overflow: auto;
 	width: 100%;
 	height: 150px;
 	margin-top: 30px;
-    margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
 .tag {
@@ -28,10 +28,11 @@
 }
 
 .cBtn {
-	display:flex;
+	display: flex;
 }
-.cBtn2:hover{
-	background-color:#3B966E;
+
+.cBtn2:hover {
+	background-color: #3B966E;
 }
 
 .cBtn2 {
@@ -40,17 +41,21 @@
 	border-radius: 4px;
 	border: 1px solid #fff;
 	font-weight: 700;
-	color:white;
-    cursor: pointer;
-    background-color: #27b06e;
+	color: white;
+	cursor: pointer;
+	background-color: #27b06e;
 }
-.form_1{
-	min-width:530.15px;
+
+.form_1 {
+	min-width: 530.15px;
 }
-.p{
-	margin-bottom:15px;
+
+.p {
+	margin-bottom: 15px;
 }
 </style>
+
+<section class="contents-wrap">
 	<div class="side_">
 	</div>
 <form name="test" method="post" class="form_1">

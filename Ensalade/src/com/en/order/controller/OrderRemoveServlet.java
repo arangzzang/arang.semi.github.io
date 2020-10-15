@@ -32,12 +32,13 @@ public class OrderRemoveServlet extends HttpServlet {
 	
 		
 		int no = Integer.parseInt(request.getParameter("no"));
-		System.out.println(no);
 		int result = new OrderService().orderRemove(no);
 		String msg="";
 		String loc="/view/MyPage/mypageAll.jsp";
 		msg=result>0?"상품의 주문이 취소되었습니다.":"주문취소 실패하였습니다.";
-		request.getRequestDispatcher(loc).forward(request, response);
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
 	}
 
 	/**

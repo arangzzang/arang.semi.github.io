@@ -1,0 +1,170 @@
+@charset "UTF-8";
+
+.border {
+	border-bottom: 1px solid rgba(187, 184, 184, 0.438);
+}
+
+.answer-check>p {
+	color: red;
+}
+
+.inquiryV-button-wrap {
+	margin: 10px 0 40px;
+	font-size: 0;
+	padding: 20px 0;
+	text-align: center;
+	margin: 0 50px;
+}
+
+.manager-answer_content>p {
+	font-size: 16px;
+	width: 100%;
+	height: auto;
+	float: left;
+	margin: -7px 0 0 0;
+	white-space: pre-wrap;
+}
+
+.manager-answer_label>label {
+	font-weight: 700;
+	font-size: 20px;
+	padding: 0 0 0 55px;
+	float: left;
+}
+
+.manager-answer_content {
+	float: right;
+	padding: 10px;
+}
+
+.manager-answer_label {
+	float: left;
+	font-size: 15px;
+}
+
+.manager-answer {
+	display: flex;
+}
+
+.manager-answer-wrap { /* white-space: pre-wrap; */
+	
+}
+
+.form-control_input_btn {
+	width: 100px;
+	height: 40px;
+	box-sizing: border-box;
+	border-radius: 4px;
+	font-size: 17px;
+	cursor: pointer;
+	border-style: none;
+	font-weight: inherit;
+	background: #27b06e;
+	color:#fff;
+}
+
+.padd {
+	margin-right: 10px;
+}
+
+.form_image {
+	top: 50%;
+	left: 50%;
+	width: 100%;
+}
+
+.content_top {
+	margin-top: 10px;
+}
+
+.content_row {
+	margin-bottom: 10px;
+}
+
+.form-control {
+	display: block;
+	box-sizing: border-box;
+	height: 40px;
+	width: 80%;
+	padding: 0 15px;
+	line-height: 40px;
+	border-radius: 4px;
+	border: solid 1px #fafcfb;
+	background-color: #fafcfb;
+	color: #424242;
+	font-size: 12px;
+}
+
+textarea.form-control {
+	resize: none;
+	line-height: 20px;
+	padding-top: 9px;
+	padding-bottom: 9px;
+	min-height: 200px;
+	min-width: 600px;
+}
+
+div#inquiryUI-wrap {
+	position: relative;
+}
+
+ul#inquiryUl {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	background-color: #E4F7E6;
+}
+
+ul#inquiryUl li {
+	list-style-type: none;
+	font-size: 14px;
+}
+div#inquiry-contents p{
+	white-space: pre-wrap;
+}
+div#inquiry-contents {
+	display: none;
+	height: auto;
+}
+
+#inquiry-sort {
+	width: 500px;
+}
+
+#container {
+	display: flex;
+}
+
+.inquiry-right hr {
+	width: 100%;
+}
+
+.inquiry-left {
+	position: relative;
+	width: 500px;
+}
+
+.inquiry-right {
+	width: 100%;
+}
+
+.inquiry-right h1 {
+	margin: 0 50px;
+	font-size: 50px;
+	left: 0;
+}
+
+.inquiry-right h2 {
+	margin: 10px;
+	font-size: 30px;
+	left: 0;
+}
+
+section#inquiry-container {
+	position: relative;
+	height: auto;
+	width: 800px;
+	margin: 0 auto;
+	padding-top: 150px;
+	text-align: center;
+}

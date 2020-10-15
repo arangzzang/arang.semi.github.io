@@ -7,22 +7,7 @@
 <%
 	NoticeBoard nb = (NoticeBoard)request.getAttribute("nb");
 %>
-<script>
-	let no = $("#noticeNo").val();
-	$("#updateBtn").click(e => {
-		location.assign('<%=request.getContextPath()%>/admin/updateNotice?no='+no);
-	});
-	
-	$("#deleteBtn").click(e => {
-		let result = confirm("삭제하시겠습니까?");
-		if(result){
-			location.replace('<%=request.getContextPath()%>/admin/deleteNotice?no='+no);
-		}else{}
-	});
-	$("#listBack").click(e =>{
-		location.assign('<%=request.getContextPath()%>/searchNotice');
-	});
-</script>
+
 <section class="contents-wrap">
         <div id="notice-container">
             <div class="notice-title-wrap">
@@ -41,7 +26,7 @@
                     </tr>
                     <tr>
                         <th>작성자</th>
-                        <td><%=nb.getNotice_writer() %></td>
+                        <td>운영자</td>
                     </tr>
                     <tr>
                         <td colspan="2">
@@ -52,8 +37,10 @@
                             <div class="detail">
                                 <p style="border-top: 1px solid #eaeaea;">
                                     <%=nb.getNotice_contents() %>
-                                    <img src="<%=request.getContextPath() %><%=nb.getContentImg() %>">
                                 </p>
+                                <%if (nb.getContentImg() != null) {%> 
+									<img src="<%=request.getContextPath()%>/image/file.png"	width="20" height="20"> 
+								<%} %>
                             </div>
                         </td>
                     </tr>
@@ -69,17 +56,13 @@
                  <%}else{} %>
                 </table>
                 <div class="noticeV-button">
-                    <span class="gLeft">
                         <div><input class="form-control_input_btn" type="button" value="목록" id="listBack">
                         </div>
-                    </span>
                     <%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
-                    <span class="gRight">
                         <div style="display: flex;margin-right: 20px;">
                             <input class="form-control_input_btn padd" type="button" value="수정하기" id="updateBtn">
                             <input class="form-control_input_btn padd" type="button" value="삭제하기" id="deleteBtn">
                         </div>
-                    </span>
                     <input type="hidden" id="noticeNo" value="<%=nb.getNotice_no()%>">
                     <%} %>
                 </div>
@@ -87,12 +70,28 @@
         </div>
     </section>
     
-
+<script>
+	let no = $("#noticeNo").val();
+	$("#updateBtn").click(e => {
+		location.assign('<%=request.getContextPath()%>/admin/updateNotice?no='+no);
+	});
+	
+	$("#deleteBtn").click(e => {
+		let result = confirm("삭제하시겠습니까?");
+		if(result){
+			location.replace('<%=request.getContextPath()%>/admin/deleteNotice?no='+no);
+		}else{}
+	});
+	$("#listBack").click(e =>{
+		location.assign('<%=request.getContextPath()%>/searchNotice');
+	});
+</script>
 
 <style>
-.notice-title-wrap{
+.notice-title-wrap {
 	text-align: center;
 }
+
 .padd {
 	margin-right: 10px;
 }
@@ -105,22 +104,16 @@
 	margin: 0 50px;
 }
 
-.gRight {
-	float: right;
-	text-align: right;
-}
-
-.gLeft {
-	float: left;
-	text-align: left;
-}
-
 .notice-view_table .detail p {
-	text-align: inherit;
+	text-align: initial;
+	text-align: -webkit-auto;
+	white-space: pre-line;
+	line-height: 24px;
 }
+
 .notice-view_table .detail {
 	margin-top: -9px;
-	padding: 45px 12px 55px;
+	padding: 48px 12px 0;
 	min-height: 100px;
 	border-top: 1px solid #eaeaea;
 	text-align: center;
@@ -176,12 +169,11 @@
 	border-spacing: 0;
 	color: #555;
 	line-height: 16px;
-	min-width: 1100px;
+	min-width: 850px;
 }
 
 .notice-view_area {
 	padding: 39px 0 50px;
-	border-top: 1px solid #cdcdcd;
 }
 
 .notice-view_area th:first-child {
@@ -222,8 +214,7 @@ section.contents-wrap {
 	max-width: 80%;
 	box-sizing: border-box;
 	min-height: 1px;
-	padding-left: 15px;
-	padding-right: 15px;
+	padding: 70px 15px;
 }
 
 .form-control_input_btn {

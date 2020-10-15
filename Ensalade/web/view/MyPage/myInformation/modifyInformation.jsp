@@ -5,11 +5,11 @@
 
 <%
 	//회원 정보 수정 view 정보 수정 버튼 이 주소로 연결
-	if(loginMember==null){
+	  if(loginMember==null){
 		response.sendRedirect(request.getContextPath());
 		return;
 	}
-	String[] address=loginMember.getMemberAddress().split(",");
+	 String[] address=loginMember.getMemberAddress().split(",");
 
 %>
 
@@ -28,13 +28,16 @@
 				class="text_"><br>
 		
 			<label for="password">새 비밀번호<label class="star">*</label></label>
-			<input type="password" name="newPw" id="password_" placeholder="비밀번호 8글자 이상 입력 (영문 대소문자 포함)"
-				class="text_"><br>
+			<input type="password" name="newPw" id="password_" placeholder="비밀번호 4글자 이상 입력 (문자와 숫자 혼합)"
+				class="text_">
+				<p id="cPw" class="mb"></p>
+				<br>
 			<!--8글자 이상 입력, 영문 대소문자 포함-->
 			</div>
  	
 			<label for="password2">새 비밀번호 재확인<label class="star">*</label></label><br>
 			<input type="password" name="password2" id="password2" placeholder="비밀번호 재입력" class="text_">
+			<p id="cPw2" class="mb"></p>
 
 			<!-- <br> -->
 			<div style="margin-top: 10px;">
@@ -58,14 +61,11 @@
 
 			<div style="margin-top:30px">
 				<div>
-					<input type="submit" value="수정하기" onclick="return enrollDeny();"
+					<input type="submit" value="수정하기" onclick="return checkPw();"
 					class="btn_1 text_" style="width:100%">
 				</div>
 			</div>
 
-	</form>
-	<form action="" method="post" name="checkDuplicate">
-		<input type="hidden" name="userId">
 	</form>
 </section>
 
@@ -162,6 +162,77 @@
         }
 
 </style>
+
+<script>
+	let ch=0;
+$("#password_").keyup(e => {
+	let pw = $("#password_").val();
+	let regPw = /^.*(?=^.{4,13})(?=.*\d)(?=.*[a-zA-Z]).*$/;
+	if(pw==""){
+		$("#cPw").html("");
+	}
+	if (!regPw.test(pw)&&pw!="") {
+		$("#cPw").attr("style","color:red;font-size:12px;");
+		$("#cPw").html("사용할 수 없습니다.");
+		ch=0;
+		return;
+	}else if(regPw.test(pw)&&pw!=""){
+		$("#cPw").attr("style","color:green;font-size:12px;");
+		$("#cPw").html("사용가능합니다.");
+		ch=1;
+	}
+});
+ 
+
+$("#password2").keyup(e => {
+	let pw = $("#password_").val();
+	let pw2 = $("#password2").val();
+	let regPw = /^.*(?=^.{4,13})(?=.*\d)(?=.*[a-zA-Z]).*$/;
+	if(pw2==""){
+			$("#cPw2").html("");
+			return;
+		}
+	if (pw != pw2) {
+		$("#cPw2").attr("style","color:red;font-size:12px;");
+		$("#cPw2").html("일치하지 않습니다.");
+		ch=0;
+		return;
+	}else if(regPw.test(pw)&&pw==pw2){
+		$("#cPw2").attr("style","color:green;font-size:12px;");
+		$("#cPw2").html("비밀번호가 일치합니다.");
+		ch=1;
+	}else{
+		$("#cPw2").attr("style","color:red;font-size:12px;");
+		$("#cPw2").html("사용할 수 없습니다.");
+		ch=0;
+	}
+	
+});
+
+$("#newPw").blur(e => {
+	let pw = $("#password_").val();
+	let pw2 = $("#password2").val();
+	if(pw!=pw2){
+		ch=0;
+	}
+})
+$("#password2").blur(e => {
+	let pw = $("#password_").val();
+	let pw2 = $("#password2").val();
+	if(pw!=pw2){
+		ch=0;
+	}
+})
+
+function checkPw(){
+	console.log(ch);
+	if(ch==0){
+		alert('비밀번호를 확인하세요.');
+		return false;
+	}
+		return true;
+}
+</script>
 
 
 <%@include file="/view/common/footer2.jsp"%>

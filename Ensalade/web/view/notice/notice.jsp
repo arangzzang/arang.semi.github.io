@@ -17,12 +17,19 @@
     </div>
     <div class="notice-wrap">
 		<table class="notice-table" id="tbl-notice">
+			<caption>게시판 상세</caption>
+            <colgroup>
+                <col style="width: 50px;">
+                <col style="width: auto;">
+                <col style="width: auto;">
+                <col style="width: auto;">
+            </colgroup>	
 			<thead class="notice-table_thead">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
-					<th>첨부파일</th>
+					<!-- <th>첨부파일</th> -->
 					<th>작성일</th>
 				</tr>
 			</thead>
@@ -37,11 +44,11 @@
 					<td><%=nb.getNotice_no()%></td>
 					<td><a href="<%=request.getContextPath()%>/notice/noticeView?no=<%=nb.getNotice_no()%>"><%=nb.getNotice_title()%></a></td>
 					<td><%=nb.getNotice_writer()%></td>
-					<td>
+					<%-- <td>
 				<%if (nb.getFilepath() != null) {%> 
 						<img src="<%=request.getContextPath()%>/image/file.png"	width="20" height="20"> 
 				<%} %>
-					</td>
+					</td> --%>
 					<td><%=nb.getNotice_write_date()%></td>
 				</tr>
 			<%	}
@@ -51,7 +58,8 @@
 	</div>
 	<div class="search-form">
 		<div class="search-form_wrap">
-		<span>검색타입 : </span> <select id="searchType" class="form-control">
+		<span>검색타입 : </span> 
+		<select id="searchType" class="form-control">
 			<option value="notice_title"
 				<%=type != null && type.equals("notice_title") ? "selected" : ""%>>제목</option>
 			<option value="notice_write_date"
@@ -85,11 +93,9 @@
 	<div id="pagebar2"><%=pageBar2%></div>
 	<div class="noticeV-button">
          <%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
-         <span class="gRight">
-             <div style="display: flex;margin-right: 20px;">
+             <div>
                  <input class="form-control_input_btn padd" type="button" value="글쓰기" id="writeBtn">
              </div>
-         </span>
          <%} %>
      </div>
      
@@ -116,10 +122,24 @@
 </section>
 
 <style type="text/css">
+
+#tbl-notice th:nth-child(1) {
+	width: 50px;
+}
+
+#tbl-notice th:nth-child(2) {
+	width: auto;
+}
+
+#tbl-notice td:nth-child(2) {
+	text-align: left;
+	padding-left: 24px;
+}
+
 .form-control_input_btn {
 	height: 25px;
 	width: 100px;
-	height: 25px;
+	height: 40px;
 	box-sizing: border-box;
 	border-radius: 4px;
 	font-size: 14px;
@@ -128,6 +148,7 @@
 	border-style: none;
 	font-weight: inherit;
 }
+
 .padd {
 	margin-right: 10px;
 }
@@ -151,7 +172,8 @@
 }
 
 .search-form_wrap, .formCss-submit-wrap {
-	margin: 0 10px;
+	display: flex;
+    margin: 0 10px;
 }
 
 body {
@@ -186,10 +208,8 @@ body {
 }
 
 section.contents-wrap {
-	padding-top: 100px;
-	height: auto;
-	margin: 0 auto;
 	text-align: center;
+	padding: 100px 15px;
 }
 
 table.table {
@@ -199,14 +219,20 @@ table.table {
 }
 
 table#tbl-notice {
-	width: 80%;
+	width: auto;
+    min-width: 900px;
 	margin: 0 auto;
 	border: solid 1px #dbdbdb;
+	border-right: 0;
+    border-left: 0;
 	border-collapse: collapse;
+	line-height: 30px;
 }
-
+table#tbl-notice a {color:black;}
+table#tbl-notice a:hover {color:green;}
 table#tbl-notice th, table#tbl-notice td {
-	border: 1px solid #dbdbdb;
+border-right: 0;
+	border-left: 0;
 	padding: 5px 0;
 	text-align: center;
 }
@@ -248,11 +274,18 @@ div#search_notice_write_date {
 	display: flex;
 	justify-content: center;
 	position: relative;
+	width: auto;
+    min-width: 500px;
+}
 }
 
 .search-form_wrap {
 	display: flex;
 }
+
+caption {
+	display: none;
+}
 </style>
 
-<%@ include file="/view/common/footer.jsp" %>
+<%@ include file="/view/common/footer2.jsp" %>

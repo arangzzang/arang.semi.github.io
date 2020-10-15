@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.en.FAQ.model.vo.FAQ;
 import com.en.admin.model.dao.AdminDao;
+import com.en.admin.model.vo.Store;
 import com.en.event.model.vo.Event;
 import com.en.event.model.vo.EventContent;
 import com.en.custom.model.vo.CustomComment;
@@ -65,9 +66,9 @@ public class AdminService {
 		return result;
 	}
 	
-	public List<CustomComment> customCommentList(){//전체 댓글 가져오기위해
+	public List<CustomComment> customCommentList(int cPage,int numPerPage){//전체 댓글 가져오기위해
 		Connection conn=getConnection();
-		List<CustomComment> list=dao.customCommentList(conn);
+		List<CustomComment> list=dao.customCommentList(conn,cPage,numPerPage);
 		close(conn);
 		return list;
 	}
@@ -122,5 +123,26 @@ public class AdminService {
 		if(result>0) commit(conn);
 		else rollback(conn);
 		return result;
+	}
+	
+	public List<Store> storeList(){
+		Connection conn=getConnection();
+		List<Store> list=dao.storeList(conn);
+		close(conn);
+		return list;
+	}
+	
+	public int postCount() {
+		Connection conn=getConnection();
+		int total=dao.postCount(conn);
+		close(conn);
+		return total;
+	}
+	
+	public int commentCount() {
+		Connection conn=getConnection();
+		int total=dao.commentCount(conn);
+		close(conn);
+		return total;
 	}
 }

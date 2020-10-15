@@ -2,19 +2,14 @@
 	pageEncoding="UTF-8"%>
 
 <%@include file="/view/common/header.jsp"%>
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/loginForm.css">
 <%
 	String loc=(String)request.getAttribute("loc");
 	
 %>
 
-<script>
-     $(".form2").focus(e=> {
-        $(e.target).css("outline-color","#27b06e");
-     });
-</script>
 
-<section class="contents-wrap">
+<section class="contents-wrap" id="contents-wrap">
     <% if(loc==null){%>
     <form class="login-form" action="<%=request.getContextPath()%>/loginjoin/login.do" method='post'>
         <%}else{ %>
@@ -35,131 +30,23 @@
             <div class="login-btnbox content_row">
                 <input type="submit" class="form-control_input_btn" value="로그인">
             </div>
-            <div class="login-findbox content_row" style="text-align:left;margin-left: 30px;">
-                <div class="login-findbox_en">
-                    <a type="button" class="login-findbox_en_f" href="<%=request.getContextPath()%>/view/search/searchId.jsp" style="margin-left: 110px;">아이디 찾기</a>
-                    <a type="button" class="login-findbox_en_f" href="<%=request.getContextPath()%>/view/search/searchPw.jsp">비밀번호 찾기</a><br>
+            <div class="login-findbox content_row" >
+                <div class="">
+                    <a type="button" class="" href="<%=request.getContextPath()%>/view/search/searchId.jsp">아이디 찾기</a>
+                    <a type="button" class="" href="<%=request.getContextPath()%>/view/search/searchPw.jsp">비밀번호 찾기</a><br>
                 </div>
-                <div class="login-findbox_en">
-                    <a type="button" class="login-findbox_en_f" href="<%=request.getContextPath()%>/view/join.jsp">회원가입</a><br>
+                <div class="">
+                    <a type="button" class="" href="<%=request.getContextPath()%>/view/join.jsp">회원가입</a><br>
                 </div>
             </div>
         </form>
 </section>
-<style>
 
-    a {
-        text-decoration: none;
-    }
+<%-- <%@include file="/view/common/footer2.jsp"%> --%>
+<script>
+     $(".form2").focus(e=> {
+        $(e.target).css("outline-color","#27b06e");
+     });
+</script>
 
-    .login-findbox_en_f {
-        display: inline-block;
- 
-    }
 
-    .login-findbox_en {
-        display: inline-block;
-        padding: 3px 5px;
-        /* margin: 0 100px; */
-        margin-right: 60px;
-    }
-
-    .login-findbox {
-        margin: 20px 0;
-        text-align: center;
-        color: #424242;
-        font-size: 15px;
-        line-height: 1.4;
-        text-align: -webkit-center;
-        min-width: 665px;
-    }
-
-    .button-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-        height: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .form-control_input_btn {
-        height: 25px;
-        width: 60%;
-        border: solid 1px #dbdbdb00;
-        display: block;
-        height: 40px;
-        box-sizing: border-box;
-        border-radius: 4px;
-        font-size: 1rem;
-        font-weight: 400;
-        color: #fff;
-        background: #27b06e;
-        cursor: pointer;
-        outline: none;
-    }
-
-    .login-btnbox {
-        display: block;
-        padding: 0 25px;
-        width: 100%;
-        text-align: -webkit-center;
-    }
-
-    .login-textbox {
-        display: block;
-        padding: 15px 25px 0;
-    }
-
-    .content_row {
-        margin-bottom: 15px;
-    }
-
-    .form-control_input {
-        box-sizing: border-box;
-        height: 40px;
-        width: 60%;
-        min-width: 250px;
-        padding: 0 15px;
-        line-height: 40px;
-        border-radius: 4px;
-        border: solid 1px #dbdbdb;
-        background-color: #ffffff;
-        color: #424242;
-        font-size: 14px;
-        font-weight: 300;
-
-    }
-
-    .login-form_input_text {
-        max-width: 350px;
-
-    }
-
-    .login-form_subtitle>p {
-        font-size: 25px;
-        font-weight: 500;
-    }
-
-    .login-form_title>p {
-        font-size: 30px;
-        font-weight: 700;
-    }
-
-    .login-form {
-        display: inline-block;
-        width: 40%;
-    }
-
-    section.contents-wrap {
-        position: relative;
-        top: 100px;
-        min-height: 100%;
-        padding-bottom: 20px;
-        text-align: center;
-        margin-bottom: 50px;
-    }
-</style>
-<%@include file="/view/common/footer.jsp"%>
