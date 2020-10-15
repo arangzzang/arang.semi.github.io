@@ -27,7 +27,7 @@ List<Order> list=(List)request.getAttribute("list");
 				<th>상품정보</th>
 				<th>수량</th>
 				<th>상품구매금액</th>
-				<th>배송비<th>
+				<th>배송비</th>
 				<th>주문처리상태</th>
 				
 			</tr>

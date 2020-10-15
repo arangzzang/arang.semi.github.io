@@ -123,8 +123,7 @@
 		                  <img alt="" src="<%=list.get(j).getProductThumbnail() %>" class="product-img">
 		                  <p><%=list.get(j).getProductName() %></p>
 		                  <p><%=list.get(j).getSalePer()!=0?formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100)) : formatter.format(list.get(j).getProductPrice())   %></p> 
-	                  	<%System.out.println(list.get(j).getSalePer());
-	                  	System.out.println(formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100))); %>
+	                  	
 	                  </a><!-- p.getProductPrice()-(p.getProductPrice()*p.getSalePer()/100) -->
 	               </li>
 	                  <% if(list.size()-1==j){ 

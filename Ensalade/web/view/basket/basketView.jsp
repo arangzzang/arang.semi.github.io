@@ -38,7 +38,7 @@
                         <caption style="text-align: center;font-weight:bold">장바구니 담긴상품 목록</caption>
                         <thead>
                             <tr>
-                                <th>사진</th>
+                                <th width=15%>사진</th>
                                 <th>제품 정보</th>
                                 <th>수량</th>
                                 <th>배송비</th>
@@ -51,10 +51,11 @@
         					<% for(Basket b : list) {%>
                                 <tr>
                                     <!-- 사진 -->
-                                    <td>
+                                    	
+                                    <td style="line-height:0">
 	                                    <input type="hidden" class="b-No" name="basketNo" value="<%=b.getBasketNo() %>">
-	                                	<input type="hidden" class="p-No" name="productNo" value="<%=b.getProductNo() %>">  
-                                            <img src="<%=request.getContextPath()+b.getProductThumbnail() %>" alt="">
+	                                	<input type="hidden" class="p-No" name="productNo" value="<%=b.getProductNo() %>">
+                                        <img src="<%=request.getContextPath()+b.getProductThumbnail() %>" alt="">
                                     </td>
                                     <!-- 제품정보 -->
                                     <td>
@@ -92,7 +93,7 @@
                          <tfoot> 
                             <tr>
                                 <td colspan="6">
-                                 총 상품가격<i class="total-price"></i>원
+                                 총 상품금액<i class="total-price"></i>원
                                 </td>
                             </tr>
                          </tfoot> 
@@ -139,8 +140,8 @@
 			outline:0;
 			}
 		img{
-			width:100px;
-			height:100px;
+			width:204px;
+			height:164px;	
 		}
 			.header-line{
         	margin-top:0px;

@@ -43,7 +43,7 @@
                     <li><a href="<%=request.getContextPath()%>/product/productAll">관리자전용 메뉴</a>
                         <ul>
                             <li class="cjfdnand"><a href="<%=request.getContextPath()%>/admin/memberAll">회원관리</a></li>
-                            <li class="cjfdnand"><a href="">상품관리</a></li>
+                            <li class="cjfdnand"><a href="<%=request.getContextPath()%>/view/admin/productList.jsp">상품관리</a></li>
                             <li class="cjfdnand"><a href="<%=request.getContextPath()%>/inquiry">1:1문의 답변</a></li>
                         </ul>
                     </li>
