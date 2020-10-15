@@ -113,7 +113,35 @@ public class ProductService {
 	   System.out.println(prList);
 	   return prList;
    }
-   
-   
+   public int insertProduct(Product p){
+	   Connection conn=getConnection();
+	   int result=dao.insertProduct(conn,p);
+	   if(result>0){
+		   result=dao.insertProductImage(conn, p);
+	   }
+	   	 if(result>0)commit(conn);
+		 else rollback(conn);
+		 close(conn);
+		 return result;
+   }
+   public int deleteProduct(int pNo) {
+		 Connection conn=getConnection();
+		 int result=dao.deleteProduct(conn, pNo);
+		 if(result>0) commit(conn);
+		 else rollback(conn);
+		 close(conn);
+		 return result;
+	 }
+   public int updateProduct(Product p) {
+		 Connection conn=getConnection();
+		 int result=dao.updateProduct(conn, p);
+		 if(result>0){
+			   result=dao.updateProductImage(conn, p);
+		   }
+		 if(result>0) commit(conn);
+		 else rollback(conn);
+		 close(conn);
+		 return result;
+	 }
    
 }

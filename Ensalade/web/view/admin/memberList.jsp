@@ -167,4 +167,4 @@ table#tbl-member th, table#tbl-member td {	border: 1px solid #dbdbdb;	padding: 5
 .search-form_wrap {	display: flex;}
 </style>
 
-<%@ include file="/view/common/footer.jsp" %>
+<%@ include file="/view/common/footer2.jsp" %>
