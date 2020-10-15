@@ -40,20 +40,17 @@ public class OrderInsertServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		
 		Member m=(Member)session.getAttribute("loginMember");
-		String address=request.getParameterValues("address")[0]+",";
-		System.out.println("address");
+		String address=request.getParameterValues("address")[0]+",";	
 		String memberId=m.getMemberId();
-		
-		System.out.println(address);
 		address+=request.getParameterValues("address")[1]+",";
 		address+=request.getParameterValues("address")[2];
 		String memo=request.getParameter("memo");
 		int total=Integer.parseInt(request.getParameter("total-pay"));
+
 		int point= Integer.parseInt(request.getParameter("point"));
-		System.out.println(point);
 		int results2=new MemberService().pointDown(memberId,point);
 		int totalpay=(total*2)/100;
-		System.out.println(totalpay);
+
 		
 		
 		int results=new MemberService().pointUpdate(memberId,totalpay);

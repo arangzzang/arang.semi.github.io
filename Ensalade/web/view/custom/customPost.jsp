@@ -209,6 +209,9 @@ svg:hover {
 	-o-transform: scale(1.03);
 	transition: all 0.3s ease-in-out;
 }
+.like{
+	cursor:pointer;
+}
 </style>
 
 <script>

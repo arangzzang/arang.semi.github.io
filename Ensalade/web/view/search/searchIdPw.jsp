@@ -24,18 +24,33 @@ public class MyAuthentication extends Authenticator { //아이디 패스워드 �
 
 
  //받는 사람의 정보
- Member m=(Member)request.getAttribute("member");
- String toName = m.getMemberName();
- String toEmail = m.getEmail();
+ String toName="";
+ String toEmail="";
  
+ /* toName=request.getParameter("name");
+ toEmail=request.getParameter("email"); */
+ Member m=null;
+  try{
+ m=(Member)request.getAttribute("member");
+  toName = m.getMemberName();
+  toEmail = m.getEmail();
+ }catch(NullPointerException e){
+  toName=request.getParameter("name");
+  toEmail=request.getParameter("email");
+ } 
  //type에 따른 주소값
- String type=(String)request.getAttribute("type");
+  String type="";
  String loc="";
+ try{
+  type=(String)request.getAttribute("type");
  if(type.equals("member_id")){
 	 loc="/view/search/searchPw.jsp";
  }else if(type.equals("member_name")){
 	 loc="/view/search/searchId.jsp";
  }
+ }catch(NullPointerException e){
+	 loc="/";
+ } 
 
 
  //보내는 사람의 정보
@@ -91,8 +106,8 @@ props.put("mail.smtp.socketFactory.fallback", "false");
 
   Message msg = new MimeMessage(sess);
   msg.setFrom(addr);         
-  msg.setSubject(MimeUtility.encodeText("이메일 제목", "utf-8","B"));
-  msg.setContent("이메일 보낼 내용 - 인증 번호 : "+temp, "text/html;charset=utf-8");
+  msg.setSubject(MimeUtility.encodeText("ensalade", "utf-8","B"));
+  msg.setContent("요청하신 인증 번호는  "+temp+" 입니다.", "text/html;charset=utf-8");
   msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
 
 
@@ -104,12 +119,14 @@ props.put("mail.smtp.socketFactory.fallback", "false");
   out.println("<script>alert('메일 전송에 실패했습니다.\\n다시 시도해주세요.');</script>");
   return;
  }
- 
+  if((Member)request.getAttribute("member")!=null){
   request.setAttribute("temp", temp1);
   request.setAttribute("loc", loc);
   request.setAttribute("type", type);
   request.getRequestDispatcher("/view/search/checkEmail.jsp").forward(request, response);
-  
- out.println("<script>alert('메일이 전송되었습니다.');<script>");
+ } 
+ 
+ out.println("<script>alert('메일이 전송되었습니다.');</script><input type='hidden' value='"+temp1+"' id='h3'>");
 
 %>
+

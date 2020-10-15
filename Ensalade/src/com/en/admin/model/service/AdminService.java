@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.en.FAQ.model.vo.FAQ;
 import com.en.admin.model.dao.AdminDao;
+import com.en.admin.model.vo.Store;
 import com.en.event.model.vo.Event;
 import com.en.event.model.vo.EventContent;
 import com.en.custom.model.vo.CustomComment;
@@ -122,5 +123,12 @@ public class AdminService {
 		if(result>0) commit(conn);
 		else rollback(conn);
 		return result;
+	}
+	
+	public List<Store> storeList(){
+		Connection conn=getConnection();
+		List<Store> list=dao.storeList(conn);
+		close(conn);
+		return list;
 	}
 }

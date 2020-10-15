@@ -99,9 +99,9 @@ String[] address=loginMember.getMemberAddress().split(",");
 			               	<i class="price"><%=formatter.format(list.get(i).getProductPrice()-(list.get(i).getProductPrice()*list.get(i).getSalePer()/100)) %></i>원
 			                </td>
 			                <td>								
-			                 <input class="del" type="button" value=" - " > 
+			                <input type="button" class="del far fa-minus-square fa-2x" value="-" style="width:26px; height:29px;">
 	                        <input type="text" name="amount" class="amount" value="<%=Integer.parseInt(aList.get(i)) %>" size="10" style="text-align:center;">
-	                        <input class="add" type="button" value=" + " ><br>
+	                        <input type="button" class="add far fa-plus-square fa-2x" value="+">
 			                </td>
 		                	
 		                </tr>
@@ -135,11 +135,10 @@ String[] address=loginMember.getMemberAddress().split(",");
                        	 <input type="hidden" id="total" name="total-pay">
                        	<!-- <button class="payBtn">주문하기</button> -->
                        	<div class="btn-contain"> 
-                       	<input type="button" class="payBtn btn" value="결제하기">
+                       	<input type="button" class="payBtn btn" value="결제하기" style="outline:0;">
                     	   <div class="btn-particles">
 								</div>
-	 -->
-
+	 
 </div>
                 </nav>
                 
@@ -149,6 +148,24 @@ String[] address=loginMember.getMemberAddress().split(",");
     </section>
         
         <style>
+        	.del,.add{
+        	vertical-align:bottom;
+			outline: 0;
+			color: green;
+			background-color: #fff;
+			cursor: pointer;
+			line-height: 0.8;
+			border : green solid 3px;
+			
+			}
+			 .fab:hover, .far:hover {
+			color: white;
+			background-color: #35ad73;
+			line-height: 0.8;
+			}
+			button{
+			outline:0;
+			}
         	.order2{
         		background-color:green;
         		color:white;
@@ -185,7 +202,7 @@ String[] address=loginMember.getMemberAddress().split(",");
         	}
         	.amount{
         	width:52px;
-        	height:42px;
+        	height:26px;
         	border:0;
         	}
         	.search{
@@ -268,29 +285,6 @@ String[] address=loginMember.getMemberAddress().split(",");
 		    font-weight: bold;
 		    font-style: normal;
 		    }
-        	.del,.add{
-		      border:1px solid limegreen;
-		      color: limegreen;
-		      background-color:rgba(0,0,0,0);
-		      padding:10px;
-		      cursor: pointer;
-		   }    
-		   .del:hover,.add:hover{
-		      color:white;
-		      background-color:lightgreen;
-		   }
-		   .del{
-		      border-top-left-radius:5px;
-		      border-bottom-left-radius:5px;
-		      margin-right:-1.5px;
-		      margin-left:15px;
-		   }
-		   .add{
-		      border-top-right-radius:5px;
-		      border-bottom-right-radius:5px;
-		      margin-left:-3px;
-		   }
-        	
 	        td{
 	        	width:160px;
 	        	border-bottom: lightgray 1px solid;
@@ -405,6 +399,7 @@ String[] address=loginMember.getMemberAddress().split(",");
         var prices=$(".price");//가격클래스명들 배열
         var total_price=0;
         var ba;
+
         
         function onlyNumber(event){
             event = event || window.event;
@@ -458,10 +453,13 @@ String[] address=loginMember.getMemberAddress().split(",");
     	
 			
 		})
-		        $(document).on("change",".address-detail",function(){//생성된 주소 태그에 값이 변경되면 	배송비 변경
+		
+		       $(document).on("keyup",".address-ch",function(){//생성된 주소 태그에 값이 변경되면 	배송비 변경
 		        	//지역별 배송비 설정
 					var address=$(".address-ch").val();
 	                if(address.includes("서울")||address.includes("경기")){
+	                	ba=2500;
+	                }else if(address==""){
 	                	ba=2500;
 	                }else if(address.includes("제주")){
 	                	ba=7000;
@@ -524,12 +522,27 @@ String[] address=loginMember.getMemberAddress().split(",");
             }else{
             	
             	$(".address-type").html("<div style='display:flex;width:80%;' class='id_ margin_'>"+"<input class='address-detail' type='text' name='address' id='sample6_postcode' placeholder='우편번호' readonly>"+
-            			"<input type='button' class='search' onclick='sample6_execDaumPostcode()' value='우편번호 찾기' style='width: 50%;'>"+"</div>"+
+            			"<input type='button' class='search' onclick='sample6_execDaumPostcode()' value='우편번호 찾기' style='width: 50%; cursor:pointer;'>"+"</div>"+
             			"<input type='text' class='address-detail address-ch' name='address' id='sample6_address' placeholder='주소' required>"+"<br>"+
             			"<input type='text' class='address-detail' name='address' id='sample6_detailAddress' placeholder='상세주소' required>");
             }
-          
+            var address=$(".address-ch").val();
             
+            if(address.includes("서울")||address.includes("경기")){
+            	
+            	ba=2500;
+            }else if(address.includes("제주")){
+            	
+            	ba=7000;
+            }else if(address==""){
+            	ba=2500;
+            }else{
+            	ba=5000;
+            }
+            $(".ba").html(ba.toLocaleString());
+            $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba).toLocaleString());//상품총가격+배송비 최종가격
+            $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));
+            $("#ba").val(ba);
             });
             
            
@@ -622,25 +635,48 @@ String[] address=loginMember.getMemberAddress().split(",");
                 document.getElementById('sample6_postcode').value = data.zonecode;
                 document.getElementById("sample6_address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").focus();
+                 var address=$(".address-ch").val();
+                
+                if(address.includes("서울")||address.includes("경기")){
+                	
+                	ba=2500;
+                }else if(address.includes("제주")){
+                	
+                	ba=7000;
+                }else{
+                	
+                	ba=5000;
+                }
+                $(".ba").html(ba.toLocaleString());
+                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba).toLocaleString());//상품총가격+배송비 최종가격
+                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));
+                $("#ba").val(ba);
+                
+                document.getElementById("sample6_detailAddress").focus(); 
             }
         }).open();
+        
     }
  	//결제 api
  	//var IMP = window.IMP; // 생략가능
 	
-	$(".payBtn").click(e=>{
+ $(document).on("click",".payBtn",function(){
+	 	
+		if($(".address-detail")[0].value==""||$(".address-detail")[1].value==""||$(".address-detail")[2].value==""){
+			alert("주소를 입력해주세요");
+			return;
+		}
 			IMP.init('imp26494745');
 			IMP.request_pay({
 			    pg : 'inicis', // version 1.1.0부터 지원.
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : '주문명:결제테스트',
-			    amount : 14000,
-			    buyer_email : 'iamport@siot.do',
-			    buyer_name : '구매자이름',
-			    buyer_tel : '010-1234-5678',
-			    buyer_addr : '서울특별시 강남구 삼성동',
+			    name : '주문명:카드결제',
+			    amount : parseInt($(".total-pay")[0].textContent.replace(/,/g, "")),
+			    buyer_email : "<%=loginMember.getEmail()%>",
+			    buyer_name : "<%=loginMember.getMemberName()%>",
+			    buyer_tel : "<%=loginMember.getMemberPhone()%>",
+			    buyer_addr : $(".address-detail")[1].value+$(".address-detail")[2].value,
 			    buyer_postcode : '123-456',
 			    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
 			}	, function(rsp) {

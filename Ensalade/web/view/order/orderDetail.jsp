@@ -6,7 +6,7 @@
 <%
 DecimalFormat formatter=new DecimalFormat("###,###");//숫자 3자리마다 ,표시해주는 클래스
 List<Order> list=(List)request.getAttribute("list");
-System.out.println(list.isEmpty());
+
 %>
 <section>
 <div>
@@ -27,6 +27,7 @@ System.out.println(list.isEmpty());
 				<th>상품정보</th>
 				<th>수량</th>
 				<th>상품구매금액</th>
+				<th>배송비<th>
 				<th>주문처리상태</th>
 				
 			</tr>
@@ -42,13 +43,18 @@ System.out.println(list.isEmpty());
 				</td>
 				<td><%=list.get(i).getOrderMount() %></td>
 				<td><i class="price"><%=formatter.format(list.get(i).getOrderMount()*(list.get(i).getProductPrice()-(list.get(i).getProductPrice()*list.get(i).getSalePer()/100))) %></i>원</td>
+				<%if(i==0){%>
+				<td rowspan="4"><i class="ba"><%=formatter.format(list.get(i).getDelivery()) %></i>원</td>
+				 <%-- <%}else{%>
+				<td></td>  --%>
+				<% }%>
 				<td><%=list.get(i).getOrderStatus() %></td>
 			</tr>
 			<%} %>
 		</tbody>
 		<tfoot>
 			<tr>
-				<td colspan="6">
+				<td colspan="7">
 				 총 구매금액 : <i class="total"><%=formatter.format(list.get(0).getTotalPrice()) %> </i>원
 				</td>
 			</tr>
@@ -65,10 +71,10 @@ System.out.println(list.isEmpty());
 	margin: auto;
 	text-align:center;
 	}
-	td{
+	 td{
 	border-bottom: lightgray 1px solid;
 	padding:20px;	
-	}
+	} 
 	.line{
         	margin-top:0px;
         	margin-bottom:15px;
@@ -101,7 +107,7 @@ System.out.println(list.isEmpty());
         	margin-left:120px;
         	margin-bottom:10px;
         	}
-        	.price,.total{
+        	.ba,.price,.total{
         	  font-size: 20px;
 		    font-weight: bold;
 		    font-style: normal;
