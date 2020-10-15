@@ -119,10 +119,10 @@
                 <ul>
                  <%for(int j=i*4;j<(i+1)*4;j++){%> 
                    <li>    
-	                  <a href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=list.get(j).getProductNo()%>">
+	                  <a class=" pridse" href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=list.get(j).getProductNo()%>">
 		                  <img alt="" src="<%=list.get(j).getProductThumbnail() %>" class="product-img">
-		                  <p><%=list.get(j).getProductName() %></p>
-		                  <p><%=list.get(j).getSalePer()!=0?formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100)) : formatter.format(list.get(j).getProductPrice())   %></p> 
+		                  <p class="prids"><%=list.get(j).getProductName() %></p>
+		                  <p class="prids"><%=list.get(j).getSalePer()!=0?formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100)) : formatter.format(list.get(j).getProductPrice())   %>원</p> 
 	                  	<%System.out.println(list.get(j).getSalePer());
 	                  	System.out.println(formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100))); %>
 	                  </a><!-- p.getProductPrice()-(p.getProductPrice()*p.getSalePer()/100) -->
@@ -360,7 +360,7 @@
   		}
         // 수량/가격 기능 script 구문
     	 
-          <%if(product_number!=null){ %>
+          <%if(p.getSalePer()!=0){ %>
         var price = parseInt($(".won-color-wer").text().replace(/,/g, ""));
        <%}else{%>
        var price = <%=p.getProductPrice()%>

@@ -54,7 +54,7 @@
                                     <td>
 	                                    <input type="hidden" class="b-No" name="basketNo" value="<%=b.getBasketNo() %>">
 	                                	<input type="hidden" class="p-No" name="productNo" value="<%=b.getProductNo() %>">  
-                                            <img src="<%=request.getContextPath()+b.getProductThumbnail() %>" alt="">
+                                            <img class="jfdnqud" src="<%=request.getContextPath()+b.getProductThumbnail() %>" alt="">
                                     </td>
                                     <!-- 제품정보 -->
                                     <td>
@@ -105,7 +105,7 @@
 
 <style>
 
-	img{
+	.jfdnqud{
 		width:100px;
 		height:100px;
 	}

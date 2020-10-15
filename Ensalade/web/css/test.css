@@ -9,9 +9,6 @@
 	font-style: normal;
 }
 
-
-
-
 a:hover {
 	color: green;
 }
@@ -23,7 +20,6 @@ a:hover {
 	padding: 0;
 	/*전체 화면 양사이드의 빈공간을 제거하기 위해 0을 줌*/
 	box-sizing: border-box;
-	
 }
 
 html, body {
@@ -59,11 +55,9 @@ a {
 }
 
 section {
-
-	padding-top:100px;
+	padding-top: 100px;
 	height: auto;
 	min-height: 100%
-	
 }
 
 #menu {
@@ -76,7 +70,7 @@ section {
 	font-weight: 700;
 	color: black;
 	margin-left: 450px;
-    padding: 16px 0px 0px;
+	padding: 16px 0px 0px;
 }
 
 #logo {
@@ -84,15 +78,13 @@ section {
 	margin-left: 30px;
 	cursor: pointer;
 	position: absolute;
-    bottom: 2px;
-    display: inline-block;
-   
- 	
+	bottom: 2px;
+	display: inline-block;
 }
 
 #menu>nav ul li ul {
 	/* display:flex; */
-	position: absolute;
+	/* position: absolute; */
 	flex-direction: column;
 	padding: 0px;
 	opacity: 0;
@@ -100,7 +92,9 @@ section {
 	background-color: white;
 	position: absolute;
 	padding: 0;
-	margin: 0;
+	min-width: 150px;
+	box-shadow: 0px 3px 5px -1px #ccc;
+	/* margin: 0; */
 	/*세부 메뉴 조정*/
 }
 
@@ -114,6 +108,7 @@ section {
 #menu>nav ul li:hover ul {
 	opacity: 1;
 	background-color: rgb(255, 255, 255);
+	top: 120%;
 	/*마우스 올렸을 때 서브 메뉴가 보이는 효과*/
 }
 
@@ -145,7 +140,7 @@ section {
 	/*a태그 밑줄삭제 및 사이 공간 확보*/
 	text-decoration: none;
 	padding: 30px;
-	color:black;
+	color: black;
 }
 
 #headcap {
@@ -155,11 +150,11 @@ section {
 	width: 100%;
 	position: fixed;
 	z-index: 1000;
-	/* background-color: rgba(255, 255, 255, 1); */
-	height:75.6px;
-	
+	 background-color: rgba(255, 255, 255, 1); 
+	height: 75.6px;
 	min-width: 1000px;
-	background: linear-gradient(to right, #ffffff 20%, #4dff4a 100%);
+	 transition: background 0.3s;
+	 opacity: 0.9;
 }
 
 #loginjoin ul {
@@ -175,7 +170,7 @@ section {
 
 #loginjoin ul li a {
 	text-decoration: none;
-	color:black;
+	color: black;
 }
 
 #loginjoin {
@@ -372,7 +367,91 @@ video {
 	-webkit-align-items: center;
 	align-items: center;
 }
-#logo_ensalad{
+
+#logo_ensalad {
 	display: inline-block;
-	 /* margin-bottom: 15px; */
+	/* margin-bottom: 15px; */
 }
+
+.ulul {
+	top: 120%;
+	/* 	border-radius: 6px; */
+	background: white;
+}
+
+#menu>nav ul li:hover .ulul {
+	top: 100%;
+	-webkit-transition: all 0.6s ease-in-out;
+	background-color: #white;
+	opacity: 0.9;
+}
+
+#headcap:hover {
+	background: linear-gradient(to right, #ffffff 10%, #00ad25 100%);
+	transition: background 0.3s;
+	opacity: 0.9;
+}
+
+#headcap:hover .mc {
+	color: #fff;
+}
+
+ .ullia text {
+	color: #000;
+}
+
+.ullia:hover {
+	color: #aabde6;
+}
+
+ .ulul:hover {
+	min-width: 150px;
+	box-shadow: 10px 3px 10px -1px #ccc;
+}
+
+.ullia:hover text {
+	color: rgb(58, 182, 47);
+	padding-left: 10px;
+	border-left: 2px solid rgb(58, 182, 47);
+	transition: all 0.3s ease;
+}  
+
+.ullia {
+	transition: all 0.5s ease;
+}
+/* .cjfdnand ::after {
+        position: absolute;
+        content: "";
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #3498db;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.5s;
+      }
+
+     .cjfdnand:hover {
+        color: #95a5a6;
+      }
+
+      .cjfdnand:hover::after {
+        transform: scaleX(1);
+        transform-origin: left; */
+
+/* .cjfdnand:after { 
+	content: ''; 
+	position: absolute; 
+	top: calc(-1 * var(--borderWidth)); 
+	left: calc(-1 * var(--borderWidth)); 
+	height: calc(100% + var(--borderWidth) * 2); 
+	width: calc(100% + var(--borderWidth) * 2); 
+	background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82); 
+	border-radius: calc(1.5 * var(--borderWidth)); 
+	z-index: -1; 
+	animation: animatedgradient 2s ease alternate infinite; 
+	background-size: 300% 300%; } 
+	@keyframes animatedgradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+ */
