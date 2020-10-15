@@ -59,12 +59,10 @@
 		         <%} %>
 			</div>
 		</ul>
-
       </div>
       <div id="sort"></div>
    </div>
 </section>
-    
     
     <script>
       //사이드바 스크롤바

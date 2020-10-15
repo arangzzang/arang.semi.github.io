@@ -83,12 +83,107 @@
                     <li><a  class="mc" href="<%=!a.equals("1")?cPath+"/view/MyPage/mypageAll.jsp":login%>">마이페이지</a>
                         <ul class="ulul">
                             <li class="cjfdnand"><a  class="ullia" href="<%=request.getContextPath() %>/basket/basketView"><text>장바구니</text></a></li>
-                            <li class="cjfdnand"><a class="ullia" href="<%=!a.equals("1")?cPath:login%>"><text>배송현황</text></a></li>
-                            <li class="cjfdnand"><a class="ullia" href="<%=!a.equals("1")?cPath:login%>"><text>나의 커스텀</text></a></li>
+                            <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/view/MyPage/deliveryStatus.jsp"><text>배송조회</text></a></li>
+<%--                             <li class="cjfdnand"><a class="ullia" href="<%=!a.equals("1")?cPath:login%>"><text>나의 커스텀</text></a></li> --%>
                             <li class="cjfdnand"><a class="ullia" href="<%=!a.equals("1")?cPath+"/inquiry/searchInquiryMem?no="+loginMember.getUser_no():login%>"><text>1:1문의</text></a></li>
                         </ul>
                     </li>
+<!-- <<<<<<< HEAD -->
+<%--                     <li><a href="<%=request.getContextPath()%>/view/MyPage/mypageAll.jsp">마이페이지</a> --%>
+<!--                         <ul> -->
+<%--                             <li><a href="<%=!a.equals("1")?cPath:login%>">장바구니</a></li> --%>
+<%--                             <li><a href="<%=!a.equals("1")?cPath:login%>">배송현황</a></li> --%>
+<%--                             <li><a href="<%=!a.equals("1")?cPath:login%>">나의 커스텀</a></li> --%>
+<%--                             <li><a href="<%=request.getContextPath()%>/inquiry">1:1문의 답변</a></li> --%>
+<!--                         </ul> -->
+<!--                     </li> -->
+<%--                  <%}else if(loginMember!=null){ %>
+                 	<li><a href="<%=request.getContextPath()%>/product/productAll">전체메뉴</a>
+                        <ul>
+                             <li><a href="<%=request.getContextPath()%>/product/productAll?type=비건">비건</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=육류">육류</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=해산물">해산물</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=유제품">유제품</a></li> 
+                        </ul>
+                    </li>
+                    <li><a href="">커스텀</a>
+                        <ul>
+                            <li><a href="#">이용안내</a></li>
+                            <li><a href="<%=request.getContextPath()%>/view/custom/custom2.jsp">커스텀하기</a></li>
+                            <li><a href="<%=request.getContextPath()%>/custom/customList">커뮤니티</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">매장찾기</a>
+                        <ul>
+                            <li><a href="*">주소검색</a></li>
+                            <li><a href="">매장찾기</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="<%=request.getContextPath()%>/searchNotice">고객센터</a>
+                        <ul>
+                            <li><a href="<%=request.getContextPath()%>/searchNotice">공지사항</a></li>
+                            <li><a href="<%=request.getContextPath()%>/event/eventList">이벤트</a></li>
+                            <li><a href="<%=request.getContextPath()%>/FAQ/FAQboard">FAQ</a></li>
+                        </ul>
+                    </li>
+<<<<<<< HEAD
+                 	<li><a href="<%=request.getContextPath()%>/view/MyPage/mypageAll.jsp">마이페이지</a>
+=======
+                 	<li><a href="<%=request.getContextPath()%>/view/MyPage/myInformation/modifyInformation.jsp">마이페이지</a>
+>>>>>>> branch 'develop' of https://github.com/ui0426/EnsaladTeam.git
+                        <ul>
+                            <li><a href="<%=request.getContextPath() %>/basket/basketView">장바구니</a></li>
+                            <li><a href="#">배송현황</a></li>
+                            <li><a href="#">나의 게시물</a></li>
+                            <li><a href="#">나의 커스텀</a></li>
+                            <li><a href="<%=request.getContextPath()%>/inquiry/searchInquiryMem?no=<%=loginMember.getUser_no()%>">1:1문의</a></li>
+                        </ul>
+                    </li>
+                 <%} else { %> <!-- 로그인 안되어 있으면 로그인 하라고 해야함.... -->
+                 	<li><a href="<%=request.getContextPath()%>/product/productAll">전체메뉴</a>
+                        <ul>
+                             <li><a href="<%=request.getContextPath()%>/product/productAll?type=비건">비건</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=육류">육류</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=해산물">해산물</a></li>
+                            <li><a href="<%=request.getContextPath()%>/product/productAll?type=유제품">유제품</a></li> 
+                        </ul>
+                    </li>
+                    <li><a href="">커스텀</a>
+                        <ul>
+                            <li><a href="#">이용안내</a></li>
+                            <li><a href="<%=request.getContextPath()%>/view/custom/custom2.jsp">커스텀하기</a></li>
+                            <li><a href="<%=request.getContextPath()%>/custom/customList">커뮤니티</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">매장찾기</a>
+                        <ul>
+                            <li><a href="">주소검색</a></li>
+                            <li><a href="">매장찾기</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="<%=request.getContextPath()%>/searchNotice">고객센터</a>
+                        <ul>
+                            <li><a href="<%=request.getContextPath()%>/searchNotice">공지사항</a></li>
+                            <li><a href="<%=request.getContextPath()%>/event/eventList">이벤트</a></li>
+                            <li><a href="<%=request.getContextPath()%>/FAQ/FAQboard">FAQ</a></li>
+                        </ul>
+                    </li>
+<<<<<<< HEAD
+                 	<li><a href="<%=request.getContextPath()%>/view/MyPage/mypageAll.jsp">마이페이지</a>
+=======
+                 	<li><a href="*">마이페이지</a>
+>>>>>>> branch 'develop' of https://github.com/ui0426/EnsaladTeam.git
+                        <ul>
+                            <li><a href="#">장바구니</a></li>
+                            <li><a href="#">배송현황</a></li>
+                            <li><a href="#">나의 게시물</a></li>
+                            <li><a href="#">나의 커스텀</a></li>
+                            <li><a href="#">1:1문의</a></li>
+                        </ul>
+                    </li> --%>
+<!-- ======= -->
 
+<!-- >>>>>>> refs/heads/jh -->
                 </ul>
             </nav>
         </div>

@@ -37,17 +37,13 @@ public class DetailProductServlet extends HttpServlet {
 		int productNo = Integer.parseInt(request.getParameter("productNo"));
 		//관련 상품 정보출력
 		Product p = new ProductService().detailProduct(productNo);
-
 		String type = p.getProductType();
-		
 	    List<Product> list = new ProductService().relateProduct(type,productNo);
-	    
 
 	    String pageBar = "";
 		int cPage;
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
-
 		} catch (NumberFormatException e) {
 			cPage = 1;
 		}
@@ -92,9 +88,11 @@ public class DetailProductServlet extends HttpServlet {
 		request.setAttribute("commentList", commentList);
 		//페이징바
 		request.setAttribute("pageBar", pageBar);
-		//상품리뷰 리스트 & 관련상품
+		//관련상품
 		request.setAttribute("relateProduct", list);
+		//상세상품 검색
 		request.setAttribute("selectProduct", p);
+		//상품리뷰 리스트
 		request.setAttribute("totalData",totalData);
 		request.setAttribute("reviewList",reviewList);
 		request.getRequestDispatcher("/view/product/productDetail.jsp").forward(request, response);
