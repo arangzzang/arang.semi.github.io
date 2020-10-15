@@ -39,7 +39,6 @@ public class DetailProductServlet extends HttpServlet {
 		Product p = new ProductService().detailProduct(productNo);
 		String type = p.getProductType();
 	    List<Product> list = new ProductService().relateProduct(type,productNo);
-	    
 
 	    String pageBar = "";
 		int cPage;

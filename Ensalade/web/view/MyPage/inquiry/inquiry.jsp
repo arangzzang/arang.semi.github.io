@@ -82,7 +82,7 @@
 	</div>
 </section>
 
-<%@ include file="/view/common/footer.jsp"%>
+<%@ include file="/view/common/footer2.jsp"%>
 
 <script>
 <%for (Inquiry i : list) {

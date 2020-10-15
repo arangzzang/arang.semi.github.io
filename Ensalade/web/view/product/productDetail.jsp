@@ -121,10 +121,12 @@
                    <li>    
 	                  <a class=" pridse" href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=list.get(j).getProductNo()%>">
 		                  <img alt="" src="<%=list.get(j).getProductThumbnail() %>" class="product-img">
+
 		                  <p class="prids"><%=list.get(j).getProductName() %></p>
 		                  <p class="prids"><%=list.get(j).getSalePer()!=0?formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100)) : formatter.format(list.get(j).getProductPrice())   %>원</p> 
 	                  	<%System.out.println(list.get(j).getSalePer());
 	                  	System.out.println(formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100))); %>
+
 	                  </a><!-- p.getProductPrice()-(p.getProductPrice()*p.getSalePer()/100) -->
 	               </li>
 	                  <% if(list.size()-1==j){ 
@@ -555,5 +557,5 @@
        
         </script>
 
- <%@include file="/view/common/footer.jsp"%> 
+ <%@include file="/view/common/footer2.jsp"%> 
 

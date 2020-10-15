@@ -28,11 +28,11 @@
 				<img class="imageEvent" src="<%=request.getContextPath()%><%=e.getThumnail()%>">
 			</a>
 			<%}else if(e.getEventCategory().equals("카테고리")) {%>
-			<a class="aEvent" href="#">
+			<a class="aEvent" href='javascript:void(0);' onclick="ready();">
 				<img class="imageEvent" src="<%=request.getContextPath()%><%=e.getThumnail()%>">
 			</a>
 			<%}else if(e.getEventCategory().equals("시즌")) {%>
-			<a class="aEvent" href="#">
+			<a class="aEvent" href='javascript:void(0);' onclick="ready();">
 				<img class="imageEvent" src="<%=request.getContextPath()%><%=e.getThumnail()%>">
 			</a>
 			<%}%>
@@ -46,13 +46,17 @@
 		<%}%>
 	</div>
 </section>
+
+<script type="text/javascript">
+	function ready(){
+		alert('준비중입니다! 발전하는 Ensalade가 되겠습니다!');
+	}
+</script>
 <style>
 .event-button{margin: 10px 0 40px;font-size: 0;	padding: 20px 0;text-align:center;margin: 0 50px;}
-.event-view_area{padding: 39px 0 50px;}
 .event-title-wrap{text-align: center;}
-.event-wrap {padding-top: 100px; height:auto;}
 .event-container{}
-.aEvent{display: block; margin: 20px auto;height:240px; max-width: 1024px;}
+.aEvent{display: block; margin: 20px auto; max-width: 1024px;}
 .imageEvent{width: 100%;}
 .padd {margin-right: 10px;}
 .noticeV-button {margin: 10px 0 40px;font-size:0;padding: 20px 0;text-align:center;margin: 0 50px;}
@@ -61,4 +65,4 @@
 .form-control_input_btn {height: 25px;width: 100px;height: 25px;box-sizing:border-box;border-radius:4px;font-size: 14px;font-weight: 400;	cursor: pointer;	border-style: none;	font-weight: inherit;}
 </style>
  
-<%@ include file="/view/common/footer.jsp"%>
+<%@ include file="/view/common/footer2.jsp"%>

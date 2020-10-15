@@ -325,6 +325,100 @@ import com.en.product.model.vo.ProductReview;
   		}
   		return list;
   	}
+  	public int insertProduct(Connection conn, Product p) {
+ 		PreparedStatement pstmt = null;
+ 		int result = 0;
+ 		try {
+ 			pstmt = conn.prepareStatement(prop.getProperty("insertProduct"));
+ 			pstmt.setInt(1, p.getProductPrice());
+ 			pstmt.setString(2,p.getProductName());
+ 			pstmt.setString(3, p.getProductType());
+ 			pstmt.setString(4, p.getProductContent());
+ 			
+ 			result = pstmt.executeUpdate();
+ 		} catch (SQLException e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			close(pstmt);
+ 		}
+ 		return result;
+ 	}
+  	public int insertProductImage(Connection conn, Product p) {
+ 		PreparedStatement pstmt = null;
+ 		int result = 0;
+ 		try {
+ 			pstmt = conn.prepareStatement(prop.getProperty("insertProductImage"));
+ 			pstmt.setString(1, p.getProductThumbnail());
+ 			pstmt.setString(2, p.getProductSubimg());
+ 			pstmt.setString(3, p.getProductImg1());
+ 			pstmt.setString(4, p.getProductImg2());
+ 			pstmt.setString(5, p.getProductImg3());
+ 			pstmt.setString(6, p.getProductImg4());
+ 			pstmt.setString(7, p.getProductImg5());
+ 			pstmt.setString(8, p.getProductImg6());
+ 			
+ 			result = pstmt.executeUpdate();
+ 		} catch (SQLException e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			close(pstmt);
+ 		}
+ 		return result;
+ 	}
+  	public int deleteProduct(Connection conn, int pNo) {
+ 		PreparedStatement pstmt = null;
+ 		int result = 0;
+ 		try {
+ 			pstmt = conn.prepareStatement(prop.getProperty("deleteProduct"));
+ 			pstmt.setInt(1, pNo);
+ 			result = pstmt.executeUpdate();
+ 		} catch (SQLException e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			close(pstmt);
+ 		}
+ 		return result;
+ 	}
+  	public int updateProduct(Connection conn, Product p) {
+ 		PreparedStatement pstmt = null;
+ 		int result = 0;
+ 		try {
+ 			pstmt = conn.prepareStatement(prop.getProperty("updateProduct"));
+ 			pstmt.setInt(1, p.getProductPrice());
+ 			pstmt.setString(2, p.getProductName());
+ 			pstmt.setString(3, p.getProductType());
+ 			pstmt.setString(4, p.getProductContent());
+ 			pstmt.setInt(5, p.getProductNo());
+ 			result = pstmt.executeUpdate();
+ 		} catch (SQLException e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			close(pstmt);
+ 		}
+ 		return result;
+ 	}
+  	public int updateProductImage(Connection conn, Product p) {
+ 		PreparedStatement pstmt = null;
+ 		int result = 0;
+ 		try {
+ 			pstmt = conn.prepareStatement(prop.getProperty("updateProductImage"));
+ 			pstmt.setString(1, p.getProductThumbnail());
+ 			pstmt.setString(2, p.getProductSubimg());
+ 			pstmt.setString(3, p.getProductImg1());
+ 			pstmt.setString(4, p.getProductImg2());
+ 			pstmt.setString(5, p.getProductImg3());
+ 			pstmt.setString(6, p.getProductImg4());
+ 			pstmt.setString(7, p.getProductImg5());
+ 			pstmt.setString(8, p.getProductImg6());
+ 			pstmt.setInt(9, p.getProductNo());
+ 			result = pstmt.executeUpdate();
+ 		} catch (SQLException e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			close(pstmt);
+ 		}
+ 		return result;
+ 	}
 
    }
 

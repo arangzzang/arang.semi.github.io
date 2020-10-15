@@ -159,5 +159,5 @@
 			$(".answer-check>p:contains('답변완료')").css("color","blue");
 	<%}}%>
 </script>
-<%@include file="/view/common/footer.jsp"%>
+<%@include file="/view/common/footer2.jsp"%>
 <%-- <%@ include file="/view/MyPage/inquiry/inquiryManger.jsp"%> --%>

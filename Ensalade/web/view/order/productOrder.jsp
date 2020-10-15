@@ -87,8 +87,10 @@ String[] address=loginMember.getMemberAddress().split(",");
 		                <%for(int i=0;i<list.size();i++){ System.out.println(list.get(i).getSalePer());%>
 		                 
 		                <tr>
+
 		                	<td>
 			                <img class="cjfdn2"src="<%=request.getContextPath()+list.get(i).getProductThumbnail() %>" alt="">
+
 			                </td>
 		                	<td>
 		                	 <input type="hidden" name="productNo" value="<%=list.get(i).getProductNo() %>">
@@ -115,8 +117,8 @@ String[] address=loginMember.getMemberAddress().split(",");
                     <h3>할인포인트</h3>
                     <span>보유포인트</span>
                  
-                    	<input id="1" class="product_point"type="text" value="<%=loginMember.getPoint()%>" dir="rtl" readonly>
-                    	<input id="2" class="point_count" type="text" name="point" dir="rtl" value="0" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' placeholder="사용할포인트">
+                    	<input class="p" id="1" class="product_point"type="text" value="<%=loginMember.getPoint()%>" dir="rtl" readonly>
+                    	<input class="p" id="2" class="point_count" type="text" name="point" dir="rtl" value="0" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' placeholder="사용할포인트">
                 	
                 </div>
                 <hr>               
@@ -128,8 +130,8 @@ String[] address=loginMember.getMemberAddress().split(",");
                     <h2>결제금액</h2>
                         
                        	 <span>상품금액 :</span> <i class="total-price"></i>원<br>
-                       	 <span>사용포인트:</span> <i class="point"></i>원<br>
                        	 <span>배송비:</span><i class="ba"></i>원<br>
+                       	 <span>사용포인트:</span> <i class="point"></i>원<br>
                        	 <span>최종금액:</span><i class="total-pay"></i>원 <br> 
                        	 <input type="hidden" id="ba" name="ba">
                        	 <input type="hidden" id="total" name="total-pay">
@@ -148,6 +150,21 @@ String[] address=loginMember.getMemberAddress().split(",");
     </section>
         
         <style>
+        	.p{
+        		font-weight:bold;
+        		margin:10px;
+        		width:120px;
+        		height:30px;
+        		outline:0;
+        		border:solid 2px skyblue;
+        		border-radius:5px;
+        	}
+        	.search{
+        	outline:0;
+        	}
+        	.point{
+        	color:#ff4040;
+        	}
         	.del,.add{
         	vertical-align:bottom;
 			outline: 0;
@@ -280,13 +297,13 @@ String[] address=loginMember.getMemberAddress().split(",");
         	.left-request{
 			margin-top:10px;        	
         	}
-	        .ba,.total-pay,.total-price,.price{
+	        .point,.ba,.total-pay,.total-price,.price{
 		    font-size: 20px;
 		    font-weight: bold;
 		    font-style: normal;
 		    }
 	        td{
-	        	width:160px;
+	        	
 	        	border-bottom: lightgray 1px solid;
 	        	padding:20px;
 	        }
@@ -296,6 +313,7 @@ String[] address=loginMember.getMemberAddress().split(",");
 	        	text-align:center;
 	        	border-collapse: collapse;
 	        }
+
         	.cjfdn2{
         		width:100px;
         		height:100px;
@@ -438,7 +456,7 @@ String[] address=loginMember.getMemberAddress().split(",");
 			 let a=Number(b);
 			let c=Number($(e.target).val());
 			var amountse=$("#2");
-			$(".point").text(c);
+			$(".point").text(c.toLocaleString());
 			
 			
 			if(c>a){
@@ -447,13 +465,13 @@ String[] address=loginMember.getMemberAddress().split(",");
 				$(".point").text('');
 			}
 			
-			var tjf =Number($(".point").html());
+			var tjf =Number($(".point").html().replace(/,/g, ""));
 			$(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf).toLocaleString());//상품총가격+배송비 최종가격
             $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));
     	
 			
 		})
-		
+			
 		       $(document).on("keyup",".address-ch",function(){//생성된 주소 태그에 값이 변경되면 	배송비 변경
 		        	//지역별 배송비 설정
 					var address=$(".address-ch").val();
@@ -466,7 +484,7 @@ String[] address=loginMember.getMemberAddress().split(",");
 	                }else{
 	                	ba=5000;
 	                }
-	                var tjf =Number($(".point").html());
+	                var tjf =Number($(".point").html().replace(/,/g, ""));
 	                $(".ba").html(ba.toLocaleString());//배송비 설정
 	                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf).toLocaleString());//상품총가격+배송비 최종가격
 	                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));
@@ -483,7 +501,7 @@ String[] address=loginMember.getMemberAddress().split(",");
 		   	    		total_price+=parseInt(amounts[i].value)*prices[i].textContent.replace(/,/g, "");
 	           		} 	
 		   	    }
-		   	    	var tjf =Number($(".point").html());
+		   	    	var tjf =Number($(".point").html().replace(/,/g, ""));
 		   	    	console.log(Number($(".point").html()));
 		   	    	$(".total-price")[0].textContent=(total_price).toLocaleString();
 		   	    	$(".total-pay")[0].textContent=(total_price+ba-tjf).toLocaleString();
@@ -499,7 +517,7 @@ String[] address=loginMember.getMemberAddress().split(",");
 		    				 total_price+=parseInt(amounts[i].value)*prices[i].textContent.replace(/,/g, "");
 			           		}   	
 		    		 }
-		    		    var tjf =Number($(".point").html());
+		    		    var tjf =Number($(".point").html().replace(/,/g, ""));
 		    		    $(".total-price")[0].textContent=(total_price).toLocaleString();
 		    		    $(".total-pay")[0].textContent=(total_price+ba-tjf).toLocaleString();
 		    		    $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));//hidden에 값주기
@@ -522,7 +540,7 @@ String[] address=loginMember.getMemberAddress().split(",");
             }else{
             	
             	$(".address-type").html("<div style='display:flex;width:80%;' class='id_ margin_'>"+"<input class='address-detail' type='text' name='address' id='sample6_postcode' placeholder='우편번호' readonly>"+
-            			"<input type='button' class='search' onclick='sample6_execDaumPostcode()' value='우편번호 찾기' style='width: 50%; cursor:pointer;'>"+"</div>"+
+            			"<input type='button' class='search' onclick='sample6_execDaumPostcode()' value='우편번호 찾기' style='width: 50%; cursor:pointer; border:0; '>"+"</div>"+
             			"<input type='text' class='address-detail address-ch' name='address' id='sample6_address' placeholder='주소' required>"+"<br>"+
             			"<input type='text' class='address-detail' name='address' id='sample6_detailAddress' placeholder='상세주소' required>");
             }
@@ -539,9 +557,10 @@ String[] address=loginMember.getMemberAddress().split(",");
             }else{
             	ba=5000;
             }
+            var tjf =Number($(".point").html().replace(/,/g, ""));
             $(".ba").html(ba.toLocaleString());
-            $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba).toLocaleString());//상품총가격+배송비 최종가격
-            $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));
+            $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf).toLocaleString());//상품총가격+배송비 최종가격
+            $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));
             $("#ba").val(ba);
             });
             
@@ -559,7 +578,7 @@ String[] address=loginMember.getMemberAddress().split(",");
                 }else{
                 	ba=5000;
                 }
-                var tjf =Number($(".point").html());
+                var tjf =Number($(".point").html().replace(/,/g, ""));
                 $(".ba").html(ba.toLocaleString());//배송비 설정
                 $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf).toLocaleString());//상품총가격+배송비 최종가격
                 $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));//hidden에 값주기
@@ -579,7 +598,7 @@ String[] address=loginMember.getMemberAddress().split(",");
 	           			total_price+=parseInt(hm.value)*prices[i].textContent.replace(/,/g, "");
 	           		}
 	           	}
-	            var tjf =Number($(".point").html());
+	           	var tjf =Number($(".point").html().replace(/,/g, ""));
            		$(".total-price")[0].textContent=(total_price).toLocaleString();
            		$(".total-pay")[0].textContent=(total_price+ba-tjf).toLocaleString();
            	 	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));//hidden에 값주기
@@ -604,7 +623,7 @@ String[] address=loginMember.getMemberAddress().split(",");
             			total_price+=parseInt(hm.value)*parseInt(prices[i].textContent.replace(/,/g, ""));
     	     		}
     	     	}
-    	     	var tjf =Number($(".point").html());
+    	     	var tjf =Number($(".point").html().replace(/,/g, ""));
     	     	$(".total-price")[0].textContent=(total_price).toLocaleString();
     	     	$(".total-pay")[0].textContent=(total_price+ba-tjf).toLocaleString();
     	     	$("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));//hidden에 값주기
@@ -647,9 +666,10 @@ String[] address=loginMember.getMemberAddress().split(",");
                 	
                 	ba=5000;
                 }
+                var tjf =Number($(".point").html().replace(/,/g, ""));
                 $(".ba").html(ba.toLocaleString());
-                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba).toLocaleString());//상품총가격+배송비 최종가격
-                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba));
+                $(".total-pay").html((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf).toLocaleString());//상품총가격+배송비 최종가격
+                $("#total").val((parseInt($(".total-price")[0].textContent.replace(/,/g, ""))+ba-tjf));
                 $("#ba").val(ba);
                 
                 document.getElementById("sample6_detailAddress").focus(); 
