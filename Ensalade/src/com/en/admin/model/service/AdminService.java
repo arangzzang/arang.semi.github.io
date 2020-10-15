@@ -66,9 +66,9 @@ public class AdminService {
 		return result;
 	}
 	
-	public List<CustomComment> customCommentList(){//전체 댓글 가져오기위해
+	public List<CustomComment> customCommentList(int cPage,int numPerPage){//전체 댓글 가져오기위해
 		Connection conn=getConnection();
-		List<CustomComment> list=dao.customCommentList(conn);
+		List<CustomComment> list=dao.customCommentList(conn,cPage,numPerPage);
 		close(conn);
 		return list;
 	}
@@ -130,5 +130,19 @@ public class AdminService {
 		List<Store> list=dao.storeList(conn);
 		close(conn);
 		return list;
+	}
+	
+	public int postCount() {
+		Connection conn=getConnection();
+		int total=dao.postCount(conn);
+		close(conn);
+		return total;
+	}
+	
+	public int commentCount() {
+		Connection conn=getConnection();
+		int total=dao.commentCount(conn);
+		close(conn);
+		return total;
 	}
 }

@@ -111,12 +111,42 @@ public class InquiryDao {
 		return list;
 	}
 
-	public List<Inquiry> searchMemberInquiry(Connection conn, int no, int cPage, int numPerPage) {
+	public List<Inquiry> searchMemberInquiry(Connection conn, int no ) {
 		List<Inquiry> list = new ArrayList<Inquiry>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("searchMemberInquiry"));
+			pstmt.setInt(1, no);
+		
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Inquiry i = new Inquiry();
+				i.setInquiryType(rs.getString("INQUIRY_TYPE"));
+				i.setInquiryTitle(rs.getString("INQUIRY_TITLE"));
+				i.setInquiryContent(rs.getString("INQUIRY_CONTENT"));
+				i.setFilePath(rs.getString("FILEPATH"));
+				i.setInquiryWriteDate(rs.getDate("INQUIRY_WRITE_DATE"));
+				i.setCommentStatus(rs.getString("COM_STATUS"));
+				i.setInquiryComment(rs.getString("INQUIRY_COMMENT_CONTENT"));
+				i.setCommentDate(rs.getDate("INQUIRY_COMMENT_DATE"));
+				list.add(i);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public List<Inquiry> searchMemberInquiry(Connection conn, int no, int cPage, int numPerPage) {
+		List<Inquiry> list = new ArrayList<Inquiry>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("searchMemberInquiryPage"));
 			pstmt.setInt(1, no);
 			pstmt.setInt(2, (cPage - 1) * numPerPage + 1);
 			pstmt.setInt(3, cPage * numPerPage);

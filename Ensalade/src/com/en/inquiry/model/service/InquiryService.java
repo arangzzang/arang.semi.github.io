@@ -38,6 +38,12 @@ public class InquiryService {
 		return list;
 	}
 
+	public List<Inquiry> searchMemberInquiry(int memberNo) {
+		Connection conn = getConnection();
+		List<Inquiry> list = dao.searchMemberInquiry(conn, memberNo);
+		close(conn);
+		return list;
+	}
 	public List<Inquiry> searchMemberInquiry(int memberNo,int cPage, int numPerPage) {
 		Connection conn = getConnection();
 		List<Inquiry> list = dao.searchMemberInquiry(conn, memberNo, cPage, numPerPage);
