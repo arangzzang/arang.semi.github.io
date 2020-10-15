@@ -20,7 +20,7 @@ a:hover {
 	font-family: 'IBMPlexSansKR-Text';
 	/*폰트적용법 전체에 적용*/
 	margin: 0;
-	padding: 0;
+/* 	padding: 0; */
 	/*전체 화면 양사이드의 빈공간을 제거하기 위해 0을 줌*/
 	box-sizing: border-box;
 	
@@ -71,7 +71,7 @@ section {
 }
 
 #menu>nav {
-	/* padding: 30px; */
+	padding: 30px;
 	/*메뉴 간 간격 조정*/
 	font-weight: 700;
 	color: black;
@@ -284,7 +284,7 @@ video {
 }
 
 video {
-	/* transform: translate(-50%, -50%); */
+/* 	transform: translate(-50%, -50%); */
 	
 }
 

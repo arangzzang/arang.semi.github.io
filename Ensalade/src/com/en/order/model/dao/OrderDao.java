@@ -158,5 +158,34 @@ public class OrderDao {
 			close(pstmt);
 		}return result;
 	}
+	public int statusCount(Connection conn, String sc, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("statuscount"));
+			pstmt.setString(1, sc);
+			pstmt.setString(2, id);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				result=rs.getInt("order_status");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return result;
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+

@@ -370,16 +370,15 @@
    			document.getElementById("sum").textContent = price.toLocaleString();
    		}
         //사용자가 수량 직접 입력시 -> 문자입력 X 경고창 첫글자 0X
-            $("#amount").keyup(function(){
-        	var sum = document.getElementById("sum");
-        	var hm = document.getElementById("amount");
-        	
-        	 if(hm.value=this.value.replace(/[^0-9]/g, '')){
-        		sum.textContent = (parseInt(hm.value)*price).toLocaleString();
-        	 /* }else if(hm.value==0||hm.value.chatAt(0)==0){
-        		alert("1이상의 숫자만 입력해주세요.");
-        		hm.value=1;*/
-        	} 
+        $("#amount").keyup(function(){
+    	var sum = document.getElementById("sum");
+    	var hm = document.getElementById("amount");
+	  	 	if(hm.value=this.value.replace(/[^0-9]/g, '')){
+	    		sum.textContent = (parseInt(hm.value)*price).toLocaleString();
+	    	 /* }else if(hm.value==0||hm.value.chatAt(0)==0){
+	    		alert("1이상의 숫자만 입력해주세요.");
+	    		hm.value=1;*/
+	    	} 
         });   	 
         //수량 값을 0을 보낼수 없음
       /*   $("#amount").keyup(e=>{
@@ -398,11 +397,11 @@
 //     		sum.textContent = parseInt(hm.value)*price+"원";
 //     	}
          
-          $("#amount").blur(e=>{
-        	 if($(e.target).val()==0){
-        		 $(e.target).val(1);
-        		 sum.textContent=($(e.target).val()*price).toLocaleString();
-        	 }
+         $("#amount").blur(e=>{
+       	 if($(e.target).val()==0){
+       		 $(e.target).val(1);
+       		 sum.textContent=($(e.target).val()*price).toLocaleString();
+       	 }
         	 
          }); 
         //수량 버튼 클릭시 태그 색변경
@@ -437,7 +436,6 @@
        $(".infos-ch2").click(e=>{
     	   $(".infos-ch2").children().removeClass();
     	  $(e.target).next().addClass("bars");
-    	 
        })
         //스크롤 내릴시 css(sticky) 설정
 //         window.onscroll = function(){scrollsticky()};

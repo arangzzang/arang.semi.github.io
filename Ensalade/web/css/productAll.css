@@ -84,12 +84,9 @@ a:visited{
 	list-style-type:none;
 	color: #818181;
 }
-#sidebar>.productul{
-	margin-left:0;
-	padding:0;
-}
+
 #sidebar{
-    left : 30px;
+    left : 100px;
     height: 200px;
     width: 100%;
     position: absolute;

@@ -178,6 +178,12 @@ public class CustomService {
 		close(conn);
 		return result;
 	}
+	public List<CustomPost> myPage(String id) {
+		Connection conn = getConnection();
+		List<CustomPost> list = cd.myPage(conn,id);
+		close(conn);
+		return list;
+	}
 	
 
 }
