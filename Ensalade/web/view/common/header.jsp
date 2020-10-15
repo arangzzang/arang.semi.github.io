@@ -61,7 +61,7 @@
                             <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/product/productAll?type=유제품"><text>유제품</text></a></li> 
                         </ul>
                     </li>
-                    <li><a class="mc" href="">커스텀</a>
+                    <li><a class="mc" href="<%=request.getContextPath()%>/custom/customList">커스텀</a>
                         <ul class="ulul">
                         	<li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/view/custom/custom2.jsp"><text>커스텀하기</text></a></li>
                             <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/custom/customList"><text>커뮤니티</text></a></li>
