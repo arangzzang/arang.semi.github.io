@@ -58,7 +58,8 @@
 	</div>
 	<div class="search-form">
 		<div class="search-form_wrap">
-		<span>검색타입 : </span> <select id="searchType" class="form-control">
+		<span>검색타입 : </span> 
+		<select id="searchType" class="form-control">
 			<option value="notice_title"
 				<%=type != null && type.equals("notice_title") ? "selected" : ""%>>제목</option>
 			<option value="notice_write_date"
@@ -92,11 +93,9 @@
 	<div id="pagebar2"><%=pageBar2%></div>
 	<div class="noticeV-button">
          <%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
-         <span class="gRight">
-             <div style="display: flex;margin-right: 20px;">
+             <div>
                  <input class="form-control_input_btn padd" type="button" value="글쓰기" id="writeBtn">
              </div>
-         </span>
          <%} %>
      </div>
      
@@ -129,7 +128,7 @@
 }
 
 #tbl-notice th:nth-child(2) {
-	width: 857px;
+	width: auto;
 }
 
 #tbl-notice td:nth-child(2) {
@@ -140,7 +139,7 @@
 .form-control_input_btn {
 	height: 25px;
 	width: 100px;
-	height: 25px;
+	height: 40px;
 	box-sizing: border-box;
 	border-radius: 4px;
 	font-size: 14px;
@@ -173,7 +172,8 @@
 }
 
 .search-form_wrap, .formCss-submit-wrap {
-	margin: 0 10px;
+	display: flex;
+    margin: 0 10px;
 }
 
 body {
@@ -208,10 +208,8 @@ body {
 }
 
 section.contents-wrap {
-	padding-top: 100px;
-	height: auto;
-	margin: 0 auto;
 	text-align: center;
+	padding: 100px 15px;
 }
 
 table.table {
@@ -221,7 +219,8 @@ table.table {
 }
 
 table#tbl-notice {
-	width: 80%;
+	width: auto;
+    min-width: 900px;
 	margin: 0 auto;
 	border: solid 1px #dbdbdb;
 	border-right: 0;
@@ -275,6 +274,9 @@ div#search_notice_write_date {
 	display: flex;
 	justify-content: center;
 	position: relative;
+	width: auto;
+    min-width: 500px;
+}
 }
 
 .search-form_wrap {
@@ -286,4 +288,4 @@ caption {
 }
 </style>
 
-<%@ include file="/view/common/footer.jsp" %>
+<%@ include file="/view/common/footer2.jsp" %>

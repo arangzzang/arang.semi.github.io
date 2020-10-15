@@ -199,7 +199,7 @@ section {
 /*********************/
 .footer {
    background-color: #f5f5ea;
-   padding: 30px 24px 100px;
+   /* padding: 30px 24px 100px; */
    text-align: center;
    font-size: 18px;
    background: #fff;

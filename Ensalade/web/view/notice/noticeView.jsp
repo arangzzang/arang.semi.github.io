@@ -56,17 +56,13 @@
                  <%}else{} %>
                 </table>
                 <div class="noticeV-button">
-                    <span class="gLeft">
                         <div><input class="form-control_input_btn" type="button" value="목록" id="listBack">
                         </div>
-                    </span>
                     <%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
-                    <span class="gRight">
                         <div style="display: flex;margin-right: 20px;">
                             <input class="form-control_input_btn padd" type="button" value="수정하기" id="updateBtn">
                             <input class="form-control_input_btn padd" type="button" value="삭제하기" id="deleteBtn">
                         </div>
-                    </span>
                     <input type="hidden" id="noticeNo" value="<%=nb.getNotice_no()%>">
                     <%} %>
                 </div>
@@ -106,16 +102,6 @@
 	padding: 20px 0;
 	text-align: center;
 	margin: 0 50px;
-}
-
-.gRight {
-	float: right;
-	text-align: right;
-}
-
-.gLeft {
-	float: left;
-	text-align: left;
 }
 
 .notice-view_table .detail p {
@@ -183,7 +169,7 @@
 	border-spacing: 0;
 	color: #555;
 	line-height: 16px;
-	min-width: 1100px;
+	min-width: 850px;
 }
 
 .notice-view_area {
@@ -228,8 +214,7 @@ section.contents-wrap {
 	max-width: 80%;
 	box-sizing: border-box;
 	min-height: 1px;
-	padding-left: 15px;
-	padding-right: 15px;
+	padding: 70px 15px;
 }
 
 .form-control_input_btn {

@@ -557,5 +557,5 @@
        
         </script>
 
- <%@include file="/view/common/footer.jsp"%> 
+ <%@include file="/view/common/footer2.jsp"%> 
 
