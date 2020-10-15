@@ -94,8 +94,8 @@
     <style>
     	tr>td,th{
     		border:1px solid black;
-    		width:100px;
-    		height:50px;
+    		width:200px;
+    		height:70px;
     	}
     	.center{
     		text-align: center;
