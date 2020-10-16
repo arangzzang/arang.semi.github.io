@@ -33,6 +33,12 @@ public class EventService {
 		close(conn);
 		return list;
 	}
+	public List<Event> eventList(){
+		Connection conn=getConnection();
+		List<Event> list=dao.eventList(conn);
+		close(conn);
+		return list;
+	}
 	
 	
 }

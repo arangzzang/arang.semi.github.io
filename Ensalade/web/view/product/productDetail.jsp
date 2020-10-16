@@ -120,12 +120,11 @@
                  <%for(int j=i*4;j<(i+1)*4;j++){%> 
                    <li>    
 	                  <a class=" pridse" href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=list.get(j).getProductNo()%>">
-		                  <img alt="" src="<%=list.get(j).getProductThumbnail() %>" class="product-img">
+		                  <img alt="" src="<%=request.getContextPath() %><%=list.get(j).getProductThumbnail() %>" class="product-img">
 
 		                  <p class="prids"><%=list.get(j).getProductName() %></p>
 		                  <p class="prids"><%=list.get(j).getSalePer()!=0?formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100)) : formatter.format(list.get(j).getProductPrice())   %>원</p> 
-	                  	<%System.out.println(list.get(j).getSalePer());
-	                  	System.out.println(formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100))); %>
+	                  	
 
 	                  </a><!-- p.getProductPrice()-(p.getProductPrice()*p.getSalePer()/100) -->
 	               </li>

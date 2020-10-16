@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="com.en.event.model.vo.Event,java.util.List,com.en.event.model.service.EventService" %>
 <%@include file="/view/common/header.jsp"%>
+<%List<Event> list=new EventService().eventList(); 
+%>
 <section>
 <div class="form-container">
 	<div><h1>상품등록</h1></div>
@@ -27,6 +30,18 @@
 						</select>
 					</td>
 				</tr>
+				<tr>
+					<th>이벤트</th>
+					<td>
+						<select name="event" style="width:200px; height:30px;">
+							<option>이벤트선택</option>
+							<%for(Event e : list){ %>
+							<option value="<%=e.getEventCode()%>"><%=e.getEventName() %></option>
+							<%} %>
+						</select>
+					</td>
+				</tr>
+				
 				<tr>
 					<div>
 						<th rowspan="2">첨부파일</th>

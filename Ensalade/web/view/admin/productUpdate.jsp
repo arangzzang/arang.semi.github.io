@@ -12,7 +12,7 @@
 				<tr>
 					<td>
 						<select id="product">
-							<option>상품선택</option>
+							 <option>상품선택</option> 
 						<%for(Product p : list){ %>
 							<option value="<%=p.getProductName()%>"><%=p.getProductName() %></option>
 							<%} %>

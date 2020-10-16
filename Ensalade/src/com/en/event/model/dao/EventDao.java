@@ -96,5 +96,31 @@ public class EventDao {
 		}
 		return list;
 	}
+	public List<Event> eventList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Event> list = new ArrayList<Event>();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("EventList"));
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Event e = new Event();
+				e.setEventCode(rs.getString("EVENT_CODE"));
+				e.setEventCategory(rs.getString("EVENT_CATEGORY"));
+				e.setEventName(rs.getString("EVENT_NAME"));
+				e.setEventWriteDate(rs.getDate("EVENT_WRTIE_DATE"));
+				e.setEventEndDate(rs.getDate("EVENT_END_DATE"));
+				e.setSalePer(rs.getInt("SALE_PER"));
+				e.setThumnail(rs.getString("THUMNAIL"));
+				list.add(e);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
 
 }

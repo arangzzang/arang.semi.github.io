@@ -58,7 +58,20 @@ public class ProductUpdateServelt extends HttpServlet {
 				
 				//MultipartRequest객체를 생성 후에는 파라미터 값을 MultipartRequest로 가져와야함.
 				//HttpServletRequest는 사용하지않음
+				String msg = "";
+				String loc = "";
+				if(mr.getParameter("pNo")==null){
+					msg ="선택된 상품이 없습니다";
+					loc="/view/admin/productUpdate.jsp";
+					request.setAttribute("msg", msg);
+					request.setAttribute("loc", loc);
+					request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
+					return;
+				}
 				Product p = new Product();
+				if(!mr.getParameter("event").equals("이벤트선택")){
+					p.setEventCode(mr.getParameter("event"));
+				}
 				p.setProductNo(Integer.parseInt(mr.getParameter("pNo")));
 				
 				p.setProductName(mr.getParameter("pName"));
@@ -106,16 +119,10 @@ public class ProductUpdateServelt extends HttpServlet {
 					
 				}
 				
-				System.out.println(p.getProductThumbnail());
-				System.out.println(p.getProductSubimg());
-				System.out.println(p.getProductImg1());
-				System.out.println(p.getProductImg2());
-				System.out.println(p.getProductImg3());
-				System.out.println(p.getProductImg4());
+				
 				int result=new ProductService().updateProduct(p);
 				
-				String msg = "";
-				String loc = "";
+				
 				if (result > 0) {
 					msg = "성공적으로 수정되었습니다.";
 					loc = "/view/admin/productList.jsp";
