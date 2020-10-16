@@ -15,7 +15,6 @@ import java.util.Properties;
 import com.en.FAQ.model.vo.FAQ;
 import com.en.admin.model.vo.Store;
 import com.en.event.model.vo.Event;
-import com.en.event.model.vo.EventContent;
 import com.en.custom.model.vo.CustomComment;
 import com.en.member.model.vo.Member;
 import com.en.notice.model.vo.NoticeBoard;
@@ -296,20 +295,6 @@ public class AdminDao {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e2) {
 			e2.printStackTrace();
-		}finally {
-			close(pstmt);
-		}return result;
-	}
-	public int insertEventContent(Connection conn, EventContent ec) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		try {
-			pstmt = conn.prepareStatement(prop.getProperty("insertEventContent"));
-			pstmt.setString(1, ec.getEventCode());
-			pstmt.setString(1, ec.getEventImg());
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}return result;

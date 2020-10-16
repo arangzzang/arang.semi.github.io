@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Properties;
 
 import com.en.event.model.vo.Event;
-import com.en.event.model.vo.EventContent;
 
 public class EventDao {
 
@@ -74,19 +73,19 @@ public class EventDao {
 	}
 	
 	
-	public List<EventContent> selectEventOne(Connection conn, String code){
+	public List<Event> selectEventOne(Connection conn, String code){
 		PreparedStatement pstmt  = null;
 		ResultSet rs = null;
-		List<EventContent> list = new ArrayList<EventContent>();
+		List<Event> list = new ArrayList<Event>();
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("selectEventOne"));
 			pstmt.setString(1, code);
 			System.out.println(code);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				EventContent ec = new EventContent();
-				ec.setEventImg(rs.getString("EVENT_IMG"));
-				list.add(ec);
+				Event e = new Event();
+				e.setEventImg(rs.getString("EVENT_IMG"));
+				list.add(e);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

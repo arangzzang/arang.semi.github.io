@@ -1,4 +1,4 @@
-<%@page import="com.en.event.model.vo.EventContent"%>
+<%@page import="com.en.event.model.vo.Event"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,7 +6,7 @@
 <%@include file="/view/common/header.jsp"%>
 
 <%
-	List<EventContent> list = (List)request.getAttribute("list");
+	List<Event> list = (List)request.getAttribute("list");
 	String code = request.getParameter("code");
 %>
 
@@ -14,7 +14,7 @@
 	<h2>이벤트</h2>
 		<div class="e_container">
 			<div id = "imgContent">
-			<%for(EventContent e : list){ %>
+			<%for(Event e : list){ %>
 				<div id="imgDiv">
 					<img class="eventPageImg" src="<%=request.getContextPath()%><%=e.getEventImg() %>">
 				</div>
