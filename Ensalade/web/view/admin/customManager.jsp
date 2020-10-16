@@ -9,7 +9,7 @@
     
     <%@include file="/view/common/header.jsp"%>
     
-    <section class="sort">
+    <section class="sort" style="margin-top:100px">
     
     	<%-- 		<div class="center"><h2>커스텀 게시물</h2></div>
     	<table  class="center">

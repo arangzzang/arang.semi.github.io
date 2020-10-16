@@ -46,7 +46,7 @@
                         <ul class="ulul">
                             <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/admin/memberAll"><text>회원관리</text></a></li>
                             <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/view/admin/productList.jsp">상품관리</a></li>
-                            <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/inquiry"><text>1:1문의 답변</text></a></li>
+                            <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/admin/inquiry"><text>1:1문의 답변</text></a></li>
                             <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/view/admin/customManager.jsp"><text>커뮤니티 관리</text></a></li>
                         </ul>
                     </li>

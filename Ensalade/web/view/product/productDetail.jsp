@@ -44,7 +44,7 @@
 
 	String product_number = request.getParameter("product_number");
 %>
-<section class="thisproduct">
+<section class="thisproduct" style="margin-bottom:100px;">
 	<!-- 상품 썸네일 이미지/ 상품 정보 부모창-->
 	<div class="swiper-border">
 		<div class="infromation-parent">
@@ -73,8 +73,7 @@
 									%>
 
 									<p>
-										<strong class="price-strong">판매가격</strong> <s
-											class="won-color"><%=p.getProductPrice()%>원</s>
+										<strong class="price-strong">판매가격</strong> <s class="won-color"><%=p.getProductPrice()%>원</s>
 									</p>
 									<strong class="prive-strongs">할인판매가격</strong>
 									<p class="won-color-to won-color-wer">
@@ -152,7 +151,7 @@
 	            <%} %>
             </div>
 			<!-- Add Pagination -->
-			<div class="swiper-pagination a-pagination"></div>
+			<div class="swiper-pagination a-pagination" style="display:none"></div>
 			<!-- Add Arrows -->
 			<div class="swiper-button-next a-button-next"></div>
 			<div class="swiper-button-prev a-button-prev"></div>

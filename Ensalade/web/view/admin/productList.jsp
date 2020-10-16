@@ -4,7 +4,7 @@
  <%@include file="/view/common/header.jsp"%>
  <%List<Product> list=new ProductService().selectProductAll(); %>
  <section>
- <div class="container">
+ <div class="container" style="margin-top: 100px;">
  	<div class=btn-container>
  	<button onclick="insert()"id="insert">상품 등록</button>
  	<button onclick="update()"id="update">상품 수정 및 삭제</button>

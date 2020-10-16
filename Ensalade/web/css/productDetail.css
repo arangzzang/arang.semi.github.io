@@ -22,6 +22,7 @@ hr {
 .thisproduct {
 	/* 헤더와 풋터 간격 */
 	 margin: 15px 50px; 
+	 marign-bottom:100px;
 }
 
 /* 상품 썸네일 / 정보 부모창 */
@@ -118,7 +119,7 @@ hr {
 }
 /* 관련상품 */
 .relate {
-	position: relative;
+	display:contents;
 	height: 400px;
 }
 

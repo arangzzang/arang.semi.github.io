@@ -66,7 +66,7 @@ tr{
 </style>
 
     <%@include file="/view/common/header.jsp"%>
-    <h1 style="text-align:center;margin-top:30px">매장 찾기</h1>
+    <h1 style="text-align:center;margin-top:100px">매장 찾기</h1>
     <div id="wrapper">
     <div id="map" style="width:750px;height:827px;margin-right:50px"></div>
     
