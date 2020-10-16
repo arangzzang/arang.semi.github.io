@@ -7,7 +7,6 @@ import com.en.FAQ.model.vo.FAQ;
 import com.en.admin.model.dao.AdminDao;
 import com.en.admin.model.vo.Store;
 import com.en.event.model.vo.Event;
-import com.en.event.model.vo.EventContent;
 import com.en.custom.model.vo.CustomComment;
 
 import static com.en.common.Template.getConnection;
@@ -117,14 +116,6 @@ public class AdminService {
 		else rollback(conn);
 		return result;
 	}
-	public int insertEventContent(EventContent ec) {
-		Connection conn = getConnection();
-		int result = dao.insertEventContent(conn, ec);
-		if(result>0) commit(conn);
-		else rollback(conn);
-		return result;
-	}
-	
 	public List<Store> storeList(){
 		Connection conn=getConnection();
 		List<Store> list=dao.storeList(conn);

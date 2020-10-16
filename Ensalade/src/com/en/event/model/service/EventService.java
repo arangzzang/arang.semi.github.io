@@ -10,7 +10,6 @@ import java.util.List;
 
 import com.en.event.model.dao.EventDao;
 import com.en.event.model.vo.Event;
-import com.en.event.model.vo.EventContent;
 
 public class EventService {
 
@@ -27,9 +26,9 @@ public class EventService {
         return list;
 	}
 	
-	public List<EventContent> selectEventOne(String code){
+	public List<Event> selectEventOne(String code){
 		Connection conn = getConnection();
-		List<EventContent> list = dao.selectEventOne(conn, code);
+		List<Event> list = dao.selectEventOne(conn, code);
 		close(conn);
 		return list;
 	}
