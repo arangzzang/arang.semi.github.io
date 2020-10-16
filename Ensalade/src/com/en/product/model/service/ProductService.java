@@ -142,5 +142,4 @@ public class ProductService {
 		 close(conn);
 		 return result;
 	 }
-   
 }

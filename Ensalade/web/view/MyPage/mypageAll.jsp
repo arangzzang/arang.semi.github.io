@@ -208,9 +208,10 @@
 	      	</tr>
 	        <%}else{ %>
 	        	<%for(ProductReview pr : prList) {%>
+	        	<%System.out.println(pr); %>
 	        <tr>
 	          <td><%=pr.getReviewtNo()%></td>
-	          <td><%=pr.getReviewTitle() %></td>
+	          <td class="reviewMove"><a href="<%=request.getContextPath()%>/product/detailProduct?productNo=<%=pr.getPageRef()%>"><%=pr.getReviewTitle() %></a></td>
 	          <td><%=pr.getReviewContent() %></td>
 	          <td><%=pr.getReviewWriter() %></td>
 	          <td><%=pr.getReviewWriteDate() %></td>
@@ -288,7 +289,7 @@
 	        	<%for(Inquiry i : iList) {%>
 		        <tr>
 		          <td><%=i.getInquiryType() %></td>
-		          <td><%=i.getInquiryTitle() %></td>
+		          <td id="<%=i.getInquiryNo()%>" class="inquiry"><%=i.getInquiryTitle() %></td>
 		          <td><%=i.getInquiryContent() %></td>
 		          <td><%=i.getInquiryWriter() %></td>
 		          <td><%=i.getInquiryWriteDate() %></td>
@@ -367,9 +368,31 @@
 //  				console.log($(b[1]).html());
 //  		console.log($(b[0]).html());
  	});
-// 	$(".5").each((i,v)=>{
-// 		console.log($(v).attr("id"));
-// 	})
+	
+// 	$(".inquiry").click(e=>{
+
+	
+// 		});
+// 	});
+	$(".inquiry").each((i,v)=>{
+		console.log($(v).attr("id"));
+	});
+	
+	$(".5").each((i,v)=>{
+		console.log($(v).attr("id"));
+	})
+	//페이지 이동시 스크롤 이동
+// $(".reviewMove").click()
+	
+<%-- 	var page_url = "/detailProduct?productNo=<%=pr.getPageRef()%>"><%=pr.getReviewTitle() %>"; --%>
+// 	var page_id = page_url.substring(page_url);
+// 	alert(page_id);
+	
+// 	 if (page_id == 'section1') {
+// 		 $('html, body').animate({scrollTop: $('#scroll-' + page_id).offset().top},500);
+// 	 }
+
+// });
 </script>
 
 <%@include file="/view/common/footer.jsp"%>

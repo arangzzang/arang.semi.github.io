@@ -310,6 +310,7 @@ import com.en.product.model.vo.ProductReview;
   			rs=pstmt.executeQuery();
   			while(rs.next()) {
   				ProductReview pr = new ProductReview();
+  				pr.setPageRef(rs.getInt("product_review_no"));
   				pr.setReviewtNo(rs.getInt("product_review_no"));
   				pr.setReviewTitle(rs.getString("product_review_title"));
   				pr.setReviewWriter(rs.getString("product_review_writer"));
@@ -419,6 +420,7 @@ import com.en.product.model.vo.ProductReview;
  		}
  		return result;
  	}
+  	
 
    }
 

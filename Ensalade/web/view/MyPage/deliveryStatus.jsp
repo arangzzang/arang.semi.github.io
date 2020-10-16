@@ -28,6 +28,7 @@
         	<button type="submit" class="btn btn-default">조회하기</button>
     </form>
 </section>
+
 <style>
 .form-group:nth-child(1){
 	display:none;

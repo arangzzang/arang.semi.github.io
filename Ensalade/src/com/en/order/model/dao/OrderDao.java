@@ -168,7 +168,10 @@ public class OrderDao {
 			pstmt.setString(2, id);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				result=Integer.parseInt(rs.getString("order_status"));
+				Order o = new Order();
+				o.setOrderStatus(rs.getString("order_status"));
+				result = Integer.parseInt(o.getOrderStatus());
+//				result=Integer.parseInt(rs.getString("order_status"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

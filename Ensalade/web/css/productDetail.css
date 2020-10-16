@@ -1,11 +1,21 @@
 @charset "UTF-8";
 
+/*위로가기*/
+#top{
+	position:absolute;
+	right:0;
+}
+#move-top{
+	background-color:green;
+	color:white;
+	border-radius: 50px;
+}
+/* 세션 */
 hr {
 	margin-top: 50px;
 	margin-bottom: 30px;
 	width: 100%;
 }
-/* 세션 */
 .thisproduct {
 	/* 헤더와 풋터 간격 */
 	margin: 50px 50px;

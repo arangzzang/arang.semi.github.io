@@ -6,6 +6,11 @@
     display: table;
     width: 100%;
   }
+  .reviewMove>a{
+	text-decoration:none ; 
+  	color:#000000;
+	}
+  
   .headfix {
     padding: 10px;
     margin: 20px 50px;

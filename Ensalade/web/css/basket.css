@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+	.remove{
+		width:100px;
+		height:35px;
+		background-color:green;
+		color:white;
+		border:green solid 1px;
+		cursor:pointer;
+		border-radius:10px;
+		outline:0;
+		}
+       	.del,.add{
+       	vertical-align:bottom;
+		outline: 0;
+		color: green;
+		background-color: #fff;
+		cursor: pointer;
+		line-height: 0.8;
+		border : green solid 3px;
+		}
+		 .fab:hover, .far:hover {
+		color: white;
+		background-color: #35ad73;
+		line-height: 0.8;
+		}
+		button{
+		outline:0;
+		}
+
+	.jfdnqud{
+		width:100px;
+		height:100px;
+
+	}
+		.header-line{
+       	margin-top:0px;
+       	margin-bottom:15px;
+       	border-color:lightgray;
+       	background-color:lightgray;
+       	color:lightgray;
+       	opacity: 0.2;
+       	}
+		.order1{
+       		background-color:green;
+       		color:white;
+       	}
+       	.orderHeader{
+       		display:flex;
+       		justify-content: space-between;
+       	}
+       	.orderState{
+       		margin-right:120px;
+       		display:flex;
+       		list-style:none;
+       	}
+       	.orderState>li{
+       	border:lightgray 1px solid;
+       	border-radius:10px;
+       	padding: 10px 15px 11px 15px;
+       	font-weight: bold;
+       	text-align: center;
+       	height:43px;
+       	}
+
+
+	.p-info{
+		margin:30px;
+	}
+	
+	.amount{
+		
+		border: 0;
+		height:26px;
+	}
+	.moveorder{
+		
+		 display: flex; 
+		 justify-content: center; 
+	}
+	.moveBtn{
+		border:3px green solid;
+        background-color: white;
+        color: green;
+        width: 250px;
+        height: 70px;
+        margin-left: 30px;
+        cursor: pointer;
+        border-top-left-radius:10px;
+	    border-bottom-left-radius:10px;
+	    border-top-right-radius:10px;
+	    border-bottom-right-radius:10px;
+	}
+	.moveBtn:hover{
+       background: green;
+       color: white;
+    }
+		.total-price,.sum,.price{
+	    font-size: 20px;
+	    font-weight: bold;
+	    font-style: normal;
+	    }
+	
+	  
+    .basket{
+        /* margin-top: 50px;
+        margin-bottom: 50px; */
+    }
+    td{
+        border: lightgray 1px solid;
+        
+    }
+	#cartList-children{
+        width: 100%;
+        height: 100%;
+       /*  border: 1px red solid; */
+        display: flex; 
+        
+    }
+    #productContent{	
+        width: 100%;
+      /*   border: 1px blueviolet solid; */
+        
+        
+    }
+    .basketTable{
+    	width:90%;
+        text-align: center;
+        margin: auto;
+        border-collapse: collapse;
+    }
+    tr{
+    	height:165px;
+    }

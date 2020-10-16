@@ -338,6 +338,8 @@
 			<%} %>
 		</div>
 	</div>
+	<div id="top">
+		<button onclick="moveTop();" id="move-top">위로가기</button>
 	</div>
 </section>
 
@@ -433,8 +435,9 @@
         }
         //상품 정보,배송 정보, 상품 후기 클릭시 이동
         function move(seq){
+        	var head = $("#menu").height();
         	var offset = $("#infobtn" + seq).offset();
-            $('html, body').animate({scrollTop : offset.top}, 400);
+            $('html, body').animate({scrollTop : offset.top-head}, 400);
         }
         //버튼 클릭시 색상 변경하고 다른 버튼들은 원래 색상
        $(".infos-ch2").click(e=>{
@@ -553,6 +556,9 @@
       var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
       return direction;
     } 
+    function moveTop(){
+    	window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+    }
   
        
         </script>
