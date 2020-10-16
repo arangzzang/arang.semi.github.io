@@ -41,6 +41,7 @@
 				<input type="text" name="email" id="email_" class="text_" required>
 				<input type="button" value="인증" id="check_1" style="padding: 0px 30px 0px;border-radius: 5px;border: 1px solid #fff;color: honeydew;background-color: #27b06e;cursor:pointer;">
 				</div>
+				<p id="emailText"></p>
 				<div id="emailCheck">
 				<label for="emailCheck" id="clabel">인증번호</label>
 				<div style="display:flex;">
@@ -50,6 +51,7 @@
 				</div>
 				<label for="phone">연락처<label class="star">*</label></label>
 				<input type="text" name="phone" id="phone_" class="text_" required>
+				<p id="pCh"></p>
 
 				<!--주소검색기능 추후 추가-->
 				<!-- <label for="address">주소<label class="star">*</label></label>
@@ -421,13 +423,21 @@
         	   });
            })
            $("#check_1").click(e=>{
+        	   let reg=/^[0-9a-zA-Z]+@[0-9a-zA-Z.]+.[a-zA-Z]{2,6}$/;
+        	   let email=$("#email_").val();
+        	   if(!reg.test(email)){
+        		   $("#emailText").attr("style","font-size:12px;color:red;");
+        		   $("#emailText").html("이메일 형식을 확인해주세요.");
+        		   return;
+        	   }
+        	   
         	   $("#emailCheck").css("display","block");
         	   $.ajax({
         		   url:'<%=request.getContextPath()%>/view/search/searchIdPw.jsp',
         		   data:{'name':$("#userName_").val(),'email':$("#email_").val()},
         		   success:data=>{
         			   $("#emailCheck").append(data);
-        			   console.log($("#h3").val());
+        			   $("#emailText").html("");
         		   }
         		   
         		   
@@ -449,6 +459,19 @@
            })
            
            $("#emailCheck").css("display","none");
+           
+           $("#phone_").keyup(e=>{
+        	   let reg=/^[0-9]{3,4}[-]?[0-9]{3,4}[-]?[0-9]{4}$/;
+        	   if(!reg.test($(e.target).val())){
+        		   $("#pCh").attr("style","font-size:12px;color:red");
+        		   $("#pCh").html("전화번호 형식을 확인해주세요.");
+        	   }else{
+        		   $("#pCh").html("");
+        	   }
+        	   if($(e.target).val()==""){
+        		   $("#pCh").html("");
+        	   }
+           })
        </script>
        
        <style>

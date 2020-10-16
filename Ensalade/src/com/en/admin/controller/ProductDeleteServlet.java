@@ -29,18 +29,28 @@ public class ProductDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String msg = "";
+		String loc = "";
+		if(request.getParameter("pNo").equals("undefined")){
+			msg ="선택된 상품이 없습니다";
+			loc="/view/admin/productUpdate.jsp";
+			request.setAttribute("msg", msg);
+			request.setAttribute("loc", loc);
+			request.getRequestDispatcher("/view/common/msg.jsp").forward(request, response);
+			return;
+		}
 		int pNo=Integer.parseInt(request.getParameter("pNo"));
+		
 		
 		int result=new ProductService().deleteProduct(pNo);
 		
-		String msg = "";
-		String loc = "";
+
 		if (result > 0) {
 			msg = "성공적으로 삭제되었습니다.";
-			loc = "/view/admin/productUpdate.jsp";
+			loc = "/view/admin/productList.jsp";
 		} else {
 			msg = "삭제에 실패하였습니다.";
-			loc = "/view/admin/productUpdate.jsp";
+			loc = "/view/admin/productList.jsp";
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);

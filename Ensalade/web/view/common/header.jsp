@@ -43,13 +43,11 @@
                 <ul id="pcolor">
                  <%if(loginMember!=null && loginMember.getMemberId().equals("admin")){ %>
                     <li><a href="<%=request.getContextPath()%>/product/productAll">관리자전용 메뉴</a>
-
                         <ul class="ulul">
                             <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/admin/memberAll"><text>회원관리</text></a></li>
                             <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/view/admin/productList.jsp">상품관리</a></li>
                             <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/inquiry"><text>1:1문의 답변</text></a></li>
-
-
+                            <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/view/admin/customManager.jsp"><text>커뮤니티 관리</text></a></li>
                         </ul>
                     </li>
                     <%} %>
@@ -61,7 +59,7 @@
                             <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/product/productAll?type=유제품"><text>유제품</text></a></li> 
                         </ul>
                     </li>
-                    <li><a class="mc" href="">커스텀</a>
+                    <li><a class="mc" href="<%=request.getContextPath()%>/custom/customList">커스텀</a>
                         <ul class="ulul">
                         	<li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/view/custom/custom2.jsp"><text>커스텀하기</text></a></li>
                             <li class="cjfdnand"><a class="ullia" href="<%=request.getContextPath()%>/custom/customList"><text>커뮤니티</text></a></li>
@@ -200,12 +198,7 @@
             <%} %>
         </div>
     </header>
-    
     <div id="div_"></div>
+   
  
-    <style>
-    	#div_{
-    		width:1187.200px;
-    		height:75.600px;
-    	}
-    </style>
+   

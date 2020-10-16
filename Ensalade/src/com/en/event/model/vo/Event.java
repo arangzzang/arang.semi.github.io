@@ -11,6 +11,7 @@ public class Event {
 	private Date eventEndDate;
 	private int salePer;
 	private String thumnail;
+	private String eventImg;
 	//상품뷰로 넘겨주기위한 변수
 	private int productNo;
 	private int productPrice;
@@ -23,8 +24,8 @@ public class Event {
 	}
 
 	public Event(String eventCode, String eventWriter, String eventCategory, String eventName, Date eventWriteDate,
-			Date eventEndDate, int salePer, String thumnail, int productNo, int productPrice, String productName,
-			String productType, String productContent) {
+			Date eventEndDate, int salePer, String thumnail, String eventImg, int productNo, int productPrice,
+			String productName, String productType, String productContent) {
 		super();
 		this.eventCode = eventCode;
 		this.eventWriter = eventWriter;
@@ -34,6 +35,7 @@ public class Event {
 		this.eventEndDate = eventEndDate;
 		this.salePer = salePer;
 		this.thumnail = thumnail;
+		this.eventImg = eventImg;
 		this.productNo = productNo;
 		this.productPrice = productPrice;
 		this.productName = productName;
@@ -105,6 +107,14 @@ public class Event {
 		this.thumnail = thumnail;
 	}
 
+	public String getEventImg() {
+		return eventImg;
+	}
+
+	public void setEventImg(String eventImg) {
+		this.eventImg = eventImg;
+	}
+
 	public int getProductNo() {
 		return productNo;
 	}
@@ -149,11 +159,10 @@ public class Event {
 	public String toString() {
 		return "Event [eventCode=" + eventCode + ", eventWriter=" + eventWriter + ", eventCategory=" + eventCategory
 				+ ", eventName=" + eventName + ", eventWriteDate=" + eventWriteDate + ", eventEndDate=" + eventEndDate
-				+ ", salePer=" + salePer + ", thumnail=" + thumnail + ", productNo=" + productNo + ", productPrice="
-				+ productPrice + ", productName=" + productName + ", productType=" + productType + ", productContent="
-				+ productContent + "]";
+				+ ", salePer=" + salePer + ", thumnail=" + thumnail + ", eventImg=" + eventImg + ", productNo="
+				+ productNo + ", productPrice=" + productPrice + ", productName=" + productName + ", productType="
+				+ productType + ", productContent=" + productContent + "]";
 	}
 
 	
-		
 }

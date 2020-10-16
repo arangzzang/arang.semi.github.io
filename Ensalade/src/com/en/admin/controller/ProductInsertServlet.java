@@ -64,9 +64,14 @@ public class ProductInsertServlet extends HttpServlet {
 		p.setProductPrice(Integer.parseInt(mr.getParameter("price")));
 		p.setProductContent(mr.getParameter("content"));
 		p.setProductType(mr.getParameter("type"));
+		
 		//파일이름은 rename되어있는 파일이름을 가져와야하기 때문에
 		//mr.getFileSystemNmae("name")메소드를 이용
 		String filePath= "/upload/product/";
+		
+		if(!mr.getParameter("event").equals("이벤트선택")){
+			p.setEventCode(mr.getParameter("event"));
+		}
 		p.setProductThumbnail(filePath+mr.getFilesystemName("th"));
 		p.setProductSubimg(filePath+mr.getFilesystemName("sub"));
 		p.setProductImg1(filePath+mr.getFilesystemName("img1"));

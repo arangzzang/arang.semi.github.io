@@ -11,6 +11,9 @@
 	border-radius: 50px;
 }
 /* 세션 */
+/* .swiper-border{
+	padding: 100px 50;
+} */
 hr {
 	margin-top: 50px;
 	margin-bottom: 30px;
@@ -18,7 +21,7 @@ hr {
 }
 .thisproduct {
 	/* 헤더와 풋터 간격 */
-	margin: 50px 50px;
+	 margin: 15px 50px; 
 }
 
 /* 상품 썸네일 / 정보 부모창 */

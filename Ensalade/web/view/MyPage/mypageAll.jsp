@@ -250,7 +250,7 @@
 	        	<%for(CustomPost cp : cpList) {%>
 	        <tr>
 	          <td id="<%=cp.getcIdx()%>" class="5"><%=cp.getcIdx() %></td>
-	          <td><%=cp.getTitle() %></td>
+	          <td class="123" id="<%=cp.getcIdx()%>" style="cursor:pointer;"><%=cp.getTitle() %></td>
 	          <td><%=cp.getContent() %></td>
 	          <td><%=cp.getMemberId() %></td>
 	          <td><%=cp.getWriteDate() %></td>
@@ -302,7 +302,6 @@
 	  </div>
 	</div>
 </section>
-
 <script>
 	//사이드바 스크롤
 	$(document).ready(function() {
@@ -393,7 +392,15 @@
 // 	 }
 
 // });
+// 	$(".5").each((i,v)=>{
+// 		console.log($(v).attr("id"));
+// 	})
+
+	$(".123").click(e=>{
+		location.assign("<%=request.getContextPath()%>/custom/customView?no="+$(e.target).attr("id"));
+	})
 </script>
+
 
 <%@include file="/view/common/footer.jsp"%>
 

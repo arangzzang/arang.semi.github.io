@@ -335,6 +335,7 @@ import com.en.product.model.vo.ProductReview;
  			pstmt.setString(2,p.getProductName());
  			pstmt.setString(3, p.getProductType());
  			pstmt.setString(4, p.getProductContent());
+ 			pstmt.setString(5, p.getEventCode());
  			
  			result = pstmt.executeUpdate();
  		} catch (SQLException e) {
@@ -389,7 +390,9 @@ import com.en.product.model.vo.ProductReview;
  			pstmt.setString(2, p.getProductName());
  			pstmt.setString(3, p.getProductType());
  			pstmt.setString(4, p.getProductContent());
- 			pstmt.setInt(5, p.getProductNo());
+ 			pstmt.setString(5, p.getEventCode());
+ 			pstmt.setInt(6, p.getProductNo());
+ 			
  			result = pstmt.executeUpdate();
  		} catch (SQLException e) {
  			e.printStackTrace();
