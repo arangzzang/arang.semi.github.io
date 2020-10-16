@@ -8,6 +8,7 @@
 <%@ include file="/view/common/header.jsp"%>
 <%
    CustomPost cp = (CustomPost)request.getAttribute("post");
+	
    
 %>
 
@@ -18,7 +19,7 @@
 		<div class="left">
 		<div class="vbox-imgbox">
 			<img src="<%=request.getContextPath()%>/upload/custom/<%=cp.getcImage()%>" id="img1">
-			<%if(cp.getMemberId().equals(loginMember.getMemberId())) {%>
+			<%if(loginMember!=null&&cp.getMemberId().equals(loginMember.getMemberId())) {%>
 			<button style="border:none;outline:none;background-color:rgb(255,255,255,0);font-weight:600;" id="modi" value="<%=cp.getcIdx()%>">수정</button>
 			<button style="border:none;outline:none;background-color:rgb(255,255,255,0);font-weight:600;" id="del" value="<%=cp.getcIdx()%>">삭제</button>
 			<%} %>
