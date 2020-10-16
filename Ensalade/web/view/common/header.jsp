@@ -200,12 +200,7 @@
             <%} %>
         </div>
     </header>
-    
     <div id="div_"></div>
+   
  
-    <style>
-    	#div_{
-    		width:1187.200px;
-    		height:75.600px;
-    	}
-    </style>
+   

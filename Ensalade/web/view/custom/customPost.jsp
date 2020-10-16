@@ -18,7 +18,7 @@
 
 
 <!--검색박스  -->
-<div>
+<div id="search-margin">
 <div id="search-container">
       <div  class="searchtype_ box_ type_">
          <select id="searchType">
@@ -84,6 +84,10 @@
 </section>
 
 <style>
+
+#search-margin{
+	margin-top: 30px;
+}
 .id_1 {
    margin-left: 10px;
    font-weight: 600;

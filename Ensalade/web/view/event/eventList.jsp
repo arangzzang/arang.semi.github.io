@@ -53,6 +53,9 @@
 	}
 </script>
 <style>
+.event-wrap{
+	margin-top: 20px;
+}
 .event-button{margin: 10px 0 40px;font-size: 0;	padding: 20px 0;text-align:center;margin: 0 50px;}
 .event-title-wrap{text-align: center;}
 .event-container{}
