@@ -115,6 +115,8 @@
   /*상세내용*/
   .myPage{
     margin: 0px 50px 30px ;
+    margin-left: 200px;
+    width: 60%;
   }
   table p{
     text-align: center;
