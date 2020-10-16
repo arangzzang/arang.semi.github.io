@@ -24,7 +24,7 @@
 			<button style="border:none;outline:none;background-color:rgb(255,255,255,0);font-weight:600;" id="del" value="<%=cp.getcIdx()%>">삭제</button>
 			<%} %>
 		</div>
-		<div class="comment-box">
+		<div class="comment-box" style="margin-bottom: 100px;">
 		<!-- <h2 class="comment-box_header">
 			댓글 <span class="comment-box_header_count">16</span>
 		</h2>

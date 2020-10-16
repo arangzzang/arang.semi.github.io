@@ -11,7 +11,7 @@
 	
 
 %>
-<section class="event-wrap">
+<section class="event-wrap" style="margin-top:100px;">
    <div class="event-container">
 		<div class="event-title-wrap">
 			<h2>Event</h2>

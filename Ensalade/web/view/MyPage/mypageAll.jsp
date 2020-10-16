@@ -42,7 +42,7 @@
 %>
 <section style="text-align: center;">
 	<!--마이페이지 헤드공용-->
-	<div class="mypageHead">
+	<div class="mypageHead" style="margin-top:100px;">
 	  <div class="headfix">
 	    <div>
 	      <h4><%=loginMember.getMemberName() %></h4>
