@@ -54,7 +54,7 @@ public class MyAuthentication extends Authenticator { //아이디 패스워드 �
 
 
  //보내는 사람의 정보
- String fromName = "이세현";//메일 보내는 사람 이름
+ String fromName = "ensalade";//메일 보내는 사람 이름
  String fromEmail = "lsh0001895@gmail.com";//발신인 이메일
  String temp1="";
  

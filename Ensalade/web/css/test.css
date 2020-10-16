@@ -19,7 +19,7 @@ a:hover {
 	font-family: 'IBMPlexSansKR-Text';
 	/*폰트적용법 전체에 적용*/
 	margin: 0;
-	padding: 0;
+/* 	padding: 0; */
 	/*전체 화면 양사이드의 빈공간을 제거하기 위해 0을 줌*/
 	box-sizing: border-box;
 }
@@ -57,7 +57,7 @@ a {
 }
 
 section {
-	padding-top: 100px;
+	/* padding-top: 100px; */
 	height: auto;
 	min-height: 100%
 }
@@ -67,13 +67,13 @@ section {
 }
 
 #menu>nav {
-
-	/* padding: 30px; */
+	padding: 30px;
 	/*메뉴 간 간격 조정*/
 	font-weight: 700;
 	color: black;
 	margin-left: 450px;
 	padding: 16px 0px 0px;
+	z-index: 5000;
 }
 
 #logo {
@@ -143,7 +143,7 @@ section {
 	/*a태그 밑줄삭제 및 사이 공간 확보*/
 	text-decoration: none;
 	padding: 30px;
-	color: black;
+	color: #818181;
 }
 
 #headcap {
@@ -153,12 +153,12 @@ section {
 	width: 100%;
 	position: fixed;
 	z-index: 1000;
-
-	 background-color: rgba(255, 255, 255, 1); 
+background-color: rgba(255, 255, 255, 1); 
+	opacity: 0.6;
 	height: 75.6px;
 	min-width: 1000px;
 	 transition: background 0.3s;
-	 opacity: 0.9;
+	
 }
 
 #loginjoin ul {
@@ -284,7 +284,10 @@ video {
 }
 
 video {
-   /* transform: translate(-50%, -50%); */
+
+/* 	transform: translate(-50%, -50%); */
+	
+
    
 }
 
@@ -295,7 +298,7 @@ video {
 
 .swiper-wrap {
    /*각각의 스와이퍼를 감싸는 div*/
-   margin: 10px auto;
+ /*   margin: 10px auto; */
    /* border: 1px white solid; */
    position: relative;
 }
@@ -373,7 +376,7 @@ video {
 }
 
 #logo_ensalad {
-
+	display: inline-block;
 	display: inline-block;
 	/* margin-bottom: 15px; */
 }
@@ -425,45 +428,13 @@ video {
 .ullia {
    transition: all 0.5s ease;
 }
-/* .cjfdnand ::after {
-        position: absolute;
-        content: "";
-        top: 100%;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: #3498db;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform 0.5s;
-      }
-
-     .cjfdnand:hover {
-        color: #95a5a6;
-      }
-
-      .cjfdnand:hover::after {
-        transform: scaleX(1);
-        transform-origin: left; */
-
-/* .cjfdnand:after { 
-   content: ''; 
-   position: absolute; 
-   top: calc(-1 * var(--borderWidth)); 
-   left: calc(-1 * var(--borderWidth)); 
-   height: calc(100% + var(--borderWidth) * 2); 
-   width: calc(100% + var(--borderWidth) * 2); 
-   background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82); 
-   border-radius: calc(1.5 * var(--borderWidth)); 
-   z-index: -1; 
-   animation: animatedgradient 2s ease alternate infinite; 
-   background-size: 300% 300%; } 
-   @keyframes animatedgradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-=======
+.ulul {
 	top: 120%;
 	/* 	border-radius: 6px; */
 	background: white;
 }
+
+ 
 
 #menu>nav ul li:hover .ulul {
 	top: 100%;
@@ -504,6 +475,10 @@ video {
 
 .ullia {
 	transition: all 0.5s ease;
+}
+#div_{
+	width: 100%;
+	height: 59px;
 }
 /* .cjfdnand ::after {
         position: absolute;

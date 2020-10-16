@@ -492,7 +492,32 @@ public class CustomDao {
 		}
 		return result;
 	}
-	 
+	public List<CustomPost> myPage(Connection conn, String id){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CustomPost> list = new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("mypage"));
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+			CustomPost cp = new CustomPost();
+			cp.setcIdx(rs.getInt("c_idx"));
+			cp.setTitle(rs.getString("title"));
+			cp.setContent(rs.getString("content"));
+			cp.setMemberId(rs.getString("member_id"));
+			cp.setWriteDate(rs.getDate("write_date"));
+			cp.setLikeCount(rs.getInt("like_count"));
+			list.add(cp);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return list;
+	}
+	   
 	public List<CustomPost> customList(Connection conn,int cPage,int numPerPage){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -524,4 +549,25 @@ public class CustomDao {
 		}return list;
 	}
 
+	public int deletePost(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("deletePost"));
+			pstmt.setInt(1, no);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }
+
+
+
+
+
+

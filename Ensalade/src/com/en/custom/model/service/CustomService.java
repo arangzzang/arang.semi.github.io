@@ -178,6 +178,12 @@ public class CustomService {
 		close(conn);
 		return result;
 	}
+	public List<CustomPost> myPage(String id) {
+		Connection conn = getConnection();
+		List<CustomPost> list = cd.myPage(conn,id);
+		close(conn);
+		return list;
+	}
 	
 	public List<CustomPost> customList(int cPage, int numPerPage){
 		Connection conn=getConnection();
@@ -186,5 +192,13 @@ public class CustomService {
 		return list;
 	}
 	
+	public int deletePost(int no) {
+		Connection conn=getConnection();
+		int result=cd.deletePost(conn,no);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 
 }

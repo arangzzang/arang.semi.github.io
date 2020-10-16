@@ -56,13 +56,11 @@ public class NoticeWriteEndServlet extends HttpServlet {
 		
 		int result = new AdminService().insertNotice(nb);
 		String msg = "";
-		String loc = "";
+		String loc = "/searchNotice";
 		if (result > 0) {
 			msg = "성공적으로 등록되었습니다.";
-			loc = "/searchNotice";
 		} else {
 			msg = "등록에 실패하였습니다.";
-			loc = "/";
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);

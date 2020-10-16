@@ -45,9 +45,11 @@
 
 				<label for="email">이메일<label class="star">*</label></label>
 				<input type="text" name="email" id="email_" class="text_" value="<%=loginMember.getEmail()%>" required>
+				<p id="emailText"></p>
 
 				<label for="phone">연락처<label class="star">*</label></label>
 				<input type="text" name="phone" id="phone_" class="text_" value="<%=loginMember.getMemberPhone()%>" required>
+				<p id="pCh"></p>
 
 				<!--주소검색기능 추후 추가-->
 				<!-- <label for="address">주소<label class="star">*</label></label>
@@ -232,6 +234,29 @@ function checkPw(){
 	}
 		return true;
 }
+$("#phone_").keyup(e=>{
+	   let reg=/^[0-9]{3,4}[-]?[0-9]{3,4}[-]?[0-9]{4}$/;
+	   if(!reg.test($(e.target).val())){
+		   $("#pCh").attr("style","font-size:12px;color:red");
+		   $("#pCh").html("전화번호 형식을 확인해주세요.");
+	   }else{
+		   $("#pCh").html("");
+	   }
+	   if($(e.target).val()==""){
+		   $("#pCh").html("");
+	   }
+})
+$("#email_").keyup(e=>{
+	  let reg=/^[0-9a-zA-Z]+@[0-9a-zA-Z.]+.[a-zA-Z]{2,6}$/;
+	   let email=$("#email_").val();
+	   if(!reg.test(email)){
+		   $("#emailText").attr("style","font-size:12px;color:red;");
+		   $("#emailText").html("이메일 형식을 확인해주세요.");
+		   return;
+	   }else{
+		   $("#emailText").html("사용가능 합니다.");
+	   }
+})
 </script>
 
 

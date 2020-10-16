@@ -52,7 +52,7 @@
      int result=new CustomService().updatePost(cp);//--------------------------
      
      String msg="";
-     String loc="/";
+     String loc="/custom/customView?no="+no;
      msg=result>0?"게시글 수정 성공":"게시글 수정 실패";
      request.setAttribute("msg",msg);
      request.setAttribute("loc", loc);

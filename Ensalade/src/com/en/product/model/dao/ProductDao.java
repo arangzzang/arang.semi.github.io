@@ -316,7 +316,6 @@ import com.en.product.model.vo.ProductReview;
   				pr.setReviewContent(rs.getString("product_review_content"));
   				pr.setReviewWriteDate(rs.getDate("product_review_write_date"));
   				list.add(pr);
-  				System.out.println(list.add(pr));
   			}
   		}catch(SQLException e) {
   			e.printStackTrace();

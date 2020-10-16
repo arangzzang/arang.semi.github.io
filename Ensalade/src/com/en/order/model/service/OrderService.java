@@ -46,6 +46,8 @@ public class OrderService {
 	public List<Order> myPage(String id){
 		Connection conn = getConnection();
 		List<Order> list = dao.myPage(conn, id);
+		for(Order o : list) {
+		}
 		close(conn);
 		return list;
 	}
@@ -56,4 +58,17 @@ public class OrderService {
 		close(conn);
 		return result;
 	}
+	public int statusCount(String sc, String id) {
+		Connection conn = getConnection();
+		int result = dao.statusCount(conn, sc, id);
+		close(conn);
+		return result;
+	}
 }
+
+
+
+
+
+
+

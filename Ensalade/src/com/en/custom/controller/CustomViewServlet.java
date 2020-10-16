@@ -35,7 +35,7 @@ public class CustomViewServlet extends HttpServlet {
 		//맨처음 상세페이지에 게시물 정보를 보내주는 서블릿
 		
 		int no=Integer.parseInt(request.getParameter("no"));
-		
+		System.out.println(no);
 		Cookie[] cookies=request.getCookies();
 		String view="";
 		boolean flag=false;

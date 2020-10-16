@@ -36,23 +36,39 @@
 				<img class="imageEvent" src="<%=request.getContextPath()%><%=e.getThumnail()%>">
 			</a>
 			<%}%>
+			<%if (loginMember != null && loginMember.getMemberId().equals("admin")) {%>
+			<div class="event-button">
+				<button class="form-control_input_btn" type="button" onclick="deleteCk()">삭제하기</button>
+			</div>
+			<%}%>
 		</div>
 		<input type="hidden" name="code" value="<%=e.getEventCode()%>">
 		<%}
 		if (loginMember != null && loginMember.getMemberId().equals("admin")) {%>
 		<div class="event-button">
-			<button class="form-control_input_btn" type="button" onclick="location.replace('<%=request.getContextPath()%>/admin/eventWrite')">글쓰기</button>
+			<button class="form-control_input_btn" type="button" onclick="location.replace('<%=request.getContextPath()%>/admin/eventWrite');">글쓰기</button>
 		</div>
 		<%}%>
 	</div>
 </section>
 
 <script type="text/javascript">
+	function deleteCk(){
+		let ck = confirm("정말로 삭제하시겠습니까?");
+		<%for(Event e : list){%>
+		if(ck){
+			location.replace('<%=request.getContextPath()%>/admin/eventDelete?code=<%=e.getEventCode()%>');
+		}
+		<%}%>
+	}
 	function ready(){
 		alert('준비중입니다! 발전하는 Ensalade가 되겠습니다!');
 	}
 </script>
 <style>
+.event-wrap{
+	margin-top: 20px;
+}
 .event-button{margin: 10px 0 40px;font-size: 0;	padding: 20px 0;text-align:center;margin: 0 50px;}
 .event-title-wrap{text-align: center;}
 .event-container{}
