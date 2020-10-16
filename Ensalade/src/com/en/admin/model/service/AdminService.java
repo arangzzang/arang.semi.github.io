@@ -136,4 +136,12 @@ public class AdminService {
 		close(conn);
 		return total;
 	}
+	public int eventDelete(String code) {
+		Connection conn = getConnection();
+		int result = dao.eventDelete(conn, code);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 }
