@@ -307,7 +307,7 @@
 	$(document).ready(function() {
 		$(".sidebarnav").scrollFollow({
 			speed : 500, // 꿈지럭 거리는 속도
-			offset : 200
+			offset : 100
 		// 웹페이지 상단에서 부터의 거리(바꿔보면 뭔지 안다)
 		});
 	});
@@ -366,7 +366,8 @@
  				b[4].innerHTML=t;
 //  				console.log($(b[1]).html());
 //  		console.log($(b[0]).html());
- 	});
+ 		});
+	
 	
 // 	$(".inquiry").click(e=>{
 
