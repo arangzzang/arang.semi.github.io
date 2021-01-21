@@ -138,9 +138,9 @@
 		                  <img alt="" src="<%=request.getContextPath() %><%=list.get(j).getProductThumbnail() %>" class="product-img">
 
 		                  <p class="prids"><%=list.get(j).getProductName() %></p>
-		                  <p class="prids"><%=list.get(j).getSalePer()!=0?formatter.format(list.get(j).getProductPrice()-(list.get(j).getProductPrice()*list.get(j).getSalePer()/100)) : formatter.format(list.get(j).getProductPrice())   %>원</p> 
-	                  	
-
+		                  <p class="prids">
+		                  <%=list.get(j).getSalePer()!=0?formatter.format(list.get(j).getProductPrice()-
+		                (list.get(j).getProductPrice()*list.get(j).getSalePer()/100)) : formatter.format(list.get(j).getProductPrice())%>원</p> 
 	                  </a><!-- p.getProductPrice()-(p.getProductPrice()*p.getSalePer()/100) -->
 	               </li>
 	                  <% if(list.size()-1==j){ 
@@ -416,10 +416,8 @@
   		//주문하기이동
   		function moveorder(){
   			var su=$("#amount").val();
-
   			<%if (loginMember == null) {
 				String loc = "/order/productOrder";%>
-
   				location.assign('<%=request.getContextPath()%>/view/login.jsp?productNo=<%=p.getProductNo()%>&loc=<%=loc%>&su='+su);
   			<%} else {%>
   				location.assign('<%=request.getContextPath()%>/order/productOrder?productNo=<%=p.getProductNo()%>&product_number=<%=product_number%>&amount='+su);
@@ -436,7 +434,6 @@
         var price = parseInt($(".won-color-wer").text().replace(/,/g, ""));
        <%} else {%>
        var price = <%=p.getProductPrice()%>
-        
        <%}%>
        
         var amount;
@@ -449,34 +446,14 @@
     	var hm = document.getElementById("amount");
 	  	 	if(hm.value=this.value.replace(/[^0-9]/g, '')){
 	    		sum.textContent = (parseInt(hm.value)*price).toLocaleString();
-	    	 /* }else if(hm.value==0||hm.value.chatAt(0)==0){
-	    		alert("1이상의 숫자만 입력해주세요.");
-	    		hm.value=1;*/
 	    	} 
         });   	 
-        //수량 값을 0을 보낼수 없음
-      /*   $("#amount").keyup(e=>{
-            let a=$(e.target).val();
-            
-            var sum = document.getElementById("sum");
-            if(a==0){
-               $("#amount").val(1);
-            }
-         }); */
-//         if(hm.value==0||hm.value.chatAt(0)==0){
-//     		alert("0이상의 숫자만 입력해주세요.")
-// 			hm.value=1;        		
-//     	}
-//     	else{
-//     		sum.textContent = parseInt(hm.value)*price+"원";
-//     	}
          
          $("#amount").blur(e=>{
        	 if($(e.target).val()==0){
        		 $(e.target).val(1);
        		 sum.textContent=($(e.target).val()*price).toLocaleString();
        	 }
-        	 
          }); 
         //수량 버튼 클릭시 태그 색변경
         $("#amount").focus(e=>{
@@ -512,17 +489,6 @@
     	   $(".infos-ch2").children().removeClass();
     	  $(e.target).next().addClass("bars");
        })
-        //스크롤 내릴시 css(sticky) 설정
-//         window.onscroll = function(){scrollsticky()};
-//         let infobtns = doucument.getElementById("infobtns-ch");
-//         let sticbar = infobtns.offsetTop;
-// 		function scrollsticky(){
-// 			if (window.pageYOffset >= sticbar) {
-// 				infobtns.classList.add("sticbar")
-// 			  } else {
-// 				  infobtns.classList.remove("sticbar");
-// 			  }
-// 		}
 		//리뷰
         $(".puduct_size").hover(e=> {
     		$(e.target).next().css("display","inline-block");

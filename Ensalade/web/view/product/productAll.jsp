@@ -44,13 +44,13 @@
 					            <p><%=p.getProductContent() %></p>
 					         	
 					         	<!-- 할인 적용 로직  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-					          <%if(p.getSalePer()!=0){ %>
+					        <%if(p.getSalePer()!=0){ %>
 					         
 					            <span class="productInfo"><em><%=formatter.format(p.getProductPrice()-(p.getProductPrice()*p.getSalePer()/100)) %></em>원</span>
 				            	<span class="productInfoin"><em><s><%=formatter.format(p.getProductPrice()) %>원</s></em></span>
-				            	<% }else {%>
+				            <% }else {%>
 				            	 <span class="productInfoin2"><em><%=formatter.format(p.getProductPrice()) %>원</em></span>
-				            	<%} %>
+				            <%} %>
 				            	
 				            </p>
 				         </a>
@@ -68,8 +68,8 @@
       //사이드바 스크롤바
       $(document).ready(function(){
           $("#sidebar").scrollFollow({
-              speed : 500,    // 꿈지럭 거리는 속도
-              offset : 100     // 웹페이지 상단에서 부터의 거리(바꿔보면 뭔지 안다)
+              speed : 500,   
+              offset : 100     
           });
       });
       //사이드바 클릭 이벤트

@@ -415,13 +415,13 @@
         		   url:'<%=request.getContextPath()%>/view/check/checkDuplicate.jsp',
         		   data:{'id':$("#userId_").val()},
         		   success:data=>{
-        			   
         			   $("#cId").html(data);
         	   			a=$("#h1").val();
         	   			console.log(a);
         		   }
         	   });
            })
+           
            $("#check_1").click(e=>{
         	   let reg=/^[0-9a-zA-Z]+@[0-9a-zA-Z.]+.[a-zA-Z]{2,6}$/;
         	   let email=$("#email_").val();
@@ -430,7 +430,6 @@
         		   $("#emailText").html("이메일 형식을 확인해주세요.");
         		   return;
         	   }
-        	   
         	   $("#emailCheck").css("display","block");
         	   $.ajax({
         		   url:'<%=request.getContextPath()%>/view/search/searchIdPw.jsp',
@@ -439,8 +438,6 @@
         			   $("#emailCheck").append(data);
         			   $("#emailText").html("");
         		   }
-        		   
-        		   
         	   });
            })
            

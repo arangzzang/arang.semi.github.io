@@ -141,10 +141,10 @@
         	  success:function(data){
         		     $("tbody").empty(); 
         		     $("tbody").html(data);  
-        		   
         	  }
           }); 
     	}); 
+	 //수량에 숫자만 기입할수있록함
       $(document).on("keyup",".amount",function(e){
    	    	for(var i=0;i<amounts.length;i++){
    	    		if(e.target==amounts[i]){
@@ -154,13 +154,12 @@
      	 		}
    	    	}else{
     			total_price+=parseInt(sums[i].textContent.replace(/,/g, ""));
-    			
     		}  
    	    }
-   	    
    	     $(".total-price")[0].textContent=(total_price).toLocaleString();
  		total_price=0;
      });   
+     //포커스가 벗어났을때 숫자가아닌 글자가 입력되면 1이 나오도록하고 숫자가 입력되면 입력된 숫와 곱해짐
      $(document).on("blur",".amount",function(e){
     		    for(var i=0;i<amounts.length;i++){
     			  if($(e.target).val()==0&&e.target==amounts[i]){
@@ -185,7 +184,7 @@
          $(".total-price").html(totalPrice);//onload로 페이지 처음에 처음 총 구매금액을 보여줌
      });
    
-   
+   	 //더하기버튼 클릭시 가격과 수량이 함께 올라갈수 있도록함
      $(document).on("click",".add",function(e){
     	 console.log(amounts);
     	for(var i=0;i<prices.length;i++){
@@ -197,13 +196,12 @@
         		//toLocaleString()함수는 숫자3자리마다 콤마를 붙여주고 replace(/,/g, "")는 콤마를 없애줌
     		}else{
     			total_price+=parseInt(sums[i].textContent.replace(/,/g, ""));
-    			
     		}
-    		 }
-    		
-    		$(".total-price")[0].textContent=(total_price).toLocaleString();
-    		total_price=0;
+    	}
+   		$(".total-price")[0].textContent=(total_price).toLocaleString();
+   		total_price=0;
     	});
+     	//빼기버튼 클릭시 가격과 수량이 함께 내려갈수 있도록함
     	 $(document).on("click",".del",function(e){;
 	     	for(var i=0;i<prices.length;i++){
 	     		if(e.target==dels[i]){//발생버튼과 같은인덱스
